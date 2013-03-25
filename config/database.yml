@@ -25,10 +25,10 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: sound_melon_v2_radio_test
+  database: sm_radio_test
   pool: 5
-  username: root
-  password:
+  username: smrd_test
+  password: petrucci91
   socket: /var/run/mysqld/mysqld.sock
 
 production:
