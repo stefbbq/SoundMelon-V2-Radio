@@ -1,5 +1,9 @@
 SoundMelonV2Radio::Application.routes.draw do
-  get "users/new"
+  resources :users
+  
+  root to: 'welcome#home'
+  
+  match '/signup', to: 'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -13,7 +17,6 @@ SoundMelonV2Radio::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-     resources :users
 
   # Sample resource route with options:
   #   resources :products do
@@ -56,5 +59,5 @@ SoundMelonV2Radio::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  match ':controller(/:action(/:id))(.:format)'
 end

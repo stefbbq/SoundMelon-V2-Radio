@@ -1,0 +1,29 @@
+= javascript_include_tag "signup_validations"
+
+- provide(:title, 'Registration')
+
+.row
+	= form_for(@user) do |f|
+		
+		=f.label :first_name, "First Name"
+		=f.text_field :first_name
+
+		=f.label :last_name, "Last Name"
+		=f.text_field :last_name
+
+		=f.label :username, "Username"
+		=f.text_field :username
+
+		=f.label :email, "Email"
+		=f.text_field :email
+
+		=f.label :email_confirmation, "Confirm Email"
+		=f.text_field :email_confirmation
+
+		=f.label :password
+		=f.password_field :password
+
+		=f.label :password_confirmation, "Confirm Password"
+		=f.password_field :password_confirmation
+
+		=f.submit "Submit"
