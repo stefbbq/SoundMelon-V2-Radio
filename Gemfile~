@@ -35,7 +35,6 @@ gem "haml-rails"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
-gem 'jcheck_rails'
 #gem 'client_side_validations'
 
 # To use Jbuilder templates for JSON

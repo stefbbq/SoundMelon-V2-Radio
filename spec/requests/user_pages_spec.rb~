@@ -28,9 +28,9 @@ describe "User pages" do
       before do
         fill_in "First Name",   with: "Example"
 				fill_in "Last Name",    with: "User"
-				fill_in "Username",			with:	"examuser"
+				fill_in "Pick a",				with:	"examuser"
         fill_in "Email",        with: "user@example.com"
-				fill_in "Confirm Email" with: "user@example.com"
+				fill_in "Confirm Email", with: "user@example.com"
         fill_in "Password",     with: "foobar"
         fill_in "Confirm Password", with: "foobar"
       end
