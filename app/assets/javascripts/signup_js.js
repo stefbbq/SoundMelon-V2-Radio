@@ -13,9 +13,6 @@ $('document').ready(function() {
 	}
 
 
-	$('label').hide(); // hides all labels which are required for testing 
-										 // correct fields
-
 
 	//Vars to collect email input fields
 	var email = $('#email_input')

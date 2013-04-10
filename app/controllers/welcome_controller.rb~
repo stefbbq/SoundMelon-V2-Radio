@@ -5,8 +5,6 @@ class WelcomeController < ApplicationController
 	end
 
 	def register
-		@new_reg = "New Register"
-		respond_with @new_reg
 	end
 
 

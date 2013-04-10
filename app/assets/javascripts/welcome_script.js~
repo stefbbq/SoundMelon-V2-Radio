@@ -1,0 +1,6 @@
+$('document').ready(function() {
+	console.log('Js file is being used');
+	$('#register').click(function() {
+		$('.main_page_div').empty().html('<%= escape_javascript( render(file: "/users/new")); %>');
+	});
+});
