@@ -3,6 +3,6 @@ $('document').ready(function() {
 		console.log('Register Javascript activated');
 		//$('body').empty().load("/users/new");
 		$('.welcome_page').empty();
-		$('#register_form').css('display', 'block');
+		$('#register_form').css('visibility', 'visible');
 	});
 });

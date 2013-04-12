@@ -8,4 +8,9 @@
 		= csrf_meta_tags
 
 	%body
-		= yield
+		.wrapper
+			= yield
+				.push
+
+		.footer			
+			= render 'layouts/footer'

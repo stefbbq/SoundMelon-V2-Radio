@@ -1,0 +1,9 @@
+%small
+	Copyright 2013 SoundMelon Inc.
+	%button#fb{href: '#'} FB
+	%button#twitter{href: '#'} TW
+	%button#lnkdin{href: '#'} in
+	Find your tune.
+	%a#lrn_mr{href: '#'}Learn more 
+	or 
+	%a.register_now{href: '#'}Register
