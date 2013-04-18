@@ -1,0 +1,10 @@
+- user = User.find_by_email(params[:session][:email].downcase)
+- if user && user.authenticate(params[:session][:password])
+	:ruby
+		sign_in user
+	:plain
+		$('#messages').empty().html('Success!');
+
+- else
+	:plain
+		$('#messages').empty().html('Invalid email/password.');

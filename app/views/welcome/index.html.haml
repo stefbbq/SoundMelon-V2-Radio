@@ -11,10 +11,13 @@
 				.buttons
 					%button#facebook 	CONNECT WITH FACEBOOK
 					%button.register_now{href: '#'} REGISTER
-					%button#sign_in		LOG IN
+					%button.log_in{href: '#'}		LOG IN
 
 		#register_form
 			= render template: 'users/new'
+
+		#login_page
+			= render template: 'sessions/new'
 
 		#lrn_div
 			%p

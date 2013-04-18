@@ -16,13 +16,17 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 	
 
-	#private
-
 	def check_email_and_confirmation
 		if (self.email != self.email_confirmation)
 			errors.add(:email, "Make sure the email address you typed is correct")
 		end
 	end
+
+	private
+
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
 
 end
 

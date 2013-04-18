@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 	end
 
   def new
-		render :file => 'users/new'
+		@user = User.new
   end
 
 	def create

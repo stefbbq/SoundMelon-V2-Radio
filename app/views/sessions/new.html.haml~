@@ -1,0 +1,15 @@
+%h2 Sign In
+
+#login_page
+	#messages
+
+	#login_form
+
+		= form_for(:session, url: sessions_path, remote: true) do |f|
+			= f.label :email, class: 'hidden'
+			= f.text_field :email, placeholder: 'Email'
+
+			= f.label :password, class: 'hidden'
+			= f.password_field :password, placeholder: 'Password'
+
+			= f.submit 'Log In'
