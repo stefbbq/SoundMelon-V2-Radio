@@ -7,3 +7,5 @@
 	%a#lrn_lnk{href: '#'}Learn more 
 	or 
 	%a.register_now{href: '#'}Register
+	- if signed_in?
+		= button_to('Logout', signout_path, method: 'delete', remote: true)

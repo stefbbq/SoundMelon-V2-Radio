@@ -10,7 +10,7 @@
 	%body
 		.wrapper
 			= yield
-				.push
+			.push
 
 		.footer			
 			= render 'layouts/footer'

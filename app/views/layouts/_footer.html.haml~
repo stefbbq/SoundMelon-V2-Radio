@@ -4,6 +4,10 @@
 	%button#twitter{href: '#'} TW
 	%button#lnkdin{href: '#'} in
 	Find your tune.
-	%a#lrn_mr{href: '#'}Learn more 
+	%a#lrn_lnk{href: '#'}Learn more 
 	or 
 	%a.register_now{href: '#'}Register
+	- if signed_in?
+		= button_to('Logout', signout_path, method: 'delete', remote: true)
+	- else
+		= button_to('Login', login_path, method: 'create', remote: true)

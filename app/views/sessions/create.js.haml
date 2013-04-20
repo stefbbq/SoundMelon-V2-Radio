@@ -3,8 +3,9 @@
 	:ruby
 		sign_in user
 	:plain
-		$('#login_messages').empty().html('Success!');
-
+		$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
+		$('.footer').empty().html("#{escape_javascript( render partial: 'layouts/footer' )}")
 - else
 	:plain
 		$('#login_messages').empty().html('Invalid email/password.');
+	- end

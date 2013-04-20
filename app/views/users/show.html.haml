@@ -1,2 +1,4 @@
-%title= provide(:title, @user.first_name)
-%h1= @user.first_name
+#user_page
+	- @user = current_user
+	%h1= @user.first_name
+	%h2= @user.email

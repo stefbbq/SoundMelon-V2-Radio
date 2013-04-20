@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	respond_to :js, :json, :html, :xml
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.find_by_email(params[:email])
 	end
 
   def new

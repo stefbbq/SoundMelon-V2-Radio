@@ -4,7 +4,7 @@ SoundMelonV2Radio::Application.routes.draw do
   
   root to: 'welcome#index'
   
-  #match '/signup', to: 'users#new'
+  match '/signup', to: 'users#new'
 	match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 

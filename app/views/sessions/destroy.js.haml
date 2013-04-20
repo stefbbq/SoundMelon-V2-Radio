@@ -1,0 +1,4 @@
+:plain
+	$('.main_page_div').empty().html("#{escape_javascript( render template: 'welcome/index' )}");
+	$('.footer').empty().html("#{escape_javascript( render partial: 'layouts/footer' )}");
+
