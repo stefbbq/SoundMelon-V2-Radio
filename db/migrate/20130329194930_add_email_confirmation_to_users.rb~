@@ -1,4 +1,0 @@
-class AddEmailConfirmationToUsers < ActiveRecord::Migration
-  def change
-  end
-end

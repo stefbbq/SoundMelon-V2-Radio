@@ -1,3 +1,0 @@
-:plain
-	console.log("Success!");
-	$('.main_page_div').empty().html('#{escape_javascript(render "terms_cond")}')

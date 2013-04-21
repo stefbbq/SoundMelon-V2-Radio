@@ -1,5 +1,0 @@
-.hidden
-	display: none //hide the labels as per view rqrmnt
-
-#register_form
-	display: none //hide the register form until user selects 

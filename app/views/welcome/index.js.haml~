@@ -1,5 +1,0 @@
-:plain
-	console.log('Js file is being used');
-	$('#signup_now').click(function() {
-		$('.main_page_div').empty().html('#{escape_javascript( render(file: "/users/new") );}');
-	});

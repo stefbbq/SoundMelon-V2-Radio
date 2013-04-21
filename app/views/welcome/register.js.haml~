@@ -1,5 +1,0 @@
-:plain
-	$('#register_now').click(function() {
-		console.log("register.js is being used");
-		$('.main_page_div').empty().html('#{escape_javascript(render template: "users/new")}');
-	});
