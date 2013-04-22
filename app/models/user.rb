@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 	before_save { |user| user.email = email.downcase }
+	before_save :create_remember_token
 
 	validates :first_name, :presence => true, :length => {:maximum => 25}
 	validates :last_name, :length => {:maximum => 30}
