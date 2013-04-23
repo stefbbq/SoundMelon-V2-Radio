@@ -13,12 +13,6 @@
 					%button.register_now{href: '#'} REGISTER
 					%button.log_in{href: '#'}		LOG IN
 
-				#signed_in_test
-					- if signed_in?
-						%p Aloha #{current_user.first_name}, you be signed in!
-						= current_user.inspect
-						= cookies.inspect
-
 		#register_form
 			= render template: 'users/new'
 
