@@ -8,4 +8,8 @@
 	or 
 	%a.register_now{href: '#'}Register
 	- if signed_in?
-		= button_to('Logout', signout_path, method: 'delete', remote: true)
+		Hello #{current_user.first_name + ' ' + current_user.last_name}! 
+		Why not 
+		%a#add_content{href: '#'} add your tunes 
+		to the radio?
+		= link_to('Logout', signout_path, method: 'delete', remote: true)
