@@ -48,3 +48,5 @@ gem 'client_side_validations'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'compass-rails'

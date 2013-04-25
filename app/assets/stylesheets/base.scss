@@ -1,0 +1,27 @@
+@import "compass/css3/border-radius";
+
+//main content
+.wrapper {
+	position: absolute;
+	top: 300px;
+	width: 100%;
+	
+	.main-content {
+		margin: 0px auto;
+		width: 640px;
+		height: 480px;
+		background: rgba(white, .2);
+		@include border-radius(6px);
+	}
+}
+
+
+//footer
+.footer, .push {
+	background: black;
+	height: 100px;
+	width: 100%;	
+	position: fixed;
+	bottom: 0px;
+	color: white;
+}

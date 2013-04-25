@@ -1,0 +1,32 @@
+@import "compass/css3/background-size";
+
+//
+//core
+html, body {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Trebuchet MS", arial, verdana, tahoma;
+  font-size: 13px;  
+	font-weight: normal;
+  //color: $text-color; 
+	//background: $footer-bg-color;
+}
+body { 
+	//background: url(core/background.jpg) no-repeat;
+	//@include background-size(cover);
+	background: #9d74fe;
+}
+img { 
+  border: none; 
+  vertical-align: middle;
+}
+ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #f44848;
+  &:hover { text-decoration: none; color: #ff9393;}
+}
