@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 	attr_accessible :first_name, :last_name, :username, 
-									:email, :email_confirmation, :password, :password_confirmation
+									:email, :email_confirmation, :password, :password_confirmation,
+									:is_artist
 	has_secure_password
+	has_one :artist
 
 	before_save { |user| user.email = email.downcase }
 	before_save :create_remember_token
