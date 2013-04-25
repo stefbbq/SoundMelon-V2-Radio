@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(:version => 20130425004729) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "artists_uploads", :force => true do |t|
+  create_table "artists_songs", :force => true do |t|
     t.integer "artist_id"
-    t.string  "genres"
+    t.string  "keywords"
     t.boolean "active",    :default => true
   end
 
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130425004729) do
     t.string   "email_confirmation"
     t.string   "remember_token"
     t.boolean  "is_artist",          :default => false
+    t.integer  "artist_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
