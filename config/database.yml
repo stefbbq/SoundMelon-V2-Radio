@@ -14,9 +14,9 @@ development:
   reconnect: false
   database: sm_radio_development
   pool: 5
-  username: root
-  password:	
-  socket: /tmp/mysql.sock
+  username: smrd
+  password:	petrucci91
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -29,7 +29,7 @@ test:
   pool: 5
   username: root
   password: 
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2
@@ -39,4 +39,4 @@ production:
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock

@@ -1,6 +1,5 @@
 %head
 	%title= provide(:title, "SoundMelon")
-	= javascript_include_tag "register_script"
 	= stylesheet_link_tag "welcome_page"
 
 	#welcome_page_div	
@@ -10,14 +9,8 @@
 
 				.buttons
 					%button#facebook 	CONNECT WITH FACEBOOK
-					%button.register_now{href: '#'} REGISTER
-					%button.log_in{href: '#'}		LOG IN
-
-		#register_form
-			= render template: 'users/new'
-
-		#login_page
-			= render template: 'sessions/new'
+					= button_to('REGISTER', signup_path, remote: true)
+					= button_to('LOG IN', signin_path, remote: true)
 
 		#lrn_div
 			%p
@@ -26,5 +19,5 @@
 			%p
 				Nihil nostrud mei te. Ne vix omnesque sadipscing appellantur, appetere volutpat argumentum ea duo. Ea iisque accusamus deseruisse vel, pri no utroque efficiantur, at usu clita tollit saperet. Ius ea adhuc meliore, vel mazim referrentur neglegentur at. Ne melius placerat duo. Pri probo intellegam eu.
 			%br
-			%a.register_now{href: '#'} SO WHY NOT REGISTER?
+			= link_to('SO WHY NOT REGISTER?', signup_path, remote: true)
 			
