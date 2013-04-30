@@ -2,6 +2,7 @@
 	%title= provide(:title, "SoundMelon")
 	= stylesheet_link_tag "welcome_page"
 
+
 	#welcome_page_div	
 		.welcome_page
 			%body
@@ -9,8 +10,8 @@
 
 				.buttons
 					%button#facebook 	CONNECT WITH FACEBOOK
-					= button_to('REGISTER', signup_path, remote: true)
-					= button_to('LOG IN', signin_path, remote: true)
+					= link_to('REGISTER', signup_path, remote: true, class: 'page_link')
+					= link_to('LOG IN', signin_path, remote: true, class: 'page_link')
 
 		#lrn_div
 			%p
@@ -20,4 +21,3 @@
 				Nihil nostrud mei te. Ne vix omnesque sadipscing appellantur, appetere volutpat argumentum ea duo. Ea iisque accusamus deseruisse vel, pri no utroque efficiantur, at usu clita tollit saperet. Ius ea adhuc meliore, vel mazim referrentur neglegentur at. Ne melius placerat duo. Pri probo intellegam eu.
 			%br
 			= link_to('SO WHY NOT REGISTER?', signup_path, remote: true)
-			

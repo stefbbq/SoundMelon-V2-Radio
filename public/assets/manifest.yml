@@ -1,0 +1,11 @@
+---
+core/background.jpg: core/background.jpg
+core/background/index.jpg: core/background.jpg
+core/footer_logo.png: core/footer_logo.png
+core/footer_logo/index.png: core/footer_logo.png
+rails.png: rails.png
+rails/index.png: rails.png
+application.js: application.js
+application/index.js: application.js
+application.css: application.css
+application/index.css: application.css
