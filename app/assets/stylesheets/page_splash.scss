@@ -1,0 +1,24 @@
+@import "variables";
+@import "controls";
+
+//
+//buttons
+.buttons {
+	#facebook {
+		@include splash-fb-button();
+	}
+	a {
+		@include splash-generic-button();
+	}
+}
+#register_form {
+	visibility: hidden;
+}
+
+#login_page {
+	visibility: hidden;
+}
+
+#lrn_div {
+	display: none;
+}

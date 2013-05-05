@@ -1,5 +1,4 @@
 $('document').ready(function() {
-
 	function doEmailComp(email_val, email_conf_val){
 		// perform an email comparison and display live validation for confirm email field
 		if(email_val !== email_conf_val){
@@ -11,8 +10,6 @@ $('document').ready(function() {
 			$(".warning_div").remove();
 		}
 	}
-
-
 
 	//Vars to collect email input fields
 	var email = $('#email_input')
@@ -34,5 +31,4 @@ $('document').ready(function() {
 		var email_conf_val = email_conf.val();
 		doEmailComp(email_val, email_conf_val);
 	});
-	
 });

@@ -9,10 +9,11 @@
 		= csrf_meta_tags
 
 	%body
+		.bg-wrapper
+			= image_tag('core/background.jpg', :class => 'bg-img', :style => "width: 100%")
 		.wrapper
 			.main-content
 				.main_page_div
 					= yield
-			.push
-		.footer			
+		.footer
 			= render 'layouts/footer'

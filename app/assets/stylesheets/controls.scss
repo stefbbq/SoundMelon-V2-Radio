@@ -1,0 +1,25 @@
+@import "compass/css3";
+@import "variables";
+
+//
+//buttons
+@mixin splash-fb-button(){
+	@include border-radius($radius);
+	@include single-box-shadow(rgba(black, .3), 0px, 3px, 6px);
+	background: #7eabdd;
+	height: 50px;
+	border: none;
+	color: white;
+	font-size: 16px;
+}
+@mixin splash-generic-button(){
+	@include border-radius($radius);
+	@include single-box-shadow(rgba(black, .3), 0px, 3px, 6px);
+	background: rgba(white, .6);
+	height: 50px;
+	border: none;
+	color: rgba(black, .6);
+	font-size: 16px;	
+	display: inline-block;
+	text-decoration: none;
+}

@@ -1,13 +1,15 @@
 @import "compass/css3/border-radius";
+@import "variables";
 
+//
 //main content
 .wrapper {
 	position: absolute;
-	top: 300px;
+	top: 50%;
 	width: 100%;
 	
 	.main-content {
-		margin: 0px auto;
+		margin: -240px - ($footer-height / 2) auto 0px auto;
 		width: 640px;
 		height: 480px;
 		background: rgba(white, .2);
@@ -15,13 +17,44 @@
 	}
 }
 
-
+//
 //footer
-.footer, .push {
-	background: black;
-	height: 100px;
+.footer{
+	background: rgba(black, .7);
+	height: $footer-height;
 	width: 100%;	
 	position: fixed;
 	bottom: 0px;
 	color: white;
+	
+	.logo {
+		position: absolute;
+		left: 18px;
+		bottom: $footer-height - 55px;
+	}
+	
+	.right {
+		float: right;
+		position: relative;
+		top: 12px;
+		right: 18px;
+		color: rgba(white, .8);
+	}
+}
+
+//
+//core
+.bg-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+	
+	.bg-img {
+	  display: block;
+	}
 }
