@@ -1,7 +1,7 @@
 @import "compass/css3/background-size";
 
 //
-//core
+//basics
 html, body {
   padding: 0px;
   margin: 0px;
@@ -29,4 +29,23 @@ a {
   text-decoration: none;
   color: #f44848;
   &:hover { text-decoration: none; color: #ff9393;}
+}
+
+//
+//fonts
+@font-face {
+	font-family: FuturaBook;
+	src: url('FuturaBook.ttf'), url('FuturaBook.eot');
+}
+@font-face {
+	font-family: FuturaLight;
+	src: url('FuturaLight.ttf'), url('FuturaLight.eot');
+}
+@font-face {
+	font-family: FuturaCondensedBold;
+	src: url('FuturaCondensedBold.ttf'), url('FuturaCondensedBold.eot');
+}
+@font-face {
+	font-family: FuturaCondensedMedium;
+	src: url('FuturaCondensedMedium.ttf'), url('FuturaCondensedMedium.eot');
 }
