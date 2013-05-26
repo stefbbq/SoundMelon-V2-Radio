@@ -1,13 +1,9 @@
 %head
 	%title= provide(:title, "SoundMelon")
-	= stylesheet_link_tag "welcome_page"
-
-
 	#welcome_page_div	
 		.welcome_page
 			%body
 				%h2.center Welcome!
-
 				.buttons
 					%button#facebook 	CONNECT WITH FACEBOOK
 					= link_to('REGISTER', signup_path, remote: true, class: 'page_link')

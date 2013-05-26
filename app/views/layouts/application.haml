@@ -5,9 +5,7 @@
 		%title= yield(:title)
 		= stylesheet_link_tag "application", media: "all"
 		= javascript_include_tag "application", "rails.validations"
-		
 		= csrf_meta_tags
-
 	%body
 		.bg-wrapper
 			= image_tag('core/background.jpg', :class => 'bg-img', :style => "width: 100%")

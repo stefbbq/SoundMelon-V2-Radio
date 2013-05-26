@@ -5,12 +5,20 @@
 //buttons
 @mixin splash-fb-button(){
 	@include border-radius($radius);
-	@include single-box-shadow(rgba(black, .3), 0px, 3px, 6px);
-	background: #7eabdd;
-	height: 50px;
+	@include single-box-shadow(rgba(black, .05), 0px, 3px, 6px);
+	@include background-image(linear-gradient(top, rgba(#7eabdd, .8), rgba(#4e8bad, .8)));
 	border: none;
+	padding: 10px;
 	color: white;
-	font-size: 16px;
+	font-size: 24px;	
+	display: inline-block;
+	font-family: FuturaCondensedMedium;
+	text-decoration: none;
+	cursor: pointer;
+	
+	&:hover {
+		@include background-image(linear-gradient(top, rgba(#9ecbfd, .8), rgba(#7eabdd, .8)));
+	};
 }
 @mixin splash-generic-button(){
 	@include border-radius($radius);
@@ -21,7 +29,7 @@
 	color: rgba(black, .6);
 	font-size: 24px;	
 	display: inline-block;
-	font-family: FuturaCondensedBold;
+	font-family: FuturaCondensedMedium;
 	text-decoration: none;
 	
 	&:hover {

@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.scrollTo
+//= require jquery.history
+//= require ajaxify-html5
 //= require rails.validations
 //= require design
