@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	include UsersHelper
+
 	respond_to :js, :json, :html, :xml
 
 	def show
