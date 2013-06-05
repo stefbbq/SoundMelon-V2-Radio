@@ -2,3 +2,6 @@
 	- @user = current_user
 	%h1= @user.first_name
 	%h2= @user.email
+
+	- if !current_user.is_artist?
+		= render 'users/add_youtube'
