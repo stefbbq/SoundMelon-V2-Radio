@@ -1,0 +1,16 @@
+@import 'compass/utilities/sprites/sprite-img';
+
+.icon-32 {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	opacity: .6;
+	margin: 0 -3px -11px -3px;
+	
+	&:hover { cursor: pointer; opacity: .8; };
+}
+
+//social
+#facebook-icon { @include sprite-img("icons/social.png", 1, 1, 32px, 32px); }
+#twitter-icon { @include sprite-img("icons/social.png", 2, 1, 32px, 32px); }
+#linkedin-icon { @include sprite-img("icons/social.png", 3, 1, 32px, 32px); }

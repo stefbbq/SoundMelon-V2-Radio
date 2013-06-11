@@ -2,9 +2,9 @@
 = stylesheet_link_tag "signup_style"
 - provide(:title, 'Registration')
 
+
 .row
 	= form_for(@user = User.new, remote: true, :validate => true) do |f|
-
 		=f.label :first_name, "First Name", class: "hidden"
 		=f.text_field :first_name, :placeholder => 'First Name'		
 

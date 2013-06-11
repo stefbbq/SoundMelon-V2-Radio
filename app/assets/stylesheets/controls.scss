@@ -17,7 +17,7 @@
 	cursor: pointer;
 	
 	&:hover {
-		@include background-image(linear-gradient(top, rgba(#9ecbfd, .8), rgba(#7eabdd, .8)));
+		@include background-image(linear-gradient(top, rgba(#8ebbed, .8), rgba(#6e9bcd, .8)));
 	};
 }
 @mixin splash-generic-button(){
@@ -27,7 +27,7 @@
 	border: 1px solid rgba(black, .3);
 	padding: 10px;
 	color: rgba(black, .6);
-	font-size: 24px;	
+	font-size: 24px;
 	display: inline-block;
 	font-family: FuturaCondensedMedium;
 	text-decoration: none;

@@ -1,19 +1,8 @@
-%head
-	%title= provide(:title, "SoundMelon")
-	#welcome_page_div	
-		.welcome_page
-			%body
-				%h2.center Welcome!
-				.buttons
-					%button#facebook 	CONNECT WITH FACEBOOK
-					= link_to('REGISTER', signup_path, remote: true, class: 'page_link')
-					= link_to('LOG IN', signin_path, remote: true, class: 'page_link')
-
-		#lrn_div
-			%p
-				Lorem ipsum dolor sit amet, in salutandi assueverit vis, percipit deterruisset nec ad. Ne vim vero quodsi mollis, an summo interpretaris mea. Ei usu vero veri, sea nostrum appareat inimicus ne. His mucius petentium in, at vix recteque incorrupte.
-			%br
-			%p
-				Nihil nostrud mei te. Ne vix omnesque sadipscing appellantur, appetere volutpat argumentum ea duo. Ea iisque accusamus deseruisse vel, pri no utroque efficiantur, at usu clita tollit saperet. Ius ea adhuc meliore, vel mazim referrentur neglegentur at. Ne melius placerat duo. Pri probo intellegam eu.
-			%br
-			= link_to('SO WHY NOT REGISTER?', signup_path, remote: true)
+.inner-content
+	%h1.bg-title Find Your Tune
+	.buttons
+		%button#facebook CONNECT WITH FACEBOOK
+		= link_to('REGISTER', signup_path, remote: true, class: 'page_link')
+	.log-in
+		%span.bg-faded Already have an account?
+		= link_to('Sign in', signin_path, remote: true, class: 'page_link bg-faded')

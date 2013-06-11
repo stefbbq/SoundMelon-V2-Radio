@@ -1,4 +1,6 @@
 @import "compass/css3/background-size";
+@import "compass/css3/text-shadow";
+@import "variables";
 
 //
 //basics
@@ -28,7 +30,25 @@ ul {
 a {
   text-decoration: none;
   color: #f44848;
-  &:hover { text-decoration: none; color: #ff9393;}
+  &:hover { text-decoration: none; color: #ff9393; }
+}
+
+//
+//font styles
+h1, h2, h3 {
+	font-family: FuturaCondensedMedium;
+}
+h1 {
+	font-size: 28px;
+}
+.bg-faded {
+	opacity: .5;
+	font-weight: bold;
+	@include single-text-shadow(0px, 1px, 0px, false, white);
+}
+.bg-title {
+	opacity: .4;
+	@include single-text-shadow(0px, 1px, 0px, false, white);
 }
 
 //

@@ -3,10 +3,11 @@
 .right 
 	%small
 		Copyright 2013 SoundMelon Inc.
-		%button#fb{href: '#'} FB
-		%button#twitter{href: '#'} TW
-		%button#lnkdin{href: '#'} in
-
+	.icons
+		.icon-32#facebook-icon{href: "#"}
+		.icon-32#twitter-icon{href: "#"}
+		.icon-32#linkedin-icon{href: "#"}
+	%small
 		- if signed_in?
 			Hello #{current_user.first_name + ' ' + current_user.last_name}! 
 			Why not 

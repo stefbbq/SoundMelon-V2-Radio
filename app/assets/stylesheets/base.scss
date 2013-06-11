@@ -1,4 +1,5 @@
 @import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
 @import "variables";
 @import "controls";
 
@@ -10,17 +11,28 @@
 	width: 100%;
 	
 	.main-content {
-		margin: -240px - ($footer-height / 2) auto 0px auto;
+		margin: -240px -($footer-height / 2) auto 0px auto;
 		width: 640px;
 		height: 480px;
-		background: rgba(white, .2);
-		@include border-radius(6px);
+		//background: rgba(white, .2);
+		//@include border-radius(6px);
+		
+		.inner-content {
+			text-align: center;
+		}
+		
+		.log-in a {
+			color: $bg-text-highlight;
+			opacity: .6;
+			
+			&:hover { opacity: .8; };
+		}
 	}
 }
 
 //
 //footer
-.footer{
+.footer {
 	background: rgba(black, .7);
 	height: $footer-height;
 	width: 100%;	
@@ -37,9 +49,14 @@
 	.right {
 		float: right;
 		position: relative;
-		top: 12px;
+		top: 10px;
 		right: 18px;
 		color: rgba(white, .8);
+	}
+	
+	.icons {
+		display: inline-block;
+		margin: 0px 4px;
 	}
 }
 
