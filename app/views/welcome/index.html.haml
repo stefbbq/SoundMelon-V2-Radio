@@ -1,8 +1,11 @@
-.inner-content
-	%h1.bg-title Find Your Tune
-	.buttons
-		%button#facebook CONNECT WITH FACEBOOK
-		= link_to('REGISTER', signup_path, remote: true, class: 'page_link')
-	.log-in
-		%span.bg-faded Already have an account?
-		= link_to('Sign in', signin_path, remote: true, class: 'page_link bg-faded')
+- if signed_in?
+	= render template: 'users/show'
+-else
+	.inner-content
+		%h1.bg-title Find Your Tune
+		.buttons
+			%button#facebook CONNECT WITH FACEBOOK
+			= link_to('REGISTER', signup_path, remote: true, class: 'page_link')
+		.log-in
+			%span.bg-faded Already have an account?
+			= link_to('Sign in', signin_path, remote: true, class: 'page_link bg-faded')
