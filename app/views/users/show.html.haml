@@ -1,7 +1,8 @@
 #user_page
-	- @user = current_user
-	%h1= @user.first_name
-	%h2= @user.email
+	%h1= current_user.first_name
+	%h2= current_user.email
 
 	- if !current_user.is_artist?
 		= render 'users/add_youtube'
+	- else
+		= render template: 'artists/show'
