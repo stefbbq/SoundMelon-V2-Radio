@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
 	include ArtistsHelper
+	helper_method :init_auth_ids, :new_client
 
 	def create
 		@artist = Artist.new(artist_name: current_user.username)
@@ -11,10 +12,6 @@ class ArtistsController < ApplicationController
 	end
 
 	def show
-		@artist = current_artist
-#		@ids = init_auth_ids
-#		@token = current_artist.youtube_token
-#		@client = new_client(ids, token)
 	end
 
 	def oauth_callback
@@ -26,19 +23,13 @@ class ArtistsController < ApplicationController
 			# do something
 		else
 			create
-			current_artist.update_column(:youtube_token, @new_tokens["access_token"])
+			current_artist.update_attributes(youtube_token: @new_tokens)
+#			@client = new_client(ids, @new_tokens["access_token"])
 			redirect_to root_path
 		end
 				
 	end
 
-	def new_client(ids, token)
-		# Initialize and return a new youtube_it client
-		client = YouTubeIt::OAuth2Client.new(client_access_token: token,
-																					client_id: ids[:client_id],
-																					client_secret: ids[:client_secret],
-																					dev_key: ids[:dev_key])
-		return client
-	end
+
 
 end

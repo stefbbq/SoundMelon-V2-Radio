@@ -1,0 +1,9 @@
+%div
+	%img{src: video.thumbnails.first.url} #{video.title}
+	%br
+	%input{type: "radio", name: "active#{video.title}", value: "yes"}yes 
+	%input{type: "radio", name: "active#{video.title}", value: "no"}no ACTIVE
+	%br
+	%textarea{rows: "2", cols: "50", placeholder: "add more..."}
+	%br
+	= link_to('ACCEPT', edit_upload_path, remote: true, class: 'page_link bg-faded')

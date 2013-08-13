@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526191523) do
+ActiveRecord::Schema.define(:version => 20130812210853) do
+
+  create_table "artist_uploads", :force => true do |t|
+    t.integer  "artist_id"
+    t.string   "song_id"
+    t.string   "keywords"
+    t.boolean  "active",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
 
   create_table "artists", :force => true do |t|
     t.string   "artist_name"
@@ -19,12 +28,6 @@ ActiveRecord::Schema.define(:version => 20130526191523) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "youtube_token"
-  end
-
-  create_table "artists_songs", :force => true do |t|
-    t.integer "artist_id"
-    t.string  "keywords"
-    t.boolean "active",    :default => true
   end
 
   create_table "users", :force => true do |t|

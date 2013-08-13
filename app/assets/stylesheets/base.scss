@@ -81,4 +81,5 @@
 //other
 .modal {
 	@include footer-modal();
+	display: none;
 }

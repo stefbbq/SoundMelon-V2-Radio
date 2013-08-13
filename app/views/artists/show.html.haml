@@ -1,1 +1,13 @@
-= @artist.inspect
+- @artist = current_artist
+- @ids = init_auth_ids
+- @tokens = current_artist.youtube_token
+- @client = new_client(@ids, @tokens["access_token"], @tokens["refresh_token"])
+- @client.refresh_access_token!
+- @tokens["access_token"] = @client.access_token.token
+- @tokens["refresh_token"] = @client.access_token.refresh_token
+- current_artist.update_attributes(youtube_token: @tokens)
+
+#artist-media
+	#available-uploads
+		- @client.my_videos.videos.each do |video|
+			=	render 'artist_uploads/show_song', video: video

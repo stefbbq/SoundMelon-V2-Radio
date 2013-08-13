@@ -35,4 +35,14 @@ module ArtistsHelper
 		return result
 	end
 
+	def new_client(ids, token, refresh_token)
+		# Initialize and return a new youtube_it client
+		client = YouTubeIt::OAuth2Client.new(client_access_token: token,
+																					client_refresh_token: refresh_token,
+																					client_id: ids[:client_id],
+																					client_secret: ids[:client_secret],
+																					dev_key: ids[:dev_key])
+		return client
+	end
+
 end

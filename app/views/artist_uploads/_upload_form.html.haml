@@ -1,0 +1,8 @@
+= f.radio_button(:active, "on", checked: @active)
+= label(:active_on, "ON")
+
+= f.radio_button(:active, "off", checked: !@active)
+= label(:active_off, "OFF")
+
+= label(:keywords, "Tags")
+= f.text_field(:keywords, placeholder: "Add some genre tags for this song...")

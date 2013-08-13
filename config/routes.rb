@@ -1,6 +1,7 @@
 SoundMelonV2Radio::Application.routes.draw do
   resources :users
 	resources :sessions, only: [:new, :create, :destroy]
+	resources :artist_uploads
   
   root to: 'welcome#index'
   
@@ -8,6 +9,8 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 	match '/oauth_callback', to: 'artists#oauth_callback'
+	match '/new_upload', to: 'artist_uploads#new'
+	match '/edit_upload', to: 'artist_uploads#edit'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
