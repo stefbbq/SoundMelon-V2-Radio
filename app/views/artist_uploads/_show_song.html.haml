@@ -1,21 +1,9 @@
 .artist-song
-	- @current_uploads = ArtistUpload.where(artist_id: current_artist.id)
-	- @song_ids = @current_uploads.map(&:song_id)
-	= @song_ids
+	- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: video.video_id)
 	%img{src: video.thumbnails.first.url} #{video.title}
-	- @active = @song_ids.include?(video.video_id)
-	.state= @active ? "ACTIVE" : "INACTIVE"
+	- @in_db = !@current_song.empty?
+	- @is_active = (@in_db && @current_song.first.active)
+	- @edit_action = @in_db ? "edit" : "new"
+	.state= @is_active ? "active" : "inactive"
+	= render template: 'artist_uploads/' + @edit_action, locals: {video_id: video.video_id}
 	%br
-	
-	:javascript
-		console.log($('.artist-song').last().children('img')[0].src);
-		$('.artist-song').last().click(function() {
-			if( $(this).children('.state').text() == "INACTIVE" ) {
-				$('#available-uploads').toggle();
-				$('#artist-media').append('#{ escape_javascript( render template: "artist_uploads/new", locals: {video: video} ) }');
-			}
-			else {
-				$(this).append('#{ escape_javascript( render template: "artist_uploads/edit" ) }');
-			}			
-		});
-

@@ -7,7 +7,32 @@
 - @tokens["refresh_token"] = @client.access_token.refresh_token
 - current_artist.update_attributes(youtube_token: @tokens)
 
-#artist-media
-	#available-uploads
-		- @client.my_videos.videos.each do |video|
-			=	render 'artist_uploads/show_song', video: video
+#available-uploads
+	- @client.my_videos.videos.each do |video|
+		=	render 'artist_uploads/show_song', video: video
+
+	:javascript
+		//Add AJAX-loaders
+		$(document).ajaxStart(function() {
+			$('#spinner').show();
+		});
+		$(document).ajaxStop(function() {
+			$('#spinner').hide();		
+		});
+
+		$('.artist-song').each(function() {
+			$(this).click(function() {
+				console.log('you clicked!');
+				var song = $(this).children('.add-song, .edit-song');
+				$('#artist-media').append('<div class="editor" id="song-edit"></div>')
+				$('#song-edit').html(song.html());
+				$('#available-uploads').toggle();
+
+				// Add 'go-back' functionality by resuming scroll
+				$('.editor .go-back').click(function() {
+					console.log('go back');
+					$('.editor').remove();
+					$('#available-uploads').toggle();
+				});
+			});
+		});

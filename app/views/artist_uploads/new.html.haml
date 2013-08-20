@@ -1,13 +1,13 @@
 .add-song
 	- @artist_upload = ArtistUpload.new
 	= form_for(@artist_upload, remote: true) do |f|
-		= render 'artist_uploads/upload_form', f: f
-		= f.hidden_field :song_id, value: video.video_id
+		= render 'artist_uploads/upload_form', {f: f, active: @artist_upload.active}
+		= f.hidden_field :song_id, value: video_id
 		= f.submit "ACTIVATE"
 	.go-back GO BACK
 
 :javascript
 	$('.go-back').click(function() {
-		$('.add-song').remove();
+		$('.editor').remove();
 		$('#available-uploads').toggle();
 	});

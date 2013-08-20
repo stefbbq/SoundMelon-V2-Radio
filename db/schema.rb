@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130812210853) do
+ActiveRecord::Schema.define(:version => 20130820205806) do
 
   create_table "artist_uploads", :force => true do |t|
     t.integer  "artist_id"
     t.string   "song_id"
     t.string   "keywords"
-    t.boolean  "active",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "artists", :force => true do |t|
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130812210853) do
     t.string   "remember_token"
     t.boolean  "is_artist",          :default => false
     t.integer  "artist_id"
+    t.string   "preferences"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

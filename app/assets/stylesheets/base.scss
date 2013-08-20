@@ -58,6 +58,12 @@
 		display: inline-block;
 		margin: 0px 4px;
 	}
+
+	#add-content, #learn-more {
+		&:hover { cursor: pointer; };
+	}
+
+	#more-info { display: none; }
 }
 
 //
@@ -81,5 +87,14 @@
 //other
 .modal {
 	@include footer-modal();
+	height: 300px;
+	overflow: auto;
+	display: none;
+}
+
+#spinner {
+	background-image: url('/assets/spinner.gif');
+	height: 24px;
+	width: 24px;
 	display: none;
 }
