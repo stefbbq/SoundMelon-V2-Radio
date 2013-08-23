@@ -1,0 +1,31 @@
+= javascript_include_tag "youtube_iframe_api"
+#player
+
+
+:javascript
+	
+	var unplayed = JSON.parse('#{active_ids.keys()}');
+	console.log(unplayed);
+	var played = [];
+	
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+		  height: '300',
+		  width: '300',
+			events: { 'onReady': function() {
+					player.loadPlaylist(unplayed);			
+				}
+			}
+		});
+	}
+
+	function shuffleUnplayed() {
+		for (var i = unplayed.length - 1; i > 0; i--) {
+			var j = Math.floor(Math.random() * (i + 1));
+			var temp = unplayed[i];
+			unplayed[i] = unplayed[j];
+			unplayed[j] = temp;
+		}
+	}
+

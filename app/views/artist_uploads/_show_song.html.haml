@@ -4,6 +4,7 @@
 	- @in_db = !@current_song.empty?
 	- @is_active = (@in_db && @current_song.first.active)
 	- @edit_action = @in_db ? "edit" : "new"
+	= video.duration
 	.state= @is_active ? "active" : "inactive"
 	= render template: 'artist_uploads/' + @edit_action, locals: {video_id: video.video_id}
 	%br

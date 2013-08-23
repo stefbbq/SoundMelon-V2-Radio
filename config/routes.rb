@@ -8,9 +8,14 @@ SoundMelonV2Radio::Application.routes.draw do
   match '/signup', to: 'users#new'
 	match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-	match '/oauth_callback', to: 'artists#oauth_callback'
 	match '/new_upload', to: 'artist_uploads#new'
 	match '/edit_upload', to: 'artist_uploads#edit'
+	match '/sc_request', to: 'artists#sc_request'
+	match '/sc_oauth_callback', to: 'artists#sc_oauth_callback'
+	match '/yt_request', to: 'artists#yt_request'
+	match '/yt_oauth_callback', to: 'artists#yt_oauth_callback'
+	match '/yt_show', to: 'artists#yt_show'
+	match '/sc_show', to: 'artists#sc_show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

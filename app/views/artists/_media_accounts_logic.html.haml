@@ -1,0 +1,9 @@
+- if !@artist.youtube_token.nil?
+	= link_to("Manage your YouTube tunes", yt_show_path, remote: true)
+- else
+	= link_to("Connect to your YouTube!", yt_request_path)
+
+- if !@artist.soundcloud_token.nil?
+	= link_to("Manage your SoundCloud tunes", sc_show_path, remote: true)
+- else
+	= link_to("Connect to your SoundCloud!", sc_request_path)

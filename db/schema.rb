@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820205806) do
+ActiveRecord::Schema.define(:version => 20130822220645) do
 
   create_table "artist_uploads", :force => true do |t|
     t.integer  "artist_id"
@@ -25,9 +25,10 @@ ActiveRecord::Schema.define(:version => 20130820205806) do
   create_table "artists", :force => true do |t|
     t.string   "artist_name"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "youtube_token"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.text     "youtube_token"
+    t.text     "soundcloud_token"
   end
 
   create_table "users", :force => true do |t|

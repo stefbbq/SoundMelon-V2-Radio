@@ -3,7 +3,7 @@
 	%h2= current_user.email
 
 	#radio-container
-		#player
+		#radio-player
 			= render "users/radio_player"
 		#stations
 			= render "users/stations"
@@ -15,4 +15,5 @@
 				= render "users/add_youtube"
 			- else
 				= render template: "artists/show"
+		= render 'artists/footer'
 

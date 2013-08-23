@@ -58,5 +58,8 @@ module SoundMelonV2Radio
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+		# Extending core classes (e.g. String, Hash, etc) for the app
+		config.autoload_paths += Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }
   end
 end
