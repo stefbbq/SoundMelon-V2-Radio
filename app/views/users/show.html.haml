@@ -12,7 +12,7 @@
 		#spinner
 		#artist-media
 			- if !current_user.is_artist?
-				= render "users/add_youtube"
+				= render "users/add_media_account"
 			- else
 				= render template: "artists/show"
 		= render 'artists/footer'

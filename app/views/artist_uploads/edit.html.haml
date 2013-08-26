@@ -1,5 +1,5 @@
 .edit-song
-	- @artist_upload = ArtistUpload.find_by_song_id(video_id)
+	- @artist_upload = ArtistUpload.find_by_song_id(song_id)
 	= form_for(@artist_upload, remote: true) do |f|
 		= render 'artist_uploads/upload_form', {f: f, active: @artist_upload.active}
 		= f.submit "ACCEPT"

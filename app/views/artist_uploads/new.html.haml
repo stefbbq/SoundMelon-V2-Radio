@@ -2,7 +2,8 @@
 	- @artist_upload = ArtistUpload.new
 	= form_for(@artist_upload, remote: true) do |f|
 		= render 'artist_uploads/upload_form', {f: f, active: @artist_upload.active}
-		= f.hidden_field :song_id, value: video_id
+		= f.hidden_field :song_id, value: song_id
+		= f.hidden_field :upload_source, value: upload_source
 		= f.submit "ACTIVATE"
 	.go-back GO BACK
 

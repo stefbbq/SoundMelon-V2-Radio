@@ -1,5 +1,36 @@
 - @artist = current_artist
-= render 'artists/media_accounts_logic'
+- @all_songs = []
+
+- if !@artist.youtube_token.nil?
+	- @yt_ids = yt_auth_ids
+	- @yt_tokens = current_artist.youtube_token
+	- @yt_client = new_yt_client(@yt_ids, @yt_tokens[:access_token], @yt_tokens[:refresh_token])
+	- @yt_client.refresh_access_token!
+	- @yt_tokens[:access_token] = @yt_client.access_token.token
+	- @yt_tokens[:refresh_token] = @yt_client.access_token.refresh_token
+	- current_artist.update_attributes(youtube_token: @yt_tokens)
+	- @yt_client.my_videos.videos.each do |video|
+		- @all_songs << [Time.parse(video.published_at.to_s), video]
+
+- else
+	= link_to("Connect to your YouTube!", yt_request_path)
+
+- if !@artist.soundcloud_token.nil?
+	- @sc_ids = sc_auth_ids
+	- @sc_tokens = current_artist.soundcloud_token
+	- @sc_client = Soundcloud.new(client_id: @sc_ids[:client_id], client_secret: @sc_ids[:client_secret], refresh_token: @sc_tokens[:refresh_token])
+	- current_artist.update_attributes(soundcloud_token: @sc_client.options.except(:on_exchange_token))
+	- tracks = @sc_client.get('/me/tracks', order: 'created_at')
+	- tracks.each do |track|
+		- @all_songs << [Time.parse(track.created_at), track]
+
+- else
+	= link_to("Connect to your SoundCloud!", sc_request_path)
+- @all_songs = @all_songs.sort_by {|pair| pair[0]}
+- @all_songs = @all_songs.reverse
+
+#available-uploads
+	= render 'artists/available_uploads', all_songs: @all_songs
 
 :javascript
 	//Add AJAX-loaders

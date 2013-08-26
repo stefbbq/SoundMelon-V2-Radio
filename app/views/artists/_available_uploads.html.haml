@@ -1,0 +1,21 @@
+- if all_songs.size > 0
+	- all_songs.each do |song|
+		- song = song[1]
+		.artist-song
+			- if song.class == YouTubeIt::Model::Video
+				- song_id = song.video_id
+				- upload_source = 'youtube'
+				- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: song_id)
+				%img{src: song.thumbnails.first.url} #{song.title}
+			- if song.class == Hashie::Mash
+				- song_id = song.id
+				- upload_source = 'soundcloud'
+				- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: song_id)
+				- sc_logo = "http://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png"
+				- @artwork = (song.artwork_url.nil?) ? sc_logo : song.artwork_url
+				%img{src: @artwork} #{song.title}
+			- @in_db = !@current_song.empty?
+			- @is_active = (@in_db && @current_song.first.active)
+			- @edit_action = @in_db ? "edit" : "new"
+			.state= @is_active ? "active" : "inactive"
+			= render template: 'artist_uploads/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source}
