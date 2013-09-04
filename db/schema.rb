@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826204514) do
+ActiveRecord::Schema.define(:version => 20130830174355) do
 
   create_table "artist_uploads", :force => true do |t|
     t.integer  "artist_id"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20130826204514) do
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.string   "upload_source"
+    t.string   "song_url"
+    t.boolean  "is_private"
   end
 
   create_table "artists", :force => true do |t|

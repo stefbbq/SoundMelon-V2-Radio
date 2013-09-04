@@ -1,9 +1,10 @@
 #preferences
 	= current_user.preferences
 	- @active_songs = ArtistUpload.where(active: true)
-	- @active_ids = {}
+	- @active_ids = []
 	-	@active_songs.each do |song|
-		-	@active_ids[song.song_id.split(':')[-1]] = song.keywords
+		-	@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: song.keywords, song_url: song.song_url}
 	= @active_ids
 
-	= render "users/youtube_iframe_js", active_ids: @active_ids
+= render "users/youtube_iframe_js", active_ids: @active_ids
+= #render "users/popcorn_player", active_ids: @active_ids

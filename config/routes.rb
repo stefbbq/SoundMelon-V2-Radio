@@ -16,6 +16,7 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/yt_oauth_callback', to: 'artists#yt_oauth_callback'
 	match '/yt_show', to: 'artists#yt_show'
 	match '/sc_show', to: 'artists#sc_show'
+	match '/make_public', to: 'artist_uploads#make_public'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

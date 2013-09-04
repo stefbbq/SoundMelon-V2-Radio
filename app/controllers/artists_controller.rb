@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
-	include ArtistsHelper
-	helper_method :init_auth_ids, :new_client
+	include ApplicationHelper
+	helper_method :yt_auth_ids, :sc_auth_ids, :new_yt_client
 	require 'soundcloud'
 
 	def create

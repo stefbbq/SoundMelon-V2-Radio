@@ -1,8 +1,15 @@
-= f.radio_button(:active, "on", checked: active)
-= label(:active_on, "ON")
-
-= f.radio_button(:active, "off", checked: !active)
-= label(:active_off, "OFF")
+.active-toggle
+	%label= f.check_box(:active, class: 'ios-switch')
 
 = label(:keywords, "Tags")
-= f.text_field(:keywords, placeholder: "Add some genre tags for this song...")
+.genre-tags= f.text_field(:keywords, placeholder: "Add some genre tags for this song...")
+
+:javascript
+	// Add divs for toggle switches
+	var switches = document.querySelectorAll('input[type="checkbox"].ios-switch');
+
+	for (var i=0, sw; sw = switches[i++]; ) {
+		var div = document.createElement('div');
+		div.className = 'switch';
+		sw.parentNode.insertBefore(div, sw.nextSibling);
+	}

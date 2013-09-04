@@ -35,6 +35,7 @@ gem "haml-rails"
 gem "youtube_it", "~> 2.2.1"
 gem "faraday"
 gem "soundcloud"
+gem "nokogiri"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'

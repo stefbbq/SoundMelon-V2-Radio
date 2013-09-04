@@ -1,3 +1,24 @@
+:ruby
+	song_divId = @artist_upload.song_id
+
 :plain
-	console.log("Success!");
-	$('#artist-media').empty().html('#{ escape_javascript( render template: "artists/show" ) }');
+	songDivId = "#" + "#{song_divId}"
+	console.log(songDivId);
+	$(songDivId).append('<div class="edit-song"></div>');
+	$(songDivId + ' .edit-song').html('#{escape_javascript( render template: "artist_uploads/edit" , locals: {song_id: @artist_upload.song_id, upload_source: @artist_upload.upload_source, song_url: @artist_upload.song_url, song_private: @artist_upload.is_private} )}').toggle();
+	$(songDivId + ' .new-song').remove();
+
+	var artistSong = $('#' + '#{song_divId}');
+	var songSubmit = artistSong.find('.song-submit input:submit');
+	var activeToggle = artistSong.find('.ios-switch');
+	var genreTags = artistSong.find('.genre-tags #artist_upload_keywords');
+
+	activeToggle.click(function() {
+		var state = $(this).prop('checked') ? 'active' : 'inactive';
+		artistSong.find('.state').html(state);
+		songSubmit.click();
+	});
+	genreTags.blur(function() {
+		console.log('we blurred');
+		songSubmit.click();
+	});
