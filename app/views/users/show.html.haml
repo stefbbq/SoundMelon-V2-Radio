@@ -1,19 +1,22 @@
-#user_page
-	%h1= current_user.first_name
-	%h2= current_user.email
+- if !current_user.terms
+	= render 'users/terms_cond'
+-else
+	#user_page
+		%h1= current_user.first_name
+		%h2= current_user.email
 
-	#radio-container
-		#radio-view
-			= render "users/radio_player"
-		#stations
-			= render "users/stations"
+		#radio-container
+			#radio-view
+				= render "users/radio_player"
+			#stations
+				= render "users/stations"
 
-	.modal#user-add
-		#spinner
-		#artist-media
-			- if !current_user.is_artist?
-				= render "users/add_media_account"
-			- else
-				= render template: "artists/show"
-		= render 'artists/footer'
+		.modal#user-add
+			#spinner
+			#artist-media
+				- if !current_user.is_artist?
+					= render "users/add_media_account"
+				- else
+					= render template: "artists/show"
+			= render 'artists/footer'
 

@@ -36,6 +36,10 @@ gem "youtube_it", "~> 2.2.1"
 gem "faraday"
 gem "soundcloud"
 gem "nokogiri"
+gem "omniauth"
+gem 'omniauth-facebook', '1.4.0'
+gem 'figaro'
+gem "koala", "~> 1.7.0rc1"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'

@@ -1,0 +1,23 @@
+#update-prefs
+	- @user = current_user
+	= form_for(@user, remote: true, url: update_prefs_path) do |f|
+		= f.hidden_field :id, value: @user.id
+
+		= f.label :city, ""
+		= f.text_field :city, placeholder: "Your City"
+		= f.hidden_field :custom_city, value: false
+
+		= f.label :preferences, "Your Likes"
+		= f.text_field :preferences, placeholder: 'Eg. "ambient", "indie", "local"'
+
+		= f.submit "ONTO THE RADIO!"
+
+:javascript
+	//If city is overriden or is different from OmniAuth provided city
+	currentCity = $('#user_city')[0].value
+	console.log(currentCity)
+	$('#user_city').blur(function() {
+		if(currentCity !== $('#user_city')[0].value) {
+			$('#user_custom_city')[0].value = "true"
+		}
+	});

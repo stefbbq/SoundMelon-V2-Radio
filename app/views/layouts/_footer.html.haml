@@ -9,21 +9,21 @@
 		.icon-32#linkedin-icon{href: "#"}
 	%small
 		- if signed_in?
-			Hello #{current_user.first_name + ' ' + current_user.last_name}! 
-			- if !current_user.is_artist?
-				Why not
-				%a#add-content add your tunes
-				to the radio?
-			- else
-				%a#add-content Manage
-				your tunes.
-			= link_to('Logout', signout_path, method: 'delete', remote: true)
+			Hello #{current_user.first_name + ' ' + current_user.last_name}!
+			- if current_user.terms
+				- if !current_user.is_artist?
+					Why not
+					%a#add-content add your tunes
+					to the radio?
+				- else
+					%a#add-content Manage
+					your tunes.
+			#sign-out= link_to("Logout", signout_path)
 
 		- else
 			Find your tune.
-			%a#learn-more Learn more 
-			or 
-			= link_to('SO WHY NOT REGISTER?', signup_path, remote: true)
+			%a#learn-more Learn more
+			= #link_to('SO WHY NOT REGISTER?', signup_path, remote: true)
 
 	.modal#more-info
 		Phasellus luctus malesuada velit, eu pellentesque eros imperdiet a. Donec in sagittis dolor. Proin pretium magna ac lectus pretium, non viverra dolor sagittis. Ut sit amet mauris a massa lacinia porta. Cras tristique urna ipsum. Aenean vehicula condimentum laoreet.

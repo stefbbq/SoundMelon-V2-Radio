@@ -5,9 +5,13 @@ SoundMelonV2Radio::Application.routes.draw do
   
   root to: 'welcome#index'
   
-  match '/signup', to: 'users#new'
-	match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+#  match '/signup', to: 'users#new'
+#	match '/signin',  to: 'sessions#new'
+	match '/auth/:provider/callback', :to => 'sessions#create'
+	match '/auth/failure', :to => redirect('/')
+  match '/signout', to: 'sessions#destroy'
+	match '/accept_terms', to: 'users#accept_terms'
+	match '/update_prefs', to: 'users#update_prefs'
 	match '/new_upload', to: 'artist_uploads#new'
 	match '/edit_upload', to: 'artist_uploads#edit'
 	match '/sc_request', to: 'artists#sc_request'

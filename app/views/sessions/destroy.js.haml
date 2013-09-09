@@ -1,4 +1,5 @@
 :plain
+	console.log('logging out');
 	$('.main_page_div').empty().html("#{escape_javascript( render file: 'welcome/index' )}");
 	$('.footer').empty().html("#{escape_javascript( render partial: 'layouts/footer' )}");
 

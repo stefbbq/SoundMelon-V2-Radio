@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830174355) do
+ActiveRecord::Schema.define(:version => 20130909210523) do
 
   create_table "artist_uploads", :force => true do |t|
     t.integer  "artist_id"
@@ -48,6 +48,11 @@ ActiveRecord::Schema.define(:version => 20130830174355) do
     t.boolean  "is_artist",          :default => false
     t.integer  "artist_id"
     t.string   "preferences"
+    t.string   "provider"
+    t.string   "uid"
+    t.text     "oauth_token"
+    t.boolean  "terms",              :default => false
+    t.boolean  "custom_city",        :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

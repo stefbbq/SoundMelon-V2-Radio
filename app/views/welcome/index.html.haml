@@ -4,8 +4,39 @@
 	.inner-content
 		%h1.bg-title Find Your Tune
 		.buttons
-			%button#facebook CONNECT WITH FACEBOOK
-			= link_to('REGISTER', signup_path, remote: true, class: 'page_link')
+			#sign-in= link_to('CONNECT WITH FACEBOOK', "/auth/facebook", remote: true)
+			= #link_to('REGISTER', signup_path, remote: true, class: 'page_link')
 		.log-in
-			%span.bg-faded Already have an account?
-			= link_to('Sign in', signin_path, remote: true, class: 'page_link bg-faded')
+			= #link_to('Sign in', signin_path, remote: true, class: 'page_link bg-faded')
+
+:javascript
+	$('#fb-root').remove();
+	$('body').prepend('<div id="fb-root"></div>');
+
+	$.ajax({
+		url: "" + window.location.protocol + "//connect.facebook.net/en_US/all.js",
+		dataType: 'script',
+		cache: true
+	});
+
+	window.fbAsyncInit = function() {
+		console.log('out there');
+		$('#sign-in').click(function(e) {
+			console.log('#{ENV["FACEBOOK_APP_ID"]}');
+		  e.preventDefault();
+		  FB.login(function(response) {
+		    if (response.authResponse) {
+		      //window.location = '/auth/facebook/callback';
+					$.ajax({
+						url: '/auth/facebook/callback'
+					})
+		    }
+		  }, {scope: 'email'});
+		});
+
+		FB.init({
+		  appId: '#{ENV["FACEBOOK_APP_ID"]}',
+			status: true,
+		  cookie: true
+		});
+	};

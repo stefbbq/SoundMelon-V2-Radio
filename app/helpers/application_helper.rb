@@ -2,19 +2,19 @@ module ApplicationHelper
 
 	def yt_auth_ids
 		# Return a hash that initializes youtube authentication relevant parameters 
-		ids = {client_id: '1035080270379-o8mnqtq490m1v2v1btgjfl1o54u3v0b3.apps.googleusercontent.com',
-					 client_secret: '-mEtRYHzGaAqa-035VdwtdiK',
-					 redirect_uri: $localtunnel_add + '/yt_oauth_callback',
+		ids = {client_id: ENV["YOUTUBE_APP_ID"],
+					 client_secret: ENV["YOUTUBE_SECRET"],
+					 redirect_uri: ENV["HOST_ADDR"] + '/yt_oauth_callback',
 					 yt_scope: 'https://gdata.youtube.com',
-					 dev_key: 'AI39si4xwZsnYS8ZPjdY36jy8jGCyBxCavTy1Xj_P5DtaCibNDzilGmeCLRPD9mTz0mHoPhm9LlF2REKzq5ivQQGLRe4g8uqHg'
+					 dev_key: ENV["YOUTUBE_DEV_KEY"]
 					}
 		return ids
 	end
 
 	def sc_auth_ids
-		ids = {client_id: 'aed36f8bf087fe7716c9e594a211e8fb',
-					 client_secret: 'dfd9ce380afd86f81619ad1b1dca8d72',
-					 redirect_uri: $localtunnel_add + '/sc_oauth_callback'}
+		ids = {client_id: ENV["SOUNDCLOUD_APP_ID"],
+					 client_secret: ENV["SOUNDCLOUD_SECRET"],
+					 redirect_uri: ENV["HOST_ADDR"] + '/sc_oauth_callback'}
 	end
 
 	def yt_oauth_setup
