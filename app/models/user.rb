@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 									:email, :email_confirmation, :password, :password_confirmation,
 									:is_artist, :preferences, :terms, :city, :custom_city
 	serialize :oauth_token
+	serialize :preferences
 #	has_secure_password
 	has_one :artist
 
@@ -41,6 +42,8 @@ class User < ActiveRecord::Base
 			user.username = auth.extra.raw_info.username
 			user.email = auth.info.email
       user.oauth_token = auth.credentials
+			koala_oauth = Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"],ENV["FACEBOOK_SECRET"])
+			user.oauth_token['extended_token'] = koala_oauth.exchange_access_token_info(user.oauth_token.token)
 			if !user.custom_city
 				user.city = auth.info.location
 			end

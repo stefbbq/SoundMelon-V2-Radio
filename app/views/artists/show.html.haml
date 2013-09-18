@@ -2,7 +2,11 @@
 - @all_songs = []
 
 - if !@artist.youtube_token.nil?
-	- @yt_client = refresh_yt_client
+	- yt_ids = yt_auth_ids
+	- yt_tokens = @artist.youtube_token
+	- @yt_client = new_yt_client(yt_ids, yt_tokens)
+	- if yt_tokens[:expires_at] < Time.now.to_i
+		- @yt_client = refresh_yt_client(@yt_client)
 	- @yt_client.my_videos.videos.each do |video|
 		- @all_songs << [Time.parse(video.published_at.to_s), video]
 
@@ -23,15 +27,3 @@
 	- @all_songs = @all_songs.reverse
 	#available-uploads
 		= render 'artists/available_uploads', all_songs: @all_songs
-
-:javascript
-	$('document').ready(function() {
-		//Add AJAX-loaders
-		$(document).ajaxStart(function() {
-			$('#spinner').show();
-		});
-		$(document).ajaxStop(function() {
-			$('#spinner').hide();		
-		});
-
-	});

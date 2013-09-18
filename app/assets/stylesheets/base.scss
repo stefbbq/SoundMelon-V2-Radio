@@ -59,7 +59,7 @@ body > .footer {
 		margin: 0px 4px;
 	}
 
-	#add-content, #learn-more {
+	.footer-link {
 		&:hover { cursor: pointer; };
 	}
 
@@ -104,7 +104,11 @@ body > .footer {
 	display: none;
 }
 
-#spinner {
+.hide-form {
+	display: none;
+}
+
+.spinner {
 	background-image: url('/assets/spinner.gif');
 	height: 24px;
 	width: 24px;

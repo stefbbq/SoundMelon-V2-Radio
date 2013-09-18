@@ -20,18 +20,16 @@
 	});
 
 	window.fbAsyncInit = function() {
-		console.log('out there');
 		$('#sign-in').click(function(e) {
 			console.log('#{ENV["FACEBOOK_APP_ID"]}');
 		  e.preventDefault();
 		  FB.login(function(response) {
 		    if (response.authResponse) {
-		      //window.location = '/auth/facebook/callback';
 					$.ajax({
 						url: '/auth/facebook/callback'
 					})
 		    }
-		  }, {scope: 'email'});
+		  }, {scope: 'email,user_likes'});
 		});
 
 		FB.init({

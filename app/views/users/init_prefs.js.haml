@@ -1,3 +1,3 @@
 :plain
-	console.log('#{current_user.preferences}')
+	console.log(#{@user_genres.size})
 	$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");

@@ -1,5 +1,4 @@
 #preferences
-	= current_user.preferences
 	- @active_songs = ArtistUpload.where(active: true)
 	- @active_ids = []
 	-	@active_songs.each do |song|

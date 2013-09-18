@@ -1,0 +1,6 @@
+- @user = current_user
+#radio-prefs
+	= form_for(@user, remote: true) do |f|
+		- @user_likes = @user.preferences.keys
+		= f.label :preferences, "Your Likes"
+		= f.text_area :preferences, value: @user_likes

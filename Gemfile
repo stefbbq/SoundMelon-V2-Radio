@@ -32,14 +32,19 @@ end
 
 gem 'jquery-rails', '2.0.2'
 gem "haml-rails"
-gem "youtube_it", "~> 2.2.1"
+gem "youtube_it"
+#gem "oauth2", "~> 0.9.2"
+#gem "omniauth-oauth2", "~> 1.1.1"
 gem "faraday"
+gem "faraday_middleware"
 gem "soundcloud"
-gem "nokogiri"
-gem "omniauth"
+gem "nokogiri", '1.5.2'
 gem 'omniauth-facebook', '1.4.0'
 gem 'figaro'
 gem "koala", "~> 1.7.0rc1"
+gem "rockstar"
+gem "lastfm"
+gem "echonest", git: "git://github.com/timcase/echowrap.git", ref: "828467d"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'

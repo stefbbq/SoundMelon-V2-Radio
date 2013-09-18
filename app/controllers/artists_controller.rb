@@ -16,9 +16,9 @@ class ArtistsController < ApplicationController
 	end
 
 	def yt_request
-	ids = yt_auth_ids
-	yt_authorize_url = 'https://accounts.google.com/o/oauth2/auth?client_id=' + ids[:client_id] + '&redirect_uri=' + ids[:redirect_uri] + '&scope=' + ids[:yt_scope] + '&response_type=code&approval_prompt=force&access_type=offline'
-	redirect_to yt_authorize_url
+		ids = yt_auth_ids
+		yt_authorize_url = 'https://accounts.google.com/o/oauth2/auth?client_id=' + ids[:client_id] + '&redirect_uri=' + ids[:redirect_uri] + '&scope=' + ids[:yt_scope] + '&response_type=code&approval_prompt=force&access_type=offline'
+		redirect_to yt_authorize_url
 	end
 
 	def yt_oauth_callback
@@ -26,19 +26,18 @@ class ArtistsController < ApplicationController
 		ids = yt_auth_ids
 		@result = obtain_yt_token(conn, params[:code], ids)
 		@new_tokens = Hash.transform_keys_to_symbols(JSON.load(@result.body))
-		if @new_tokens.has_key?(:error)
-			# do something
-		else
+		@new_tokens[:expires_at] = Time.parse(@result.env[:response_headers][:date]).to_i + @new_tokens[:expires_in]  
+		if !@new_tokens.has_key?(:error)
 			if !current_user.is_artist?
 				create
 			end
 			current_artist.update_attributes(youtube_token: @new_tokens)
-			redirect_to root_path
-		end				
+		end
+		redirect_to root_path
 	end
 
-	def yt_show
-	end
+#	def yt_show
+#	end
 
 	def sc_request
 		client = Soundcloud.new(sc_auth_ids)
@@ -47,16 +46,18 @@ class ArtistsController < ApplicationController
 
 	def sc_oauth_callback
 		@client = Soundcloud.new(sc_auth_ids)
-		@client.exchange_token(code: params[:code])
-		@new_tokens = @client.options.except(:on_exchange_token)
-		if !current_user.is_artist?
-			create
+		if !params.has_key?('error')
+			@client.exchange_token(code: params[:code])
+			@new_tokens = @client.options.except(:on_exchange_token)
+			if !current_user.is_artist?
+				create
+			end
+			current_artist.update_attributes(soundcloud_token: @new_tokens)
 		end
-		current_artist.update_attributes(soundcloud_token: @new_tokens)
 		redirect_to root_path
 	end
 
-	def sc_show
-	end
+#	def sc_show
+#	end
 
 end

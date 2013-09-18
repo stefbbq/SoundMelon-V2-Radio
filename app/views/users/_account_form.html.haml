@@ -1,0 +1,27 @@
+#account-panel	
+	%a#account-back BACK
+
+	- @user = current_user
+	= form_for(@user, remote: true, url: update_account_path) do |f|
+		= f.hidden_field :id
+		= f.label :username, "Username"
+		= f.text_field :username
+
+	- if signed_in? && current_user?(@user)
+		= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete your SoundMelon account?"}
+
+:javascript
+	$('#account-back').click(function() {
+		$('#settings-panel').show();
+		$('#account-panel').remove();
+	});
+
+	var timer = null;
+	$('#user_username').keydown(function() {
+		clearTimeout(timer);
+		timer = setTimeout(formSubmit, 1000)
+	});
+
+	function formSubmit() {
+		$('#user_username').parent('form').submit();
+	}

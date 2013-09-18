@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909210523) do
+ActiveRecord::Schema.define(:version => 20130912205333) do
 
   create_table "artist_uploads", :force => true do |t|
     t.integer  "artist_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20130909210523) do
     t.string   "remember_token"
     t.boolean  "is_artist",          :default => false
     t.integer  "artist_id"
-    t.string   "preferences"
+    t.text     "preferences"
     t.string   "provider"
     t.string   "uid"
     t.text     "oauth_token"

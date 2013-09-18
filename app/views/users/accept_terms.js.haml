@@ -1,4 +1,4 @@
 :plain
 	console.log('#{params}');
-	$('.main_page_div').empty().html("#{escape_javascript( render 'users/update_prefs' )}");
+	$('.main_page_div').empty().html("#{escape_javascript( render 'users/init_prefs' )}");
 	$('.footer').empty().html("#{escape_javascript( render partial: 'layouts/footer' )}");

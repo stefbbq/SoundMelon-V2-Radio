@@ -11,18 +11,12 @@
 		- if signed_in?
 			Hello #{current_user.first_name + ' ' + current_user.last_name}!
 			- if current_user.terms
-				- if !current_user.is_artist?
-					Why not
-					%a#add-content add your tunes
-					to the radio?
-				- else
-					%a#add-content Manage
-					your tunes.
-			#sign-out= link_to("Logout", signout_path)
+				= !current_user.is_artist? ? link_to("Music +" , add_media_account_path, remote: true, class: 'footer-link', id: 'add-content') : link_to("Music" , artist_show_path, remote: true, class: 'footer-link', id: 'add-content')
+			%a.footer-link#edit-page Settings
 
 		- else
 			Find your tune.
-			%a#learn-more Learn more
+			%a.footer-link#learn-more Learn more
 			= #link_to('SO WHY NOT REGISTER?', signup_path, remote: true)
 
 	.modal#more-info
@@ -35,4 +29,18 @@
 
 	$('#add-content').click(function() {
 		$('#user-add').toggle();
+		$('#user-add .spinner').show();
+	});
+
+	$('#edit-page').click(function() {
+		console.log('edit user')
+		$('#user-edit').toggle();
+	});
+
+	$('document').ready(function() {
+		//Add AJAX-loaders
+		$(document).ajaxStop(function() {
+			$('.spinner').hide();		
+		});
+
 	});

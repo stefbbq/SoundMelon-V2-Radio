@@ -17,23 +17,16 @@ module SessionsHelper
     @current_user = user
   end
 
+	def current_user?(user)
+		return user == current_user
+	end
 #  def current_user
 #    @current_user ||= User.find_by_remember_token(cookies[:remember_token])
 #  end
 
-	def current_artist=(artist)
-    @current_artist = artist
-  end
-  
-  def current_artist
-		if current_user.is_artist?
-    	@current_artist ||= Artist.find_by_id(current_user.artist_id)
-  	end
-	end
-
-#  def sign_out
-#    self.current_user = nil
+  def sign_out
+    self.current_user = nil
 #    cookies.delete(:remember_token)
-#  end
+  end
 
 end
