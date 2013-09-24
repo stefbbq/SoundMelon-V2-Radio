@@ -19,3 +19,13 @@
 			.spinner
 			#user-settings
 				= render "users/settings"
+
+:javascript
+	$(document).ready(function() {
+		$(document).mouseup(function(e) {
+			var container = $('.modal');
+			if(!container.is(e.target) && container.has(e.target).length == 0) {
+				container.hide();
+			}
+		});
+	});

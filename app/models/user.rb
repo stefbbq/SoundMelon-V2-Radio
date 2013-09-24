@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
 	attr_accessible :first_name, :last_name, :username, 
 									:email, :email_confirmation, :password, :password_confirmation,
-									:is_artist, :preferences, :terms, :city, :custom_city
+									:is_artist, :fb_meta, :user_meta, :terms, :city, :custom_city,
+									:song_history
 	serialize :oauth_token
-	serialize :preferences
+	serialize :fb_meta
+	serialize :user_meta
+	serialize :song_history
 #	has_secure_password
 	has_one :artist
 

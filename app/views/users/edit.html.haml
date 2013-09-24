@@ -1,6 +1,6 @@
 - @user = current_user
-#radio-prefs
+#radio-fb-meta
 	= form_for(@user, remote: true) do |f|
-		- @user_likes = @user.preferences.keys
-		= f.label :preferences, "Your Likes"
-		= f.text_area :preferences, value: @user_likes
+		- @user_likes = @user.fb_meta.keys
+		= f.label :fb_meta, "Your Likes"
+		= f.text_area :fb_meta, value: @user_likes

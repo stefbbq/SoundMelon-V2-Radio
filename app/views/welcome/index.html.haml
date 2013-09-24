@@ -27,7 +27,7 @@
 		    if (response.authResponse) {
 					$.ajax({
 						url: '/auth/facebook/callback'
-					})
+					});
 		    }
 		  }, {scope: 'email,user_likes'});
 		});

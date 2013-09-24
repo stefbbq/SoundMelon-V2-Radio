@@ -1,0 +1,67 @@
+#meta-panel
+	%a#meta-back BACK
+
+	- @user = current_user
+	- @fb_meta_list = @user.fb_meta.keys
+	- @user_meta = @user.user_meta.nil? ? [] : @user.user_meta
+	= form_for(@user, remote: true, url: update_user_meta_path) do |f|
+		= f.hidden_field :id, value: @user.id
+
+		= f.label :city, ""
+		= f.text_field :city, placeholder: "Your City"
+		= f.hidden_field :custom_city, value: false
+
+		= f.label :user_meta, "Your Custom Tags"
+		= f.text_area :user_meta, value: @user_meta.join(', '), placeholder: 'Eg. "ambient", "indie", "local"', id: "user-meta-tags"
+
+	%a#show-fb-meta View your Facebook computed tags!
+	#fb-meta-panel
+		= form_for(@user, remote: true, url: update_fb_meta_path) do |f|
+			= f.hidden_field :id, value: @user.id
+
+			= f.label :fb_meta, "Your Facebook Likes", style: 'display: none;'
+			Caution!! You can only remove these tags since they are computed from your Facebook likes. Only remove them if you're sure.
+			= f.text_area :fb_meta, value: @fb_meta_list.join(', '), id: "fb-meta-tags"
+
+:javascript
+	$('#user-meta-tags').tagsInput({
+		'removeWithBackspace': false,
+		'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
+		'height': 'auto',
+		'width': 'auto',
+		'onAddTag': function() {
+			console.log(this.id);
+			$(this).parent('form').submit();
+		},
+		'onRemoveTag': function() {
+			console.log($(this).parent('form'));
+			$(this).parent('form').submit();
+		}
+	});
+
+	$('#fb-meta-tags').tagsInput({
+		'removeWithBackspace': false,
+		'defaultText': '',
+		'interactive': false,
+		'height': 'auto',
+		'width': 'auto',
+		'onAddTag': function() {
+			console.log(this.id)
+			alert("You can not add facebook tags!");
+		},
+		'onRemoveTag': function() {
+			console.log($(this).parent('form'));
+			$(this).parent('form').submit();
+		}
+	});
+
+	$('#meta-back').click(function() {
+		$('#settings-panel').show();
+		$('#meta-panel').remove();
+	});
+
+	$('#show-fb-meta').click(function() {
+		$('#fb-meta-panel').slideToggle();
+	});
+
+

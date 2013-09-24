@@ -1,8 +1,9 @@
 .active-toggle
 	%label= f.check_box(:active, class: 'ios-switch')
 
+- keywords = keywords.nil? ? [] : keywords
 = label(:keywords, "Tags")
-.genre-tags= f.text_field(:keywords, placeholder: "Add some genre tags for this song...")
+.genre-tags= f.text_field :keywords, value: keywords.join(', '), placeholder: "Add some genre tags for this song..."
 
 :javascript
 	// Add divs for toggle switches

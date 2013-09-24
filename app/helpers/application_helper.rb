@@ -50,7 +50,7 @@ module ApplicationHelper
 	end
 
 	def refresh_yt_client(yt_client)
-		yt_tokens = current_artist.youtube_tokens
+		yt_tokens = current_artist.youtube_token
 		yt_client.refresh_access_token!
 		yt_tokens[:access_token] = yt_client.access_token.token
 		yt_tokens[:expires_at] = yt_client.access_token.expires_at
@@ -84,5 +84,90 @@ module ApplicationHelper
 		end
 		return my_hash
 	end
+
+	def user_scored_songs(user, songs)
+		#Return an array of arrays of song,score pairs
+		#sorted by descending match given a User and an
+		#array of active ArtistUpload songs 
+		songs = songs.shuffle
+		scored_songs = []
+		k = 0
+		user_meta = user.user_meta
+		fb_meta = user.fb_meta
+		songs.each do |song|
+			scored_songs << [song, score_song(user_meta, fb_meta, song.keywords)]
+		end
+		scored_songs = scored_songs.sort_by {|song,score| score}
+		return scored_songs
+	end
+
+	def random_playlist(songs, n)
+		#Return an array of n (int) random ArtistUpload songs
+		return songs.shuffle[0..(n-1)]
+	end
+
+	def score_song(user_meta, fb_meta, song_tags, alpha=0.5)
+		#Return a song score given a hash of user meta data
+		#and an array of tags for the song
+		fbm_score = fb_meta.nil? ? 1 : get_fbm_score(fb_meta, song_tags)
+		um_score = user_meta.nil? ? 1 : get_um_score(user_meta, song_tags)
+		agg_score = alpha*fbm_score + (1-alpha)*um_score
+	end
+
+	def get_fbm_score(fb_meta, song_tags)
+		score = 0.0
+		song_tags.each do |tag|
+			score += fb_meta[tag] if !fb_meta.keys.index(tag).nil? 
+		end
+		return score/fb_meta.values.sum
+	end
+
+	def get_um_score(user_meta, song_tags)
+		score = 0.0
+		song_tags.each do |tag|
+			score += 1 if !user_meta.index(tag).nil?
+		end
+		return score/user_meta.size
+	end
+
+	def update_song_history(user, played_songs)
+		#Update user song_history hash with played_songs list
+		if user.song_history.nil?
+			user.song_history = {}
+		end
+		history = user.song_history
+		if !played_songs.nil?
+			played_songs.keys.each do |song|
+				song_id = played_songs[song]['song_id']
+				if history.has_key?(song_id)
+					history[song_id]['plays'] += 1
+				else
+					history[song_id] = {}
+					history[song_id]['plays'] = 1
+				end
+				history[song_id]['last_played'] = Time.now.to_i
+			end
+		end
+		user.song_history = history
+		user.save
+	end
+
+	def filter_by_history(user, songs, history, n)
+		#Return an array of ArtistUpload songs given an array of 
+		#ArtistUpload and user song history history
+		black_list = []
+		history.keys.each do |song_id|
+			last_played = history[song_id]['last_played']
+			if Time.now.to_i - last_played < 3600
+				black_list << songs.select {|song| song.song_id == song_id}[0]
+			end
+		end
+		white_list = songs - black_list
+		scored_songs = user_scored_songs(user, white_list)
+		filtered_songs = random_weighted_sample_no_replacement(scored_songs, [n,white_list.size].min)
+		filtered_songs = filtered_songs.map {|song,weight| song}
+		return filtered_songs
+	end
+
 
 end

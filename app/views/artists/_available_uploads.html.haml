@@ -45,16 +45,27 @@
 			var artistSong = $(this).parent().parent();
 			var songSubmit = $(this).find('.song-submit input:submit');
 			var activeToggle = $(this).find('.ios-switch');
-			var genreTags = $(this).find('.genre-tags #artist_upload_keywords');
+			var genreTags = $(this).find('.genre-tags input');
 
 			activeToggle.click(function() {
 				var state = $(this).prop('checked') ? 'active' : 'inactive';
 				artistSong.find('.state').html(state)
-				songSubmit.click();
+				activeToggle.closest('form').submit();
 			});
-			genreTags.blur(function() {
-				console.log('we blurred');
-				songSubmit.click();
-			});
+			genreTags.tagsInput({
+			'removeWithBackspace': false,
+			'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
+			'height': 'auto',
+			'width': 'auto',
+			'onAddTag': function() {
+				console.log(genreTags.parent('form'));
+				genreTags.closest('form').submit();
+			},
+			'onRemoveTag': function() {
+				console.log(genreTags);
+				genreTags.closest('form').submit();
+			}
+		});
+
 		});
 	});

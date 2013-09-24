@@ -45,6 +45,7 @@ gem "koala", "~> 1.7.0rc1"
 gem "rockstar"
 gem "lastfm"
 gem "echonest", git: "git://github.com/timcase/echowrap.git", ref: "828467d"
+gem 'weighted_randomizer'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'

@@ -1,3 +1,4 @@
+= link_to("Refresh" , artist_show_path, remote: true, class: 'footer-link', id: 'reload-content')
 - @artist = current_artist
 - @all_songs = []
 
@@ -27,3 +28,8 @@
 	- @all_songs = @all_songs.reverse
 	#available-uploads
 		= render 'artists/available_uploads', all_songs: @all_songs
+
+:javascript
+	$('#reload-content').click(function() {
+		$('#user-add .spinner').show();
+	});

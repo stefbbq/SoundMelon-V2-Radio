@@ -31,20 +31,21 @@ class UsersController < ApplicationController
     end
   end
 
-	def edit_prefs
+	def edit_meta
 	end
 
-	def update_prefs
+	def update_user_meta
+		params[:user][:user_meta] = params[:user][:user_meta].split(',')
+		update_attrs(params)
+	end
+
+	def update_fb_meta
 		@user = User.find_by_id(params[:user][:id])
-		@current_prefs = @user.preferences
-		@new_prefs = params[:user][:preferences].split(',')
-		@removed_prefs = @current_prefs.keys - @new_prefs
-		@added_prefs = @new_prefs - @current_prefs.keys
-		@new_pref_hash = @current_prefs.except(*@removed_prefs)
-		@added_prefs.each do |pref|
-			update_count_hash(@new_pref_hash, pref)
-		end
-		params[:user][:preferences] = @new_pref_hash
+		@current_fb_meta = @user.fb_meta
+		@new_fb_meta = params[:user][:fb_meta].split(',')
+		@removed_fb_meta = @current_fb_meta.keys - @new_fb_meta
+		@new_fb_meta_hash = @current_fb_meta.except(*@removed_fb_meta)
+		params[:user][:fb_meta] = @new_fb_meta_hash
 		update_attrs(params)
 	end
 
@@ -52,9 +53,9 @@ class UsersController < ApplicationController
 		update_attrs(params)
 	end
 
-	def init_prefs
+	def init_fb_meta
 		@user_genres = collect_genres
-		params[:user][:preferences] = @user_genres
+		params[:user][:fb_meta] = @user_genres
 		update_attrs(params)
 	end
 

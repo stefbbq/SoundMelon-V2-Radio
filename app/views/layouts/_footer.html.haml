@@ -29,7 +29,13 @@
 
 	$('#add-content').click(function() {
 		$('#user-add').toggle();
-		$('#user-add .spinner').show();
+		console.log(document.getElementById('user-add').style.display)
+		if( (document.getElementById('user-add').style.display == 'none') || ($('#user-add #available-uploads').length > 0) ) {
+			return false;
+		}
+		else {
+			$('#user-add .spinner').show();
+		}
 	});
 
 	$('#edit-page').click(function() {

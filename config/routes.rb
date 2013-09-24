@@ -11,9 +11,10 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/auth/failure', :to => redirect('/')
   match '/signout', to: 'sessions#destroy'
 	match '/accept_terms', to: 'users#accept_terms'
-	match '/init_prefs', to: 'users#init_prefs'
-	match '/user_prefs', to: 'users#edit_prefs'
-	match '/update_prefs', to: 'users#update_prefs'
+	match '/init_fb_meta', to: 'users#init_fb_meta'
+	match '/user_meta', to: 'users#edit_meta'
+	match '/update_fb_meta', to: 'users#update_fb_meta'
+	match '/update_user_meta', to: 'users#update_user_meta'
 	match '/user_account', to: 'users#edit_account'
 	match '/update_account', to: 'users#update_account'
 	match '/add_media_account', to: 'users#add_media_account'
@@ -26,6 +27,7 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/artist_show', to: 'artists#show'
 #	match '/sc_show', to: 'artists#sc_show'
 	match '/make_public', to: 'artist_uploads#make_public'
+	match '/request_playlist', to: 'artist_uploads#request_playlist'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

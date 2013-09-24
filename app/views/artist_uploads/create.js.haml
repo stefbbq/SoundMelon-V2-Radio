@@ -18,7 +18,17 @@
 		artistSong.find('.state').html(state);
 		songSubmit.click();
 	});
-	genreTags.blur(function() {
-		console.log('we blurred');
-		songSubmit.click();
-	});
+	genreTags.tagsInput({
+			'removeWithBackspace': false,
+			'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
+			'height': 'auto',
+			'width': 'auto',
+			'onAddTag': function() {
+				console.log(genreTags.parent('form'));
+				genreTags.parent().parent('form').submit();
+			},
+			'onRemoveTag': function() {
+				console.log(genreTags.parent('form'));
+				genreTags.parent().parent('form').submit();
+			}
+		});

@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130912205333) do
+ActiveRecord::Schema.define(:version => 20130923162206) do
 
   create_table "artist_uploads", :force => true do |t|
     t.integer  "artist_id"
     t.string   "song_id"
-    t.string   "keywords"
+    t.text     "keywords"
     t.boolean  "active",        :default => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
@@ -47,12 +47,14 @@ ActiveRecord::Schema.define(:version => 20130912205333) do
     t.string   "remember_token"
     t.boolean  "is_artist",          :default => false
     t.integer  "artist_id"
-    t.text     "preferences"
+    t.text     "fb_meta"
     t.string   "provider"
     t.string   "uid"
     t.text     "oauth_token"
     t.boolean  "terms",              :default => false
     t.boolean  "custom_city",        :default => false
+    t.text     "user_meta"
+    t.text     "song_history"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

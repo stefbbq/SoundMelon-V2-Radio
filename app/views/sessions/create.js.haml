@@ -1,14 +1,3 @@
 :plain
-	var termsAccepted = #{current_user.terms}
-	console.log(termsAccepted === false)
-	console.log('loading footer!');
 	$('.footer').empty().html("#{escape_javascript( render 'layouts/footer' )}");
-	if(termsAccepted) {
-		console.log('WELCOME BACK!');
-		$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
-	}
-	else {
-		console.log("Hello Bambi!");
-		$('.main_page_div').empty().html("#{escape_javascript( render 'users/terms_cond' )}");
-	}
-
+	$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");

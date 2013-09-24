@@ -1,23 +1,23 @@
-#init-prefs
+#init-fb-meta
 	.hide-form
 		- @user = current_user
-		= form_for(@user, remote: true, url: init_prefs_path) do |f|
+		= form_for(@user, remote: true, url: init_fb_meta_path) do |f|
 			= f.hidden_field :id, value: @user.id
 
 			= f.label :city, ""
 			= f.text_field :city, placeholder: "Your City"
 			= f.hidden_field :custom_city, value: false
 
-			= f.label :preferences, "Your Likes"
-			= f.text_field :preferences, placeholder: 'Eg. "ambient", "indie", "local"'
+			= f.label :fb_meta, "Your Likes"
+			= f.text_field :fb_meta, placeholder: 'Eg. "ambient", "indie", "local"'
 
 	Please wait while we load your musical preferences based on your Facebook musical likes. This may take a few minutes so hang tight!
-	#prefs-load
+	#fb-meta-load
 		.spinner
 
 :javascript
 	$('document').ready(function() {
-		console.log($('#init-prefs .hide-form form'));
-		$('#prefs-load .spinner').show();
-		$('#init-prefs .hide-form form').submit();
+		console.log($('#init-fb-meta .hide-form form'));
+		$('#fb-meta-load .spinner').show();
+		$('#init-fb-meta .hide-form form').submit();
 	});
