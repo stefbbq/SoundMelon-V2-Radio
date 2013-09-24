@@ -36,16 +36,12 @@ gem "youtube_it"
 #gem "oauth2", "~> 0.9.2"
 #gem "omniauth-oauth2", "~> 1.1.1"
 gem "faraday"
-gem "faraday_middleware"
 gem "soundcloud"
 gem "nokogiri", '1.5.2'
 gem 'omniauth-facebook', '1.4.0'
 gem 'figaro'
 gem "koala", "~> 1.7.0rc1"
-gem "rockstar"
-gem "lastfm"
 gem "echonest", git: "git://github.com/timcase/echowrap.git", ref: "828467d"
-gem 'weighted_randomizer'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
