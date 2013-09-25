@@ -39,17 +39,19 @@ class ArtistUploadsController < ApplicationController
 	def request_playlist
 		@user = current_user
 		@station = params[:station]
+		if (@user.fb_meta.keys.size == 0 && @user.user_meta.size == 0)
+			@station == 'random'
+		end
 		update_song_history(@user, params[:played_songs])
 		@history = @user.song_history
 		@active_songs = ArtistUpload.where(active: true)
 		@playlist_size = 3
-		if @station == 'random' || (@user.fb_meta.keys.size == 0 && @user.user_meta.size == 0)
-#			@active_songs = @active_songs.shuffle[0..(@playlist_size-1)]
-			@active_songs = random_playlist(@active_songs, @playlist_size)
-		elsif @station == 'your-likes'
-			@um_songs = user_scored_songs(@user, @active_songs)
-			@active_songs = filter_by_history(@user, @active_songs, @history, @playlist_size)
-		end
+		@active_songs = filter_by_history(@user, @active_songs, @history, @playlist_size, @station)
+#		if @station == 'random' || (@user.fb_meta.keys.size == 0 && @user.user_meta.size == 0)
+#			@active_songs = random_playlist(@active_songs, @playlist_size)
+#		elsif @station == 'user-meta'
+#			@active_songs = filter_by_history(@user, @active_songs, @history, @playlist_size)
+#		end
 
 		@active_ids = []
 		@active_songs.each do |song|

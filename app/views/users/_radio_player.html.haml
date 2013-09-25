@@ -6,6 +6,11 @@
 	%a#play-pause pause/play
 	%a#next-song next
 	%br
+
+#radio-stations
+	%a#user-meta Your Likes
+	%a#random Random
+
 .player#youtube
 .player#soundcloud
 
@@ -16,11 +21,30 @@
 	var ytPlayerReady = false;
 	var scPlayerReady = false;
 	var songs;
-	var playedSongs = []; //full browser history of played songs
+	var songHistory = []; //full browser history of played songs
 	var playedUpdate = []; //gets sent to the server as an update
 	var currentSong;
 	var playLast;
 	var lastPlayed;
+	var lastStation;
+	var currentStation;
+
+	$('#radio-stations a').click(function() {
+		lastStation = currentStation
+		if(lastStation !== this.id) {
+			currentStation = this.id;
+			console.log(currentSong);
+			if(currentSong) {
+				if(currentSong['upload_source'] === 'youtube') {
+					ytPlayer.stopVideo();
+				}
+				else if(currentSong['upload_source'] === 'soundcloud') {
+					scWidget.pause();
+				}
+				songs = newSongsList();
+			}
+		}
+	});
 
 	$('#radio-controls #play-pause').click(function() {
 		if(songs && songs.length > 0 && currentSong) {
@@ -52,14 +76,14 @@
 	});
 
 	$('#radio-controls #previous-song').click(function() {
-		if(currentSong && playedSongs.length > 0){
+		if(currentSong && songHistory.length > 0){
 			playLast = true;
 			$('#radio-controls #next-song').click();
 		}
 	});
 
 	function newSongsList() {
-		var radioStation = {station: 'your-likes', played_songs: playedUpdate}
+		var radioStation = {station: currentStation, played_songs: playedUpdate}
 		$.ajax({
 			url: '/request_playlist',
 			data: radioStation,
@@ -106,10 +130,10 @@
 			if(songs.length > 0) {
 				var firstSong = songs[0];
 				var firstSource = firstSong['upload_source'];
-				if( (playedSongs.length > 0) && (firstSong['upload_source'] !== currentSong['upload_source']) ) {
-					$('.player').css('display','none');
-					console.log('hiding .player');
-				}
+				//if( (songHistory.length > 0) && (firstSong['upload_source'] !== currentSong['upload_source']) ) {
+				$('.player').css('display','none');
+				console.log('hiding .player');
+				//}
 				currentSong = firstSong;
 				if(firstSource === 'youtube') {
 					$('#youtube').show();
@@ -127,22 +151,22 @@
 		//Identify source of the next song and play it in the
 		// appropriate player
 		if(!playLast) {
-			playedSongs.push(songs.shift());
-			playedUpdate.push(playedSongs[playedSongs.length - 1])
+			songHistory.push(songs.shift());
+			playedUpdate.push(songHistory[songHistory.length - 1])
 		}
 		else {
-			songs.unshift(playedSongs.pop());
+			songs.unshift(songHistory.pop());
 			playedUpdate.pop();
 			playLast = false;
 		}
 		if(songs.length > 0) {
-			lastPlayed = currentSong;
 			var nextSong = songs[0];
+			lastPlayed = currentSong;
 			currentSong = nextSong;
-			if( (playedSongs.length > 0 || playLast) && (nextSong['upload_source'] !== lastPlayed['upload_source']) ) {
-				$('.player').css('display','none');
-				console.log('hiding .player');
-			}
+			//if( (songHistory.length > 0 || playLast) && (nextSong['upload_source'] !== lastPlayed['upload_source']) ) {
+			$('.player').css('display','none');
+			console.log('hiding .player');
+			//}
 			if(nextSong['upload_source'] === 'youtube') {
 				ytPlayer.loadVideoById(nextSong['song_id']);
 				$('#youtube').show();
@@ -213,3 +237,5 @@
 		difference = $.grep(a1,function(x) {return $.inArray(x, a2) < 0})
 		return difference
 	}
+
+	$('#radio-stations #user-meta').click();

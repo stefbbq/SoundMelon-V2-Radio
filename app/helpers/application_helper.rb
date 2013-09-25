@@ -152,7 +152,7 @@ module ApplicationHelper
 		user.save
 	end
 
-	def filter_by_history(user, songs, history, n)
+	def filter_by_history(user, songs, history, n, station)
 		#Return an array of ArtistUpload songs given an array of 
 		#ArtistUpload and user song history history
 		black_list = []
@@ -163,9 +163,13 @@ module ApplicationHelper
 			end
 		end
 		white_list = songs - black_list
-		scored_songs = user_scored_songs(user, white_list)
-		filtered_songs = random_weighted_sample_no_replacement(scored_songs, [n,white_list.size].min)
-		filtered_songs = filtered_songs.map {|song,weight| song}
+		if station == 'user-meta'
+			scored_songs = user_scored_songs(user, white_list)
+			filtered_songs = random_weighted_sample_no_replacement(scored_songs, [n,white_list.size].min)
+			filtered_songs = filtered_songs.map {|song,weight| song}
+		elsif station == 'random'
+			filtered_songs = random_playlist(white_list, n)
+		end
 		return filtered_songs
 	end
 
