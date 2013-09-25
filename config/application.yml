@@ -29,7 +29,7 @@ development:
 
 production:
   #HOST_ADDR: 'http://salty-ravine-5239.herokuapp.com'
-  HOST_ADDR: 'http://soundmelon-dev.herokuapp.com'
+  HOST_ADDR: 'http://soundmelon-stg.herokuapp.com'
   
   #Youtube API Keys
   YOUTUBE_APP_ID: '1035080270379-ir19dkk7bs2tsmuritfhpsosugr9nsks.apps.googleusercontent.com'
