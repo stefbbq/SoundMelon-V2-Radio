@@ -33,3 +33,5 @@ development:
 
 production:
   HOST_ADDR: 'http://salty-ravine-5239.herokuapp.com'
+  YOUTUBE_APP_ID: '1035080270379-ir19dkk7bs2tsmuritfhpsosugr9nsks.apps.googleusercontent.com'
+  YOUTUBE_SECRET: 'OAc7NznbZVV8CDxXN21EZ_OW'
