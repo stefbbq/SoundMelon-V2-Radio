@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: sm_radio_production
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  username: smrd
+  password: petrucci91
+#  socket: /var/run/mysqld/mysqld.sock

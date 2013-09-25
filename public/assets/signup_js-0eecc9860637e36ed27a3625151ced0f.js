@@ -1,0 +1,1 @@
+$("document").ready(function(){function i(i,n){if(i!==n){$(".warning_div").remove();var e=$('<div class="warning_div">Please check your email address</div>');e.insertAfter(a)}else $(".warning_div").remove()}var n=$("#email_input"),a=$("#conf_email_input");n.blur(function(){var e=n.val(),r=a.val();""!==r&&i(e,r)}),a.blur(function(){var e=n.val(),r=a.val();i(e,r)})});
