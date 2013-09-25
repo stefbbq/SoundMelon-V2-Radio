@@ -31,6 +31,10 @@ group :test do
 	gem 'capybara', '1.1.2'
 end
 
+group :production do
+	gem 'rails_12factor'
+end
+
 gem 'jquery-rails', '2.0.2'
 gem "haml-rails"
 gem "youtube_it"
