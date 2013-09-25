@@ -1,0 +1,35 @@
+# Add application configuration variables here, as shown below.
+#
+# PUSHER_APP_ID: "2954"
+# PUSHER_KEY: 7381a978f7dd7f9a1117
+# PUSHER_SECRET: abdc3b896a0ffb85d373
+# STRIPE_API_KEY: EdAvEPVEC3LuaTg5Q3z6WbDVqZlcBQ8Z
+# STRIPE_PUBLIC_KEY: pk_BRgD57O8fHja9HxduJUszhef6jCyS
+
+#Youtube API Keys
+YOUTUBE_APP_ID: '1035080270379-o8mnqtq490m1v2v1btgjfl1o54u3v0b3.apps.googleusercontent.com'
+YOUTUBE_SECRET: '-mEtRYHzGaAqa-035VdwtdiK'
+YOUTUBE_DEV_KEY: 'AI39si4xwZsnYS8ZPjdY36jy8jGCyBxCavTy1Xj_P5DtaCibNDzilGmeCLRPD9mTz0mHoPhm9LlF2REKzq5ivQQGLRe4g8uqHg'
+
+#Soundcloud API Keys
+SOUNDCLOUD_APP_ID: 'aed36f8bf087fe7716c9e594a211e8fb'
+SOUNDCLOUD_SECRET: 'dfd9ce380afd86f81619ad1b1dca8d72'
+
+#Facebook API Keys
+FACEBOOK_APP_ID: "229832890501503"
+FACEBOOK_SECRET: "ddc81e09946aec32e6ee543b776c7985"
+
+#Last.fm API Keys
+LASTFM_APP_ID: "0702eb2973b09c0d220845a6aa8037ad"
+LASTFM_SECRET: "d5b7afe33c642acbeeaa395d026cd567"
+
+#EchoNest API Keys
+ECHONEST_API_KEY: "SOPAE06QKB7SLUHUZ"
+ECHONEST_CONSUMER_KEY: "60d17e7c93300fc37e7f26cfe48317a6"
+ECHONEST_SHARED_SECRET: "sDlPOAkwQsaozTJ50IfAzA"
+
+development:
+  HOST_ADDR: 'http://localhost:3000'
+
+production:
+  HOST_ADDR: 'http://salty-ravine-5239.herokuapp.com'
