@@ -18,6 +18,8 @@
 
 :javascript
 
+	var currentUserId = #{current_user.id}
+	console.log(currentUserId);
 	var scWidget;
 	var ytPlayerReady = false;
 	var scPlayerReady = false;
@@ -85,7 +87,7 @@
 	});
 
 	function newSongsList() {
-		var radioStation = {station: currentStation, played_songs: playedUpdate}
+		var radioStation = {station: currentStation, played_songs: playedUpdate, user_id: currentUserId}
 		$.ajax({
 			url: '/request_playlist',
 			data: radioStation,

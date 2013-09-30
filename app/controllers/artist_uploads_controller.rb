@@ -7,9 +7,10 @@ class ArtistUploadsController < ApplicationController
 
 	def create
 		params[:artist_upload][:keywords] = params[:artist_upload][:keywords].split(',')
-		@artist_upload = ArtistUpload.create(params[:artist_upload])
+		@items = params
+		@artist_upload = ArtistUpload.create(params[:artist_upload].except(:artist_id))
 		if @artist_upload.save
-			@artist_upload.update_column(:artist_id, current_artist.id)
+			@artist_upload.update_column(:artist_id, params[:artist_upload][:artist_id])
 		end
 	end
 
@@ -25,9 +26,9 @@ class ArtistUploadsController < ApplicationController
 	def make_public
 		@song_id = params[:song_id]
 		@upload_source = params[:upload_source]
-		@artist = current_artist
+		@artist = Artist.find_by_id(params[:artist_id])
 		if @upload_source == 'youtube'
-			@client = new_yt_client(yt_auth_ids, current_artist.youtube_token)
+			@client = new_yt_client(yt_auth_ids, @artist.youtube_token)
 			@song = @client.my_video(@song_id)
 			@client.video_update(@song_id, :title => @song.title, :description => @song.description, :category => @song.categories.first.term, :keywords => @song.keywords, :private => false)
 		elsif @upload_source == 'soundcloud'
@@ -38,7 +39,7 @@ class ArtistUploadsController < ApplicationController
 	end
 
 	def request_playlist
-		@user = current_user
+		@user = User.find_by_id(params[:user_id])
 		@station = params[:station]
 		if (@user.fb_meta.keys.size == 0 && @user.user_meta.size == 0)
 			@station == 'random'
