@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 	serialize :user_meta
 	serialize :song_history
 #	has_secure_password
-	has_one :artist
+	has_one :artist, dependent: :destroy
 
 #	before_save { |user| user.email = email.downcase }
 #	before_save :create_remember_token

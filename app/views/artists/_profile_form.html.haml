@@ -1,0 +1,74 @@
+#artist-profile-form
+	%a#profile-back BACK
+	.spinner
+
+	- @artist = current_artist
+	= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+		= f.hidden_field :id, value: @artist.id
+
+		#uploaded-photo
+			%a.hover-link= image_tag @artist.artist_photo.url(:thumb)
+			= f.file_field :artist_photo, class: 'hidden', id: 'choose-pic'
+			Click the picture to upload a new one!
+
+	= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+		= f.hidden_field :id, value: @artist.id
+
+		= f.label :artist_name
+		= f.text_field :artist_name
+
+		= f.label :website
+		= f.text_field :website
+
+		= f.label :biography
+		= f.text_area :biography
+
+	#unlink-media
+		= render 'artists/unlink_accounts'
+
+:javascript
+
+	$(document).ajaxStart(function() {
+		$('#artist-profile-form .spinner').show();
+	});
+
+	$(document).ajaxStop(function() {
+		$('#artist-profile-form .spinner').hide();
+	});
+
+	$('#artist-profile-form #profile-back').click(function() {
+		$('#artist-media').show();
+		$('#artist-profile').remove();
+	});
+
+	$('#uploaded-photo a').click(function(e) {
+		$('#choose-pic').click();
+	});
+
+	$('#choose-pic').live('change', function() {
+		$(this).closest('form').submit();
+	});
+
+	$('#artist-profile-form form').children('input[type=text], textarea').typing({
+		stop: function(event, $elem) {
+			$('#artist-profile-form form').submit();
+		},
+		delay: 400
+	});
+
+	function readURL(input) {
+
+		  if (input.files && input.files[0]) {
+		      var reader = new FileReader();
+
+		      reader.onload = function (e) {
+		          $('#uploaded-photo img').attr('src', e.target.result);
+		      }
+
+		      reader.readAsDataURL(input.files[0]);
+		  }
+	}
+
+	$("#artist-profile-form input[type=file]").change(function(){
+		  readURL(this);
+	});

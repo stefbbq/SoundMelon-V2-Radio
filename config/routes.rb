@@ -5,11 +5,14 @@ SoundMelonV2Radio::Application.routes.draw do
   
   root to: 'welcome#index'
   
+#Session routes
 #  match '/signup', to: 'users#new'
 #	match '/signin',  to: 'sessions#new'
 	match '/auth/:provider/callback', :to => 'sessions#create'
 	match '/auth/failure', :to => redirect('/')
   match '/signout', to: 'sessions#destroy'
+
+#User routes
 	match '/accept_terms', to: 'users#accept_terms'
 	match '/init_fb_meta', to: 'users#init_fb_meta'
 	match '/user_meta', to: 'users#edit_meta'
@@ -18,6 +21,8 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/user_account', to: 'users#edit_account'
 	match '/update_account', to: 'users#update_account'
 	match '/add_media_account', to: 'users#add_media_account'
+
+#Artist routes
 	match '/new_upload', to: 'artist_uploads#new'
 	match '/edit_upload', to: 'artist_uploads#edit'
 	match '/sc_request', to: 'artists#sc_request'
@@ -25,7 +30,11 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/yt_request', to: 'artists#yt_request'
 	match '/yt_oauth_callback', to: 'artists#yt_oauth_callback'
 	match '/artist_show', to: 'artists#show'
-#	match '/sc_show', to: 'artists#sc_show'
+	match '/artist_profile_edit', to: 'artists#profile_edit'
+	match '/artist_profile_update', to: 'artists#profile_update'
+	match '/unlink_media_account', to: 'artists#unlink_media_account'
+
+#ArtistUpload routes
 	match '/make_public', to: 'artist_uploads#make_public'
 	match '/request_playlist', to: 'artist_uploads#request_playlist'
 

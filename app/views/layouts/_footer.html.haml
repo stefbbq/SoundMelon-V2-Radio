@@ -11,12 +11,12 @@
 		- if signed_in?
 			Hello #{current_user.first_name + ' ' + current_user.last_name}!
 			- if current_user.terms
-				= !current_user.is_artist? ? link_to("Music +" , add_media_account_path, remote: true, class: 'footer-link', id: 'add-content') : link_to("Music" , artist_show_path, remote: true, class: 'footer-link', id: 'add-content')
-			%a.footer-link#edit-page Settings
+				= !current_user.is_artist? ? link_to("Music +" , add_media_account_path, remote: true, class: 'hover-link', id: 'add-content') : link_to("Music" , artist_show_path, remote: true, class: 'hover-link', id: 'add-content')
+			%a.hover-link#edit-page Settings
 
 		- else
 			Find your tune.
-			%a.footer-link#learn-more Learn more
+			%a.hover-link#learn-more Learn more
 			= #link_to('SO WHY NOT REGISTER?', signup_path, remote: true)
 
 	.modal#more-info
@@ -55,4 +55,10 @@
 				container.hide();
 			}
 		});
+
+		var fromCallback = '#{flash[:music_account_callback].to_s}';
+		if(fromCallback === 'true') {
+			$('#add-content').click();
+		}
+
 	});

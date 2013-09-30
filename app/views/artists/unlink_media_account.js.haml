@@ -1,0 +1,10 @@
+:plain
+	accountId = '#{"#" + @account + "-unlink"}'
+	console.log(accountId);
+	$('#artist-media #reload-content').click();
+	$('#artist-profile #unlink-media ' + accountId).fadeOut().remove()
+	$('#artist-profile #unlink-media').append("<div id='fade-msg'>You have successfully unlinked your #{@account} account from Soundmelon.</div>").fadeIn();
+	$('.modal#user-add #artist-profile #fade-msg').fadeOut(8000, function() {
+		$(this).remove();
+	});
+

@@ -25,12 +25,13 @@ class ArtistUploadsController < ApplicationController
 	def make_public
 		@song_id = params[:song_id]
 		@upload_source = params[:upload_source]
+		@artist = current_artist
 		if @upload_source == 'youtube'
 			@client = new_yt_client(yt_auth_ids, current_artist.youtube_token)
 			@song = @client.my_video(@song_id)
 			@client.video_update(@song_id, :title => @song.title, :description => @song.description, :category => @song.categories.first.term, :keywords => @song.keywords, :private => false)
 		elsif @upload_source == 'soundcloud'
-			@client = refresh_sc_client
+			@client = refresh_sc_client(@artist)
 			@song = @client.get('/tracks/' + @song_id)
 			@client.put(@song.uri, :track => {:sharing => 'public'})
 		end
@@ -47,15 +48,11 @@ class ArtistUploadsController < ApplicationController
 		@active_songs = ArtistUpload.where(active: true)
 		@playlist_size = 3
 		@active_songs = filter_by_history(@user, @active_songs, @history, @playlist_size, @station)
-#		if @station == 'random' || (@user.fb_meta.keys.size == 0 && @user.user_meta.size == 0)
-#			@active_songs = random_playlist(@active_songs, @playlist_size)
-#		elsif @station == 'user-meta'
-#			@active_songs = filter_by_history(@user, @active_songs, @history, @playlist_size)
-#		end
 
 		@active_ids = []
 		@active_songs.each do |song|
-			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: song.keywords, song_url: song.song_url}
+			artist = Artist.find_by_id(song.artist_id)
+			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: song.keywords, song_url: song.song_url, artist_name: artist.artist_name, website: artist.website, biography: artist.biography, photo: artist.artist_photo.url(:thumb)}
 		end
 
 		respond_to do |format|

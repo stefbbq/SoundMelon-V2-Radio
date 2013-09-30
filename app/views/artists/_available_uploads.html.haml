@@ -5,6 +5,7 @@
 			- song_id = song.unique_id
 			- song_url = song.player_url
 			- song_private = song.perm_private
+			- song_duration = song.duration
 			- upload_source = 'youtube'
 			- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: song_id)
 			- img_src = song.thumbnails.first.url
@@ -12,10 +13,15 @@
 			- song_id = song.id
 			- song_url = song.permalink_url
 			- song_private = (song.sharing == 'private')
+			- song_duration = song.duration/1000.0
 			- upload_source = 'soundcloud'
 			- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: song_id)
 			- sc_logo = "http://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png"
 			- img_src = (song.artwork_url.nil?) ? sc_logo : song.artwork_url
+
+		- #if song_duration < 121
+		- #elsif song_duration > 1500
+		- #else
 		- @in_db = !@current_song.empty?
 		- @is_active = (@in_db && @current_song.first.active)
 		- @edit_action = @in_db ? "edit" : "new"

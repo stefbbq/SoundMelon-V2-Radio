@@ -2,6 +2,7 @@ class ArtistsController < ApplicationController
 	include ApplicationHelper
 	helper_method :yt_auth_ids, :sc_auth_ids, :new_yt_client
 	require 'soundcloud'
+	respond_to :js, :json, :html, :xml
 
 	def create
 		@artist = Artist.new(artist_name: current_user.username)
@@ -33,11 +34,9 @@ class ArtistsController < ApplicationController
 			end
 			current_artist.update_attributes(youtube_token: @new_tokens)
 		end
+		flash[:music_account_callback] = true
 		redirect_to root_path
 	end
-
-#	def yt_show
-#	end
 
 	def sc_request
 		client = Soundcloud.new(sc_auth_ids)
@@ -54,10 +53,34 @@ class ArtistsController < ApplicationController
 			end
 			current_artist.update_attributes(soundcloud_token: @new_tokens)
 		end
+		flash[:music_account_callback] = true
 		redirect_to root_path
 	end
 
-#	def sc_show
-#	end
+	def profile_edit
+	end
+
+	def profile_update
+		@artist = Artist.find_by_id(params[:artist][:id])
+		@artist.update_attributes(params[:artist])
+	end
+
+	def unlink_media_account
+		@still_artist = true
+		@artist = Artist.find_by_id(params[:artist][:id])
+		@account = params[:artist][:account]
+		@acct_songs = ArtistUpload.where(artist_id: @artist.id, upload_source: @account)
+		@acct_songs.each do |song|
+			ArtistUpload.find_by_id(song.id).destroy
+		end
+		if @account == 'youtube'
+			@artist.youtube_token = nil
+		elsif @account == 'soundcloud'
+			@artist.soundcloud_token = nil
+		end
+		if @artist.save
+			flash[:unlink_success] = true
+		end
+	end
 
 end

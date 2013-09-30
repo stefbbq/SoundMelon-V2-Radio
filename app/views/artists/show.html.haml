@@ -1,4 +1,5 @@
-= link_to("Refresh" , artist_show_path, remote: true, class: 'footer-link', id: 'reload-content')
+= link_to("Refresh" , artist_show_path, remote: true, class: 'hover-link', id: 'reload-content')
+= link_to("Artist Profile", artist_profile_edit_path, remote: true, class: 'hover-link', id: 'profile-edit')
 - @artist = current_artist
 - @all_songs = []
 
@@ -15,7 +16,7 @@
 	= link_to("Connect to your YouTube!", yt_request_path)
 
 - if !@artist.soundcloud_token.nil?
-	- @sc_client = refresh_sc_client
+	- @sc_client = refresh_sc_client(@artist)
 	- tracks = @sc_client.get('/me/tracks', order: 'created_at')
 	- tracks.each do |track|
 		- @all_songs << [Time.parse(track.created_at), track]
@@ -30,6 +31,6 @@
 		= render 'artists/available_uploads', all_songs: @all_songs
 
 :javascript
-	$('#reload-content').click(function() {
+	$('#reload-content, #profile-edit').click(function() {
 		$('#user-add .spinner').show();
 	});

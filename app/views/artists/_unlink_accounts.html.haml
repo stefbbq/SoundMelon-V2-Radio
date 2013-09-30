@@ -1,0 +1,4 @@
+- if !current_artist.youtube_token.nil?
+	= link_to("Unlink Youtube", unlink_media_account_path(artist: {account: 'youtube', id: current_artist.id}), remote: true, class: 'hover-link', id: 'youtube-unlink')
+- if !current_artist.soundcloud_token.nil?
+	= link_to("Unlink Soundcloud", unlink_media_account_path(artist: {account: 'soundcloud', id: current_artist.id}), remote: true, class: 'hover-link', id: 'soundcloud-unlink')

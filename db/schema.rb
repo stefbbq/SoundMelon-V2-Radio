@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923162206) do
+ActiveRecord::Schema.define(:version => 20130926160923) do
 
   create_table "artist_uploads", :force => true do |t|
     t.integer  "artist_id"
@@ -28,10 +28,16 @@ ActiveRecord::Schema.define(:version => 20130923162206) do
   create_table "artists", :force => true do |t|
     t.string   "artist_name"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.text     "youtube_token"
     t.text     "soundcloud_token"
+    t.string   "artist_photo_file_name"
+    t.string   "artist_photo_content_type"
+    t.integer  "artist_photo_file_size"
+    t.datetime "artist_photo_updated_at"
+    t.string   "website"
+    t.text     "biography"
   end
 
   create_table "users", :force => true do |t|
