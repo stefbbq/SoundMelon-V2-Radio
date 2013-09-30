@@ -9,7 +9,7 @@
 	- @artist_upload = ArtistUpload.new
 	= form_for(@artist_upload, remote: true) do |f|
 		= render 'artist_uploads/upload_form', {f: f, active: @artist_upload.active, keywords: @artist_upload.keywords}
-		= f.hidden_field :artist_id, value: artist_id
+		= f.hidden_field :artist_id, value: @artist.id
 		= f.hidden_field :song_id, value: song_id
 		= f.hidden_field :upload_source, value: upload_source
 		= f.hidden_field :song_url, value: song_url
