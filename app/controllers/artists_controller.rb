@@ -26,9 +26,9 @@ class ArtistsController < ApplicationController
 		conn = yt_oauth_setup
 		ids = yt_auth_ids
 		@result = obtain_yt_token(conn, params[:code], ids)
-		@new_tokens = Hash.transform_keys_to_symbols(JSON.load(@result.body))
-		@new_tokens[:expires_at] = Time.parse(@result.env[:response_headers][:date]).to_i + @new_tokens[:expires_in]  
+		@new_tokens = Hash.transform_keys_to_symbols(JSON.load(@result.body)) 
 		if !@new_tokens.has_key?(:error)
+			@new_tokens[:expires_at] = Time.parse(@result.env[:response_headers][:date]).to_i + @new_tokens[:expires_in] 
 			if !current_user.is_artist?
 				create
 			end
