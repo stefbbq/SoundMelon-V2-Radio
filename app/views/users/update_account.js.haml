@@ -1,0 +1,5 @@
+:plain
+	var accountUpdate = '#{flash[:account_updated].to_s}';
+	if(accountUpdate === 'true') {
+		$('#flash-board').hide().empty().html('Account Updated!').fadeIn().fadeOut();
+	}

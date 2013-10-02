@@ -11,6 +11,7 @@ class ArtistUploadsController < ApplicationController
 		@artist_upload = ArtistUpload.create(params[:artist_upload].except(:artist_id))
 		if @artist_upload.save
 			@artist_upload.update_column(:artist_id, params[:artist_upload][:artist_id])
+			flash[:upload_created] = true
 		end
 	end
 
@@ -21,6 +22,7 @@ class ArtistUploadsController < ApplicationController
 		@artist_upload = ArtistUpload.find(params[:id])
 		params[:artist_upload][:keywords] = params[:artist_upload][:keywords].split(',')
 		@artist_upload.update_attributes(params[:artist_upload])
+		flash[:upload_updated] = true
 	end
 
 	def make_public

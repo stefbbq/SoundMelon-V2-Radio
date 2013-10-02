@@ -2,8 +2,12 @@
 	song_divId = @artist_upload.song_id
 
 :plain
-	songDivId = "#" + "#{song_divId}"
-	console.log('#{@items}');
+	songDivId = "#" + "#{song_divId}";
+	var newUpload = '#{flash[:upload_created].to_s}';
+	if(newUpload === 'true') {
+		$('#flash-board').hide().empty().html('Song Activated!').fadeIn().fadeOut();
+	}
+	console.log(newUpload);
 	$(songDivId).append('<div class="edit-song"></div>');
 	$(songDivId + ' .edit-song').html('#{escape_javascript( render template: "artist_uploads/edit" , locals: {song_id: @artist_upload.song_id, upload_source: @artist_upload.upload_source, song_url: @artist_upload.song_url, song_private: @artist_upload.is_private} )}').toggle();
 	$(songDivId + ' .new-song').remove();

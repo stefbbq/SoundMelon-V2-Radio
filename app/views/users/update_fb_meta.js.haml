@@ -1,0 +1,5 @@
+:plain
+	var metaUpdate = '#{flash[:meta_updated].to_s}';
+	if(metaUpdate === 'true') {
+		$('#flash-board').hide().empty().html('Likes Now Updated!').fadeIn().fadeOut();
+	}

@@ -112,13 +112,6 @@ body > .footer {
 			width: auto;
 		}
 	}
-
-//	#artist-profile-form {
-//		.spinner {
-//			display: block;
-//		}
-//	}
-
 }
 
 .player {
@@ -133,6 +126,16 @@ body > .footer {
 	background-image: url('/assets/spinner.gif');
 	height: 24px;
 	width: 24px;
+	display: none;
+}
+
+#flash-board {
+	@include footer-modal();
+	min-height: 20px;
+	bottom: 381px;
+	min-height: 20px;
+	width: 300px;
+//	overflow: auto;
 	display: none;
 }
 

@@ -7,17 +7,22 @@
 			- song_private = song.perm_private
 			- song_duration = song.duration
 			- upload_source = 'youtube'
+			- source_abbr = 'YT'
 			- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: song_id)
 			- img_src = song.thumbnails.first.url
+			- source_tags = song.keywords
 		- if song.class == Hashie::Mash
 			- song_id = song.id
 			- song_url = song.permalink_url
 			- song_private = (song.sharing == 'private')
 			- song_duration = song.duration/1000.0
 			- upload_source = 'soundcloud'
+			- source_abbr = 'SC'
 			- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: song_id)
 			- sc_logo = "http://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png"
 			- img_src = (song.artwork_url.nil?) ? sc_logo : song.artwork_url
+			- source_tags = song.genre.split() | song.tag_list.split(' ')
+			- source_tags.delete_if {|tag| tag.include? "soundcloud:source"}
 
 		- #if song_duration < 121
 		- #elsif song_duration > 1500
@@ -28,10 +33,11 @@
 
 		.artist-song{id: song_id}
 			.song-show
+				= source_abbr
 				%img{src: img_src} #{song.title}
 				.state= @is_active ? "active" : "inactive"
 			%div{class: @edit_action + '-song'}
-				= render template: 'artist_uploads/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private}
+				= render template: 'artist_uploads/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags}
 
 :javascript
 	$('document').ready(function() {

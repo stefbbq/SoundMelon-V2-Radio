@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 	def update_account
 		@parameters = params
 		update_attrs(params)
+		flash[:account_updated] = true
 	end
 
 	def create
@@ -37,6 +38,7 @@ class UsersController < ApplicationController
 	def update_user_meta
 		params[:user][:user_meta] = params[:user][:user_meta].split(',')
 		update_attrs(params)
+		flash[:meta_updated] = true
 	end
 
 	def update_fb_meta
@@ -47,6 +49,7 @@ class UsersController < ApplicationController
 		@new_fb_meta_hash = @current_fb_meta.except(*@removed_fb_meta)
 		params[:user][:fb_meta] = @new_fb_meta_hash
 		update_attrs(params)
+		flash[:meta_updated] = true
 	end
 
 	def accept_terms

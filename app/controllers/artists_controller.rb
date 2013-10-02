@@ -62,7 +62,9 @@ class ArtistsController < ApplicationController
 
 	def profile_update
 		@artist = Artist.find_by_id(params[:artist][:id])
-		@artist.update_attributes(params[:artist])
+		if @artist.update_attributes(params[:artist])
+			flash[:profile_updated] = true
+		end
 	end
 
 	def unlink_media_account

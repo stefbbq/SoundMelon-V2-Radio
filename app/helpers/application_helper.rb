@@ -62,7 +62,8 @@ module ApplicationHelper
 		sc_ids = sc_auth_ids
 		sc_tokens = artist.soundcloud_token
 		sc_client = Soundcloud.new(client_id: sc_ids[:client_id], client_secret: sc_ids[:client_secret], refresh_token: sc_tokens[:refresh_token])
-		current_artist.update_attributes(soundcloud_token: sc_client.options.except(:on_exchange_token))
+		artist.update_attributes(soundcloud_token: sc_client.options.except(:on_exchange_token))
+		artist.save
 		return sc_client
 	end
 

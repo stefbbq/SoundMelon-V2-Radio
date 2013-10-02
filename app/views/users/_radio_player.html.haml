@@ -1,4 +1,4 @@
-= javascript_include_tag "youtube_iframe_api", "sc_api"
+= javascript_include_tag "youtube_iframe_api", "sc_api", "simple-slider.min"
 
 #radio-controls
 	%a#replay-song replay 
@@ -6,6 +6,7 @@
 	%a#play-pause pause/play
 	%a#next-song next
 	%br
+	%input#volume-slider
 
 #radio-stations
 	%a#user-meta Your Likes
@@ -32,6 +33,7 @@
 	var lastStation;
 	var currentStation;
 	var currentArtist;
+	var volume = 100;
 
 	$('#radio-stations a').click(function() {
 		lastStation = currentStation
@@ -60,22 +62,26 @@
 	});
 
 	$('#radio-controls #next-song').click(function() {
-		if(currentSong['upload_source'] === 'youtube') {
-			ytPlayer.stopVideo();
+		if(currentSong) {
+			if(currentSong['upload_source'] === 'youtube') {
+				ytPlayer.stopVideo();
+			}
+			else if(currentSong['upload_source'] === 'soundcloud') {
+				scWidget.pause();
+			}
+			playNextSong();
 		}
-		else if(currentSong['upload_source'] === 'soundcloud') {
-			scWidget.pause();
-		}
-		playNextSong();
 	});
 
 	$('#radio-controls #replay-song').click(function() {
-		if(currentSong['upload_source'] === 'youtube') {
-			ytPlayer.seekTo(0).playVideo();
-		}
-		else if(currentSong['upload_source'] === 'soundcloud') {
-			scWidget.seekTo(0);
-			scWidget.play();
+		if(currentSong) {
+			if(currentSong['upload_source'] === 'youtube') {
+				ytPlayer.seekTo(0).playVideo();
+			}
+			else if(currentSong['upload_source'] === 'soundcloud') {
+				scWidget.seekTo(0);
+				scWidget.play();
+			}
 		}
 	});
 
@@ -83,6 +89,23 @@
 		if(currentSong && songHistory.length > 0){
 			playLast = true;
 			$('#radio-controls #next-song').click();
+		}
+	});
+
+	$('#volume-slider').simpleSlider({
+		theme: 'volume',
+		highlight: true
+	});
+	$('#volume-slider').simpleSlider('setValue', 1);
+	$('#volume-slider').bind('slider:changed', function(event, data) {
+		volume = Math.floor(data['value'] * 100);
+		if(currentSong) {
+			if(currentSong['upload_source'] === 'youtube') {
+				ytPlayer.setVolume(volume);
+			}
+			else if(currentSong['upload_source'] === 'soundcloud') {
+				scWidget.setVolume(volume);
+			}
 		}
 	});
 
@@ -105,6 +128,7 @@
 			var playerState = ytPlayer.getPlayerState();
 			if(/[25]|-1/.test(playerState)){
 				//Play video if it is paused (2), cued (5), or unstarted (-1)
+				ytPlayer.setVolume(volume);
 				ytPlayer.playVideo();
 			}
 			else if(/[13]/.test(playerState)) {
@@ -115,6 +139,8 @@
 		else if(currentSong['upload_source'] == 'soundcloud') {
 			scWidget.isPaused(function(scPaused) {
 				if(scPaused) {
+					scWidget.setVolume(volume);
+					scWidget.getVolume(function(data){console.log(data + ' playPause')});
 					scWidget.play();
 				}
 				else {
@@ -153,6 +179,7 @@
 				if(firstSource === 'youtube') {
 					$('#youtube').show();
 					ytPlayer.loadVideoById(firstSong['song_id'], 'large');
+					ytPlayer.setVolume(volume);
 				}
 				else if(firstSource === 'soundcloud') {
 					initSCPlayer();
@@ -185,6 +212,7 @@
 			//}
 			if(nextSong['upload_source'] === 'youtube') {
 				ytPlayer.loadVideoById(nextSong['song_id'], 'large');
+				ytPlayer.setVolume(volume);
 				$('#youtube').show();
 			}
 			else if(nextSong['upload_source'] === 'soundcloud') {
@@ -240,6 +268,9 @@
 			var song = songs[0];
 			$('#soundcloud').html('<iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F' + song['song_id'] + '&show_artwork=true&auto_play=true"></iframe>');
 			scWidget = SC.Widget($('#sc-widget')[0]);
+			scWidget.bind(SC.Widget.Events.PLAY_PROGRESS, function() {
+				scWidget.setVolume(volume);
+			});
 			scWidget.bind(SC.Widget.Events.READY, function() {
 				scWidget.bind(SC.Widget.Events.FINISH, function() {
 					playNextSong();

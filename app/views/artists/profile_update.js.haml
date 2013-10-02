@@ -1,0 +1,5 @@
+:plain
+	var profileUpdate = '#{flash[:profile_updated].to_s}';
+	if(profileUpdate === 'true') {
+		$('#flash-board').hide().empty().html('Profile Updated!').fadeIn().fadeOut();
+	}

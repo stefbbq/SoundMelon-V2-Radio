@@ -1,2 +1,6 @@
 :plain
 	console.log("Update Success!");
+	var editUpload = '#{flash[:upload_updated].to_s}';
+	if(editUpload === 'true') {
+		$('#flash-board').hide().empty().html('Song Updated!').fadeIn().fadeOut();
+	}
