@@ -1,0 +1,14 @@
+This email will be sent to
+- @emails.each do |item|
+	= item
+
+= form_tag(controller: 'users', action: 'send_mass_email') do
+	= hidden_field_tag :emails, @emails
+
+	= label_tag :subject, "Subject: "
+	= text_field_tag :subject
+
+	= label_tag :body, "Message:"
+	= text_area_tag :body
+
+	= submit_tag "Send"
