@@ -5,6 +5,9 @@ class SessionsController < ApplicationController
 
   def create
     user = User.from_omniauth(env["omniauth.auth"])
+		if !user.terms
+			UserMailer.registration_confirmation(user).deliver
+		end
     session[:user_id] = user.id
 		respond_to do |format|
 			format.js
