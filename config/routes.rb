@@ -25,6 +25,9 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/update_account', to: 'users#update_account'
 	match '/add_media_account', to: 'users#add_media_account'
 
+#Admin routes
+#	post 'send_mass_email' => 'users#send_mass_email'
+
 #Artist routes
 	match '/new_upload', to: 'artist_uploads#new'
 	match '/edit_upload', to: 'artist_uploads#edit'
