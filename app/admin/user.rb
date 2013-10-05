@@ -1,5 +1,9 @@
 ActiveAdmin.register User do
 
+  action_item only: [:show] do |user|
+    link_to "Email", {:action => 'write_email'}, :method => :put
+  end
+
 	index do
 		selectable_column
 		column :id
@@ -15,14 +19,39 @@ ActiveAdmin.register User do
 		column :provider
 		column :terms
 		actions defaults: true do |user|
-			link_to "Email", {:action => 'send_email', :id => user.id}, :method => :put
+			link_to "Email", {:action => 'write_email', :id => user.id}, :method => :put
 		end
 	end
 
-	member_action :send_email, method: :put do
+  show title: :email do |ad|
+    attributes_table do
+			row :id
+			row :email
+			row :username
+			row :first_name
+			row :last_name
+			row :city
+			row :custom_city
+			row :created_at
+			row :updated_at
+			row :is_artist
+			row :provider
+			row :terms
+    end
+    active_admin_comments
+  end
+
+	member_action :write_email, method: :put do
 		@user = User.find(params[:id])
-#		flash[:notice] = "Coulda emailed doosh #{user.email}"
-#		redirect_to :action => :show
+	end
+
+	member_action :send_email, method: :post do
+		@email = params[:email]
+		@subject = params[:subject]
+		@body = params[:body]
+		UserMailer.admin_message(@email, @subject, @body).deliver
+		flash[:notice] = @email
+		redirect_to :action => :show
 	end
 
 	batch_action :mass_email do |selection|
