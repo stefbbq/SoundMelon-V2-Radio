@@ -4,8 +4,8 @@ module UsersHelper
 		return current_user.is_artist
 	end
 
-	def collect_genres
-		graph = Koala::Facebook::API.new(current_user.oauth_token.token)
+	def collect_genres(user)
+		graph = Koala::Facebook::API.new(user.oauth_token.token)
 		music_query = "SELECT name, type FROM page WHERE page_id IN (SELECT page_id FROM page_fan WHERE uid=me() AND profile_section='music')"
 		likes = graph.fql_query(music_query)
 		user_genres = {}

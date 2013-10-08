@@ -11,6 +11,7 @@ class Artist < ActiveRecord::Base
 		default_url: "/assets/core/footer_logo.png"
 	belongs_to :user
 	has_many :artist_upload, dependent: :destroy
+	has_many :reports, as: :reportable #Allow ArtistUpload to be reported
 	serialize :youtube_token
 	serialize :soundcloud_token
 end

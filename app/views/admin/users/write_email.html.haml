@@ -1,0 +1,12 @@
+= @user.email
+
+= form_tag(controller: 'users', action: 'send_email') do
+	= hidden_field_tag :email, @user.email
+
+	= label_tag :subject, "Subject: "
+	= text_field_tag :subject
+
+	= label_tag :body, "Message:"
+	= text_area_tag :body
+
+	= submit_tag "Send"

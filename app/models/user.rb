@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	serialize :song_history
 #	has_secure_password
 	has_one :artist, dependent: :destroy
+	has_many :reports #Allow user to report others
 
 #	before_save { |user| user.email = email.downcase }
 #	before_save :create_remember_token

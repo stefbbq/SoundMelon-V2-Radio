@@ -2,7 +2,6 @@
 	%a#meta-back BACK
 
 	- @user = current_user
-	- @fb_meta_list = @user.fb_meta.keys
 	- @user_meta = @user.user_meta.nil? ? [] : @user.user_meta
 	= form_for(@user, remote: true, url: update_user_meta_path) do |f|
 		= f.hidden_field :id, value: @user.id
@@ -16,12 +15,9 @@
 
 	%a#show-fb-meta View your Facebook computed tags!
 	#fb-meta-panel
-		= form_for(@user, remote: true, url: update_fb_meta_path) do |f|
-			= f.hidden_field :id, value: @user.id
-
-			= f.label :fb_meta, "Your Facebook Likes", style: 'display: none;'
-			Caution!! You can only remove these tags since they are computed from your Facebook likes. Only remove them if you're sure.
-			= f.text_area :fb_meta, value: @fb_meta_list.join(', '), id: "fb-meta-tags"
+		= link_to "Reload Facebook Tags", reload_fb_meta_path(id: current_user.id), remote: true, class: 'hover-link'
+		#fb-meta-form
+			= render 'users/fb_meta_form'
 
 :javascript
 	$('#user-meta-tags').tagsInput({
@@ -32,22 +28,6 @@
 		'onAddTag': function() {
 			console.log(this.id);
 			$(this).parent('form').submit();
-		},
-		'onRemoveTag': function() {
-			console.log($(this).parent('form'));
-			$(this).parent('form').submit();
-		}
-	});
-
-	$('#fb-meta-tags').tagsInput({
-		'removeWithBackspace': false,
-		'defaultText': '',
-		'interactive': false,
-		'height': 'auto',
-		'width': 'auto',
-		'onAddTag': function() {
-			console.log(this.id)
-			alert("You can not add facebook tags!");
 		},
 		'onRemoveTag': function() {
 			console.log($(this).parent('form'));

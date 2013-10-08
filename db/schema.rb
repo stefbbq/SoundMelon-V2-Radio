@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131002200752) do
+ActiveRecord::Schema.define(:version => 20131007205348) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20131002200752) do
     t.string   "upload_source"
     t.string   "song_url"
     t.boolean  "is_private"
+    t.boolean  "blocked",       :default => false
   end
 
   create_table "artists", :force => true do |t|
@@ -71,6 +72,24 @@ ActiveRecord::Schema.define(:version => 20131002200752) do
     t.datetime "artist_photo_updated_at"
     t.string   "website"
     t.text     "biography"
+  end
+
+  create_table "blocked_uploads", :force => true do |t|
+    t.string   "upload_source"
+    t.string   "song_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "reports", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.integer  "user_id"
+    t.string   "reportable_type"
+    t.string   "reportable_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "open",            :default => true
   end
 
   create_table "users", :force => true do |t|

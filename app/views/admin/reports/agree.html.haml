@@ -1,0 +1,12 @@
+= form_tag(controller: 'reports', action: 'block_song') do
+	= hidden_field_tag :report_id, @report.id
+	= hidden_field_tag :email, @reported_user.email
+
+	= label_tag :subject, "Subject: "
+	= text_field_tag :subject, "Blocked Song"
+
+	- @type = @report.title == 'not_a_song' ? 'not a song' : 'a copyrighted song'
+	= label_tag :body, "Message:"
+	= text_area_tag :body, "Hello #{@reported_user.first_name}, \nYour song located at #{@song.song_url} has been blocked as it is #{@type}. \nPlease remember that Soundmelon is a platform for independent musicians to share their music so do refrain from uploading material that is either copyrighted or not music."
+
+	= submit_tag "Send"

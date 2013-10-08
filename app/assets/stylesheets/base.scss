@@ -52,6 +52,7 @@ body > .footer {
 		position: absolute;
 		left: 18px;
 		bottom: $footer-height - 55px;
+		display: none;
 	}
 	
 	.right {
@@ -133,7 +134,15 @@ body > .footer {
 	@include footer-modal();
 	min-height: 20px;
 	bottom: 381px;
-	min-height: 20px;
+	width: 300px;
+//	overflow: auto;
+	display: none;
+}
+
+#report-board {
+	@include footer-modal();
+	min-height: 200px;
+	bottom: 100px;
 	width: 300px;
 //	overflow: auto;
 	display: none;

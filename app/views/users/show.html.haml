@@ -24,7 +24,7 @@
 :javascript
 	$(document).ready(function() {
 		$(document).mouseup(function(e) {
-			var container = $('.modal');
+			var container = $('.modal, #report-board');
 			if(!container.is(e.target) && container.has(e.target).length == 0) {
 				container.hide();
 			}

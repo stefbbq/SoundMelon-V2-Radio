@@ -18,6 +18,7 @@ SoundMelonV2Radio::Application.routes.draw do
 #User routes
 	match '/accept_terms', to: 'users#accept_terms'
 	match '/init_fb_meta', to: 'users#init_fb_meta'
+	match '/reload_fb_meta', to: 'users#reload_fb_meta'
 	match '/user_meta', to: 'users#edit_meta'
 	match '/update_fb_meta', to: 'users#update_fb_meta'
 	match '/update_user_meta', to: 'users#update_user_meta'
@@ -27,6 +28,10 @@ SoundMelonV2Radio::Application.routes.draw do
 
 #Admin routes
 #	post 'send_mass_email' => 'users#send_mass_email'
+
+#Report routes
+	match '/report_song', to: 'reports#report_song'
+	match '/send_report', to: 'reports#send_report'
 
 #Artist routes
 	match '/new_upload', to: 'artist_uploads#new'
