@@ -1,6 +1,13 @@
+- @artist = current_artist
+- @artist_upload = ArtistUpload.find_by_song_id(song_id)
+- if song_private
+	.private
+		We can't stream private songs! Would you like to make this song public on #{upload_source}?
+		= link_to "Make Public!", make_public_path(song_id: song_id, upload_source: upload_source, artist_id: @artist.id), remote: true, class: 'make-public', onclick: "$(this).siblings('.spinner').show()"
+		.spinner
+
 .song-form
-	- @artist = current_artist
-	- @artist_upload = ArtistUpload.find_by_song_id(song_id)
+
 	= form_for(@artist_upload, remote: true) do |f|
 		= render 'artist_uploads/upload_form', {f: f, active: @artist_upload.active, keywords: @artist_upload.keywords}
 

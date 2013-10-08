@@ -276,6 +276,11 @@
 					if(event.data === 0) {
 						playNextSong();
 					}
+				},
+				'onError': function(event) {
+					if(/100|101|150/.test(event.data)) {
+						playNextSong();
+					}
 				}
 			}
 		});
@@ -292,6 +297,9 @@
 			});
 			scWidget.bind(SC.Widget.Events.READY, function() {
 				scWidget.bind(SC.Widget.Events.FINISH, function() {
+					playNextSong();
+				});
+				scWidget.bind(SC.Widget.Events.ERROR, function() {
 					playNextSong();
 				});
 			});

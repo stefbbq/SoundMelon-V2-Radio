@@ -30,12 +30,16 @@
 		- @in_db = !@current_song.empty?
 		- @is_active = (@in_db && @current_song.first.active)
 		- @edit_action = @in_db ? "edit" : "new"
+		- if song_private && @is_active
+			- @current_song.first.active = false
+			- @is_active = false
+			- @current_song.first.save
 
 		.artist-song{id: song_id}
 			.song-show
 				= source_abbr
 				%img{src: img_src} #{song.title}
-				.state= @is_active ? "active" : "inactive"
+				.state= @is_active && !song_private ? "active" : "inactive"
 			%div{class: @edit_action + '-song'}
 				= render template: 'artist_uploads/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags}
 
