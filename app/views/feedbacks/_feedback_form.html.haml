@@ -1,0 +1,16 @@
+#feedback-form
+	= form_for(@report, url: feedback_send_path, remote: true, :validate => true) do |f|
+		= f.label :email
+		- if signed_in?
+			= current_user.email
+			= f.hidden_field :email, value: current_user.email
+		- else
+			= f.text_field :email
+
+		= f.label :title, 'Subject'
+		= f.text_field :title
+
+		= f.label :content, 'Comments'
+		= f.text_field :content
+
+		= f.submit 'Submit'

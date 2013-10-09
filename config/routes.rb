@@ -33,6 +33,10 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/report_song', to: 'reports#report_song'
 	match '/send_report', to: 'reports#send_report'
 
+#Feedback routes
+	match '/feedback_form', to: 'feedbacks#new'
+	match '/feedback_send', to: 'feedbacks#create'
+
 #Artist routes
 	match '/new_upload', to: 'artist_uploads#new'
 	match '/edit_upload', to: 'artist_uploads#edit'

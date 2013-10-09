@@ -8,6 +8,7 @@
 		.icon-32#twitter-icon{href: "#"}
 		.icon-32#linkedin-icon{href: "#"}
 	%small
+		= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
 		- if signed_in?
 			Hello #{current_user.first_name + ' ' + current_user.last_name}!
 			- if current_user.terms
@@ -23,19 +24,28 @@
 		Phasellus luctus malesuada velit, eu pellentesque eros imperdiet a. Donec in sagittis dolor. Proin pretium magna ac lectus pretium, non viverra dolor sagittis. Ut sit amet mauris a massa lacinia porta. Cras tristique urna ipsum. Aenean vehicula condimentum laoreet.
 
 :javascript
+	function smartModal(modal, content, spinner) {
+		//Ajax load into modal if content is not available. modal, content, and spinner are ids.
+		$('#' + modal).toggle();
+		if( (document.getElementById(modal).style.display == 'none') || ($('#' + modal + ' #' + content).length > 0) ) {
+			console.log('yeah we falsed it')
+			return false;
+		}
+		else {
+			$('#' + modal + ' .' + spinner).show();
+		}
+	}
+
+	$('#feedback-link').click(function() {
+		smartModal('feedback-board', 'feedback-form', 'spinner')
+	});
+
 	$('#learn-more').click(function() {
 		$('#more-info').toggle();
 	});
 
 	$('#add-content').click(function() {
-		$('#user-add').toggle();
-		console.log(document.getElementById('user-add').style.display)
-		if( (document.getElementById('user-add').style.display == 'none') || ($('#user-add #available-uploads').length > 0) ) {
-			return false;
-		}
-		else {
-			$('#user-add .spinner').show();
-		}
+		smartModal('user-add', 'available-uploads', 'spinner')
 	});
 
 	$('#edit-page').click(function() {

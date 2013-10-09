@@ -1,0 +1,11 @@
+= form_tag(controller: 'reports', action: 'invalid_report') do
+	= hidden_field_tag :report_id, @report.id
+	= hidden_field_tag :email, @user.email
+
+	= label_tag :subject, "Subject: "
+	= text_field_tag :subject, "Your Report"
+
+	= label_tag :body, "Message:"
+	= text_area_tag :body, "Hello #{@user.first_name}, \nThe song you have reported, located at #{@song.song_url} has been investigated and deemed acceptable for the Soundmelon Radio station. \nThank you for submitting a report, we hope that you can help us keep Soundmelon relevant by reporting items that are not copyrighted (read: mainstream) or not music at all. \n\nCheers! \nThe Soundmelon Team"
+
+	= submit_tag "Send"

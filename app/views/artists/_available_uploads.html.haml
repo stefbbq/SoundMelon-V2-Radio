@@ -23,6 +23,7 @@
 			- img_src = (song.artwork_url.nil?) ? sc_logo : song.artwork_url
 			- source_tags = song.genre.split() | song.tag_list.split(' ')
 			- source_tags.delete_if {|tag| tag.include? "soundcloud:source"}
+		- is_blocked = BlockedUpload.exists?(song_id: song_id)
 
 		- #if song_duration < 121
 		- #elsif song_duration > 1500
@@ -41,7 +42,10 @@
 				%img{src: img_src} #{song.title}
 				.state= @is_active && !song_private ? "active" : "inactive"
 			%div{class: @edit_action + '-song'}
-				= render template: 'artist_uploads/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags}
+				- if is_blocked
+					This song has been blocked due to reporting and investigation.
+				- else
+					= render template: 'artist_uploads/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags}
 
 :javascript
 	$('document').ready(function() {
