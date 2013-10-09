@@ -26,13 +26,16 @@
 :javascript
 	function smartModal(modal, content, spinner) {
 		//Ajax load into modal if content is not available. modal, content, and spinner are ids.
-		$('#' + modal).toggle();
-		if( (document.getElementById(modal).style.display == 'none') || ($('#' + modal + ' #' + content).length > 0) ) {
+		var modalId = '#' + modal;
+		var contentId = '#' + content;
+		var spinnerClass = '.' + spinner;
+		$(modalId).toggle();
+		if( (document.getElementById(modal).style.display == 'none') || ($(modalId + ' ' + contentId).length > 0) ) {
 			console.log('yeah we falsed it')
 			return false;
 		}
 		else {
-			$('#' + modal + ' .' + spinner).show();
+			$(modalId + ' ' + spinnerClass).show();
 		}
 	}
 

@@ -1,0 +1,9 @@
+--- 
+cursor_positions: 
+  - :path: app/views/users/_account_form.html.haml
+    :cursor_offset: 710
+    :timestamp: 2013-09-15 16:28:14 -04:00
+  - :path: Gemfile
+    :cursor_offset: 0
+    :timestamp: 2013-10-03 16:53:52 -04:00
+files_to_retain: 0
