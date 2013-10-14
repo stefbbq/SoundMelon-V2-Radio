@@ -53,6 +53,10 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/make_public', to: 'artist_uploads#make_public'
 	match '/request_playlist', to: 'artist_uploads#request_playlist'
 
+#Invite routes
+	match '/send_invite' => 'invites#create'
+	match "/:invite_token", to: redirect('/')
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

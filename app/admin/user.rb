@@ -36,6 +36,7 @@ ActiveAdmin.register User do
 			row :updated_at
 			row :is_artist
 			row :provider
+			row :invites
 			row :terms
     end
     active_admin_comments

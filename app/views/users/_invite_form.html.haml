@@ -1,0 +1,16 @@
+- @invite = Invite.new
+= form_for(@invite, remote: true, url: send_invite_url) do |f|
+	= f.hidden_field :user_id, value: current_user.id
+	= f.hidden_field :status, value: 'pending'
+
+	= f.label :email
+	= f.text_field :email, class: 'email-check'
+	.tick-mark.check-mark
+	.tick-mark.x-mark
+
+	= f.submit "Send!", onclick: 'showSpin(this)'
+
+:javascript
+	function showSpin(item) {
+		$('#settings-panel .spinner').show();
+	}

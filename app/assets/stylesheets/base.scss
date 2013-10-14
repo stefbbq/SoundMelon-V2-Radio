@@ -130,6 +130,21 @@ body > .footer {
 	display: none;
 }
 
+.tick-mark {
+	height: 24px;
+	width: 24px;
+	background-size: 100% 100%;
+	display: none;
+}
+
+.check-mark {
+	background-image: url('/assets/check_mark.png');
+}
+
+.x-mark {
+	background-image: url('/assets/x_mark.png');
+}
+
 #flash-board {
 	@include footer-modal();
 	min-height: 20px;

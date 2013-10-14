@@ -11,7 +11,9 @@
 // GO AFTER THE REQUIRES BELOW. ('require_tree .' was removed)
 //
 //= require jquery
+//= require rails.validations
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require rails.validations
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require design

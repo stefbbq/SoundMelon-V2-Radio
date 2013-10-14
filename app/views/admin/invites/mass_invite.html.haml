@@ -1,0 +1,5 @@
+= form_tag(controller: 'invites', action: 'send_mass_invite') do
+	= label_tag :emails, "Emails (Comma delimited, eg 'abc@test.com, gef@test3.ca, ...'): "
+	= text_area_tag :emails
+
+	= submit_tag "Send"

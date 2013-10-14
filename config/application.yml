@@ -32,6 +32,9 @@ DROPBOX_ACCESS_TOKEN_SECRET: "zdwhiarh0sddo59"
 DROPBOX_USER_ID: "22368238"
 DROPBOX_ACCESS_TYPE: "app_folder"
 
+#Misc Vars
+INVITE_LIMIT: 3
+
 development:
   HOST_ADDR: 'http://localhost:3000'
 

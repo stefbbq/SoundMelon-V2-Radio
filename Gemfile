@@ -55,7 +55,9 @@ gem "meta_search",    '>= 1.1.0.pre'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
-gem 'client_side_validations'
+gem 'jquery-validation-rails'
+#gem 'client_side_validations', :github => 'bcardarella/client_side_validations', :branch => '3-2-stable'
+#gem 'green_light'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

@@ -5,6 +5,14 @@ class SessionsController < ApplicationController
 
   def create
     user = User.from_omniauth(env["omniauth.auth"])
+		@invite_token = params[:state]
+		if @invite_token.size > 0 && Invite.exists?(token: @invite_token)
+			@invite = Invite.find_by_token(@invite_token)
+			if @invite.status != 'accepted'
+				@invite.status = 'accepted'
+				@invite.save
+			end
+		end
 		if !user.terms
 			UserMailer.registration_confirmation(user).deliver
 		end

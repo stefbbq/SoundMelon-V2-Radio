@@ -2,5 +2,15 @@
 	= link_to("Your Likes", user_meta_path, remote: true)
 	%br
 	= link_to("Account", user_account_path, remote: true)
-	%br			
+	%br
+	- invites_left = ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)
+	Invites Remaining: 
+	%span#invites #{invites_left}
+	- if invites_left > 0
+		#invite-form= render 'users/invite_form'
+	#invite-list= render 'users/invite_list'
+
+	.spinner
+	
 	#sign-out= link_to("Logout", signout_path)
+

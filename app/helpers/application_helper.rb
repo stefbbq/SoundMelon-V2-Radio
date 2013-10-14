@@ -174,5 +174,10 @@ module ApplicationHelper
 		return filtered_songs
 	end
 
+	def validate_email(email)
+		email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,4}+\z/i
+		return !email.match(email_regex).nil?
+	end
+
 
 end

@@ -1,0 +1,19 @@
+:plain
+	console.log('#{flash[:error].to_s}')
+	var errorFlash = '#{flash[:error].to_s}';
+	if(errorFlash.length > 0) {
+		$('#flash-board').hide().empty().html(errorFlash).fadeIn().fadeOut(8000);
+	}
+	else {
+		$('#flash-board').hide().empty();
+		invites = #{ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)}
+		$('span#invites').html(invites).fadeIn();
+		$('#invite-list').html('#{j( render "users/invite_list" )}');
+		$('.tick-mark').fadeOut();
+		$('#invite-form .email-check').val('')
+		if(invites === 0) {
+			$('#invite-form').slideToggle(function() {
+				$(this).remove();
+			});
+		}
+	}

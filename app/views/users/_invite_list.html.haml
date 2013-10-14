@@ -1,0 +1,3 @@
+- if !current_user.invites.nil?
+	- current_user.invites.each do |invite|
+		.user-invite= invite + ' ' + Invite.find_by_email(invite).status
