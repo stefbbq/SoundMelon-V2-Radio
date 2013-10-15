@@ -176,7 +176,9 @@
 		artistAttrs = ['artist_name', 'website', 'biography']
 		artistInfo.empty();
 		for(var i=0; i < artistAttrs.length; i++) {
-			artistInfo.append(song[artistAttrs[i]] + '<br>');
+			if(song[artistAttrs[i]] !== null) {
+				artistInfo.append(song[artistAttrs[i]] + '<br>');
+			}
 		}
 		artistInfo.append('<img src="' + song["photo"] + '"></img>')
 	}
