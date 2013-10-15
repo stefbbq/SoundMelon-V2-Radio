@@ -10,6 +10,8 @@
 			= image_tag('core/background.jpg', :class => 'bg-img', :style => "width: 100%")
 		.wrapper
 			.main-content
+			
+				#flash-board
 
 				.modal#feedback-board
 					.spinner
@@ -19,5 +21,28 @@
 					= yield
 		.footer
 			= render 'layouts/footer'
+
+:javascript
+	emailReg = /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,4}$/i
+
+	function showFormSpin(item) {
+		$(item).parent('form').children('.spinner').show();
+	}
+
+	function attachEmailCheck(item) {
+		//Attaches an email regex check event where item is a jQuery email input field
+		item.typing({
+			stop: function(event, elem) {
+				elem.parent('form').children('.tick-mark').hide();
+				if(!emailReg.test(elem.val())) {
+					elem.parent('form').children('.x-mark').show();
+				}
+				else {
+					elem.parent('form').children('.check-mark').show();
+				}
+			},
+			delay: 200
+		});
+	}
 
 

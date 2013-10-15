@@ -8,9 +8,11 @@
 	.tick-mark.check-mark
 	.tick-mark.x-mark
 
-	= f.submit "Send!", onclick: 'showSpin(this)'
+	= f.submit "Send!", onclick: 'showFormSpin(this)'
+
+	.spinner
 
 :javascript
-	function showSpin(item) {
-		$('#settings-panel .spinner').show();
-	}
+	$(document).ready(function() {
+		attachEmailCheck($('#invite-form .email-check'));
+	});

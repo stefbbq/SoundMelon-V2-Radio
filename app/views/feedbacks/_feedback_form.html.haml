@@ -5,7 +5,9 @@
 			= current_user.email
 			= f.hidden_field :email, value: current_user.email
 		- else
-			= f.text_field :email
+			= f.text_field :email, class: 'email-check'
+			.tick-mark.check-mark
+			.tick-mark.x-mark
 
 		= f.label :title, 'Subject'
 		= f.text_field :title
@@ -13,4 +15,11 @@
 		= f.label :content, 'Comments'
 		= f.text_field :content
 
-		= f.submit 'Submit'
+		= f.submit 'Submit', onclick: 'showFormSpin(this)'
+
+		.spinner
+
+:javascript
+	$(document).ready(function() {
+		attachEmailCheck($('#feedback-form .email-check'));
+	});

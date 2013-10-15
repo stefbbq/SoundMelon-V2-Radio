@@ -12,7 +12,7 @@
 :javascript
 	$('#fb-root').remove();
 	$('body').prepend('<div id="fb-root"></div>');
-	emailReg = /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,4}$/i
+
 	inviteToken = '#{@invite_token}'
 	console.log(inviteToken);
 
@@ -42,16 +42,3 @@
 		  cookie: true
 		});
 	};
-
-	$('.email-check').typing({
-		stop: function(event, elem) {
-			elem.parent('form').children('.tick-mark').hide();
-			if(!emailReg.test(elem.val())) {
-				elem.parent('form').children('.x-mark').show();
-			}
-			else {
-				elem.parent('form').children('.check-mark').show();
-			}
-		},
-		delay: 200
-	});
