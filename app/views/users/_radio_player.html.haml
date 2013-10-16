@@ -173,11 +173,11 @@
 
 	function showArtistInfo(song) {
 		artistInfo = $('#artist-info');
-		artistAttrs = ['artist_name', 'website', 'biography']
+		artistAttrs = song['artist_attrs']
 		artistInfo.empty();
-		for(var i=0; i < artistAttrs.length; i++) {
-			if(song[artistAttrs[i]] !== null) {
-				artistInfo.append(song[artistAttrs[i]] + '<br>');
+		for(var key in artistAttrs) {
+			if(artistAttrs[key] !== null) {
+				artistInfo.append(artistAttrs[key] + '<br>');
 			}
 		}
 		artistInfo.append('<img src="' + song["photo"] + '"></img>')

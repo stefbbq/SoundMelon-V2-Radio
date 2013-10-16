@@ -180,5 +180,22 @@ module ApplicationHelper
 		return !email.match(email_regex).nil?
 	end
 
+	def get_artist_tags(artist_id)
+		#Return an array of arrays [genre,frequency] sorted by desc frequency
+		@artist = Artist.find(artist_id)
+		@songs = @artist.artist_upload
+		@genre_tags = {}
+		@songs.each do |song|
+			all_tags = song.sm_tags | song.source_tags
+			all_tags.each do |tag|
+				if @genre_tags[tag].nil?
+					@genre_tags[tag] = 1
+				else
+					@genre_tags[tag] += 1
+				end
+			end
+		end
+		return @genre_tags.sort_by {|k,v| v}.reverse
+	end
 
 end

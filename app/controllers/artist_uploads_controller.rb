@@ -58,7 +58,7 @@ class ArtistUploadsController < ApplicationController
 		@active_songs.each do |song|
 			artist = Artist.find_by_id(song.artist_id)
 			all_tags = song.sm_tags | song.source_tags
-			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, artist_name: artist.artist_name, website: artist.website, biography: artist.biography, photo: artist.artist_photo.url(:thumb)}
+			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, artist_attrs: {artist_name: artist.artist_name, genre_tags: artist.genre_tags, website: artist.website, biography: artist.biography}, photo: artist.artist_photo.url(:thumb)}
 		end
 
 		respond_to do |format|

@@ -12,6 +12,7 @@
 			Click the picture to upload a new one!
 
 	= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+		- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
 		= f.hidden_field :id, value: @artist.id
 
 		= f.label :artist_name
@@ -19,6 +20,9 @@
 
 		= f.label :website
 		= f.text_field :website
+
+		= f.label :genre_tags, 'Your Genre Tags'
+		= f.text_area :genre_tags, value: @genre_tags.join(','), id: 'artist-genre-tags'
 
 		= f.label :biography
 		= f.text_area :biography
@@ -71,4 +75,19 @@
 
 	$("#artist-profile-form input[type=file]").change(function(){
 		  readURL(this);
+	});
+
+	$('#artist-genre-tags').tagsInput({
+		'removeWithBackspace': false,
+		'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
+		'height': 'auto',
+		'width': 'auto',
+		'onAddTag': function() {
+			console.log(this.id);
+			$(this).parent('form').submit();
+		},
+		'onRemoveTag': function() {
+			console.log($(this).parent('form'));
+			$(this).parent('form').submit();
+		}
 	});

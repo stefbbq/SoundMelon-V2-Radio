@@ -52,7 +52,7 @@ body > .footer {
 		position: absolute;
 		left: 18px;
 		bottom: $footer-height - 55px;
-		display: none;
+//		display: none;
 	}
 	
 	.right {
@@ -97,10 +97,12 @@ body > .footer {
 	display: none;
 
 	.footer {
-		position: absolute;
-		bottom: 0px;
-		height: 40px;
-		width: 350px;
+		@include footer-modal();
+//		position: absolute;
+		bottom: 30px;
+		min-height: 20px;
+		height: 20px;
+//		width: 350px;
 		background-color: black ;
 	}
 	

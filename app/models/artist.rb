@@ -1,6 +1,6 @@
 class Artist < ActiveRecord::Base
   attr_accessible :artist_name, :youtube_token, :soundcloud_token, :artist_photo,
-									:website, :biography
+									:website, :biography, :genre_tags
 	has_attached_file :artist_photo,
 		storage: :dropbox,
 		dropbox_credentials: Rails.root.join("config/dropbox.yml"),
@@ -14,4 +14,5 @@ class Artist < ActiveRecord::Base
 	has_many :reports, as: :reportable #Allow ArtistUpload to be reported
 	serialize :youtube_token
 	serialize :soundcloud_token
+	serialize :genre_tags
 end
