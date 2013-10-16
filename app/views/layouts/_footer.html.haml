@@ -24,23 +24,21 @@
 		Phasellus luctus malesuada velit, eu pellentesque eros imperdiet a. Donec in sagittis dolor. Proin pretium magna ac lectus pretium, non viverra dolor sagittis. Ut sit amet mauris a massa lacinia porta. Cras tristique urna ipsum. Aenean vehicula condimentum laoreet.
 
 :javascript
-	function smartModal(modal, content, spinner) {
-		//Ajax load into modal if content is not available. modal, content, and spinner are ids.
+	function smartModal(modal, content) {
+		//Ajax load into modal if content is not available. modal, content are ids.
 		var modalId = '#' + modal;
 		var contentId = '#' + content;
-		var spinnerClass = '.' + spinner;
 		$(modalId).toggle();
-		if( (document.getElementById(modal).style.display == 'none') || ($(modalId + ' ' + contentId).length > 0) ) {
-			console.log('yeah we falsed it')
-			return false;
-		}
-		else {
-			$(modalId + ' ' + spinnerClass).show();
-		}
+		return ( (document.getElementById(modal).style.display == 'none') || ($(modalId + ' ' + contentId).length > 0) )
 	}
 
 	$('#feedback-link').click(function() {
-		smartModal('feedback-board', 'feedback-form', 'spinner')
+		if(smartModal('feedback-board', 'feedback-form')) {
+			return false
+		}
+		else {
+			$('#feedback-board .spinner').show();
+		}
 	});
 
 	$('#learn-more').click(function() {
@@ -48,7 +46,13 @@
 	});
 
 	$('#add-content').click(function() {
-		smartModal('user-add', 'available-uploads', 'spinner')
+		if(smartModal('user-add', 'available-uploads')) {
+			return false;
+		}
+		else {
+			$('#user-add .spinner').show();
+		}
+
 	});
 
 	$('#edit-page').click(function() {

@@ -1,9 +1,14 @@
 .active-toggle
 	%label= f.check_box(:active, class: 'ios-switch')
 
-- keywords = keywords.nil? ? [] : keywords
-= label(:keywords, "Tags")
-.genre-tags= f.text_field :keywords, value: keywords.join(', '), placeholder: "Add some genre tags for this song..."
+- source_tags = source_tags.nil? ? [] : source_tags
+= label(:source_tags, "Source Tags")
+.source-tags= f.text_field :source_tags, value: source_tags.join(', ')
+= link_to 'Refresh tags', get_source_tags_path(song_id: song_id, artist_id: current_artist.id, source: source), remote: true
+
+- sm_tags = sm_tags.nil? ? [] : sm_tags
+= label(:sm_tags, "SM Tags")
+.sm-tags= f.text_field :sm_tags, value: sm_tags.join(', '), placeholder: "Add some genre tags for this song..."
 
 :javascript
 	// Add divs for toggle switches

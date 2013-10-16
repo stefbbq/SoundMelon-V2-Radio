@@ -1,0 +1,23 @@
+:plain
+	console.log($('##{@song_id} .song-form form .source-tags .tagsinput'));
+	$('##{@song_id} .song-form form .source-tags .tagsinput').remove();
+
+	var sourceTags = $('##{@song_id} .song-form form .source-tags input')
+	sourceTags.val('#{@source_tags.join(',')}');
+
+	sourceTags.tagsInput({
+		'removeWithBackspace': false,
+		'defaultText': '',
+		'interactive': false,
+		'height': 'auto',
+		'width': 'auto',
+		'onAddTag': function() {
+			alert("You can not add source tags!");
+		},
+		'onRemoveTag': function() {
+			console.log(sourceTags.parent('form'));
+			sourceTags.closest('form').submit();
+		}
+	});
+
+	sourceTags.closest('form').submit();

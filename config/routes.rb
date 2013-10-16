@@ -52,6 +52,7 @@ SoundMelonV2Radio::Application.routes.draw do
 #ArtistUpload routes
 	match '/make_public', to: 'artist_uploads#make_public'
 	match '/request_playlist', to: 'artist_uploads#request_playlist'
+	match '/get_source_tags', to: 'artist_uploads#get_source_tags'
 
 #Invite routes
 	match '/send_invite' => 'invites#create'

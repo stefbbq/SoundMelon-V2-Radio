@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131012190441) do
+ActiveRecord::Schema.define(:version => 20131015155622) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20131012190441) do
   create_table "artist_uploads", :force => true do |t|
     t.integer  "artist_id"
     t.string   "song_id"
-    t.text     "keywords"
+    t.text     "sm_tags"
     t.boolean  "active",        :default => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20131012190441) do
     t.string   "song_url"
     t.boolean  "is_private"
     t.boolean  "blocked",       :default => false
+    t.text     "source_tags"
   end
 
   create_table "artists", :force => true do |t|

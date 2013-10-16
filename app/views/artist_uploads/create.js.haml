@@ -1,8 +1,6 @@
-:ruby
-	song_divId = @artist_upload.song_id
-
 :plain
-	songDivId = "#" + "#{song_divId}";
+	console.log('##{@artist_upload.song_id}');
+	songDivId = '##{@artist_upload.song_id}';
 	var newUpload = '#{flash[:upload_created].to_s}';
 	if(newUpload === 'true') {
 		$('#flash-board').hide().empty().html('Song Activated!').fadeIn().fadeOut();
@@ -12,27 +10,43 @@
 	$(songDivId + ' .edit-song').html('#{escape_javascript( render template: "artist_uploads/edit" , locals: {song_id: @artist_upload.song_id, upload_source: @artist_upload.upload_source, song_url: @artist_upload.song_url, song_private: @artist_upload.is_private} )}').toggle();
 	$(songDivId + ' .new-song').remove();
 
-	var artistSong = $('#' + '#{song_divId}');
-	var songSubmit = artistSong.find('.song-submit input:submit');
+	var artistSong = $(songDivId);
+	var songForm = artistSong.find('.song-form form');
 	var activeToggle = artistSong.find('.ios-switch');
-	var genreTags = artistSong.find('.genre-tags #artist_upload_keywords');
+	var smTags =  artistSong.find('.sm-tags input');
+	var sourceTags = artistSong.find('.source-tags input');
 
 	activeToggle.click(function() {
 		var state = $(this).prop('checked') ? 'active' : 'inactive';
 		artistSong.find('.state').html(state);
-		songSubmit.click();
+		songForm.submit();
 	});
-	genreTags.tagsInput({
-			'removeWithBackspace': false,
-			'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
-			'height': 'auto',
-			'width': 'auto',
-			'onAddTag': function() {
-				console.log(genreTags.parent('form'));
-				genreTags.parent().parent('form').submit();
-			},
-			'onRemoveTag': function() {
-				console.log(genreTags.parent('form'));
-				genreTags.parent().parent('form').submit();
-			}
-		});
+	smTags.tagsInput({
+		'removeWithBackspace': false,
+		'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
+		'height': 'auto',
+		'width': 'auto',
+		'onAddTag': function() {
+			console.log(smTags.parent('form'));
+			songForm.submit();
+		},
+		'onRemoveTag': function() {
+			console.log(smTags.parent('form'));
+			songForm.submit();
+		}
+	});
+
+	sourceTags.tagsInput({
+		'removeWithBackspace': false,
+		'defaultText': '',
+		'interactive': false,
+		'height': 'auto',
+		'width': 'auto',
+		'onAddTag': function() {
+			alert("You can not add source tags!");
+		},
+		'onRemoveTag': function() {
+			console.log(sourceTags.parent('form'));
+			songForm.submit();
+		}
+	});
