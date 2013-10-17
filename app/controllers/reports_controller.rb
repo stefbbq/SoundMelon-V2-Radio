@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
 
 	def report_song
 		@user = User.find_by_id(params[:user_id])
-		@song = ArtistUpload.find_by_song_id(params[:song_id])
+		@song = Song.find_by_song_id(params[:song_id])
 	end
 
 	def send_report

@@ -5,7 +5,7 @@
 	- @report = Report.new
 	= form_for(@report, remote: true, url: send_report_path) do |f|
 		= f.hidden_field :user_id, value: @user.id
-		= f.hidden_field :reportable_type, value: 'ArtistUpload'
+		= f.hidden_field :reportable_type, value: 'Song'
 		= f.hidden_field :reportable_id, value: @song.id
 
 		= f.radio_button :title, "not_a_song"

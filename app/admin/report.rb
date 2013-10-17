@@ -46,20 +46,20 @@ ActiveAdmin.register Report do
 
 	member_action :agree, method: :put do
 		@report = Report.find(params[:id])
-		@song = ArtistUpload.find(@report.reportable_id)
+		@song = Song.find(@report.reportable_id)
 		@artist = @song.artist
 		@reported_user = @artist.user
 	end
 
 	member_action :disagree, method: :put do
 		@report = Report.find(params[:id])
-		@song = ArtistUpload.find(@report.reportable_id)
+		@song = Song.find(@report.reportable_id)
 		@user = @report.user
 	end
 
 	member_action :reopen_report, method: :put do
 		@report = Report.find(params[:id])
-		@song = ArtistUpload.find(@report.reportable_id)
+		@song = Song.find(@report.reportable_id)
 		@report.open = true
 		@report.save
 		@song.blocked = false
@@ -70,7 +70,7 @@ ActiveAdmin.register Report do
 
 	member_action :block_song, method: :post do
 		@report = Report.find(params[:report_id])
-		@song = ArtistUpload.find(@report.reportable_id)
+		@song = Song.find(@report.reportable_id)
 #		@artist = @song.artist
 #		@reported_user = @artist.user
 		UserMailer.admin_message(params[:email], params[:subject], params[:body]).deliver

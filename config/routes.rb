@@ -4,7 +4,7 @@ SoundMelonV2Radio::Application.routes.draw do
 
   resources :users
 	resources :sessions, only: [:new, :create, :destroy]
-	resources :artist_uploads
+	resources :songs
   
   root to: 'welcome#index'
   
@@ -38,8 +38,8 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/feedback_send', to: 'feedbacks#create'
 
 #Artist routes
-	match '/new_upload', to: 'artist_uploads#new'
-	match '/edit_upload', to: 'artist_uploads#edit'
+	match '/new_upload', to: 'songs#new'
+	match '/edit_upload', to: 'songs#edit'
 	match '/sc_request', to: 'artists#sc_request'
 	match '/sc_oauth_callback', to: 'artists#sc_oauth_callback'
 	match '/yt_request', to: 'artists#yt_request'
@@ -49,10 +49,10 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/artist_profile_update', to: 'artists#profile_update'
 	match '/unlink_media_account', to: 'artists#unlink_media_account'
 
-#ArtistUpload routes
-	match '/make_public', to: 'artist_uploads#make_public'
-	match '/request_playlist', to: 'artist_uploads#request_playlist'
-	match '/get_source_tags', to: 'artist_uploads#get_source_tags'
+#Song routes
+	match '/make_public', to: 'songs#make_public'
+	match '/request_playlist', to: 'songs#request_playlist'
+	match '/get_source_tags', to: 'songs#get_source_tags'
 
 #Invite routes
 	match '/send_invite' => 'invites#create'

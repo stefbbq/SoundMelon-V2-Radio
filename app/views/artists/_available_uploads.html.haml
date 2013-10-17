@@ -8,7 +8,7 @@
 			- song_duration = song.duration
 			- upload_source = 'youtube'
 			- source_abbr = 'YT'
-			- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: song_id)
+			- @current_song = Song.where(artist_id: current_artist.id, song_id: song_id)
 			- img_src = song.thumbnails.first.url
 			- source_tags = song.keywords
 		- if song.class == Hashie::Mash
@@ -18,7 +18,7 @@
 			- song_duration = song.duration/1000.0
 			- upload_source = 'soundcloud'
 			- source_abbr = 'SC'
-			- @current_song = ArtistUpload.where(artist_id: current_artist.id, song_id: song_id)
+			- @current_song = Song.where(artist_id: current_artist.id, song_id: song_id)
 			- sc_logo = "http://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png"
 			- img_src = (song.artwork_url.nil?) ? sc_logo : song.artwork_url
 			- source_tags = song.genre.split() | song.tag_list.split(' ')
@@ -45,7 +45,7 @@
 				- if is_blocked
 					This song has been blocked due to reporting and investigation.
 				- else
-					= render template: 'artist_uploads/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags}
+					= render template: 'songs/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags}
 
 :javascript
 	$('document').ready(function() {

@@ -1,4 +1,4 @@
-class ArtistUploadsController < ApplicationController
+class SongsController < ApplicationController
 	respond_to :js, :json, :html, :xml
 	include ApplicationHelper
 
@@ -6,12 +6,12 @@ class ArtistUploadsController < ApplicationController
 	end
 
 	def create
-		params[:artist_upload][:source_tags] = params[:artist_upload][:source_tags].split(',')
-		params[:artist_upload][:sm_tags] = params[:artist_upload][:sm_tags].split(',')
+		params[:song][:source_tags] = params[:song][:source_tags].split(',')
+		params[:song][:sm_tags] = params[:song][:sm_tags].split(',')
 		@items = params
-		@artist_upload = ArtistUpload.create(params[:artist_upload].except(:artist_id))
-		if @artist_upload.save
-			@artist_upload.update_column(:artist_id, params[:artist_upload][:artist_id])
+		@song = Song.create(params[:song].except(:artist_id))
+		if @song.save
+			@song.update_column(:artist_id, params[:song][:artist_id])
 			flash[:upload_created] = true
 		end
 	end
@@ -20,10 +20,10 @@ class ArtistUploadsController < ApplicationController
 	end
 
 	def update
-		@artist_upload = ArtistUpload.find(params[:id])
-		params[:artist_upload][:source_tags] = params[:artist_upload][:source_tags].split(',')
-		params[:artist_upload][:sm_tags] = params[:artist_upload][:sm_tags].split(',')
-		@artist_upload.update_attributes(params[:artist_upload])
+		@song = Song.find(params[:id])
+		params[:song][:source_tags] = params[:song][:source_tags].split(',')
+		params[:song][:sm_tags] = params[:song][:sm_tags].split(',')
+		@song.update_attributes(params[:song])
 		flash[:upload_updated] = true
 	end
 
@@ -50,7 +50,7 @@ class ArtistUploadsController < ApplicationController
 		end
 		update_song_history(@user, params[:played_songs])
 		@history = @user.song_history
-		@active_songs = ArtistUpload.where(active: true)
+		@active_songs = Song.where(active: true)
 		@playlist_size = 3
 		@active_songs = filter_by_history(@user, @active_songs, @history, @playlist_size, @station)
 

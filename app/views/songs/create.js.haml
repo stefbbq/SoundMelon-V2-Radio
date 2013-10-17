@@ -1,13 +1,13 @@
 :plain
-	console.log('##{@artist_upload.song_id}');
-	songDivId = '##{@artist_upload.song_id}';
+	console.log('##{@song.song_id}');
+	songDivId = '##{@song.song_id}';
 	var newUpload = '#{flash[:upload_created].to_s}';
 	if(newUpload === 'true') {
 		$('#flash-board').hide().empty().html('Song Activated!').fadeIn().fadeOut();
 	}
 	console.log(newUpload);
 	$(songDivId).append('<div class="edit-song"></div>');
-	$(songDivId + ' .edit-song').html('#{escape_javascript( render template: "artist_uploads/edit" , locals: {song_id: @artist_upload.song_id, upload_source: @artist_upload.upload_source, song_url: @artist_upload.song_url, song_private: @artist_upload.is_private} )}').toggle();
+	$(songDivId + ' .edit-song').html('#{escape_javascript( render template: "songs/edit" , locals: {song_id: @song.song_id, upload_source: @song.upload_source, song_url: @song.song_url, song_private: @song.is_private} )}').toggle();
 	$(songDivId + ' .new-song').remove();
 
 	var artistSong = $(songDivId);

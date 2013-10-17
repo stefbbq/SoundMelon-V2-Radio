@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20131016173625) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
-  create_table "artist_uploads", :force => true do |t|
+  create_table "songs", :force => true do |t|
     t.integer  "artist_id"
     t.string   "song_id"
     t.text     "sm_tags"

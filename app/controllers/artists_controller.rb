@@ -72,9 +72,9 @@ class ArtistsController < ApplicationController
 		@still_artist = true
 		@artist = Artist.find_by_id(params[:artist][:id])
 		@account = params[:artist][:account]
-		@acct_songs = ArtistUpload.where(artist_id: @artist.id, upload_source: @account)
+		@acct_songs = Song.where(artist_id: @artist.id, upload_source: @account)
 		@acct_songs.each do |song|
-			ArtistUpload.find_by_id(song.id).destroy
+			Song.find_by_id(song.id).destroy
 		end
 		if @account == 'youtube'
 			@artist.youtube_token = nil

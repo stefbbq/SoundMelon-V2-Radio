@@ -1,5 +1,5 @@
 - @artist = current_artist
-- @artist_upload = ArtistUpload.find_by_song_id(song_id)
+- @song = Song.find_by_song_id(song_id)
 - if song_private
 	.private
 		We can't stream private songs! Would you like to make this song public on #{upload_source}?
@@ -8,6 +8,6 @@
 
 .song-form
 
-	= form_for(@artist_upload, remote: true) do |f|
-		= render 'artist_uploads/upload_form', {f: f, active: @artist_upload.active, sm_tags: @artist_upload.sm_tags, source_tags: @artist_upload.source_tags, song_id: song_id, source: upload_source}
+	= form_for(@song, remote: true) do |f|
+		= render 'songs/upload_form', {f: f, active: @song.active, sm_tags: @song.sm_tags, source_tags: @song.source_tags, song_id: song_id, source: upload_source}
 

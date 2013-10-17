@@ -1,6 +1,6 @@
-class ChangeArtistUploadKeywordsToText < ActiveRecord::Migration
+class ChangeSongKeywordsToText < ActiveRecord::Migration
   def up
-		change_column :artist_uploads, :keywords, :text
+		change_column :songs, :keywords, :text
   end
 
   def down

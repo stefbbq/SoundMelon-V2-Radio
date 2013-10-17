@@ -89,7 +89,7 @@ module ApplicationHelper
 	def user_scored_songs(user, songs)
 		#Return an array of arrays of song,score pairs
 		#sorted by descending match given a User and an
-		#array of active ArtistUpload songs 
+		#array of active Song songs 
 		songs = songs.shuffle
 		scored_songs = []
 		k = 0
@@ -104,7 +104,7 @@ module ApplicationHelper
 	end
 
 	def random_playlist(songs, n)
-		#Return an array of n (int) random ArtistUpload songs
+		#Return an array of n (int) random Song songs
 		return songs.shuffle[0..(n-1)]
 	end
 
@@ -155,8 +155,8 @@ module ApplicationHelper
 	end
 
 	def filter_by_history(user, songs, history, n, station)
-		#Return an array of ArtistUpload songs given an array of 
-		#ArtistUpload and user song history history
+		#Return an array of Song songs given an array of 
+		#Song and user song history history
 		black_list = []
 		history.keys.each do |song_id|
 			last_played = history[song_id]['last_played']
@@ -183,7 +183,7 @@ module ApplicationHelper
 	def get_artist_tags(artist_id)
 		#Return an array of arrays [genre,frequency] sorted by desc frequency
 		@artist = Artist.find(artist_id)
-		@songs = @artist.artist_upload
+		@songs = @artist.song
 		@genre_tags = {}
 		@songs.each do |song|
 			all_tags = song.sm_tags | song.source_tags
