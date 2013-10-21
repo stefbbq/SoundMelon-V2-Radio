@@ -8,8 +8,9 @@
 
 		#uploaded-photo
 			%a.hover-link= image_tag @artist.artist_photo.url(:thumb)
-			= f.file_field :artist_photo, class: 'hidden', id: 'choose-pic'
-			Click the picture to upload a new one!
+			.drop-pic
+				Click to Select or Drag Here
+				= f.file_field :artist_photo, id: 'choose-pic'
 
 	= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
 		- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
@@ -50,6 +51,7 @@
 	});
 
 	$('#choose-pic').live('change', function() {
+		readURL(this);
 		$(this).closest('form').submit();
 	});
 
@@ -61,21 +63,14 @@
 	});
 
 	function readURL(input) {
-
-		  if (input.files && input.files[0]) {
-		      var reader = new FileReader();
-
-		      reader.onload = function (e) {
-		          $('#uploaded-photo img').attr('src', e.target.result);
-		      }
-
-		      reader.readAsDataURL(input.files[0]);
-		  }
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#uploaded-photo img').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
 	}
-
-	$("#artist-profile-form input[type=file]").change(function(){
-		  readURL(this);
-	});
 
 	$('#artist-genre-tags').tagsInput({
 		'removeWithBackspace': false,

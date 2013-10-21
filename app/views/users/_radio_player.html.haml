@@ -266,9 +266,9 @@
 	var ytPlayer;
 	function onYouTubeIframeAPIReady() {
 		ytPlayer = new YT.Player('youtube', {
-			playerVars: {'rel': 0, 'html5': 1},
-		  height: '480',
-		  width: '640',
+			playerVars: {'rel': 0, 'html5': 1, 'controls': 0},
+		  height: '320',
+		  width: '566',
 			events: { 
 				'onReady': function() {
 					ytPlayerReady = true;
@@ -292,7 +292,7 @@
 		//Load the SC player the first time a SC file is streamed in session
 		if(songs.length > 0) {
 			var song = songs[0];
-			$('#soundcloud').html('<iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F' + song['song_id'] + '&show_artwork=true&auto_play=true"></iframe>');
+			$('#soundcloud').html('<iframe id="sc-widget" width="566" height="320" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F' + song['song_id'] + '&show_artwork=true&auto_play=true"></iframe>');
 			scWidget = SC.Widget($('#sc-widget')[0]);
 			scWidget.bind(SC.Widget.Events.PLAY_PROGRESS, function() {
 				scWidget.setVolume(volume);
