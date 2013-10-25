@@ -17,3 +17,4 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require design
+//= require jquery.ui.slider

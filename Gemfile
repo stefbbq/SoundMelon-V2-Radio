@@ -38,6 +38,7 @@ end
 gem 'jquery-rails', '2.0.2'
 gem "haml-rails"
 gem "youtube_it"
+gem 'jquery-ui-rails'
 #gem "oauth2", "~> 0.9.2"
 #gem "omniauth-oauth2", "~> 1.1.1"
 gem "faraday"

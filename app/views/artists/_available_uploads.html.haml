@@ -21,7 +21,7 @@
 			- @current_song = Song.where(artist_id: current_artist.id, song_id: song_id)
 			- sc_logo = "http://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png"
 			- img_src = (song.artwork_url.nil?) ? sc_logo : song.artwork_url
-			- source_tags = song.genre.split() | song.tag_list.split(' ')
+			- source_tags = ( song.genre.nil? ? [] : song.genre.split() ) | ( song.tag_list.nil? ? [] : song.tag_list.split(' ') )
 			- source_tags.delete_if {|tag| tag.include? "soundcloud:source"}
 		- is_blocked = BlockedUpload.exists?(song_id: song_id)
 

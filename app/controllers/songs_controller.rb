@@ -34,7 +34,7 @@ class SongsController < ApplicationController
 		if @upload_source == 'youtube'
 			@client = new_yt_client(yt_auth_ids, @artist.youtube_token)
 			@song = @client.my_video(@song_id)
-			@client.video_update(@song_id, :title => @song.title, :description => @song.description, :category => @song.categories.first.term, :keywords => @song.source_tags, :private => false)
+			@client.video_update(@song_id, :title => @song.title, :description => @song.description, :category => @song.categories.first.term, :keywords => @song.keywords, :private => false)
 		elsif @upload_source == 'soundcloud'
 			@client = refresh_sc_client(@artist)
 			@song = @client.get('/tracks/' + @song_id)
@@ -43,6 +43,7 @@ class SongsController < ApplicationController
 	end
 
 	def request_playlist
+		@items = params
 		@user = User.find_by_id(params[:user_id])
 		@station = params[:station]
 		if (@user.fb_meta.keys.size == 0 && @user.user_meta.size == 0)
@@ -63,6 +64,7 @@ class SongsController < ApplicationController
 
 		respond_to do |format|
 			format.json {render json: @active_ids}
+			format.js
 		end
 	end
 

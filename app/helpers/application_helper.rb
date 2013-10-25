@@ -139,8 +139,7 @@ module ApplicationHelper
 		end
 		history = user.song_history
 		if !played_songs.nil?
-			played_songs.keys.each do |song|
-				song_id = played_songs[song]['song_id']
+			played_songs.each do |song_id|
 				if history.has_key?(song_id)
 					history[song_id]['plays'] += 1
 				else
