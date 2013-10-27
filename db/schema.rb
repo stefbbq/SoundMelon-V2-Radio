@@ -46,20 +46,6 @@ ActiveRecord::Schema.define(:version => 20131016173625) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
-  create_table "songs", :force => true do |t|
-    t.integer  "artist_id"
-    t.string   "song_id"
-    t.text     "sm_tags"
-    t.boolean  "active",        :default => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.string   "upload_source"
-    t.string   "song_url"
-    t.boolean  "is_private"
-    t.boolean  "blocked",       :default => false
-    t.text     "source_tags"
-  end
-
   create_table "artists", :force => true do |t|
     t.string   "artist_name"
     t.integer  "user_id"
@@ -111,6 +97,20 @@ ActiveRecord::Schema.define(:version => 20131016173625) do
     t.datetime "updated_at",                        :null => false
     t.boolean  "open",            :default => true
     t.string   "resolution"
+  end
+
+  create_table "songs", :force => true do |t|
+    t.integer  "artist_id"
+    t.string   "song_id"
+    t.text     "sm_tags"
+    t.boolean  "active",        :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "upload_source"
+    t.string   "song_url"
+    t.boolean  "is_private"
+    t.boolean  "blocked",       :default => false
+    t.text     "source_tags"
   end
 
   create_table "users", :force => true do |t|

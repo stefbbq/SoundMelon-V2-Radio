@@ -9,3 +9,4 @@ class CreateReports < ActiveRecord::Migration
       t.timestamps
     end
   end
+end
