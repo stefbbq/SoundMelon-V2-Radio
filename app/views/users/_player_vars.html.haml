@@ -1,0 +1,23 @@
+:javascript
+
+	var currentUserId = #{current_user.id}
+	console.log(currentUserId);
+	var scWidget;
+	var ytPlayerReady = false;
+	var scPlayerReady = false;
+	var songs;
+	var songHistory = []; //full browser history of played songs
+	var playedUpdate = []; //gets sent to the server as an update
+	var currentSong;
+	var playLast;
+	var lastPlayed;
+	var lastStation;
+	var currentStation;
+	var currentArtist;
+	var volume = 100;
+	var ytQuality = 'large';
+	var playerHeight = '320';
+	var playerWidth = '564';
+	var scrubInterval;
+	var scrubDelay = 1500;
+	var seekVal;

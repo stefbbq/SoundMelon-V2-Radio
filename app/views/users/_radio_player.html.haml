@@ -1,194 +1,63 @@
 = javascript_include_tag "youtube_iframe_api", "simple-slider.min", "sc_js_sdk"
 
 #player-box
-	.player#youtube
-	.player#soundcloud
+	.player
+		#youtube
+		#soundcloud
+		.overlay
 
-#radio-controls
-	%a#replay-song replay 
-	%a#previous-song previous
-	%a#play-pause pause/play
-	%a#next-song next
-	%br
-	%input#volume-slider
-	#seek-tools
-		#seek-slider
-		#seek-val
+	#radio-controls
+	
+		.player-buttons
+			.left
+				#show-slider
+				.volume-controls
+					#volume-slider
+				= link_to("Report", report_song_path(user_id: current_user.id, song_id: ''), remote: true, id: 'report-song')
+				
+			.primary
+			
+				.control-panel
+					/%a#replay-song replay 
+					.control.change-song#previous-song
+					.control.change-state#play-pause
+					.control.change-song#next-song
+					
+				.current-content
+					%span.title
+						%p Glorious Coffee Medley
+					%span.artist
+						%p by Fearing The Hill
+				
+			.right
+				%a Comments
 
+		.seek-scrub
+			#seek-tools
+			#seek-slider
+			#seek-val
+		
 #radio-stations
 	%a#user-meta Your Likes
 	%a#random Random
 
 #report-board
 
-= link_to("Report", report_song_path(user_id: current_user.id, song_id: ''), remote: true, id: 'report-song')
-
 #artist-info
 
+= render 'users/player_vars'
+= render 'users/player_functions'
+
 :javascript
-
-	var currentUserId = #{current_user.id}
-	console.log(currentUserId);
-	var scWidget;
-	var ytPlayerReady = false;
-	var scPlayerReady = false;
-	var songs;
-	var songHistory = []; //full browser history of played songs
-	var playedUpdate = []; //gets sent to the server as an update
-	var currentSong;
-	var playLast;
-	var lastPlayed;
-	var lastStation;
-	var currentStation;
-	var currentArtist;
-	var volume = 100;
-	var ytQuality = 'large';
-	var playerHeight = '200';
-	var playerWidth = '320';
-	var scrubInterval;
-	var scrubDelay = 1500;
-	var seekVal;
-
-	function newSongsList() {
-		var radioStation = {station: currentStation, played_songs: playedUpdate, user_id: currentUserId}
-		$.ajax({
-			url: '/request_playlist',
-			data: radioStation,
-			success: function(data) {
-				songs = shuffleList(data);
-				console.log(songs);
-				if(songs.length > 0) {
-					executePlaylist();
-				}
-			}
-		});
-		playedUpdate = [];
-	}
-
-	function playPause() {
-		if(currentSong['upload_source'] === 'youtube') {
-			var playerState = ytPlayer.getPlayerState();
-			if(/[25]|-1/.test(playerState)){
-				//Play video if it is paused (2), cued (5), or unstarted (-1)
-				ytPlayer.setVolume(volume);
-				ytPlayer.playVideo();
-			}
-			else if(/[13]/.test(playerState)) {
-				//Pause video if already playing or buffering
-				ytPlayer.pauseVideo();
-			}
-		}
-		else if(currentSong['upload_source'] == 'soundcloud') {
-			if(scWidget.paused) {
-				scWidget.setVolume(volume);
-				scWidget.play();
-			}
-			else {
-				console.log('sc pausing...')
-				scWidget.pause();
-			}
-		}
-	}
-
-	function showArtistInfo(song) {
-		artistInfo = $('#artist-info');
-		artistAttrs = song['artist_attrs']
-		artistInfo.empty();
-		for(var key in artistAttrs) {
-			if(artistAttrs[key] !== null) {
-				artistInfo.append(artistAttrs[key] + '<br>');
-			}
-		}
-		artistInfo.append('<img src="' + song["photo"] + '"></img>')
-	}
-
-	function executePlaylist() {
-		if(!ytPlayerReady) {
-			//Wait until players are ready
-			setTimeout(executePlaylist, 50);
-		}
-		else {
-			//Once players are ready execute the playlist
-			if(songs.length > 0) {
-				var firstSong = songs[0];
-				var firstSource = firstSong['upload_source'];
-				$('.player').css('display','none');
-				console.log('hiding .player');
-				currentSong = firstSong;
-				showArtistInfo(currentSong);
-				if(firstSource === 'youtube') {
-					$('#youtube').show();
-					ytPlayer.loadVideoById({videoId: firstSong['song_id']});
-					ytPlayer.setVolume(volume);
-				}
-				else if(firstSource === 'soundcloud') {
-					initSCPlayer(firstSong);
-					$('#soundcloud').show();
-				}
-			}
-		}
-	}
-
-	function playNextSong(){
-		//Identify source of the next song and play it in the
-		// appropriate player
-		if(!playLast) {
-			songHistory.push(songs.shift());
-			playedUpdate.push(songHistory[songHistory.length - 1]['song_id'])
-		}
-		else {
-			songs.unshift(songHistory.pop());
-			playedUpdate.pop();
-			playLast = false;
-		}
-		if(songs.length > 0) {
-			var nextSong = songs[0];
-			lastPlayed = currentSong;
-			currentSong = nextSong;
-			showArtistInfo(currentSong);
-			//if( (songHistory.length > 0 || playLast) && (nextSong['upload_source'] !== lastPlayed['upload_source']) ) {
-			$('.player').css('display','none');
-			console.log('hiding .player');
-			//}
-			if(nextSong['upload_source'] === 'youtube') {
-				ytPlayer.loadVideoById({videoId: currentSong['song_id']});
-				ytPlayer.setVolume(volume);
-				$('#youtube').show();
-			}
-			else if(nextSong['upload_source'] === 'soundcloud') {
-				if(!scWidget) {
-					initSCPlayer(currentSong);
-				}
-				else {
-					//scWidget.load('http://api.soundcloud.com/tracks/' + nextSong['song_id'], {auto_play: true});
-					playSCSong(currentSong)
-				}
-				$('#soundcloud').show();
-			}
-		}
-		else {
-			//Songs list is now empty
-			newSongsList();
-		}
-	}
-
-	function shuffleList(lst) {
-		var new_lst = lst;
-		for (var i = new_lst.length - 1; i > 0; i--) {
-			var j = Math.floor(Math.random() * (i + 1));
-			var temp = new_lst[i];
-			new_lst[i] = new_lst[j];
-			new_lst[j] = temp;
-		}
-		return new_lst;
-	}
 
 	var ytPlayer;
 	function onYouTubeIframeAPIReady() {
 		ytPlayer = new YT.Player('youtube', {
 			playerVars: {
 				'rel': 0,
-				'html5': 1
+				'html5': 1,
+				'controls': 0,
+				'showinfo': 0
 			},
 			height: playerHeight,
 			width: playerWidth,
@@ -221,58 +90,6 @@
 			}
 		});
 	}
-
-	function setQuality(level) {
-		ytPlayer.setPlaybackQuality(level);
-	}
-
-	function initSCPlayer(song) {
-		//Load the SC player the first time a SC file is streamed in session
-
-		SC.initialize({
-			client_id: '#{ENV["SOUNDCLOUD_APP_ID"]}'
-		});
-
-		playSCSong(song);
-	}
-
-	function playSCSong(song) {
-		SC.stream('/tracks/' + song['song_id'], {
-			preferFlash: false,
-			playHTML5Audio: true,
-			onfinish: function() {
-				console.log('finished this SC song...');
-				clearInterval(scrubInterval);
-				playNextSong();
-				
-			}
-			}, function(sound) {
-				scWidget = sound;
-				scWidget.setVolume(volume);
-				scWidget.play();
-				scrubInterval = setInterval(seekTracker, scrubDelay);
-			});
-	}
-
-	function arr_difference(a1, a2) {
-		//Return an array that is the difference of a1 and a2
-		difference = $.grep(a1,function(x) {return $.inArray(x, a2) < 0})
-		return difference
-	}
-
-	function seekTracker() {
-		if(currentSong) {
-			var newVal;
-			if(currentSong['upload_source'] === 'youtube') {
-				newVal = ytPlayer.getCurrentTime() / ytPlayer.getDuration();
-			}
-			else if(currentSong['upload_source'] === 'soundcloud') {
-				newVal = scWidget.position / scWidget.duration;
-			}
-			$('#seek-slider').simpleSlider('setValue', newVal);
-		}
-	}
-
 
 	$(document).ready(function(){
 
@@ -383,19 +200,4 @@
 		$('#radio-stations #user-meta').click();
 
 	});
-
-	function manualSeek(seekTo) {
-		console.log('executing...')
-		if(currentSong) {
-			if(currentSong['upload_source'] === 'youtube') {
-				ytPlayer.seekTo( seekTo * ytPlayer.getDuration() );
-				console.log(ytPlayer.getCurrentTime());
-			}
-			else if(currentSong['upload_source'] === 'soundcloud') {
-				scWidget.setPosition( seekTo * scWidget.duration );
-				console.log(scWidget.position);
-			}
-			scrubInterval = setInterval(seekTracker, scrubDelay);
-		}
-	}
 
