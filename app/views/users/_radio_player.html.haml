@@ -51,8 +51,8 @@
 						#{'/13:22'}
 		
 #radio-stations
-	%a#user-meta Your Likes
-	%a#random Random
+	%a#user-meta.idle Your Likes
+	%a#random.idle Random
 
 #report-board
 
@@ -124,8 +124,9 @@
 		$('#radio-stations a').click(function() {
 			lastStation = currentStation
 			if(lastStation !== this.id) {
+				$('#' + lastStation).toggleClass('idle streaming');
 				currentStation = this.id;
-				console.log(currentSong);
+				$('#' + currentStation).toggleClass('idle streaming');
 				if(currentSong) {
 					if(currentSong['upload_source'] === 'youtube') {
 						ytPlayer.stopVideo();

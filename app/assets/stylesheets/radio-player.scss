@@ -30,6 +30,7 @@ $player-width: 564px;
 	.external-button {
 		display: block;
 		font-size: 11px;
+		padding: 5px 10px 0 0;
 		text-transform: uppercase;
 		color: rgb(106,106,106);
 		text-decoration: none;
@@ -71,6 +72,7 @@ $player-width: 564px;
 	
 	.left, .primary, .right {
 		display: inline-block;
+		font-family: 'FuturaHeavy';
 	}
 	
 	.left {
@@ -166,7 +168,7 @@ $player-width: 564px;
 		height: 100%;
 		.content {
 			overflow: hidden;
-			margin: 15px 20px 20px 0;
+			margin: 7px 20px 20px 0;
 		}
 	}
 
@@ -177,5 +179,26 @@ $player-width: 564px;
 	#radio-controls {
 		height: 126px;
 		@include border-radius(10px);
+	}
+}
+
+#radio-stations {
+	margin-top: 8px;
+	a {
+		font-size: 18pt;
+		font-family: "FuturaCondensedMedium";
+		cursor: pointer;
+		
+		&.idle {
+			color: rgba(0,0,0,0.3);
+			
+			&:hover {
+				color: rgba(0,0,0,0.6);
+			}
+		}
+		
+		&.streaming {
+			color: rgba(0,0,0,0.8);
+		}
 	}
 }

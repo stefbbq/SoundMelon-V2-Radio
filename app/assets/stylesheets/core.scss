@@ -63,9 +63,13 @@ h1 {
 }
 @font-face {
 	font-family: FuturaCondensedBold;
-	src: url('FuturaCondensedBold.ttf'), url('FuturaCondensedBold.eot');
+	src: url('FuturaCondensedBold.eot?') format('eot'), url('FuturaCondensedBold.woff') format('woff'), url('FuturaCondensedBold.ttf') format('ttf');
 }
 @font-face {
 	font-family: FuturaCondensedMedium;
-	src: url('FuturaCondensedMedium.ttf'), url('FuturaCondensedMedium.eot');
+	src: url('FuturaCondensedMedium.eot?') format('eot'), url('FuturaCondensedMedium.woff') format('woff'), url('FuturaCondensedMedium.ttf') format('ttf');
+}
+@font-face {
+	font-family: FuturaHeavy;
+	src: url('FuturaHeavy.eot?') format('eot'), url('FuturaHeavy.woff') format('woff'), url('FuturaHeavy.ttf') format('ttf');
 }
