@@ -9,7 +9,7 @@ $player-width: 564px;
 	height: $player-height;
 	width: $player-width;
 	@include border-radius(10px);
-	@include background(radial-gradient(40%, rgba(135,135,135, 1), rgba(45,45,45,1)));
+	@include background(radial-gradient(rgba(135,135,135, 1), rgba(45,45,45,1)));
 	
 	.player {
 		height: 320px;
@@ -19,18 +19,54 @@ $player-width: 564px;
 		.overlay {
 			width: 100%;
 			height: 100%;
-			@include background(linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 99%, rgba(0,0,0,0.45)));
+			@include background(linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.55) 99%, rgba(0,0,0,0.6)));
 		}
 	}
 	
 	.player-buttons {
 		height: 70%;
 	}
+	
+	.external-button {
+		display: block;
+		font-size: 11px;
+		text-transform: uppercase;
+		color: rgb(106,106,106);
+		text-decoration: none;
+		cursor: pointer;
+		font-weight: bold;
+		float: right;
+		@include text-shadow(1px 1px 3px rgba(1,1,1,0.4));
+	}
 		
 	.seek-scrub {
 		height: 30%;
 		@include background(rgba(0,0,0,0.25));
 		@include border-bottom-radius(10px);
+		
+		.content {
+			margin-left: auto;
+			margin-right: auto;
+			width: 93%;
+			padding-top: 7px;
+		}
+		
+		.slider {
+			width: 436px;
+			height: 8px;
+			display: inline-block;
+			margin: 0 !important;
+			padding-top: 7px;
+		}
+		
+		.seek-val {
+			display: inline-block;
+			color: rgb(204,204,204);
+			font-size: 12px;
+			text-align: center;
+			vertical-align: middle;
+			padding: 0 0 10px 10px;
+		}
 	}
 	
 	.left, .primary, .right {
@@ -38,27 +74,32 @@ $player-width: 564px;
 	}
 	
 	.left {
-		width: 20%;
-		.volume-controls {
-			display: none;
-		}
-		
-		#show-slider {
-			background: url('/assets/volume.png');
-			width: 24px;
-			height: 22px;
-		}
+		width: 25%;
+			.content {
+				overflow: hidden;
+				margin: 40px 0 20px 20px;
+				.volume-controls {
+					display: none;
+				}
+			
+				#show-slider {
+					display: inline-block;
+					background: url('/assets/volume.png');
+					width: 24px;
+					height: 22px;
+				}
+			}
 	}
 	
 	.primary {
-		width: 60%;
+		width: 50%;
 		position: relative;
 		top: -30px;
 
 		.control-panel {
 			margin-left: auto;
 			margin-right: auto;
-			width: 47%;
+			width: 60%;
 		}
 		
 		.control {
@@ -66,14 +107,34 @@ $player-width: 564px;
 			display: inline-block;
 			@include border-radius(100%);
 			border: 3px solid #696a69;
-			background: white;
+/* 			@include border-image(linear-gradient(rgba(105,105,105,1), rgba(105,105,105,0))); */
+			@include background(linear-gradient(rgb(248,248,248), rgb(171,171,171)));
+/* 			@include box-shadow(1px 1px 3px rgba(1,1,1,0.35)); */
+
+			.control-image {
+				display: block;
+				height: 100%;
+				width: 100%;
+			}
+			
 			&.change-song {
 				width: 40px;
 				height: 40px;
+				
+				.skip-image {
+					background: url('/assets/skip.png') no-repeat center;
+				}
+				#prev-image {
+					@include rotate(180);
+				}
 			}
+			
 			&.change-state {
 				width: 52px;
 				height: 52px;
+				.play-image {
+					background: url('/assets/play.png') no-repeat center;
+				}
 			}
 		}
 		
@@ -81,28 +142,32 @@ $player-width: 564px;
 			width: 100%;
 			position: absolute;
 			text-align: center;
+			color: rgb(204,204,204);
+			@include text-shadow(1px 1px 3px rgba(1,1,1,0.35));
 						
 			span {
 				display: block;
-				
-				p {
-					margin: 0;
-				}
+				padding-top: 5px;
 			}
 			
-			.title {
+			.song-title {
 				font-size: 23px;
 				
 			}
 			.artist {
-				font-size: 18px;
+				font-size: 13px;
 			}
 		}
 		
 	}
 	
 	.right {
-		width: 19%;
+		width: 24%;
+		height: 100%;
+		.content {
+			overflow: hidden;
+			margin: 15px 20px 20px 0;
+		}
 	}
 
 	#youtube {
@@ -112,6 +177,5 @@ $player-width: 564px;
 	#radio-controls {
 		height: 126px;
 		@include border-radius(10px);
-/* 		@include background(linear-gradient(top, #696a69, black)); */
 	}
 }

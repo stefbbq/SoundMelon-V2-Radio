@@ -10,32 +10,45 @@
 	
 		.player-buttons
 			.left
-				#show-slider
-				.volume-controls
-					#volume-slider
-				= link_to("Report", report_song_path(user_id: current_user.id, song_id: ''), remote: true, id: 'report-song')
+				.content
+					#show-slider
+					.volume-controls
+						#volume-slider
+					= link_to("report song", report_song_path(user_id: current_user.id, song_id: ''), remote: true, class: 'external-button', id: 'report-song')
 				
 			.primary
 			
 				.control-panel
 					/%a#replay-song replay 
 					.control.change-song#previous-song
+						%a.skip-image.control-image#prev-image
 					.control.change-state#play-pause
+						%a.play-image.control-image
 					.control.change-song#next-song
+						%a.skip-image.control-image#next-image
 					
 				.current-content
-					%span.title
-						%p Glorious Coffee Medley
-					%span.artist
-						%p by Fearing The Hill
-				
+					.currently-playing
+						%span.song-title
+							Glorious Coffee Medley
+						%span.artist
+							by Fearing The Hill
+							
 			.right
-				%a Comments
+				.content
+					%a.external-button who is this?
+					%a.external-button comments
+					%a.external-button like this song
 
 		.seek-scrub
-			#seek-tools
-			#seek-slider
-			#seek-val
+			.content
+				#seek-tools
+				#seek-slider
+				.seek-val
+					%span.current-time
+						12:58
+					%span.duration
+						#{'/13:22'}
 		
 #radio-stations
 	%a#user-meta Your Likes
@@ -182,7 +195,6 @@
 		});
 
 		$('#seek-slider').simpleSlider({
-			theme: 'volume',
 			highlight: true
 		});
 		$('#seek-slider').simpleSlider('setValue', 0);

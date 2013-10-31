@@ -66,7 +66,7 @@
 				currentSong = firstSong;
 				//showArtistInfo(currentSong);
 				if(firstSource === 'youtube') {
-					$('#soundcloud').hide();
+					$('#soundcloud, .overlay').hide();
 					$('#youtube').show();
 					ytPlayer.loadVideoById({videoId: firstSong['song_id']});
 					ytPlayer.setVolume(volume);
@@ -74,7 +74,7 @@
 				else if(firstSource === 'soundcloud') {
 					initSCPlayer(firstSong);
 					$('#youtube').hide();
-					$('#soundcloud').show();
+					$('#soundcloud, .overlay').show();
 				}
 			}
 		}
@@ -104,7 +104,7 @@
 			if(nextSong['upload_source'] === 'youtube') {
 				ytPlayer.loadVideoById({videoId: currentSong['song_id']});
 				ytPlayer.setVolume(volume);
-				$('#soundcloud').hide();
+				$('#soundcloud, .overlay').hide();
 				$('#youtube').show();
 			}
 			else if(nextSong['upload_source'] === 'soundcloud') {
@@ -116,7 +116,7 @@
 					playSCSong(currentSong)
 				}
 				$('#youtube').hide();
-				$('#soundcloud').show();
+				$('#soundcloud, .overlay').show();
 			}
 		}
 		else {

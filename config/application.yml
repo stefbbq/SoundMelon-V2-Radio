@@ -36,7 +36,8 @@ DROPBOX_ACCESS_TYPE: "app_folder"
 INVITE_LIMIT: 3
 
 development:
-  HOST_ADDR: 'http://localhost:3000'
+#   HOST_ADDR: 'http://localhost:3000'
+  HOST_ADDR: 'http://56c2d122.ngrok.com'
 
 production:
   #HOST_ADDR: 'http://salty-ravine-5239.herokuapp.com'

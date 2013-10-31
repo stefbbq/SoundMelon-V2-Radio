@@ -1,56 +1,29 @@
+@import "compass/css3";
+
 .slider {
   width: 300px;
   > {
     .dragger {
-      background: #8DCA09;
-      background: -webkit-linear-gradient(top, #8dca09, #72a307);
-      background: -moz-linear-gradient(top, #8dca09, #72a307);
-      background: linear-gradient(top, #8dca09, #72a307);
-      -webkit-box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
-      -moz-box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
-      box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      border: 1px solid #496805;
-      width: 16px;
-      height: 16px;
+      @include background(linear-gradient(rgb(248,248,248), rgb(171,171,171)));
+      @include box-shadow(1px 1px 3px rgba(1,1,1,0.36));
+			@include border-radius(10px);
+      width: 17px;
+      height: 17px;
       &:hover {
-        background: -webkit-linear-gradient(top, #8dca09, #8dca09);
+				@include background(linear-gradient(rgb(200,200,200), rgb(150,150,150)));
       }
     }
     .track {
-      background: #ccc;
-      background: -webkit-linear-gradient(top, #bbbbbb, #dddddd);
-      background: -moz-linear-gradient(top, #bbbbbb, #dddddd);
-      background: linear-gradient(top, #bbbbbb, #dddddd);
-      -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      -webkit-border-radius: 8px;
-      -moz-border-radius: 8px;
-      border-radius: 8px;
-      border: 1px solid #aaa;
-      height: 4px;
+      background: rgb(24,24,24);
+      @include box-shadow(1px 1px 0px rgba(1,1,1,0.18));
+      @include border-radius(8px);
+      border-bottom: 1px solid #585858;
+      height: 8px;
     }
     .highlight-track {
-      background: #ccc;
-      background: -webkit-linear-gradient(top, #bbbbbb, #dddddd);
-      background: -moz-linear-gradient(top, #bbbbbb, #dddddd);
-      background: linear-gradient(top, #bbbbbb, #dddddd);
-      -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      -webkit-border-radius: 8px;
-      -moz-border-radius: 8px;
-      border-radius: 8px;
-      border: 1px solid #aaa;
-      height: 4px;
-      background-color: #8DCA09;
-      background: -webkit-linear-gradient(top, #8dca09, #72a307);
-      background: -moz-linear-gradient(top, #8dca09, #72a307);
-      background: linear-gradient(top, #8dca09, #72a307);
-      border-color: #496805;
+      @include background(linear-gradient(rgb(0, 234, 83), rgb(0, 169, 59)));
+			@include border-radius(8px);
+      height: 8px;
     }
   }
 }
