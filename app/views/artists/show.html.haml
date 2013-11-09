@@ -1,6 +1,7 @@
 = link_to("Refresh" , artist_show_path, remote: true, class: 'hover-link', id: 'reload-content')
-= link_to("Artist Profile", artist_profile_edit_path, remote: true, class: 'hover-link', id: 'profile-edit')
+
 - @artist = current_artist
+
 - @all_songs = []
 - if !@artist.youtube_token.nil?
 	- yt_ids = yt_auth_ids

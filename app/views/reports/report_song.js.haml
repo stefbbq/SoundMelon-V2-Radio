@@ -1,2 +1,4 @@
 :plain
-	$('#report-board').empty().html('#{j( render "reports/report_song" )}').show();
+	$('.report-container .report-box').show();
+	console.log('about to report eh?');
+	$('#report-board').empty().html('#{j( render "reports/report_song" )}');

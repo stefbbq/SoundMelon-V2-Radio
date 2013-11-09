@@ -2,8 +2,6 @@
 	= render 'users/terms_cond'
 -else
 	#user_page
-		%h1= current_user.first_name
-		%h2= current_user.email
 
 		#radio-container
 			#radio-view
@@ -13,17 +11,18 @@
 			.spinner
 			#artist-media
 			#artist-profile
-			.footer
 
 		.modal#user-edit
 			.spinner
 			#user-settings
 				= render "users/settings"
+				
+		.modal#user-invites
 
 :javascript
 	$(document).ready(function() {
 		$(document).mouseup(function(e) {
-			var container = $('.modal, #report-board');
+			var container = $('.modal, .volume-controls, .report-box');
 			if(!container.is(e.target) && container.has(e.target).length == 0) {
 				container.hide();
 			}

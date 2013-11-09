@@ -1,5 +1,4 @@
 #artist-profile-form
-	%a#profile-back BACK
 	.spinner
 
 	- @artist = current_artist
@@ -39,11 +38,6 @@
 
 	$(document).ajaxStop(function() {
 		$('#artist-profile-form .spinner').hide();
-	});
-
-	$('#artist-profile-form #profile-back').click(function() {
-		$('#artist-media').show();
-		$('#artist-profile-form').remove();
 	});
 
 	$('#uploaded-photo a').click(function(e) {

@@ -46,6 +46,8 @@ body > .footer {
 	width: 100%;	
 	position: fixed;
 	bottom: 0px;
+	font-family: 'HelveticaNeue';
+	font-size: 14px;
 	color: white;
 	
 	.logo {
@@ -161,15 +163,6 @@ body > .footer {
 	@include footer-modal();
 	min-height: 20px;
 	bottom: 381px;
-	width: 300px;
-//	overflow: auto;
-	display: none;
-}
-
-#report-board {
-	@include footer-modal();
-	min-height: 200px;
-	bottom: 100px;
 	width: 300px;
 //	overflow: auto;
 	display: none;

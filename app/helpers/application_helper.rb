@@ -196,5 +196,13 @@ module ApplicationHelper
 		end
 		return @genre_tags.sort_by {|k,v| v}.reverse
 	end
+	
+	def conditional_html( lang = "en", &block )
+		haml_concat Haml::Util::html_safe <<-"HTML".gsub( /^\s+/, '' )
+			<!--[if IE]>                 <html lang="#{lang}" class="gte-ie10"> <![endif]-->
+			<!--[if !IE]><!--> <html> <!--<![endif]-->      
+		HTML
+		haml_concat capture( &block ) << Haml::Util::html_safe( "\n</html>" ) if block_given?
+	end
 
 end

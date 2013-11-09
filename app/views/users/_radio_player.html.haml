@@ -11,21 +11,26 @@
 		.player-buttons
 			.left
 				.content
-					#show-slider
-					.volume-controls
-						#volume-slider
-					= link_to("report song", report_song_path(user_id: current_user.id, song_id: ''), remote: true, class: 'external-button', id: 'report-song')
+					.volume-container
+						#show-slider
+						.volume-controls
+							#volume-slider
+					.report-container
+						= link_to("report song", report_song_path(user_id: current_user.id, song_id: ''), remote: true, class: 'external-button', id: 'report-song')
+						.report-box
+							#report-board
+							.modal-tail
 				
 			.primary
 			
 				.control-panel
 					/%a#replay-song replay 
 					.control.change-song#previous-song
-						%a.skip-image.control-image#prev-image
+						%a.prev-image.control-image
 					.control.change-state#play-pause
 						%a.play-image.control-image
 					.control.change-song#next-song
-						%a.skip-image.control-image#next-image
+						%a.skip-image.control-image
 					
 				.current-content
 					.currently-playing
@@ -42,8 +47,9 @@
 
 		.seek-scrub
 			.content
-				#seek-tools
-				#seek-slider
+				.media-seeker
+					#seek-tools
+					#seek-slider
 				.seek-val
 					%span.current-time
 						12:58
@@ -53,8 +59,6 @@
 #radio-stations
 	%a#user-meta.idle Your Likes
 	%a#random.idle Random
-
-#report-board
 
 #artist-info
 
@@ -105,6 +109,7 @@
 	}
 
 	$(document).ready(function(){
+	
 
 		$('#report-song').click(function() {
 			z = this.href.split(/song_id=|(?=&user_id)/);
@@ -140,6 +145,7 @@
 		});
 
 		$('#radio-controls #play-pause').click(function() {
+			$(this).children('.control-image').toggleClass('play-image pause-image')
 			if(currentSong) {
 				playPause();
 			}
@@ -149,6 +155,8 @@
 		});
 
 		$('#radio-controls #next-song').click(function() {
+			clearInterval(scrubInterval);
+			$('#seek-slider').simpleSlider('setValue', 0);
 			if(currentSong) {
 				if(currentSong['upload_source'] === 'youtube') {
 					ytPlayer.stopVideo();
@@ -177,22 +185,27 @@
 				$('#radio-controls #next-song').click();
 			}
 		});
-
-		$('#volume-slider').simpleSlider({
-			theme: 'volume',
-			highlight: true
-		});
-		$('#volume-slider').simpleSlider('setValue', 1);
-		$('#volume-slider').bind('slider:changed', function(event, data) {
-			volume = Math.floor(data['value'] * 100);
-			if(currentSong) {
-				if(currentSong['upload_source'] === 'youtube') {
-					ytPlayer.setVolume(volume);
-				}
-				else if(currentSong['upload_source'] === 'soundcloud') {
-					scWidget.setVolume(volume);
+		
+		$('.volume-container #volume-slider').slider({
+			orientation: 'vertical',
+			range: 'min',
+			change: function(event, ui) {
+				volume = ui['value']
+				if(currentSong) {
+					if(currentSong['upload_source'] === 'youtube') {
+						ytPlayer.setVolume(volume);
+					}
+					else if(currentSong['upload_source'] === 'soundcloud') {
+						scWidget.setVolume(volume);
+					}
 				}
 			}
+		});
+		
+		$('.volume-container #volume-slider').slider('value', volume);
+		
+		$('.volume-container #show-slider').click(function() {
+			$('.volume-controls').toggle();
 		});
 
 		$('#seek-slider').simpleSlider({
@@ -203,7 +216,7 @@
 			seekValue = data['value'];
 		});
 
-		$('#seek-tools').mouseup(function() {
+		$('.media-seeker .slider').mouseup(function() {
 			clearInterval(scrubInterval);
 			console.log('initialize...');
 			manualSeek(seekValue);

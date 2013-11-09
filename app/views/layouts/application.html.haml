@@ -1,5 +1,6 @@
 !!!
 %html
+
 	%head
 		%title= yield(:title)
 		= javascript_include_tag "application", "jquery.tagsinput.min", "jquery.typing-0.2.0.min"
@@ -23,7 +24,11 @@
 			= render 'layouts/footer'
 
 :javascript
-	emailReg = /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,4}$/i
+	//deal with IE for CSS
+	var doc = document.documentElement;
+	doc.setAttribute('data-useragent', navigator.userAgent);
+
+	emailReg = /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,4}$/i;
 
 	function showFormSpin(item) {
 		$(item).parent('form').children('.spinner').show();
@@ -44,5 +49,3 @@
 			delay: 200
 		});
 	}
-
-

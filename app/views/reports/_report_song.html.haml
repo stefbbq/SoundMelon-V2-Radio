@@ -2,32 +2,30 @@
 	Thank you for reporting this song, we are sleuthing it out!
 
 - else
-	- @report = Report.new
-	= form_for(@report, remote: true, url: send_report_path) do |f|
-		= f.hidden_field :user_id, value: @user.id
-		= f.hidden_field :reportable_type, value: 'Song'
-		= f.hidden_field :reportable_id, value: @song.id
 
-		= f.radio_button :title, "not_a_song"
-		= f.label :title, "Not A Song"
-		%br
-		= f.radio_button :title, "copyrighted_song"
-		= f.label :title, "Copyrighted Song"
+	.report-form
+		
+		.title
+			what's the problem?
 
-		= f.label :content, "Comments"
-		= f.text_area :content, placeholder: "Please explain"
+		- @report = Report.new
+		= form_for(@report, remote: true, url: send_report_path) do |f|
+			= f.hidden_field :user_id, value: @user.id
+			= f.hidden_field :reportable_type, value: 'Song'
+			= f.hidden_field :reportable_id, value: @song.id
 
-		= f.submit "Submit", onclick: "return checkReport($(this).parent('form'))"
+			.problem-list
+				.problem-button.report-buttons
+					= f.radio_button :title, "not_a_song", {checked: true}
+					/= f.label :title, "not a song"
+					%span not a song
+				
+				.problem-button.report-buttons
+					= f.radio_button :title, "copyrighted_song"
+					/= f.label :title, "copyrighted"
+					%span copyrighted
 
-:javascript
-	function checkReport(form) {
-		flag = false;
-		form.children('input[name="report[title]"]').each(function() {
-			if(this.checked) {	flag = true;	}
-		});
-		if(!flag) {	alert('Gotta check somethin!');	}
-		else{
-			form.submit();
-		}
-		return false;
-	}
+			= f.text_area :content, placeholder: "Add a comment...", rows: 3
+
+			.problem-submit
+				= f.submit "Submit", class: 'report-buttons submit-report'

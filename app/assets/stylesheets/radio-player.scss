@@ -1,5 +1,6 @@
 @import "variables";
 @import "compass/css3";
+@import "controls.scss";
 //
 //player vars
 $player-height: 444px;
@@ -24,32 +25,36 @@ $player-width: 564px;
 	}
 	
 	.player-buttons {
-		height: 70%;
+		height: 82px;
 	}
 	
 	.external-button {
-		display: block;
 		font-size: 11px;
-		padding: 5px 10px 0 0;
+		height: 11px;
 		text-transform: uppercase;
-		color: rgb(106,106,106);
+		color: white;
+		opacity: 0.2;
 		text-decoration: none;
 		cursor: pointer;
 		font-weight: bold;
-		float: right;
-		@include text-shadow(1px 1px 3px rgba(1,1,1,0.4));
+		@include text-shadow(1px 1px 3px rgba(1,1,1,0.2));
 	}
 		
 	.seek-scrub {
-		height: 30%;
+		height: 40px;
 		@include background(rgba(0,0,0,0.25));
 		@include border-bottom-radius(10px);
 		
 		.content {
-			margin-left: auto;
-			margin-right: auto;
-			width: 93%;
-			padding-top: 7px;
+			height: 100%;
+			position: relative;
+			padding-left: 27px;
+			bottom: -9px;
+
+			> div {
+				display: inline-block;
+				position: absolute;
+			}
 		}
 		
 		.slider {
@@ -61,12 +66,15 @@ $player-width: 564px;
 		}
 		
 		.seek-val {
-			display: inline-block;
 			color: rgb(204,204,204);
-			font-size: 12px;
-			text-align: center;
-			vertical-align: middle;
-			padding: 0 0 10px 10px;
+			font-size: 13px;
+			font-family: 'HelveticaNeue';
+			margin-left: 445px;
+
+			span {
+				display: inline-block;
+				margin-top: 3px;
+			}
 		}
 	}
 	
@@ -77,19 +85,190 @@ $player-width: 564px;
 	
 	.left {
 		width: 25%;
+		height: 100%;
 			.content {
-				overflow: hidden;
-				margin: 40px 0 20px 20px;
-				.volume-controls {
-					display: none;
-				}
-			
-				#show-slider {
+/* 				overflow: hidden; */
+				margin: 40px 0 0 27px;
+				
+				> div {
 					display: inline-block;
-					background: url('/assets/volume.png');
-					width: 24px;
-					height: 22px;
 				}
+				
+				.volume-container {
+					margin-top: 6px;
+					position: relative;
+					
+					
+					.volume-controls {
+						display: none;
+						position: absolute;
+						@include background(linear-gradient(rgba(128,128,128,1) 40%, rgba(128,128,128,0) 95%));
+						@include border-radius(11px);
+						left: 3px;
+						bottom: 6px;
+						width: 24px;
+						height: 113px;
+						padding-top: 5px;
+						
+						.ui-slider-vertical {
+							@include background(linear-gradient(rgb(63,63,63), rgb(45,45,45)));
+							width: 11px;
+							height: 80px;
+							@include box-shadow(1px 0px 0px rgba(1,1,1,0.15));
+							@include border-radius(11px);
+							border-bottom: 1px solid #585858;
+							margin: 9px 0 0 6px;
+						}
+						
+						.ui-slider-handle {
+							@include background(linear-gradient(rgb(248,248,248), rgb(171,171,171)));
+							@include box-shadow(1px 1px 3px rgba(1,1,1,0.36));
+							@include border-radius(10px);
+							left: -4px;
+							width: 17px;
+							height: 17px;
+							&:hover {
+								@include background(linear-gradient(rgb(200,200,200), rgb(150,150,150)));
+							}
+						}
+						
+						.ui-slider-range-min {
+							@include background(linear-gradient(rgb(0, 234, 83), rgb(0, 169, 59)));
+							@include border-radius(11px);
+						}
+						
+						.ui-widget-content {
+							border: none;
+						}
+						
+						.slider {
+							width: 80px;
+							height: 11px;
+							margin: 0 !important;
+							padding: 0 0 25px 23px;
+						}
+					}
+				
+					#show-slider {
+/* 						display: inline-block; */
+						background: url('/assets/volume.png');
+						width: 24px;
+						height: 22px;
+					}
+				}
+				
+				.report-container {
+/* 					position: relative; */
+					vertical-align: 7px;
+					
+					.external-button {
+						margin-left: 9px;
+					}
+					
+					.report-box {
+						display: none;
+						position: relative;
+						
+						#report-board {
+							position: absolute;
+							z-index: 2;
+							height: 170px;
+							width: 305px;
+							bottom: 40px;
+							left: -113px;
+							background: rgb(238, 238, 238);
+							@include border-radius(7px);
+							
+							.report-form {
+								padding-top: 8px;
+								text-transform: uppercase;
+/* 								text-align: center; */
+								font-family: FuturaCondensedMedium;
+								font-size: 18px;
+								
+								.title {
+									text-align: center;
+								}
+								
+								input[type=radio] {
+									display: none;
+								}
+								
+								textarea {
+									margin: 0 8px 0 8px;
+									width: 266px;
+									font-family: FuturaBook;
+									font-size: 12px;
+								}
+								
+								.report-buttons {
+									height: 27px;
+									width: 92px;
+									@include border-radius(3px);
+									font-family: inherit;
+									font-size: inherit;
+								}
+								
+								.problem-submit {
+									height: 38px;
+									width: 100%;
+									background: white;
+									@include border-bottom-right-radius(6px);
+									@include border-bottom-left-radius(6px);
+									margin-top: 4px;
+									
+									.submit-report {
+										background: rgb(0,211,74);
+										text-shadow: none;
+										box-shadow: none;
+										border: 0;
+										margin: 0;
+										padding: 0;
+										margin-left: 106px;
+										margin-top: 6px;
+									}
+								}
+								
+								
+								.problem-list {
+									margin-left: auto;
+									margin-right: auto;
+									width: 62%;
+									
+									.problem-button {
+										display: inline-block;
+										position: relative;
+										height: 27px;
+										width: 92px;
+										background: rgb(190,190,190);
+										
+										span {
+											position: absolute;
+											bottom: 0px;
+											line-height: 22px;
+											width: 100%;
+											text-align: center;
+											color: white;
+										}
+									}
+								}
+							}
+						}
+						
+						.modal-tail {
+							position: absolute;
+							z-index: 1;
+							width: 0; 
+							height: 0; 
+							border-left: 17px solid transparent;
+							border-right: 17px solid transparent;
+							border-top: 17px solid white;
+							bottom: 24px;
+							left: 22px;
+						}
+					}
+				}
+
 			}
 	}
 	
@@ -99,9 +278,9 @@ $player-width: 564px;
 		top: -30px;
 
 		.control-panel {
-			margin-left: auto;
-			margin-right: auto;
-			width: 60%;
+			margin-left: 62px;
+			margin-right: 60px;
+			overflow: hidden;
 		}
 		
 		.control {
@@ -126,8 +305,9 @@ $player-width: 564px;
 				.skip-image {
 					background: url('/assets/skip.png') no-repeat center;
 				}
-				#prev-image {
-					@include rotate(180);
+				
+				.prev-image {
+					background: url('/assets/prev.png') no-repeat center;
 				}
 			}
 			
@@ -136,20 +316,25 @@ $player-width: 564px;
 				height: 52px;
 				.play-image {
 					background: url('/assets/play.png') no-repeat center;
+					background-position: 60% 50%;
+				}
+				
+				.pause-image {
+					background: url('/assets/pause.png') no-repeat center;
 				}
 			}
 		}
 		
 		.current-content {
 			width: 100%;
-			position: absolute;
+			margin-top: 8px;
 			text-align: center;
 			color: rgb(204,204,204);
 			@include text-shadow(1px 1px 3px rgba(1,1,1,0.35));
 						
 			span {
 				display: block;
-				padding-top: 5px;
+				margin-top: 3px;
 			}
 			
 			.song-title {
@@ -168,7 +353,12 @@ $player-width: 564px;
 		height: 100%;
 		.content {
 			overflow: hidden;
-			margin: 7px 20px 20px 0;
+			margin: 17px 20px 18px 21px;
+				.external-button {
+					display: block;
+					margin-bottom: 5px;
+					float: right;
+				}
 		}
 	}
 
@@ -200,5 +390,81 @@ $player-width: 564px;
 		&.streaming {
 			color: rgba(0,0,0,0.8);
 		}
+	}
+}
+
+/* IE Specific Radio Styles */
+html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
+	
+	#player-box {
+	
+		.left {
+			
+			.report-form {
+				
+				.problem-submit {
+					margin-top: 13px !important;
+				}
+				
+				.problem-button {
+					
+					span {
+						line-height: 27px !important;
+					}
+				}
+			}
+		}
+	
+		.seek-scrub {
+			
+			.content {
+				bottom: -12px;
+			}
+			.seek-val {
+				bottom: 22px;
+			}
+		}
+		
+		.primary {
+			.current-content {
+				margin-top: 5px;
+			}
+		}
+		
+	}
+}
+
+/* Firefox Specific Radio Styles  */
+html[data-useragent*='Firefox'] {
+	#player-box {
+		
+		.left {
+			
+			.report-form {
+				
+				.problem-button {
+					
+					span {
+						line-height: 25px !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Safari Specific Radio Styles  */
+html[data-useragent*='Safari'] {
+	#player-box {
+		
+		.left {
+			
+			.report-container {
+				.external-button {
+					margin-left: 4px;
+				}
+			}
+		}
+		
 	}
 }

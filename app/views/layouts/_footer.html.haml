@@ -1,19 +1,18 @@
 .logo
 	= image_tag('core/footer_logo.png')
-.right 
-	%small
-		Copyright 2013 SoundMelon Inc.
-	.icons
-		.icon-32#facebook-icon{href: "#"}
-		.icon-32#twitter-icon{href: "#"}
-		.icon-32#linkedin-icon{href: "#"}
-	%small
-		= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
+.right
+	%small		
 		- if signed_in?
-			Hello #{current_user.first_name + ' ' + current_user.last_name}!
 			- if current_user.terms
-				= !current_user.is_artist? ? link_to("Music +" , add_media_account_path, remote: true, class: 'hover-link', id: 'add-content') : link_to("Music" , artist_show_path, remote: true, class: 'hover-link', id: 'add-content')
+				= render 'users/music_footer'
+			
+			= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
+			
 			%a.hover-link#edit-page Settings
+			
+			= link_to "Invite Friends", user_invites_path, remote: true, id: 'invite-page-link'
+			
+			#sign-out= link_to("Logout", signout_path)
 
 		- else
 			Find your tune.
@@ -40,17 +39,34 @@
 			$('#feedback-board .spinner').show();
 		}
 	});
+	
+	$('#invite-page-link').click(function() {
+		if(smartModal('user-invites', 'invites-page')) {
+			return false
+		}
+		else {
+			console.log('yo wait up');
+		}
+	});
 
 	$('#learn-more').click(function() {
 		$('#more-info').toggle();
 	});
 
-	$('#add-content').click(function() {
-		if(smartModal('user-add', 'available-uploads')) {
+	$('.add-content').click(function() {
+		var currentView;
+		if(this.id === 'artist-show') {
+			currentView = 'available-uploads';
+		}
+		else if(this.id === 'artist-profile-edit') {
+			currentView = 'artist-profile-form';
+		}
+		if(smartModal('user-add', currentView)) {
+			console.log(currentView);
 			return false;
 		}
 		else {
-			$('#user-add .spinner').show();
+			$('.user-add .spinner').show();
 		}
 	});
 

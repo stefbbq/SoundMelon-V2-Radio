@@ -1,0 +1,7 @@
+#invites-page
+	- invites_left = ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)
+	Invites Remaining: 
+	%span#invites #{invites_left}
+	- if invites_left > 0
+		#invite-form= render 'users/invite_form'
+	#invite-list= render 'users/invite_list'

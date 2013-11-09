@@ -56,9 +56,18 @@
 	function executePlaylist() {
 		if(!ytPlayerReady) {
 			//Wait until players are ready
-			setTimeout(executePlaylist, 50);
+			if(!runOnYTReady) {
+				onYouTubeIframeAPIReady();
+				runOnYTReady = true;
+			}
+			setTimeout(executePlaylist, 200);
 		}
 		else {
+			if(!scPlayerReady) {
+				if(!runInitSC) {
+					initSCPlayer();
+				}
+			}
 			//Once players are ready execute the playlist
 			if(songs.length > 0) {
 				var firstSong = songs[0];
@@ -72,7 +81,7 @@
 					ytPlayer.setVolume(volume);
 				}
 				else if(firstSource === 'soundcloud') {
-					initSCPlayer(firstSong);
+					playSCSong(currentSong);
 					$('#youtube').hide();
 					$('#soundcloud, .overlay').show();
 				}
@@ -97,10 +106,8 @@
 			lastPlayed = currentSong;
 			currentSong = nextSong;
 			//showArtistInfo(currentSong);
-			//if( (songHistory.length > 0 || playLast) && (nextSong['upload_source'] !== lastPlayed['upload_source']) ) {
 			
 			console.log('hiding .player');
-			//}
 			if(nextSong['upload_source'] === 'youtube') {
 				ytPlayer.loadVideoById({videoId: currentSong['song_id']});
 				ytPlayer.setVolume(volume);
@@ -108,13 +115,7 @@
 				$('#youtube').show();
 			}
 			else if(nextSong['upload_source'] === 'soundcloud') {
-				if(!scWidget) {
-					initSCPlayer(currentSong);
-				}
-				else {
-					//scWidget.load('http://api.soundcloud.com/tracks/' + nextSong['song_id'], {auto_play: true});
-					playSCSong(currentSong)
-				}
+				playSCSong(currentSong);
 				$('#youtube').hide();
 				$('#soundcloud, .overlay').show();
 			}
@@ -146,8 +147,8 @@
 		SC.initialize({
 			client_id: '#{ENV["SOUNDCLOUD_APP_ID"]}'
 		});
-
-		playSCSong(song);
+		scPlayerReady = true;
+		runInitSC = true;
 	}
 
 	function playSCSong(song) {
@@ -155,11 +156,10 @@
 			preferFlash: false,
 			playHTML5Audio: true,
 			onfinish: function() {
-				console.log('finished this SC song...');
-				clearInterval(scrubInterval);
-				playNextSong();
-				
-			}
+					console.log('finished this SC song...');
+					clearInterval(scrubInterval);
+					playNextSong();
+				}
 			}, function(sound) {
 				scWidget = sound;
 				scWidget.setVolume(volume);

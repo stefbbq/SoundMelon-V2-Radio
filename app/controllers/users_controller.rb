@@ -68,6 +68,9 @@ class UsersController < ApplicationController
 		@user_genres = collect_genres(@user)
 		@user.update_attributes(fb_meta: @user_genres)
 	end
+	
+	def new_invites
+	end
 
 	def update_attrs(params)
 		@user = User.find_by_id(params[:user][:id])
