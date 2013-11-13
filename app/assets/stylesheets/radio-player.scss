@@ -44,12 +44,14 @@ $player-width: 564px;
 		height: 40px;
 		@include background(rgba(0,0,0,0.25));
 		@include border-bottom-radius(10px);
+		position: relative;
 		
 		.content {
 			height: 100%;
-			position: relative;
-			padding-left: 27px;
-			bottom: -9px;
+			width: 100%;
+			position: absolute;
+			left: 27px;
+			top: 12px;
 
 			> div {
 				display: inline-block;
@@ -172,7 +174,7 @@ $player-width: 564px;
 						#report-board {
 							position: absolute;
 							z-index: 2;
-							height: 170px;
+							height: 164px;
 							width: 305px;
 							bottom: 40px;
 							left: -113px;
@@ -197,8 +199,11 @@ $player-width: 564px;
 								textarea {
 									margin: 0 8px 0 8px;
 									width: 266px;
+									height: 45px;
 									font-family: FuturaBook;
 									font-size: 12px;
+									border: 1px solid #bebebe;
+									@include box-shadow(0 0 1px #bebebe);
 								}
 								
 								.report-buttons {
@@ -215,17 +220,21 @@ $player-width: 564px;
 									background: white;
 									@include border-bottom-right-radius(6px);
 									@include border-bottom-left-radius(6px);
-									margin-top: 4px;
+									position: absolute;
+									top: 126px;
+/* 									margin-top: 4px; */
 									
 									.submit-report {
 										background: rgb(0,211,74);
 										text-shadow: none;
 										box-shadow: none;
+										text-transform: inherit;
 										border: 0;
 										margin: 0;
 										padding: 0;
 										margin-left: 106px;
 										margin-top: 6px;
+										line-height: 33px;
 									}
 								}
 								
@@ -241,6 +250,10 @@ $player-width: 564px;
 										height: 27px;
 										width: 92px;
 										background: rgb(190,190,190);
+										
+										&.checked {
+											background: #f44848;
+										}
 										
 										span {
 											position: absolute;
@@ -403,7 +416,10 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 			.report-form {
 				
 				.problem-submit {
-					margin-top: 13px !important;
+					
+					.submit-report {
+						line-height: inherit !important;
+					}
 				}
 				
 				.problem-button {
@@ -437,6 +453,13 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 /* Firefox Specific Radio Styles  */
 html[data-useragent*='Firefox'] {
 	#player-box {
+	
+		.seek-scrub {
+			
+			.content {
+				top: 8px;
+			}
+		}
 		
 		.left {
 			
@@ -454,7 +477,7 @@ html[data-useragent*='Firefox'] {
 }
 
 /* Safari Specific Radio Styles  */
-html[data-useragent*='Safari'] {
+html[data-useragent*='Macintosh'] {
 	#player-box {
 		
 		.left {

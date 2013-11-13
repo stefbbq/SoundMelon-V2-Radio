@@ -1,36 +1,47 @@
-= link_to("Refresh" , artist_show_path, remote: true, class: 'hover-link', id: 'reload-content')
+.container
 
-- @artist = current_artist
+	.sidebar
+	
+	.main-content
+	
+		.header
+			.reload-content{title: 'Reload Songs'}= link_to("" , artist_show_path, remote: true)
+			%span your tunes
+			
+		
+		.content
 
-- @all_songs = []
-- if !@artist.youtube_token.nil?
-	- yt_ids = yt_auth_ids
-	- yt_tokens = @artist.youtube_token
-	- @yt_client = new_yt_client(yt_ids, yt_tokens)
-	- if yt_tokens[:expires_at] < Time.now.to_i
-		- @yt_client = refresh_yt_client(@yt_client)
-	- @yt_client.my_videos.videos.each do |video|
-		- @all_songs << [Time.parse(video.published_at.to_s), video]
+			- @artist = current_artist
 
-- else
-	= link_to("Connect to your YouTube!", yt_request_path)
+			- @all_songs = []
+			- if !@artist.youtube_token.nil?
+				- yt_ids = yt_auth_ids
+				- yt_tokens = @artist.youtube_token
+				- @yt_client = new_yt_client(yt_ids, yt_tokens)
+				- if yt_tokens[:expires_at] < Time.now.to_i
+					- @yt_client = refresh_yt_client(@yt_client)
+				- @yt_client.my_videos.videos.each do |video|
+					- @all_songs << [Time.parse(video.published_at.to_s), video]
 
-- if !@artist.soundcloud_token.nil?
-	- @sc_client = refresh_sc_client(@artist)
-	- tracks = @sc_client.get('/me/tracks', order: 'created_at')
-	- tracks.each do |track|
-		- @all_songs << [Time.parse(track.created_at), track]
+			- else
+				= link_to("Connect to your YouTube!", yt_request_path)
 
-- else
-	= link_to("Connect to your SoundCloud!", sc_request_path)
+			- if !@artist.soundcloud_token.nil?
+				- @sc_client = refresh_sc_client(@artist)
+				- tracks = @sc_client.get('/me/tracks', order: 'created_at')
+				- tracks.each do |track|
+					- @all_songs << [Time.parse(track.created_at), track]
 
-- if @all_songs.size > 0
-	- @all_songs = @all_songs.sort_by {|pair| pair[0]}
-	- @all_songs = @all_songs.reverse
-	#available-uploads
-		= render 'artists/available_uploads', all_songs: @all_songs
+			- else
+				= link_to("Connect to your SoundCloud!", sc_request_path)
+
+			- if @all_songs.size > 0
+				- @all_songs = @all_songs.sort_by {|pair| pair[0]}
+				- @all_songs = @all_songs.reverse
+				#available-uploads
+					= render 'artists/available_uploads', all_songs: @all_songs
 
 :javascript
-	$('#reload-content, #profile-edit').click(function() {
-		$('#user-add .spinner').show();
+	$('.modal#music-admin .reload-content').click(function() {
+		$('#music-admin .spinner').show();
 	});

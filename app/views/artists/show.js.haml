@@ -1,12 +1,11 @@
 :plain
 	var noAccounts = #{current_artist.youtube_token.nil? && current_artist.soundcloud_token.nil?};
 	console.log(noAccounts);
-	var loadPage;
 	if(noAccounts) {
-		loadPage = '#{j( render template: "users/add_media_account", formats: [:html] )}';
+		$('.modal#music-add').empty().html('#{j( render template: "users/add_media_account", formats: [:html] )}');
 	}
 	else {
-		loadPage = '#{j( render template: "artists/show", formats: [:html] )}';
+		$('#artist-media').empty().html('#{j( render template: "artists/show", formats: [:html] )}');
 	}
 	console.log('reloading...');
-	$('#artist-media').empty().html(loadPage);
+	

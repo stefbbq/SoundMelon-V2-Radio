@@ -1,3 +1,232 @@
 // Place all the styles related to the Artists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "compass/css3";
+
+.modal#music-add {
+	
+	left: -80px;
+	bottom: 102px;
+	height: 90px;
+	
+	.main-content {
+		left: 190px;
+		top: -13px;
+	}
+	
+	.sidebar {
+		width:111px;
+		height: 123px;
+		background: url('/assets/music-add.png');
+		top: 39px;
+		left: 107px;
+	}
+	
+	.header {
+		text-align: center;
+		height: 29px;
+	}
+	
+	.content {
+		height: 61px;
+		
+		.links {
+			position: absolute;
+			top: 53px;
+			left: 41px;
+			
+			> div {
+				display: inline-block;
+				
+				a {
+					text-decoration: none;
+				}
+			}
+			
+			.separator {
+				font-size: 16px;
+				margin: 0 4px;
+			}
+			
+			.sc-link {
+				
+				a {
+					color: rgb(251,91,0);
+				}
+			}
+			
+			.yt-link {
+				
+				a {
+					color: rgb(228,54,55);
+				}
+			}
+			
+			
+		}
+	}
+}
+
+.modal#music-admin {
+	bottom: 255px;
+	right: -175px;
+	
+	.sidebar {
+		background: url('/assets/music-admin.png');
+		width: 178px;
+		height: 132px;
+		left: -170px;
+		top: 292px;
+	}
+	
+	.main-content {
+		top: 15px;
+		
+		.header {
+			position: relative;
+			top: -5px;
+			
+			.reload-content {
+				display: inline-block;
+				height: 25px;
+				width: 25px;
+				position: absolute;
+				left: 165px;
+				top: -7px;
+				background: url('/assets/reload.png') left no-repeat;
+				background-size: 100% 100%;
+				cursor: pointer;
+				
+				a {
+					height: 100%;
+					width: 100%;
+				}
+			}
+		}
+		
+		.content {
+			height: 303px;
+			overflow-y: scroll;
+			
+			.song-wrapper {
+				border-bottom: 2px dashed rgba(white, 0.2);
+				
+				.song-content {
+					position: relative;
+					margin: 10px 5px;
+					@include border-radius(8px);
+					
+					&:hover {
+						background: rgba(white, 0.3);
+						background-image: url('right-chevrons.png');
+						background-position: 270px;
+						background-repeat: no-repeat;
+					}
+					
+					.song-image {
+						height: 68px;
+						width: 42%;
+						@include border-radius(8px);
+						background-size: 100% 100%;
+						display: inline-block;
+						margin: 4px;
+					}
+					
+					.brand-logo {
+						height: 17px;
+						width: 42px;
+						float: right;
+						margin: 3px;
+						
+						&.source-yt {
+							background: url('/assets/yt-logo.png') center no-repeat;
+							background-size: 100% 100%;
+							
+						}
+						
+						&.source-sc {
+							background: url('/assets/sc-logo.png') center no-repeat;
+							background-size: 100% 100%;
+							width: 35px;
+							height: 25px;
+						}
+					}
+						
+					.song-information {
+						width: 53%;
+						display: inline-block;
+						position: absolute;
+						top: 10px;
+						
+						span {
+							padding: 0;
+							display: block;
+						}
+						
+						.song-title {
+							color: rgba(white, 0.8);
+						}
+						
+						.duration {
+							font-size: 16px;
+							color: rgba(white, 0.5);
+						}
+						
+						.state {
+							font-family: HelveticaNeue;
+							font-size: 12px;
+							padding-top: 8px;
+							
+							&.inactive {
+								color: rgba(red, 0.7);
+							}
+							
+							&.active {
+								color: rgba(36,255,0, 0.7);
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+	}
+	
+	
+}
+
+/* IE/Firefox Specific Radio Styles */
+html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'], html[data-useragent*='Firefox'] {
+	
+	.modal#music-add {
+		
+		.content {
+			.links {
+				top: 51px;
+			}
+		}
+	}
+	
+	.modal#music-admin {
+		
+		.header {
+			.reload-content {
+				top: -3px;
+			}
+		}
+		
+		.content {
+			
+			.song-wrapper {
+				
+				.song-content {
+					
+					&:hover {
+						background-position: 260px;
+					}
+				}
+			}
+		}
+	}
+}

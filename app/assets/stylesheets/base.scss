@@ -41,7 +41,7 @@
 //
 //footer
 body > .footer {
-	background: rgba(black, .7);
+	@include background(linear-gradient(rgba(black, .7), black));
 	height: $footer-height;
 	width: 100%;	
 	position: fixed;
@@ -60,14 +60,24 @@ body > .footer {
 	.right {
 		float: right;
 		position: relative;
-		top: 10px;
+		width: 570px;
+		top: 20px;
 		right: 18px;
 		color: rgba(white, .8);
-	}
-	
-	.icons {
-		display: inline-block;
-		margin: 0px 4px;
+		
+		span {
+			padding: 0 7px;
+			
+			a {
+				text-decoration: none;
+				color: rgb(244,72,72);
+			}
+		}
+		.menu-artist {			
+			a {
+				color: rgb(58,235,90);
+			}
+		}
 	}
 
 	#more-info { display: none; }
@@ -93,42 +103,37 @@ body > .footer {
 //
 //other
 .modal {
-	@include footer-modal();
-	height: 300px;
-	overflow: auto;
 	display: none;
-
-	.footer {
-		@include footer-modal();
-//		position: absolute;
-		bottom: 30px;
-		min-height: 20px;
-		height: 20px;
-//		width: 350px;
-		background-color: black ;
-	}
-
-	.drop-pic {
-		position: relative;
-		height: 100px;
-		width: 200px;
-		background: grey;
-	}
-
-	#choose-pic {
-		height: 100px;
-		width: 200px;
-		z-index: 2;
-		opacity: 0;
-	}
+	position: absolute;
+	height: 200px;
+	width: 500px;
+	bottom: 91px;
+	right: -8px;
 	
-	#uploaded-photo {
-		img {
-			display: block;
-			max-width: 100px;
-			max-height: 100px;
-			height: auto;
-			width: auto;
+	.container {
+		
+		font-family: FuturaCondensedMedium;
+		font-size: 26px;
+		text-transform: uppercase;
+		position: relative;
+		
+		.sidebar, .main-content {
+			display: inline-block;
+			position: absolute;
+		}
+		
+		.main-content {
+			width: 302px;
+		}
+		
+		.header {
+			text-align: right;
+			color: rgba(black, 0.5);
+		}
+		
+		.content {
+			@include background(rgba(black, 1));
+			@include border-radius(8px);
 		}
 	}
 }
@@ -170,4 +175,22 @@ body > .footer {
 
 #fb-meta-panel{
 	display: none;
+}
+
+/* IE Specific Radio Styles */
+html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
+	body > .footer {
+		.right {
+			top: 15px;
+		}
+	}
+}
+
+/* Firefox Specific Radio Styles  */
+html[data-useragent*='Firefox'] {
+	body > .footer {
+		.right {
+			top: 17px;
+		}
+	}
 }

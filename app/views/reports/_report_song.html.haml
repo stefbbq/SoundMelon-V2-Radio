@@ -1,10 +1,11 @@
-- if Report.where(user_id: @user.id, reportable_id: @song.id).size > 0
-	Thank you for reporting this song, we are sleuthing it out!
+.report-form
 
-- else
+	- if Report.where(user_id: @user.id, reportable_id: @song.id).size > 0
+		.title
+			Thank you for reporting this song, we are sleuthing it out!
 
-	.report-form
-		
+	- else
+
 		.title
 			what's the problem?
 
@@ -15,7 +16,7 @@
 			= f.hidden_field :reportable_id, value: @song.id
 
 			.problem-list
-				.problem-button.report-buttons
+				.problem-button.report-buttons.checked
 					= f.radio_button :title, "not_a_song", {checked: true}
 					/= f.label :title, "not a song"
 					%span not a song
@@ -29,3 +30,15 @@
 
 			.problem-submit
 				= f.submit "Submit", class: 'report-buttons submit-report'
+
+	:javascript
+
+		$('.report-form .problem-list .problem-button').click(function() {
+			var radioInput = $(this).children('input[type=radio]')[0];
+			if(!radioInput.checked) {
+				$(this).children('input[type=radio]')[0].checked = true;
+				$(this).toggleClass('checked');
+				$(this).siblings('.problem-button').toggleClass('checked');
+				console.log('so that is your problem');
+			}
+		});

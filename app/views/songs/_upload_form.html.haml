@@ -1,5 +1,8 @@
 .active-toggle
 	%label= f.check_box(:active, class: 'ios-switch')
+	
+= f.label :song_title, "Title"
+= f.text_field :song_title, value: song_title, class: 'edit-song-title'
 
 - source_tags = source_tags.nil? ? [] : source_tags
 = label(:source_tags, "Source Tags")
@@ -11,11 +14,47 @@
 .sm-tags= f.text_field :sm_tags, value: sm_tags.join(', '), placeholder: "Add some genre tags for this song..."
 
 :javascript
-	// Add divs for toggle switches
-	var switches = document.querySelectorAll('input[type="checkbox"].ios-switch');
+	
+	$('.song-form').each(function() {
+		var artistSong = $(this).parent().parent();
+		var songSubmit = $(this).find('.song-submit input:submit');
+		var activeToggle = $(this).find('.ios-switch');
+		var smTags = $(this).find('.sm-tags input');
+		var sourceTags = $(this).find('.source-tags input');
 
-	for (var i=0, sw; sw = switches[i++]; ) {
-		var div = document.createElement('div');
-		div.className = 'switch';
-		sw.parentNode.insertBefore(div, sw.nextSibling);
-	}
+		activeToggle.click(function() {
+			var state = $(this).prop('checked') ? 'active' : 'inactive';
+			artistSong.find('.state').html(state)
+			activeToggle.closest('form').submit();
+		});
+		smTags.tagsInput({
+			'removeWithBackspace': false,
+			'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
+			'height': 'auto',
+			'width': 'auto',
+			'onAddTag': function() {
+				console.log(smTags.parent('form'));
+				smTags.closest('form').submit();
+			},
+			'onRemoveTag': function() {
+				console.log(smTags);
+				smTags.closest('form').submit();
+			}
+		});
+
+		sourceTags.tagsInput({
+			'removeWithBackspace': false,
+			'defaultText': '',
+			'interactive': false,
+			'height': 'auto',
+			'width': 'auto',
+			'onAddTag': function() {
+				alert("You can not add source tags!");
+			},
+			'onRemoveTag': function() {
+				console.log(sourceTags.parent('form'));
+				sourceTags.closest('form').submit();
+			}
+		});
+
+	});

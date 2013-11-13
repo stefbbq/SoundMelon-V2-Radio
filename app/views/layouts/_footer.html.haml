@@ -6,18 +6,34 @@
 			- if current_user.terms
 				= render 'users/music_footer'
 			
-			= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
+			%span= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
 			
-			%a.hover-link#edit-page Settings
+			%span
+				%a.hover-link#edit-page Settings
 			
-			= link_to "Invite Friends", user_invites_path, remote: true, id: 'invite-page-link'
+			%span= link_to "Invite Friends", user_invites_path, remote: true, id: 'invite-page-link'
 			
-			#sign-out= link_to("Logout", signout_path)
+			%span= link_to("Logout", signout_path)
+			
+			.modal-boxes
+				
+				.modal#music-add
+				
+				.modal#music-admin
+					.spinner
+					#artist-media
+					#artist-profile
+
+				.modal#user-edit
+					.spinner
+					#user-settings
+						= render "users/settings"
+						
+				.modal#user-invites
 
 		- else
 			Find your tune.
 			%a.hover-link#learn-more Learn more
-			= #link_to('SO WHY NOT REGISTER?', signup_path, remote: true)
 
 	.modal#more-info
 		Phasellus luctus malesuada velit, eu pellentesque eros imperdiet a. Donec in sagittis dolor. Proin pretium magna ac lectus pretium, non viverra dolor sagittis. Ut sit amet mauris a massa lacinia porta. Cras tristique urna ipsum. Aenean vehicula condimentum laoreet.
@@ -61,12 +77,12 @@
 		else if(this.id === 'artist-profile-edit') {
 			currentView = 'artist-profile-form';
 		}
-		if(smartModal('user-add', currentView)) {
+		if(smartModal('music-admin', currentView)) {
 			console.log(currentView);
 			return false;
 		}
 		else {
-			$('.user-add .spinner').show();
+			$('#music-admin .spinner').show();
 		}
 	});
 
@@ -89,7 +105,7 @@
 
 		var fromCallback = '#{flash[:music_account_callback].to_s}';
 		if(fromCallback === 'true') {
-			$('#add-content').click();
+			$('.add-content').click();
 		}
 
 	});

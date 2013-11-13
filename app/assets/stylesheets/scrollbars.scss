@@ -1,0 +1,53 @@
+//Custom scrollbars
+
+body {
+	::-webkit-scrollbar { 
+		width: 5px; 
+		height: 3px;
+	}
+	::-webkit-scrollbar-button {  display: none; }
+	::-webkit-scrollbar-track { background-color: rgba(black, 0);}
+	::-webkit-scrollbar-track-piece { background-color: rgba(black, 0);}
+	::-webkit-scrollbar-thumb { 
+		height: 133px; 
+		width: 5px;
+		background-color: rgba(102,102,102,1);
+		border-radius: 3px;
+	}
+	::-webkit-scrollbar-corner { display: none;}
+	::-webkit-resizer { background-color: #666;}
+}
+
+
+
+/* IE Specific Radio Styles */
+html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
+
+}
+
+/* Firefox Specific Radio Styles  */
+html[data-useragent*='Firefox'] {
+	body {
+		scrollbar {
+			-moz-appearance: none !important;
+			background: rgb(0,0,0) !important;
+		}
+		thumb,scrollbarbutton {
+			-moz-appearance: none !important;
+			background-color: rgba(0,0,255, 0) !important;
+		}
+
+		thumb:hover,scrollbarbutton:hover {
+			-moz-appearance: none !important;
+			background-color: rgb(255,0,0) !important;
+		}
+
+		scrollbarbutton {
+			display: none !important;
+		}
+
+		scrollbar[orient="vertical"] {
+			min-width: 15px !important;
+		}
+	}
+}

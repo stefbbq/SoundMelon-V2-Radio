@@ -1,5 +1,5 @@
 - if !current_user.is_artist?
-	%span Artist? Add your #{link_to("tunes" , add_media_account_path, remote: true, class: 'hover-link', id: 'add-content')} to the radio!
+	%span.menu-artist Artist? Add your #{link_to("tunes" , add_media_account_path, remote: true, class: 'hover-link', id: 'add-account')} to the radio!
 
 - else
-	%span Manage #{link_to("Music" , artist_show_path, remote: true, class: 'hover-link add-content', id: 'artist-show')} or your #{link_to("Artist Profile", artist_profile_edit_path, remote: true, class: 'hover-link add-content', id: 'artist-profile-edit')}
+	%span.menu-artist Manage #{link_to("Music" , artist_show_path, remote: true, class: 'hover-link add-content', id: 'artist-show')} or your #{link_to("Artist Profile", artist_profile_edit_path, remote: true, class: 'hover-link', id: 'artist-profile-edit')}

@@ -1,6 +1,15 @@
-Connect To
-%br
-= link_to("YouTube", yt_request_path)
-%br
-= link_to("SoundCloud", sc_request_path)
+.container
 
+	.sidebar
+	
+	.main-content
+
+		.header
+			%span add songs with
+			
+
+		.content
+			.links
+				.sc-link= link_to("SoundCloud", sc_request_path)
+				.separator or
+				.yt-link= link_to("YouTube", yt_request_path)

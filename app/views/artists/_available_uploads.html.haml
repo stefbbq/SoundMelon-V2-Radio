@@ -19,11 +19,12 @@
 			- upload_source = 'soundcloud'
 			- source_abbr = 'SC'
 			- @current_song = Song.where(artist_id: current_artist.id, song_id: song_id)
-			- sc_logo = "http://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png"
+			- sc_logo = "/assets/sc-placeholder.png"
 			- img_src = (song.artwork_url.nil?) ? sc_logo : song.artwork_url
 			- source_tags = ( song.genre.nil? ? [] : song.genre.split() ) | ( song.tag_list.nil? ? [] : song.tag_list.split(' ') )
 			- source_tags.delete_if {|tag| tag.include? "soundcloud:source"}
 		- is_blocked = BlockedUpload.exists?(song_id: song_id)
+		- state = @is_active && !song_private ? "active" : "inactive"
 
 		- #if song_duration < 121
 		- #elsif song_duration > 1500
@@ -36,72 +37,18 @@
 			- @is_active = false
 			- @current_song.first.save
 
-		.artist-song{id: song_id}
-			.song-show
-				= source_abbr
-				%img{src: img_src} #{song.title}
-				.state= @is_active && !song_private ? "active" : "inactive"
-			%div{class: @edit_action + '-song'}
-				- if is_blocked
-					This song has been blocked due to reporting and investigation.
-				- else
-					= render template: 'songs/' + @edit_action, locals: {song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags}
-
-:javascript
-	$('document').ready(function() {
-		
-		//Attach the song add-edit form
-		$('.song-show').each(function() {
-			$(this).click(function() {
-				var songForm = $(this).next('.new-song, .edit-song');
-				if(songForm.children('.private').length > 0) {
-					songForm.children('.song-form').css('display', 'none');
-				}
-				songForm.slideToggle();
-			});
-		});
-
-		$('.song-form').each(function() {
-			var artistSong = $(this).parent().parent();
-			var songSubmit = $(this).find('.song-submit input:submit');
-			var activeToggle = $(this).find('.ios-switch');
-			var smTags = $(this).find('.sm-tags input');
-			var sourceTags = $(this).find('.source-tags input');
-
-			activeToggle.click(function() {
-				var state = $(this).prop('checked') ? 'active' : 'inactive';
-				artistSong.find('.state').html(state)
-				activeToggle.closest('form').submit();
-			});
-			smTags.tagsInput({
-				'removeWithBackspace': false,
-				'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
-				'height': 'auto',
-				'width': 'auto',
-				'onAddTag': function() {
-					console.log(smTags.parent('form'));
-					smTags.closest('form').submit();
-				},
-				'onRemoveTag': function() {
-					console.log(smTags);
-					smTags.closest('form').submit();
-				}
-			});
-
-			sourceTags.tagsInput({
-				'removeWithBackspace': false,
-				'defaultText': '',
-				'interactive': false,
-				'height': 'auto',
-				'width': 'auto',
-				'onAddTag': function() {
-					alert("You can not add source tags!");
-				},
-				'onRemoveTag': function() {
-					console.log(sourceTags.parent('form'));
-					sourceTags.closest('form').submit();
-				}
-			});
-
-		});
-	});
+		.song-wrapper{id: song_id}
+			.song-content
+				.song-image{style: "background: url(#{img_src}) center no-repeat"}
+					.brand-logo{class: 'source-' + source_abbr.downcase}
+				.song-information
+					%span.song-title= song.title
+					%span.duration= to_minutes(song_duration)
+					%span.state{class: state}= state
+					- if is_blocked
+						This song has been blocked due to reporting and investigation.
+					- else
+						- if @edit_action == 'new'
+							/= link_to @edit_action, new_song_path({song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags, song_title: song.title}), remote: true
+						- elsif @edit_action == 'edit'
+							/= link_to @edit_action, edit_song_path(@current_song.first), remote: true

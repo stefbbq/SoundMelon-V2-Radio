@@ -1,0 +1,4 @@
+:plain
+	console.log('#{params}');
+	$('#artist-media').hide();
+	$('.modal#music-admin').append('#{j( render template: "songs/edit", locals: params, formats: [:html] )}');

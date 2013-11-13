@@ -39,8 +39,6 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/feedback_send', to: 'feedbacks#create'
 
 #Artist routes
-	match '/new_upload', to: 'songs#new'
-	match '/edit_upload', to: 'songs#edit'
 	match '/sc_request', to: 'artists#sc_request'
 	match '/sc_oauth_callback', to: 'artists#sc_oauth_callback'
 	match '/yt_request', to: 'artists#yt_request'
@@ -51,10 +49,13 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/unlink_media_account', to: 'artists#unlink_media_account'
 
 #Song routes
+	match '/new_song', to: 'songs#new'
+	match '/edit_song', to: 'songs#edit'
 	match '/make_public', to: 'songs#make_public'
 	match '/request_playlist', to: 'songs#request_playlist'
 	match '/get_source_tags', to: 'songs#get_source_tags'
 
+	
 #Invite routes
 	match '/send_invite' => 'invites#create'
 	match "/:invite_token", to: redirect('/')

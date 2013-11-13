@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131016173625) do
+ActiveRecord::Schema.define(:version => 20131110215154) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20131016173625) do
     t.boolean  "is_private"
     t.boolean  "blocked",       :default => false
     t.text     "source_tags"
+    t.string   "song_title"
   end
 
   create_table "users", :force => true do |t|

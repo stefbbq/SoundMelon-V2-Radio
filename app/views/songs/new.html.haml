@@ -1,16 +1,26 @@
-- @artist = current_artist
-- if song_private
-	.private
-		We can't stream private songs! Would you like to make this song public on #{upload_source}?
-		= link_to "Make Public!", make_public_path(song_id: song_id, upload_source: upload_source, artist_id: @artist.id), remote: true, class: 'make-public', onclick: "$(this).siblings('.spinner').show()"
-		.spinner
+.music-add-song
 
-.song-form
-	- @song = Song.new
-	= form_for(@song, remote: true) do |f|
-		= render 'songs/upload_form', {f: f, active: @song.active, source_tags: source_tags, song_id: song_id, source: upload_source}
-		= f.hidden_field :artist_id, value: @artist.id
-		= f.hidden_field :song_id, value: song_id
-		= f.hidden_field :upload_source, value: upload_source
-		= f.hidden_field :song_url, value: song_url
+	%a.go-back go back
+	
+	- @artist = current_artist
+	- if song_private == true
+		.private
+			We can't stream private songs! Would you like to make this song public on #{upload_source}?
+			= link_to "Make Public!", make_public_path(song_id: song_id, upload_source: upload_source, artist_id: @artist.id), remote: true, class: 'make-public', onclick: "$(this).siblings('.spinner').show()"
+			.spinner
 
+	.song-form
+		- @song = Song.new
+		= form_for(@song, remote: true) do |f|
+			- source_tags = source_tags.nil? ? [] : source_tags
+			= render 'songs/upload_form', {f: f, active: @song.active, source_tags: source_tags, song_id: song_id, source: upload_source, song_title: song_title}
+			= f.hidden_field :artist_id, value: @artist.id
+			= f.hidden_field :song_id, value: song_id
+			= f.hidden_field :upload_source, value: upload_source
+			= f.hidden_field :song_url, value: song_url
+		
+:javascript
+	$('.go-back').click(function() {
+		$('#artist-media').show();
+		$('.music-add-song').remove();
+	});

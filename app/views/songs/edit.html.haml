@@ -1,13 +1,22 @@
-- @artist = current_artist
-- @song = Song.find_by_song_id(song_id)
-- if song_private
-	.private
-		We can't stream private songs! Would you like to make this song public on #{upload_source}?
-		= link_to "Make Public!", make_public_path(song_id: song_id, upload_source: upload_source, artist_id: @artist.id), remote: true, class: 'make-public', onclick: "$(this).siblings('.spinner').show()"
-		.spinner
+.music-edit-song
 
-.song-form
+	%a.go-back go back
 
-	= form_for(@song, remote: true) do |f|
-		= render 'songs/upload_form', {f: f, active: @song.active, sm_tags: @song.sm_tags, source_tags: @song.source_tags, song_id: song_id, source: upload_source}
+	- @artist = current_artist
+	- @song = Song.find(params[:id])
+	- if @song.is_private == true
+		.private
+			We can't stream private songs! Would you like to make this song public on #{upload_source}?
+			= link_to "Make Public!", make_public_path(song_id: song_id, upload_source: upload_source, artist_id: @artist.id), remote: true, class: 'make-public', onclick: "$(this).siblings('.spinner').show()"
+			.spinner
 
+	.song-form
+
+		= form_for(@song, remote: true) do |f|
+			= render 'songs/upload_form', {f: f, active: @song.active, sm_tags: @song.sm_tags, source_tags: @song.source_tags, song_id: @song.song_id, source: @song.upload_source, song_title: @song.song_title}
+			
+:javascript
+	$('.go-back').click(function() {
+		$('#artist-media').show();
+		$('.music-edit-song').remove();
+	});
