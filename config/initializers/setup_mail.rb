@@ -1,10 +1,10 @@
 ActionMailer::Base.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
-  :domain               => "gmail.com",
+  :domain               => ENV['HOST_ADDR'] + ':80',
   :user_name            => "miniflckr.mailer@gmail.com",
-  :password             => "secretsauce",
-  :authentication       => "plain",
+  :password             => "awesomesauce",
+  :authentication       => :plain,
   :enable_starttls_auto => true
 }
 
