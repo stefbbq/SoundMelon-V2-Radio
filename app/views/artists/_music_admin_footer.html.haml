@@ -1,0 +1,26 @@
+.content
+
+	- @artist = current_artist
+
+	.setting-section
+		- if !@artist.youtube_token.nil?
+			%span connected to 
+			.yt-link 
+				%a youtube
+
+		- else
+			%span add 
+			.yt-link= link_to("youtube", yt_request_path)
+			
+	.divider
+			
+			
+	.setting-section
+		- if !@artist.soundcloud_token.nil?
+			%span connected to 
+			.sc-link
+				%a soundcloud
+
+		- else
+			%span add 
+			.sc-link= link_to("soundcloud", sc_request_path)

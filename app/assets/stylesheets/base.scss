@@ -127,13 +127,23 @@ body > .footer {
 		}
 		
 		.header {
-			text-align: right;
 			color: rgba(black, 0.5);
+			
+			> div {
+				display: inline-block;
+			}
+			
+			.left {
+				text-align: left;
+			}
+			
+			.right {
+				text-align: right;
+			}
 		}
 		
 		.content {
 			@include background(rgba(black, 1));
-			@include border-radius(8px);
 		}
 	}
 }

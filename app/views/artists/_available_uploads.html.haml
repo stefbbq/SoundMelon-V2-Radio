@@ -39,16 +39,20 @@
 
 		.song-wrapper{id: song_id}
 			.song-content
-				.song-image{style: "background: url(#{img_src}) center no-repeat"}
-					.brand-logo{class: 'source-' + source_abbr.downcase}
-				.song-information
-					%span.song-title= song.title
-					%span.duration= to_minutes(song_duration)
-					%span.state{class: state}= state
+			
+				.song-basic
+					.song-image{style: "background: url(#{img_src}) center no-repeat"}
+						.brand-logo{class: 'source-' + source_abbr.downcase}
+					.song-information
+						%span.song-title= song.title
+						%span.duration= to_minutes(song_duration)
+						%span.state{class: state}= state
 					- if is_blocked
 						This song has been blocked due to reporting and investigation.
-					- else
-						- if @edit_action == 'new'
-							/= link_to @edit_action, new_song_path({song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags, song_title: song.title}), remote: true
-						- elsif @edit_action == 'edit'
-							/= link_to @edit_action, edit_song_path(@current_song.first), remote: true
+				- if !is_blocked
+					- if @edit_action == 'new'
+						= link_to new_song_path({song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags, song_title: song.title, song_image: img_src, song_duration: song_duration}), remote: true, class: 'song-link' do
+							%span.div-link
+					- elsif @edit_action == 'edit'
+						= link_to edit_song_path(@current_song.first), remote: true, class: 'song-link' do
+							%span.div-link

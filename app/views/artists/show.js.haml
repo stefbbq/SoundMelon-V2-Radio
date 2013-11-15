@@ -5,7 +5,7 @@
 		$('.modal#music-add').empty().html('#{j( render template: "users/add_media_account", formats: [:html] )}');
 	}
 	else {
-		$('#artist-media').empty().html('#{j( render template: "artists/show", formats: [:html] )}');
+		$('.modal#music-admin #artist-media').empty().html('#{j( render template: "artists/show", formats: [:html] )}');
 	}
 	console.log('reloading...');
 	

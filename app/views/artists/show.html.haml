@@ -5,8 +5,12 @@
 	.main-content
 	
 		.header
-			.reload-content{title: 'Reload Songs'}= link_to("" , artist_show_path, remote: true)
-			%span your tunes
+			.right
+				.reload-content{title: 'Reload Songs'}
+					
+					= link_to artist_show_path, remote: true, class: 'reload-button' do
+						%span.div-link
+				%span your tunes
 			
 		
 		.content
@@ -40,8 +44,19 @@
 				- @all_songs = @all_songs.reverse
 				#available-uploads
 					= render 'artists/available_uploads', all_songs: @all_songs
+					
+		.footer
+			= render "artists/music_admin_footer"
 
 :javascript
-	$('.modal#music-admin .reload-content').click(function() {
-		$('#music-admin .spinner').show();
+
+	$(document).ready(function() {
+		$('.modal#music-admin .reload-content').click(function() {
+			$('#music-admin .spinner').show();
+		});
+		
+		$('.modal#music-admin .content .song-content').click(function() {
+			console.log($(this).find('.song-link'));
+		});
 	});
+

@@ -1,4 +1,4 @@
 :plain
 	console.log('#{params}');
-	$('#artist-media').hide();
-	$('.modal#music-admin').append('#{j( render template: "songs/new", locals: params, formats: [:html] )}');
+	$('.modal#music-admin .main-content').hide();
+	$('.modal#music-admin .container').append('#{j( render template: "songs/new", locals: params, formats: [:html] )}');
