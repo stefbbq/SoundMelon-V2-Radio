@@ -35,13 +35,20 @@ DROPBOX_ACCESS_TYPE: "app_folder"
 #Misc Vars
 INVITE_LIMIT: 3
 
+
 development:
 #   HOST_ADDR: 'http://localhost:3000'
   HOST_ADDR: 'http://33a82420.ngrok.com'
+  
+#   Misc Vars
+  SMTP_PORT: 587
 
 production:
   #HOST_ADDR: 'http://salty-ravine-5239.herokuapp.com'
   HOST_ADDR: 'http://soundmelon-stg.herokuapp.com'
+  
+#   Misc Vars
+  SMTP_PORT: 465
   
   #Youtube API Keys
   YOUTUBE_APP_ID: '1035080270379-ir19dkk7bs2tsmuritfhpsosugr9nsks.apps.googleusercontent.com'
