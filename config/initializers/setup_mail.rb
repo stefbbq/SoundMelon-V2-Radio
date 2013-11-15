@@ -1,10 +1,10 @@
 ActionMailer::Base.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
-  :domain               => "soundmelon-stg.com",
-#   :user_name            => "miniflckr.mailer@gmail.com",
-#   :password             => "secretsauce",
-#   :authentication       => "plain",
+  :domain               => "gmail.com",
+  :user_name            => "miniflckr.mailer@gmail.com",
+  :password             => "secretsauce",
+  :authentication       => "plain",
   :enable_starttls_auto => true
 }
 

@@ -37,4 +37,8 @@ SoundMelonV2Radio::Application.configure do
 
 	#Disable double loading of JS
 	config.serve_static_assets = false
+	
+	#ActionMailer settings
+	config.action_mailer.perform_deliveries = true 
+	config.action_mailer.raise_delivery_errors = true
 end

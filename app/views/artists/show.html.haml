@@ -27,17 +27,11 @@
 				- @yt_client.my_videos.videos.each do |video|
 					- @all_songs << [Time.parse(video.published_at.to_s), video]
 
-			- else
-				= link_to("Connect to your YouTube!", yt_request_path)
-
 			- if !@artist.soundcloud_token.nil?
 				- @sc_client = refresh_sc_client(@artist)
 				- tracks = @sc_client.get('/me/tracks', order: 'created_at')
 				- tracks.each do |track|
 					- @all_songs << [Time.parse(track.created_at), track]
-
-			- else
-				= link_to("Connect to your SoundCloud!", sc_request_path)
 
 			- if @all_songs.size > 0
 				- @all_songs = @all_songs.sort_by {|pair| pair[0]}

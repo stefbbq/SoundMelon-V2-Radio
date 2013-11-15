@@ -134,10 +134,10 @@ youtube_iframe_api.js: youtube_iframe_api-730da00968cb3fded517fd1dbeec746a.js
 youtube_iframe_api/index.js: youtube_iframe_api-730da00968cb3fded517fd1dbeec746a.js
 active_admin.css: active_admin-5f3e0c5f8f37e1cef280603ea326333e.css
 active_admin/index.css: active_admin-5f3e0c5f8f37e1cef280603ea326333e.css
-application.css: application-7b0a91b79bc7a6229e837740586aebd4.css
-application/index.css: application-7b0a91b79bc7a6229e837740586aebd4.css
-artists.css: artists-6fcedab05335afd1e8a8e8e3eee18cfe.css
-artists/index.css: artists-6fcedab05335afd1e8a8e8e3eee18cfe.css
+application.css: application-4f4890938ff3d72553cd1a387bfe4a5a.css
+application/index.css: application-4f4890938ff3d72553cd1a387bfe4a5a.css
+artists.css: artists-4d8efd21e184c81409788230f91c24cc.css
+artists/index.css: artists-4d8efd21e184c81409788230f91c24cc.css
 base.css: base-1a5798ab4867bc8859b56d76da5089d0.css
 base/index.css: base-1a5798ab4867bc8859b56d76da5089d0.css
 controls.css: controls-1b13569e9620782f423d4cd3ce931750.css
