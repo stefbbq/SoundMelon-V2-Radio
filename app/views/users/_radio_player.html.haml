@@ -35,9 +35,9 @@
 				.current-content
 					.currently-playing
 						%span.song-title
-							Glorious Coffee Medley
+							Press Play to start!
 						%span.artist
-							by Fearing The Hill
+							#{'--------------------'}
 							
 			.right
 				.content
@@ -52,9 +52,10 @@
 					#seek-slider
 				.seek-val
 					%span.current-time
-						12:58
+						#{'--:--'}
+					#{'/'}
 					%span.duration
-						#{'/13:22'}
+						#{'--:--'}
 		
 #radio-stations
 	%a#user-meta.idle Your Likes
@@ -214,6 +215,8 @@
 		$('#seek-slider').simpleSlider('setValue', 0);
 		$('#seek-slider').bind('slider:changed', function(event, data) {
 			seekValue = data['value'];
+			position = secToMinSec(currentSongTime(currentSong));
+			$('#radio-controls .seek-scrub .seek-val span.current-time').text(position);
 		});
 
 		$('.media-seeker .slider').mouseup(function() {

@@ -96,7 +96,8 @@ module ApplicationHelper
 		user_meta = user.user_meta
 		fb_meta = user.fb_meta
 		songs.each do |song|
-			all_tags = song.sm_tags | song.source_tags
+# 			all_tags = song.sm_tags | song.source_tags
+			all_tags = song.source_tags
 			scored_songs << [song, score_song(user_meta, fb_meta, all_tags)]
 		end
 		scored_songs = scored_songs.sort_by {|song,score| score}

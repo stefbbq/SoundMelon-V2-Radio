@@ -61,7 +61,7 @@
 		width: 53%;
 		display: inline-block;
 		position: absolute;
-		top: 10px;
+		top: 5px;
 		
 		span {
 			padding: 0;
@@ -118,6 +118,7 @@
 	
 	.header {
 		height: 29px;
+		text-align: center;
 	}
 	
 	.content {
@@ -169,7 +170,7 @@
 			
 			.header {
 				top: -6px;
-				color: rgba(white, 0.8);
+/* 				color: rgba(white, 0.8); */
 				
 				.right {
 					top: 0;
@@ -183,7 +184,7 @@
 			
 			.content {
 				height: 303px;
-				@include border-radius(8px);
+				@include border-radius(14px);
 				
 				.song-basic {
 					margin: 4px;
@@ -194,6 +195,8 @@
 				}
 				
 				.song-state {
+					margin-left: 8px;
+					position: relative;
 					
 					> div {
 						display: inline-block;
@@ -237,9 +240,14 @@
 							}
 						}
 					}
+					
 					.state {
 						font-family: FuturaCondensedMedium;
 						font-size: 26px;
+						position: absolute;
+						top: 18px;
+						left: 55px;
+						padding: 0;
 						
 						&.inactive {
 							color: rgba(red, 0.7);
@@ -247,6 +255,55 @@
 						
 						&.active {
 							color: rgba(36,255,0, 0.7);
+						}
+					}
+				}
+				
+				.song-form {
+					.source-tags {
+						position: relative;
+						
+						.tagsinput {
+							position: absolute;
+							left: 8px;
+							top: 3px;
+							padding: 0;
+							@include border-radius(8px);
+							border: 2px solid rgb(221,221,221);
+							@include background(linear-gradient(rgb(74,74,74), rgb(64,64,64)));
+							
+							span {
+								padding: 0;
+							}
+							
+							.tag {
+								height: 32px;
+								padding: 0;
+								@include border-radius(2px);
+								border: none;
+								background: rgb(146,146,146);
+								color: inherit;
+								font-family: inherit;
+								font-size: 26px;
+								margin: 5px -1px 1px 5px;
+								
+								span {
+									line-height: 40px;
+									padding-left: 9px;
+								}
+								
+								a {
+									display: none;
+								}
+							}
+							
+							>div input {
+								width: 128px !important;
+								font-family: FuturaCondensedMedium;
+								font-size: 26px;
+								margin: 0;
+								
+							}
 						}
 					}
 				}
@@ -285,8 +342,8 @@
 			width: 100%;
 			overflow-y: scroll;
 			overflow-x: hidden;
-			@include border-top-right-radius(8px);
-			@include border-top-left-radius(8px);
+			@include border-top-right-radius(14px);
+			@include border-top-left-radius(14px);
 			border-top: none;
 			
 			.song-wrapper {
@@ -375,12 +432,6 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'], html[
 	.modal#music-admin {
 		bottom: 251px;
 		
-		.header {
-			.reload-content {
-/* 				top: -3px; */
-			}
-		}
-		
 		.content {
 			
 			.song-wrapper {
@@ -389,6 +440,45 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'], html[
 					
 					&:hover {
 						background-position: 260px;
+					}
+				}
+			}
+			
+			.song-state {
+				.toggle-switch {
+					.toggle-state {
+						&.on {
+							span {
+								top: 0 !important;
+							}
+						}
+						&.off {
+							span {
+								top: 2px !important;
+							}
+						}
+					}
+				}
+				
+				.state {
+					top: 12px !important;
+				}
+			}
+				
+			.song-form {
+				
+				.source-tags {
+					
+					.tagsinput {
+						top: 8px !important;
+						width: 270px !important;
+						
+						.tag {
+							
+							span {
+								line-height: 34px !important;
+							}
+						}
 					}
 				}
 			}

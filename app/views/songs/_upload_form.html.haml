@@ -1,0 +1,117 @@
+.main-content.song-view
+	
+	.header
+		.left
+			%span.go-back go back
+		.right
+			%span editing song
+	
+	.content
+
+		.music-edit-song
+		
+			- @artist = current_artist
+			
+			- if !Song.exists?(params[:id])
+				- @song = Song.new({song_title: params[:song_title], song_id: params[:song_id], duration: params[:duration]})
+				- source_abbr = params[:upload_source] == 'youtube' ? 'yt' : 'sc'
+				- duration = to_minutes(params[:duration].to_f)
+				- source_tags = params[:source_tags].nil? ? [] : params[:source_tags]
+				- upload_source = params[:upload_source]
+				- song_private = params[:song_private]
+				- song_id = params[:song_id]
+				- song_url = params[:song_url]
+				- song_title = params[:song_title]
+				- song_image = params[:song_image]
+			- else
+				- @song = Song.find(params[:id])
+				- source_abbr = @song.upload_source == 'youtube' ? 'yt' : 'sc'
+				- duration = @song.duration
+				- source_tags = @song.source_tags.nil? ? [] : @song.source_tags
+				- upload_source = @song.upload_source
+				- song_private = @song.is_private
+				- song_id = @song.song_id
+				- song_url = @song.song_url
+				- song_title = @song.song_title
+				- song_image = @song.song_image
+				
+			- state = @song.active ? 'ACTIVE' : 'INACTIVE'
+			- on_state_class = @song.active ? 'toggle-select' : ''
+			- off_state_class = @song.active ? '' : 'toggle-select'
+			
+			.song-basic
+				.song-image{style: "background: url(#{song_image}) center no-repeat"}
+					.brand-logo{class: 'source-' + source_abbr}
+				.song-information
+					%span.song-title= song_title
+					%span.duration= duration
+					
+			- if song_private == true
+				.private
+					We can't stream private songs! Would you like to make this song public on #{upload_source}?
+					= link_to "Make Public!", make_public_path(song_id: song_id, upload_source: upload_source, artist_id: @artist.id), remote: true, class: 'make-public', onclick: "$(this).siblings('.spinner').show()"
+					.spinner
+
+			.song-form
+				
+				= form_for(@song, remote: true) do |f|
+				
+					.song-state
+						
+						.toggle-switch
+							.toggle-state.on{class: on_state_class}
+								%span on
+							.toggle-state.off{class: off_state_class}
+								%span off
+							= f.hidden_field(:active, value: @song.active, class: 'active-check')
+							
+						%span.state{class: state.downcase}= state
+						
+					.source-tags= f.text_field :source_tags, value: source_tags.join(', ')
+					/= link_to 'Refresh tags', get_source_tags_path(song_id: song_id, artist_id: current_artist.id, source: upload_source), remote: true
+					
+					= f.hidden_field :artist_id, value: @artist.id
+					= f.hidden_field :song_id, value: song_id
+					= f.hidden_field :upload_source, value: upload_source
+					= f.hidden_field :song_url, value: song_url
+					= f.hidden_field :duration, value: duration
+					= f.hidden_field :song_title, value: song_title
+					= f.hidden_field :song_image, value: song_image
+		
+:javascript
+
+	$('.go-back').click(function() {
+		$('.modal#music-admin .main-content').show();
+		$('.modal#music-admin .main-content.song-view').remove();
+	});
+	
+	$('.song-state .toggle-switch').click(function() {
+		var state = $(this).children('.active-check').val();
+		var newState = (state === 'false') ? 'true' : 'false';
+		console.log(state);
+		$(this).children('.toggle-state').toggleClass('toggle-select');
+		$(this).children('.active-check').val(newState);
+		console.log($(this).children('.active-check').val());
+
+		var stateName = (newState === 'true') ? 'ACTIVE' : 'INACTIVE';
+		var stateSpan = $(this).closest('.song-state').find('.state');
+		stateSpan.toggleClass('active inactive');
+		stateSpan.text(stateName);
+		
+		$(this).closest('form').submit();
+	});
+	
+	$('.song-form .source-tags input').tagsInput({
+		'removeWithBackspace': true,
+		'defaultText': 'add more tags...',
+		'height': '152px',
+		'width': '282px',
+		'onAddTag': function() {
+			console.log($(this).closest('form'));
+			$(this).closest('form').submit();
+		},
+		'onRemoveTag': function() {
+			console.log($(this).closest('form'));
+			$(this).closest('form').submit();
+		}
+	});

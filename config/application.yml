@@ -38,7 +38,7 @@ INVITE_LIMIT: 3
 
 development:
 #   HOST_ADDR: 'http://localhost:3000'
-  HOST_ADDR: 'http://33a82420.ngrok.com'
+  HOST_ADDR: 'http://590c6369.ngrok.com'
   
 #   Misc Vars
   SMTP_PORT: 587

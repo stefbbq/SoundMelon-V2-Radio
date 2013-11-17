@@ -49,11 +49,11 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/unlink_media_account', to: 'artists#unlink_media_account'
 
 #Song routes
-	match '/new_song', to: 'songs#new'
-	match '/edit_song', to: 'songs#edit'
 	match '/make_public', to: 'songs#make_public'
 	match '/request_playlist', to: 'songs#request_playlist'
 	match '/get_source_tags', to: 'songs#get_source_tags'
+	match '/new_song', to: 'songs#new'
+	match '/edit_song', to: 'songs#edit'
 
 	
 #Invite routes

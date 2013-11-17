@@ -42,15 +42,14 @@
 	}
 
 	function showArtistInfo(song) {
-		artistInfo = $('#artist-info');
-		artistAttrs = song['artist_attrs']
-		artistInfo.empty();
-		for(var key in artistAttrs) {
-			if(artistAttrs[key] !== null) {
-				artistInfo.append(artistAttrs[key] + '<br>');
-			}
-		}
-		artistInfo.append('<img src="' + song["photo"] + '"></img>')
+		var songTitle = $('#radio-controls .primary .currently-playing span.song-title');
+		var artistName = $('#radio-controls .primary .currently-playing span.artist');
+		var songDuration = $('#radio-controls .seek-scrub .seek-val span.duration');
+		songTitle.text(song['song_title']);
+		artistName.text(song['artist_name']);
+		var duration = song['duration'].split(/^0/);
+		duration = duration[duration.length - 1];
+		songDuration.text(duration);
 	}
 
 	function executePlaylist() {
@@ -73,7 +72,7 @@
 				var firstSong = songs[0];
 				var firstSource = firstSong['upload_source'];
 				currentSong = firstSong;
-				//showArtistInfo(currentSong);
+				showArtistInfo(currentSong);
 				if(firstSource === 'youtube') {
 					$('#soundcloud, .overlay').hide();
 					$('#youtube').show();
@@ -105,7 +104,7 @@
 			var nextSong = songs[0];
 			lastPlayed = currentSong;
 			currentSong = nextSong;
-			//showArtistInfo(currentSong);
+			showArtistInfo(currentSong);
 			
 			console.log('hiding .player');
 			if(nextSong['upload_source'] === 'youtube') {
@@ -200,5 +199,35 @@
 			}
 			scrubInterval = setInterval(seekTracker, scrubDelay);
 		}
+	}
+	
+	function getSongDuration(song) {
+		if(song['upload_source'] === 'youtube') {
+			return ytPlayer.getDuration();
+		}
+		else if(song['upload_source'] === 'soundcloud') {
+			return scWidget.duration/1000;
+		}
+	}
+	
+	function currentSongTime(song) {
+		if(song['upload_source'] === 'youtube') {
+			return ytPlayer.getCurrentTime();
+		}
+		else if(song['upload_source'] === 'soundcloud') {
+			return scWidget.position/1000;
+		}
+	}
+	
+	function secToMinSec(sec) {
+		//Convert seconds to Minutes:Seconds in 00:00 format
+		var sec1 = Math.floor(sec);
+		var mins = Math.floor(sec1 / 60);
+		var secs = sec1 % 60;
+		if(secs < 10) {
+			secs = '0' + secs;
+		}
+		var time = mins + ':' + secs;
+		return time;
 	}
 

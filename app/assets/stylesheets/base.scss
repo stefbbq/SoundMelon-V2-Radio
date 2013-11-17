@@ -3,6 +3,10 @@
 @import "variables";
 @import "controls";
 
+a, a:link, a:visited {
+	text-decoration: none;
+}
+
 //
 //main content
 .wrapper {
@@ -127,10 +131,13 @@ body > .footer {
 		}
 		
 		.header {
-			color: rgba(black, 0.5);
 			
 			> div {
 				display: inline-block;
+			}
+			
+			span {
+				color: rgba(black, 0.5);
 			}
 			
 			.left {

@@ -2,7 +2,7 @@
 	var noAccounts = #{current_artist.youtube_token.nil? && current_artist.soundcloud_token.nil?};
 	console.log(noAccounts);
 	if(noAccounts) {
-		$('.modal#music-add').empty().html('#{j( render template: "users/add_media_account", formats: [:html] )}');
+		$('.modal#music-add').empty().html('#{j( render template: "users/add_media_account", formats: [:html] )}').show();
 	}
 	else {
 		$('.modal#music-admin #artist-media').empty().html('#{j( render template: "artists/show", formats: [:html] )}');

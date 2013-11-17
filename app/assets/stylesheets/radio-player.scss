@@ -69,9 +69,11 @@ $player-width: 564px;
 		
 		.seek-val {
 			color: rgb(204,204,204);
+			width: 78px;
 			font-size: 13px;
 			font-family: 'HelveticaNeue';
-			margin-left: 445px;
+			left: 440px;
+			text-align: right;
 
 			span {
 				display: inline-block;
@@ -387,6 +389,7 @@ $player-width: 564px;
 
 #radio-stations {
 	margin-top: 8px;
+	margin-left: 10px;
 	a {
 		font-size: 18pt;
 		font-family: "FuturaCondensedMedium";

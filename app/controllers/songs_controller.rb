@@ -2,29 +2,37 @@ class SongsController < ApplicationController
 	respond_to :js, :json, :html, :xml
 	include ApplicationHelper
 
-	def new
-	end
-
+# 	def new
+# 	end
+# 
 	def create
 		params[:song][:source_tags] = params[:song][:source_tags].split(',')
-		params[:song][:sm_tags] = params[:song][:sm_tags].split(',')
+# 		params[:song][:sm_tags] = params[:song][:sm_tags].split(',')
 		@items = params
-		@song = Song.create(params[:song].except(:artist_id))
-		if @song.save
-			@song.update_column(:artist_id, params[:song][:artist_id])
-			flash[:upload_created] = true
+		if !Song.exists?(song_id: params[:song][:song_id])
+			@song = Song.create(params[:song].except(:artist_id))
+			if @song.save
+				@song.update_column(:artist_id, params[:song][:artist_id])
+				flash[:upload_created] = true
+			end
+		else
+			@song = Song.find_by_song_id(params[:song][:song_id])
+			@song.update_attributes(params[:song].except(:artist_id))
 		end
 	end
-
-	def edit
-	end
+# 
+# 	def edit
+# 	end
 
 	def update
-		@song = Song.find(params[:id])
 		params[:song][:source_tags] = params[:song][:source_tags].split(',')
-		params[:song][:sm_tags] = params[:song][:sm_tags].split(',')
-		@song.update_attributes(params[:song])
-		flash[:upload_updated] = true
+# 		params[:song][:sm_tags] = params[:song][:sm_tags].split(',')
+		@song = Song.find(params[:id])
+		@song.update_attributes(params[:song].except(:artist_id))
+# 		flash[:upload_updated] = true
+	end
+	
+	def edit
 	end
 
 	def make_public
@@ -58,8 +66,8 @@ class SongsController < ApplicationController
 		@active_ids = []
 		@active_songs.each do |song|
 			artist = Artist.find_by_id(song.artist_id)
-			all_tags = song.sm_tags | song.source_tags
-			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, artist_attrs: {artist_name: artist.artist_name, genre_tags: artist.genre_tags, website: artist.website, biography: artist.biography}, photo: artist.artist_photo.url(:thumb)}
+			all_tags = song.source_tags
+			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: artist.artist_photo.url(:thumb)}
 		end
 
 		respond_to do |format|

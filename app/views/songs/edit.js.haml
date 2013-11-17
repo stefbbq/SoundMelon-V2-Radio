@@ -1,4 +1,4 @@
 :plain
 	console.log('#{params}');
 	$('.modal#music-admin .main-content').hide();
-	$('.modal#music-admin .container').append('#{j( render template: "songs/edit", locals: params, formats: [:html] )}');
+	$('.modal#music-admin .container').append('#{j( render "songs/upload_form", locals: params )}');

@@ -1,52 +1,9 @@
 :plain
-	console.log('##{@song.song_id}');
-	songDivId = '##{@song.song_id}';
-	var newUpload = '#{flash[:upload_created].to_s}';
-	if(newUpload === 'true') {
-		$('#flash-board').hide().empty().html('Song Activated!').fadeIn().fadeOut();
-	}
-	console.log(newUpload);
-	$(songDivId).append('<div class="edit-song"></div>');
-	$(songDivId + ' .edit-song').html('#{escape_javascript( render template: "songs/edit" , locals: {song_id: @song.song_id, upload_source: @song.upload_source, song_url: @song.song_url, song_private: @song.is_private} )}').toggle();
-	$(songDivId + ' .new-song').remove();
-
-	var artistSong = $(songDivId);
-	var songForm = artistSong.find('.song-form form');
-	var activeToggle = artistSong.find('.ios-switch');
-	var smTags =  artistSong.find('.sm-tags input');
-	var sourceTags = artistSong.find('.source-tags input');
-
-	activeToggle.click(function() {
-		var state = $(this).prop('checked') ? 'active' : 'inactive';
-		artistSong.find('.state').html(state);
-		songForm.submit();
-	});
-	smTags.tagsInput({
-		'removeWithBackspace': false,
-		'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
-		'height': 'auto',
-		'width': 'auto',
-		'onAddTag': function() {
-			console.log(smTags.parent('form'));
-			songForm.submit();
-		},
-		'onRemoveTag': function() {
-			console.log(smTags.parent('form'));
-			songForm.submit();
-		}
-	});
-
-	sourceTags.tagsInput({
-		'removeWithBackspace': false,
-		'defaultText': '',
-		'interactive': false,
-		'height': 'auto',
-		'width': 'auto',
-		'onAddTag': function() {
-			alert("You can not add source tags!");
-		},
-		'onRemoveTag': function() {
-			console.log(sourceTags.parent('form'));
-			songForm.submit();
-		}
-	});
+	console.log('#{params}');
+	$('##{@song.song_id} .song-content .song-link').remove();
+	$('##{@song.song_id} .song-content').append('#{j( link_to "", edit_song_path(@song), remote: true, class: "song-link edit" )}');
+	$('##{@song.song_id} .song-content .song-link').append('<span class="div-link"></span>');
+	
+	var state = '#{@song.active ? "active" : "inactive"}'
+	$('#available-uploads ##{@song.song_id} .song-information span.state').removeClass('active inactive').addClass(state);
+	$('#available-uploads ##{@song.song_id} .song-information span.state').text(state);
