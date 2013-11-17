@@ -134,12 +134,12 @@ youtube_iframe_api.js: youtube_iframe_api-730da00968cb3fded517fd1dbeec746a.js
 youtube_iframe_api/index.js: youtube_iframe_api-730da00968cb3fded517fd1dbeec746a.js
 active_admin.css: active_admin-5f3e0c5f8f37e1cef280603ea326333e.css
 active_admin/index.css: active_admin-5f3e0c5f8f37e1cef280603ea326333e.css
-application.css: application-a97e37e87e15780e42c3966c2b323662.css
-application/index.css: application-a97e37e87e15780e42c3966c2b323662.css
+application.css: application-e375ac01ab88cb1d7a6abdc4eed985b3.css
+application/index.css: application-e375ac01ab88cb1d7a6abdc4eed985b3.css
 artists.css: artists-a5cc172650aa1f06540f7f5da479d5f5.css
 artists/index.css: artists-a5cc172650aa1f06540f7f5da479d5f5.css
-base.css: base-64cc603a02fcb175c6867db182878345.css
-base/index.css: base-64cc603a02fcb175c6867db182878345.css
+base.css: base-2c8c3c6a7d173f057cc8b55e10b23465.css
+base/index.css: base-2c8c3c6a7d173f057cc8b55e10b23465.css
 controls.css: controls-1b13569e9620782f423d4cd3ce931750.css
 controls/index.css: controls-1b13569e9620782f423d4cd3ce931750.css
 core.css: core-bacf4863cfd0c3b69c9a3cd729fa2454.css

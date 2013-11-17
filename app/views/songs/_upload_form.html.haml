@@ -13,7 +13,7 @@
 			- @artist = current_artist
 			
 			- if !Song.exists?(params[:id])
-				- @song = Song.new({song_title: params[:song_title], song_id: params[:song_id], duration: params[:duration]})
+				- @song = Song.new({song_title: params[:song_title], song_id: params[:song_id])
 				- source_abbr = params[:upload_source] == 'youtube' ? 'yt' : 'sc'
 				- duration = to_minutes(params[:duration].to_f)
 				- source_tags = params[:source_tags].nil? ? [] : params[:source_tags]
