@@ -1,34 +1,68 @@
-#artist-profile-form
-	.spinner
+.container
 
-	- @artist = current_artist
-	= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
-		= f.hidden_field :id, value: @artist.id
+	.sidebar
+		.wrapper
+			.chain
+			.anchor
+	
+	.main-content
+	
+		.header
+			.right
+				%span profile
+			
+		
+		.content
+			#artist-profile-form
+				.spinner
 
-		#uploaded-photo
-			%a.hover-link= image_tag @artist.artist_photo.url(:thumb)
-			.drop-pic
-				Click to Select or Drag Here
-				= f.file_field :artist_photo, id: 'choose-pic'
+				- @artist = current_artist
+								
+				.name.form-block.single-input
+				
+					= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+						= f.hidden_field :id, value: @artist.id
 
-	= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
-		- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
-		= f.hidden_field :id, value: @artist.id
+					
+						%span.label Artist Name
+						= f.text_field :artist_name, class: 'text-box'
+				
+				.photo.form-block
+					= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+						= f.hidden_field :id, value: @artist.id
 
-		= f.label :artist_name
-		= f.text_field :artist_name
+					
+						%span.label Your Artist Photo
+						.sub-label This is how people will see you when they click on your artist name in the player.
+						
+						.photo-edit
+							.content
+							
+								.upload-wrapper
+									.preview{style: "background: url(#{@artist.artist_photo.url(:thumb)}) center no-repeat; background-size: 100%;"}
+									= f.file_field :artist_photo, class: 'file-select overlay'
+									
+								.submit-wrapper
+									.underlay
+										%span upload image
+									= f.submit "upload image", class: 'overlay'
+						
+				.website.form-block.single-input
 
-		= f.label :website
-		= f.text_field :website
+					= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+						- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
+						= f.hidden_field :id, value: @artist.id
 
-		= f.label :genre_tags, 'Your Genre Tags'
-		= f.text_area :genre_tags, value: @genre_tags.join(','), id: 'artist-genre-tags'
+						%span.label Website
+						= f.text_field :website, class: 'text-box'
+						
+				.artist-tags.form-block
+					= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+						- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
+						= f.hidden_field :id, value: @artist.id
 
-		= f.label :biography
-		= f.text_area :biography
-
-	#unlink-media
-		= render 'artists/unlink_accounts'
+						.sub-label Include tags so fans can discover you, eg: "metal", "indie", "toronto", "experimental"
+						.tag-form= f.text_area :genre_tags, value: @genre_tags.join(','), id: 'artist-genre-tags'
 
 :javascript
 
@@ -40,43 +74,22 @@
 		$('#artist-profile-form .spinner').hide();
 	});
 
-	$('#uploaded-photo a').click(function(e) {
-		$('#choose-pic').click();
-	});
-
-	$('#choose-pic').live('change', function() {
-		readURL(this);
-		$(this).closest('form').submit();
-	});
-
 	$('#artist-profile-form form').children('input[type=text], textarea').typing({
 		stop: function(event, $elem) {
-			$('#artist-profile-form form').submit();
+			$elem.closest('form').submit();
 		},
 		delay: 400
 	});
 
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$('#uploaded-photo img').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
 	$('#artist-genre-tags').tagsInput({
-		'removeWithBackspace': false,
-		'defaultText': 'Add genres Eg. "ambient, fusion rap, rock \'n roll"',
-		'height': 'auto',
-		'width': 'auto',
+		'defaultText': 'add more tags...',
+		'height': '150px',
+		'width': '284px',
 		'onAddTag': function() {
 			console.log(this.id);
-			$(this).parent('form').submit();
+			$(this).closest('form').submit();
 		},
 		'onRemoveTag': function() {
-			console.log($(this).parent('form'));
-			$(this).parent('form').submit();
+			$(this).closest('form').submit();
 		}
 	});

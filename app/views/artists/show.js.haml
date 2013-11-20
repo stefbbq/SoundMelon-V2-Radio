@@ -6,6 +6,7 @@
 	}
 	else {
 		$('.modal#music-admin #artist-media').empty().html('#{j( render template: "artists/show", formats: [:html] )}');
+		$('.modal#music-admin #scrollbar1').tinyscrollbar();
 	}
 	console.log('reloading...');
 	

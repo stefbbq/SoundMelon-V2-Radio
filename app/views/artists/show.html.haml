@@ -1,6 +1,9 @@
 .container
 
 	.sidebar
+		.wrapper
+			.chain
+			.anchor
 	
 	.main-content
 	
@@ -36,8 +39,16 @@
 			- if @all_songs.size > 0
 				- @all_songs = @all_songs.sort_by {|pair| pair[0]}
 				- @all_songs = @all_songs.reverse
-				#available-uploads
-					= render 'artists/available_uploads', all_songs: @all_songs
+				
+			#scrollbar1
+				.scrollbar
+					.track
+						.thumb
+							.end
+							
+				.viewport
+					.overview#available-uploads
+						= render 'artists/available_uploads', all_songs: @all_songs
 					
 		.footer
 			= render "artists/music_admin_footer"

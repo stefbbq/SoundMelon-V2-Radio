@@ -1,0 +1,52 @@
+@import "compass/css3";
+
+.modal#music-add {
+	//Styles for Add Music Accounts
+	left: -80px;
+	bottom: 102px;
+	height: 90px;
+	
+	.main-content {
+		left: 190px;
+		top: -13px;
+	}
+	
+	.sidebar {
+		width:111px;
+		height: 123px;
+		background: url('/assets/music-add.png');
+		top: 39px;
+		left: 107px;
+	}
+	
+	.header {
+		height: 29px;
+		text-align: center;
+	}
+	
+	.content {
+		height: 61px;
+		@include border-radius(8px);
+		
+		.links {
+			position: absolute;
+			top: 53px;
+			left: 41px;
+			
+			> div {
+				display: inline-block;
+				
+				a {
+					text-decoration: none;
+				}
+			}
+			
+			.separator {
+				font-size: 16px;
+				margin: 0 4px;
+			}
+			
+		}
+	}
+//End of styles for Add Music Accouts
+}

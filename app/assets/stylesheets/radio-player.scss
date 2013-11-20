@@ -26,6 +26,7 @@ $player-width: 564px;
 	
 	.player-buttons {
 		height: 82px;
+		position: relative;
 	}
 	
 	.external-button {
@@ -50,7 +51,7 @@ $player-width: 564px;
 			height: 100%;
 			width: 100%;
 			position: absolute;
-			left: 27px;
+			left: 20px;
 			top: 12px;
 
 			> div {
@@ -60,7 +61,7 @@ $player-width: 564px;
 		}
 		
 		.slider {
-			width: 436px;
+			width: 450px;
 			height: 8px;
 			display: inline-block;
 			margin: 0 !important;
@@ -72,7 +73,7 @@ $player-width: 564px;
 			width: 78px;
 			font-size: 13px;
 			font-family: 'HelveticaNeue';
-			left: 440px;
+			left: 445px;
 			text-align: right;
 
 			span {
@@ -85,14 +86,16 @@ $player-width: 564px;
 	.left, .primary, .right {
 		display: inline-block;
 		font-family: 'FuturaHeavy';
+		position: absolute;
 	}
 	
 	.left {
-		width: 25%;
 		height: 100%;
+		top: 3px;
+		
 			.content {
 /* 				overflow: hidden; */
-				margin: 40px 0 0 27px;
+				margin: 40px 0 0 19px;
 				
 				> div {
 					display: inline-block;
@@ -289,8 +292,8 @@ $player-width: 564px;
 	
 	.primary {
 		width: 50%;
-		position: relative;
 		top: -30px;
+		left: 141px;
 
 		.control-panel {
 			margin-left: 62px;
@@ -342,14 +345,12 @@ $player-width: 564px;
 		
 		.current-content {
 			width: 100%;
-			margin-top: 8px;
 			text-align: center;
 			color: rgb(204,204,204);
 			@include text-shadow(1px 1px 3px rgba(1,1,1,0.35));
 						
 			span {
 				display: block;
-				margin-top: 3px;
 			}
 			
 			.song-title {
@@ -364,11 +365,11 @@ $player-width: 564px;
 	}
 	
 	.right {
-		width: 24%;
+		left: 430px;
 		height: 100%;
 		.content {
 			overflow: hidden;
-			margin: 17px 20px 18px 21px;
+			margin: 22px 20px 18px 21px;
 				.external-button {
 					display: block;
 					margin-bottom: 5px;

@@ -39,6 +39,7 @@
 			- @current_song.first.save
 
 		.song-wrapper{id: song_id}
+			
 			.song-content
 			
 				.song-basic
@@ -57,3 +58,5 @@
 					- id = Song.find_by_song_id(song_id).id
 					= link_to edit_song_path({id: id, song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags, song_title: song.title, song_image: img_src, duration: duration}), remote: true, class: 'song-link edit' do
 						%span.div-link
+						
+			.border-bottom

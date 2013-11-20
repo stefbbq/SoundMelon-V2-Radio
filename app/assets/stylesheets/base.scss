@@ -64,26 +64,30 @@ body > .footer {
 	.right {
 		float: right;
 		position: relative;
-		width: 570px;
-		top: 20px;
-		right: 18px;
+		width: 562px;
+		top: 17px;
+		right: 23px;
 		color: rgba(white, .8);
 		
-		span {
-			padding: 0 7px;
-			
-			a {
-				text-decoration: none;
-				color: rgb(244,72,72);
-			}
-		}
-		
-		.small {
+		small {
 			float: right;
-		}
-		.menu-artist {			
-			a {
-				color: rgb(58,235,90);
+			
+			.menu {
+				span {
+					padding: 0 7px;
+					font-size: 14px;
+					
+					a {
+						text-decoration: none;
+						color: rgb(244,72,72);
+					}
+				}
+				
+				.menu-artist {			
+					a {
+						color: rgb(58,235,90);
+					}
+				}
 			}
 		}
 	}
@@ -128,6 +132,22 @@ body > .footer {
 		.sidebar, .main-content {
 			display: inline-block;
 			position: absolute;
+		}
+		
+		.sidebar {
+			.wrapper {
+				position: relative;
+				
+				.chain, .anchor {
+					position: absolute;
+				}
+				
+				.anchor {
+					height: 9px;
+					width: 18px;
+					background: url('/assets/callout-dot.png');
+				}
+			}
 		}
 		
 		.main-content {

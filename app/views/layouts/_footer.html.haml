@@ -2,38 +2,44 @@
 	= image_tag('core/footer_logo.png')
 .right
 	%small		
-		- if signed_in?
-			- if current_user.terms
-				= render 'users/music_footer'
-			
-			%span= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
-			
-			%span
-				%a.hover-link#edit-page Settings
-			
-			%span= link_to "Invite Friends", user_invites_path, remote: true, id: 'invite-page-link'
-			
-			%span= link_to("Logout", signout_path)
-			
-			.modal-boxes
+		.menu
+			- if signed_in?
+				- if current_user.terms
+					= render 'users/music_footer'
 				
-				.modal#music-add
+				%span= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
 				
-				.modal#music-admin
-					.spinner
-					#artist-media
-					#artist-profile
+				%span
+					%a.hover-link#edit-page Settings
+				
+				%span= link_to "Invite Friends", user_invites_path, remote: true, id: 'invite-page-link'
+				
+				%span= link_to("Logout", signout_path)
+				
+			- else
+				Find your tune.
+				%a.hover-link#learn-more Learn more
+			
+		.modal-boxes
+			
+			.modal#music-add
+			
+			.modal#music-admin
+				.spinner
+				#artist-media
+				
+			.modal#artist-profile
+				.spinner
+				#profile-section
 
-				.modal#user-edit
-					.spinner
-					#user-settings
-						= render "users/settings"
-						
-				.modal#user-invites
+			.modal#user-edit
+				.spinner
+				#user-settings
+					= render "users/settings"
+					
+			.modal#user-invites
 
-		- else
-			Find your tune.
-			%a.hover-link#learn-more Learn more
+
 
 	.modal#more-info
 		Phasellus luctus malesuada velit, eu pellentesque eros imperdiet a. Donec in sagittis dolor. Proin pretium magna ac lectus pretium, non viverra dolor sagittis. Ut sit amet mauris a massa lacinia porta. Cras tristique urna ipsum. Aenean vehicula condimentum laoreet.
@@ -69,20 +75,23 @@
 		$('#more-info').toggle();
 	});
 
-	$('.add-content').click(function() {
-		var currentView;
-		if(this.id === 'artist-show') {
-			currentView = 'available-uploads';
-		}
-		else if(this.id === 'artist-profile-edit') {
-			currentView = 'artist-profile-form';
-		}
-		if(smartModal('music-admin', currentView)) {
-			console.log(currentView);
+	$('#artist-show').click(function() {
+		if(smartModal('music-admin', 'available-uploads')) {
+			console.log('available-uploads');
 			return false;
 		}
 		else {
 			$('#music-admin .spinner').show();
+		}
+	});
+	
+	$('#artist-profile-edit').click(function() {
+		if(smartModal('artist-profile', 'artist-profile-form')) {
+			console.log('not loading');
+			return false;
+		}
+		else {
+			console.log('loading...');
 		}
 	});
 
