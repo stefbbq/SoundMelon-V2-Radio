@@ -1,3 +1,9 @@
-- if !current_user.invites.nil?
-	- current_user.invites.each do |invite|
-		.user-invite= invite + ' ' + Invite.find_by_email(invite).status
+- invites = current_user.invites
+- if !invites.nil?
+	- invites.each do |invite|
+		- status = Invite.find_by_email(invite).status
+		.text-button{class: status + '-invite'}
+			%span.text-box= invite
+
+			.button
+				%span= status

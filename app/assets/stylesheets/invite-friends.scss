@@ -1,0 +1,152 @@
+@import "compass/css3";
+$invite-width: 302px;
+$invite-height: 192px;
+
+.modal#user-invites {
+	width: $invite-width;
+	height: $invite-height;
+	right: 17px;
+	bottom: 106px;
+	
+	.sidebar {
+		
+		.wrapper {
+			
+			.chain {
+				background: url('/assets/invite-friends.png');
+				height: 104px;
+				width: 261px;
+				bottom: -255px;
+				left: -50px;
+			}
+			
+			.anchor {
+				top: 256px;
+				left: 199px;
+			}
+			
+		}
+	}
+	
+	.main-content {
+			
+		.header {
+			.right {
+				top: -30px;
+				right: 15px;
+			}
+		}
+		
+		.content {
+			height: $invite-height;
+			width: $invite-width;
+			@include border-radius(8px);
+			text-transform: none;
+			
+			#invites-page {
+				
+				.top {
+					height: 40px;
+					width: 100%;
+					position: relative;
+					top: 5px;
+					
+					.label {
+						position: absolute;
+						top: 8px;
+						left: 13px;
+					}
+				}
+				
+				.bottom, .middle {
+					position: relative;
+					
+					.text-button {
+						display: block;
+						height: 37px;
+						width: 284px;
+						line-height: 30px;
+						
+						&.submit-invite {
+							@include background(linear-gradient(rgb(226,226,226), rgb(196,196,196)));
+							position: absolute;
+							
+							.text-box {
+								height: 35px;
+								width: 219px;
+							}
+							
+							.button {
+								.overlay {
+									cursor: pointer;
+									position: absolute;
+									height: 37px;
+									width: 60px;
+									top: -25px;
+									left: -2px;
+									opacity: 0;
+									z-index: 2;
+								}
+							}
+						}
+						
+						&.invited-invite, &.joined-invite {
+							margin: 0 0 6px 7px;
+							
+							.text-box {
+								height: 37px;
+								width: 199px;
+								@include background(linear-gradient(rgb(29,29,29), rgb(26,26,26)));
+								line-height: 36px;
+								position: relative;
+							}
+						}
+						
+						&.invited-invite {
+							@include background(linear-gradient(rgb(90,90,90), rgb(78,78,78)));
+							border-color: rgb(90,90,90);
+							
+							.text-box {
+								color: rgba(white, 0.3);
+							}
+						}
+						
+						&.joined-invite {
+							@include background(linear-gradient(rgb(37,97,48), rgb(16,92,25)));
+							border-color: rgb(37,97,48);
+							
+							.text-box {
+								color: rgba(57,229,86, 0.3);
+							}
+						}
+						
+						.button {
+							span {
+								position: absolute;
+								top: -20px;
+								left: 8px;
+							}
+						}
+					}
+				}
+				
+				.middle {
+					width: 100%;
+					height: 102px;
+					top: 10px;
+				}
+				
+				.bottom {
+					width: 100%;
+					height: 45px;
+					
+					.text-button.submit-invite {
+						bottom: 2px;
+						left: 7px;
+					}
+				}
+			}
+		}
+	}
+	
+}

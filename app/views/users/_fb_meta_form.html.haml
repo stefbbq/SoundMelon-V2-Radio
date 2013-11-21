@@ -2,24 +2,4 @@
 - @fb_meta_list = @user.fb_meta.nil? ? [] : @user.fb_meta.keys
 = form_for(@user, remote: true, url: update_fb_meta_path) do |f|
 	= f.hidden_field :id, value: @user.id
-
-	= f.label :fb_meta, "Your Facebook Likes", style: 'display: none;'
-	Caution!! You can only remove these tags since they are computed from your Facebook likes. Only remove them if you're sure.
-	= f.text_area :fb_meta, value: @fb_meta_list.join(', '), id: "fb-meta-tags"
-
-:javascript
-	$('#fb-meta-tags').tagsInput({
-		'removeWithBackspace': false,
-		'defaultText': '',
-		'interactive': false,
-		'height': 'auto',
-		'width': 'auto',
-		'onAddTag': function() {
-			console.log(this.id)
-			alert("You can not add facebook tags!");
-		},
-		'onRemoveTag': function() {
-			console.log($(this).parent('form'));
-			$(this).parent('form').submit();
-		}
-	});
+	= f.text_area :fb_meta, value: @fb_meta_list.join(', '), class: "fb-meta-tags"

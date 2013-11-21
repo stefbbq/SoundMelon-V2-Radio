@@ -1,14 +1,14 @@
 - @invite = Invite.new
 = form_for(@invite, remote: true, url: send_invite_url) do |f|
 	= f.hidden_field :user_id, value: current_user.id
-	= f.hidden_field :status, value: 'pending'
+	= f.hidden_field :status, value: 'invited'
 
-	= f.label :email
-	= f.text_field :email, class: 'email-check'
-	.tick-mark.check-mark
-	.tick-mark.x-mark
-
-	= f.submit "Send!", onclick: 'showFormSpin(this)'
+	.text-button.submit-invite
+		= f.text_field :email, class: 'email-check text-box'
+		
+		.button
+			= f.submit "send", class: 'overlay'
+			%span send
 
 	.spinner
 

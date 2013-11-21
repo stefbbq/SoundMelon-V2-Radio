@@ -21,11 +21,12 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/reload_fb_meta', to: 'users#reload_fb_meta'
 	match '/user_meta', to: 'users#edit_meta'
 	match '/update_fb_meta', to: 'users#update_fb_meta'
-	match '/update_user_meta', to: 'users#update_user_meta'
+# 	match '/update_user_meta', to: 'users#update_user_meta'
 	match '/user_account', to: 'users#edit_account'
 	match '/update_account', to: 'users#update_account'
 	match '/add_media_account', to: 'users#add_media_account'
 	match '/user_invites', to: 'users#new_invites'
+	match '/user_remove', to: 'users#destroy'
 
 #Admin routes
 #	post 'send_mass_email' => 'users#send_mass_email'

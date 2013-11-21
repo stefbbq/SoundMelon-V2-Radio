@@ -1,0 +1,57 @@
+@import "compass/css3";
+
+.custom-scroller {
+	.viewport {
+		overflow: hidden;
+		position: relative;
+	}
+	.overview {
+		list-style: none;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.thumb {
+		.end {
+			background-color: rgb(102,102,102);
+		}
+		background-color: rgb(102,102,102);
+		@include border-radius(3px);
+	}
+	.scrollbar {
+		position: relative;
+		float: right;
+		width: 6px;
+	}
+	.track {
+		background-color: rgba(black, 0);
+		top: 6px;
+		width: 13px;
+		position: relative;
+		padding: 0 1px;
+	}
+	.thumb {
+		width: 5px;
+		cursor: pointer;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		left: -5px;
+		.end {
+			overflow: hidden;
+			height: 5px;
+			width: 13px;
+		}
+	}
+	.disable {
+		display: none;
+	}
+
+	.noSelect {
+	user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	}
+}

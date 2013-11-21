@@ -16,7 +16,7 @@ ActiveAdmin.register Invite do
 			@formatted = !email.match(email_regex).nil?
 			@in_db = User.exists?(email: email) || Invite.exists?(email: email)
 			if @formatted && !@in_db
-				@invite = Invite.new(email: email, status: 'pending')
+				@invite = Invite.new(email: email, status: 'invited')
 				@invite.save
 				UserMailer.admin_invite(email, @invite.token).deliver
 			elsif !@formatted

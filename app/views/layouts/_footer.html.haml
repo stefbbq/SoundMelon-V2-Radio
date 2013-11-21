@@ -20,25 +20,26 @@
 				Find your tune.
 				%a.hover-link#learn-more Learn more
 			
-		.modal-boxes
-			
-			.modal#music-add
-			
-			.modal#music-admin
-				.spinner
-				#artist-media
+		- if signed_in?
+			.modal-boxes
 				
-			.modal#artist-profile
-				.spinner
-				#profile-section
-
-			.modal#user-edit
-				.spinner
-				#user-settings
-					= render "users/settings"
+				.modal#music-add
+				
+				.modal#music-admin
+					.spinner
+					#artist-media
 					
-			.modal#user-invites
+				.modal#artist-profile
+					.spinner
+					#profile-section
 
+				.modal#user-edit
+					.spinner
+					#user-settings
+						= render "users/settings"
+						
+				.modal#user-invites
+					#invites-page
 
 
 	.modal#more-info
@@ -63,7 +64,7 @@
 	});
 	
 	$('#invite-page-link').click(function() {
-		if(smartModal('user-invites', 'invites-page')) {
+		if(smartModal('user-invites', 'invites-form')) {
 			return false
 		}
 		else {

@@ -1,0 +1,128 @@
+@import "compass/css3";
+$user-edit-width: 302px;
+$user-edit-height: 268px;
+
+.modal#user-edit {
+	width: $user-edit-width;
+	height: $user-edit-height;
+	right: 17px;
+	bottom: 105px;
+	
+	.sidebar {
+		
+		.wrapper {
+			
+			.chain {
+				background: url('/assets/user-edit.png');
+				height: 104px;
+				width: 159px;
+				top: 225px;
+				left: -50px;
+			}
+			
+			.anchor {
+				top: 331px;
+				left: 98px;
+			}
+
+			
+		}
+	}
+	
+	.main-content {
+		
+		.header {
+			
+			.right {
+				top: -30px;
+				right: 15px;
+			}
+		}
+		
+		.content {
+			width: $user-edit-width;
+			height: $user-edit-height;
+			@include border-radius(8px);
+			
+			.form {
+				text-transform: none;
+				
+				.label {
+					margin-left: 13px;
+				}
+			}
+			
+			.meta-form {
+				.form-header {
+					height: 60px;
+					top: 10px;
+					
+					.label {
+						margin-left: 13px;
+					}
+				}
+				
+				.tags-wrapper {
+					top: 60px;
+					left: 3px;
+					
+					.tagsinput {
+						border: none;
+						background: rgba(black, 0);
+						
+						.tag {
+							height: 18px;
+							font-size: 12px;
+							text-transform: uppercase;
+							
+							span {
+								line-height: 19px;
+								padding-left: 3px;
+							}
+						}
+						
+						> div input {
+							font-size: 12px;
+							background: rgb(146,146,146);
+							margin-left: 5px;
+							@include border-radius(2px);
+							height: 7px;
+						}
+					}
+					
+					.sub-label {
+						margin-top: 18px;
+						
+						a {
+							color: rgba(white, 0.8);
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+			
+			.account-form {
+				top: 160px;
+				height: 103px;
+				
+				.remove-button {
+					border: 2px solid rgb(85,85,85);
+					color: rgb(85,85,85);
+					@include border-radius(3px);
+					height: 27px;
+					width: 128px;
+					text-align: center;
+					line-height: 27px;
+					margin: 7px auto;
+					font-size: 19px;
+					cursor: pointer;
+					
+					a {
+						text-transform: uppercase;
+						color: rgb(85,85,85);
+					}
+				}
+			}
+		}
+	}
+}

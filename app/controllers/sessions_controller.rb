@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
 		@invite_token = params[:state]
 		if @invite_token.size > 0 && Invite.exists?(token: @invite_token)
 			@invite = Invite.find_by_token(@invite_token)
-			if @invite.status != 'accepted'
-				@invite.status = 'accepted'
+			if @invite.status != 'joined'
+				@invite.status = 'joined'
 				@invite.save
 			end
 		end

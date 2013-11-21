@@ -1,7 +1,30 @@
-#invites-page
-	- invites_left = ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)
-	Invites Remaining: 
-	%span#invites #{invites_left}
-	- if invites_left > 0
-		#invite-form= render 'users/invite_form'
-	#invite-list= render 'users/invite_list'
+.container
+
+	.sidebar
+		.wrapper
+			.chain
+			.anchor
+	
+	.main-content
+	
+		.header
+			.right
+				%span invite friends
+			
+		
+		.content
+
+			#invites-page
+			
+				.top
+					- invites_left = ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)
+					.label.counter Invites Remaining: #{invites_left}
+					
+				.middle
+					
+					#invite-list= render 'users/invite_list'
+
+										
+				- if invites_left > 0
+					.bottom
+						#invite-form= render 'users/invite_form'

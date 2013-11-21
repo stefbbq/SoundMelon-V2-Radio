@@ -183,6 +183,11 @@ body > .footer {
 	display: none;
 }
 
+.form-block {
+	width: 100%;
+	position: absolute;
+}
+
 .spinner {
 	background-image: url('/assets/spinner.gif');
 	height: 24px;

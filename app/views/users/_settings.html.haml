@@ -1,5 +1,51 @@
-#settings-panel
-	= link_to("Your Likes", user_meta_path, remote: true)
-	%br
-	= link_to("Account", user_account_path, remote: true)
+.container
+
+	.sidebar
+		.wrapper
+			.chain
+			.anchor
+	
+	.main-content
+	
+		.header
+			.right
+				%span settings
+			
+		
+		.content
+			.spinner
+			.settings-panel
+				.meta-form.form
+
+					.form-header.form-block
+						.label Your Likes
+						.sub-label Originally computed from your Facebook likes
+							
+					.tags-wrapper.form-block
+						.render-block= render 'users/fb_meta_form'
+
+						.sub-label= link_to "Reload FB likes (replaces all current likes)", reload_fb_meta_path, remote: true
+						
+				.account-form.form-block.form
+					- @user = current_user
+					.form-header
+						.label Delete Your Account
+						.sub-label Click the button below to permenantly remove your account from SoudnMelon.
+						
+					.remove-button
+						= link_to "remove account", @user, method: :delete, data: {confirm: "Are you sure you want to delete your SoundMelon account?"} 
+					
+:javascript
+	$('#user-edit .render-block .fb-meta-tags').tagsInput({
+		'removeWithBackspace': true,
+		'defaultText': 'Add your own...',
+		'height': '62px',
+		'width': '285px',
+		'onAddTag': function() {
+			$(this).closest('form').submit();
+		},
+		'onRemoveTag': function() {
+			$(this).closest('form').submit();
+		}
+	});
 

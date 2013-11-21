@@ -42,14 +42,19 @@ class UsersController < ApplicationController
 	end
 
 	def update_fb_meta
-		@user = User.find_by_id(params[:user][:id])
+		@user = User.find(params[:user][:id])
 		@current_fb_meta = @user.fb_meta
 		@new_fb_meta = params[:user][:fb_meta].split(',')
+		
 		@removed_fb_meta = @current_fb_meta.keys - @new_fb_meta
 		@new_fb_meta_hash = @current_fb_meta.except(*@removed_fb_meta)
+		
+		@added_fb_meta_lst = @new_fb_meta_hash.keys - @current_fb_meta.keys
+		@added_fb_meta_lst.each do |item|
+			@new_fb_meta_hash = update_count_hash(@new_fb_meta_hash, item)
+		end
 		params[:user][:fb_meta] = @new_fb_meta_hash
-		update_attrs(params)
-		flash[:meta_updated] = true
+		@user.update_attributes(params[:user])
 	end
 
 	def accept_terms
