@@ -1,25 +1,70 @@
-#feedback-form
-	= form_for(@report, url: feedback_send_path, remote: true, :validate => true) do |f|
-		= f.label :email
-		- if signed_in?
-			= current_user.email
-			= f.hidden_field :email, value: current_user.email
-		- else
-			= f.text_field :email, class: 'email-check'
-			.tick-mark.check-mark
-			.tick-mark.x-mark
+.container
 
-		= f.label :title, 'Subject'
-		= f.text_field :title
+	.sidebar
+		.wrapper
+			.chain
+			.anchor
+	
+	.main-content
+	
+		.header
+			.right
+				%span submit feedback
+			
+		
+		.content
 
-		= f.label :content, 'Comments'
-		= f.text_field :content
+			#feedback-form
+				= form_for(@report, url: feedback_send_path, remote: true, :validate => true) do |f|
+				
+					.top
+						.label Select a type:
 
-		= f.submit 'Submit', onclick: 'showFormSpin(this)'
+					.problem-list
+						.problem-button.feedback-buttons.checked
+							= f.radio_button :category, "bug", {checked: true, class: 'feedback-radio'}
+							%span bug
+						
+						.problem-button.feedback-buttons
+							= f.radio_button :category, "suggestion", class: 'feedback-radio'
+							%span suggestion
+							
+						.problem-button.feedback-buttons
+							= f.radio_button :category, "comment", class: 'feedback-radio'
+							%span comment
 
-		.spinner
+					= f.text_area :content, placeholder: 'Add a description', class: 'text-box'
+
+					.bottom
+						.wrapper
+							.cancel.button 
+								%span cancel
+							.submit.button 
+								%span submit
+								.submit-wrapper= f.submit 'Submit', onclick: 'showFormSpin(this)', class: 'overlay'
+						
+
+					.spinner
 
 :javascript
 	$(document).ready(function() {
 		attachEmailCheck($('#feedback-form .email-check'));
+		
+		$('#feedback-form .problem-list .problem-button').click(function() {
+			if(!$(this).hasClass('checked')) {
+				$('#feedback-form .problem-list .problem-button.checked input').removeAttr('checked');
+				$('#feedback-form .problem-list .problem-button').removeClass('checked');
+				
+				$(this).toggleClass('checked');
+				$(this).find('input').attr('checked', 'checked');
+			}
+			else {
+				console.log('staaaaaaahp!');
+			}
+
+		});
+		
+		$('#feedback-form .bottom .cancel.button').click(function() {
+			$('.modal#feedback-board').hide();
+		});
 	});

@@ -1,0 +1,145 @@
+@import "compass/css3";
+$feedback-width: 302px;
+$feedback-height: 303px;
+
+.modal#feedback-board {
+	width: $feedback-width;
+	height: $feedback-height;
+	right: 17px;
+	bottom: 106px;
+	
+	.sidebar {
+		
+		.wrapper {
+			
+			.chain {
+				background: url('/assets/feedback.png');
+				height: 104px;
+				width: 110px;
+				top: 262px;
+				left: -50px;
+			}
+			
+			.anchor {
+				top: 368px;
+				left: 36px;
+			}
+			
+		}
+	}
+	
+	.main-content {
+			
+		.header {
+			.right {
+				top: -30px;
+				right: 15px;
+			}
+		}
+		
+		.content {
+			height: $feedback-height;
+			width: $feedback-width;
+			@include border-radius(8px);
+			text-transform: none;
+			
+			.top {
+					height: 40px;
+					width: 100%;
+					position: relative;
+					top: 5px;
+				
+					.label {
+						position: absolute;
+						top: 8px;
+						left: 13px;
+					}
+			}
+			
+			.feedback-buttons {
+				
+			}
+			
+			.problem-list {
+				margin: 10px 0 0 7px;
+				
+				.problem-button {
+					display: inline-block;
+					height: 41px;
+					width: auto;
+					text-align: center;
+					@include background(linear-gradient(rgb(68,68,68), rgb(59,59,59)));
+					text-transform: uppercase;
+					padding: 0 9px;
+					margin: 0 1px;
+					@include border-radius(4px);
+					line-height: 45px;
+					color: rgba(black, 0.8);
+					cursor: pointer;
+					
+					&.checked {
+						@include background(linear-gradient(rgba(white, 0.6), rgba(white, 0.5)));
+						color: rgba(white, 0.8);
+					}
+					
+					.feedback-radio {
+						display: none;
+					}
+				}
+			}
+			
+			.text-box {
+				height: 120px;
+				width: 280px;
+				margin: 10px 0 0 7px;
+			}
+			
+			.bottom {
+				border-top: 2px dashed rgb(64,64,64);
+				margin-top: 3px;
+				
+				.wrapper {
+					left: 10px;
+					top: 252px;
+					
+					.button {
+						display: inline-block;
+						height: 41px;
+						width: 139px;
+						@include border-radius(4px);
+						text-transform: uppercase;
+						text-align: center;
+						line-height: 44px;
+						
+						&.cancel {
+							cursor: pointer;
+							color: white;
+							@include background(linear-gradient(rgb(70,70,70), rgb(42,42,42)));
+						}
+						
+						&.submit {
+							@include background(linear-gradient(rgb(226,226,226), rgb(196,196,196)));
+							color: rgba(black, 0.8);
+							
+							.submit-wrapper {
+								position: relative;
+								
+								.overlay {
+									position: absolute;
+									cursor: pointer;
+									height: 41px;
+									width: 139px;
+									top: -44px;
+									left: 0px;
+									opacity: 0;
+									z-index: 2;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+	}
+}

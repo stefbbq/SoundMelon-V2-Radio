@@ -70,6 +70,8 @@ core/background.jpg: core/background-9eac1016abaff91294829b160e8b5b08.jpg
 core/background/index.jpg: core/background-9eac1016abaff91294829b160e8b5b08.jpg
 core/footer_logo.png: core/footer_logo-c639417cb7eac01bc00928953c1d5e1f.png
 core/footer_logo/index.png: core/footer_logo-c639417cb7eac01bc00928953c1d5e1f.png
+feedback.png: feedback-f8670df78fed6815f1dea31e6857bdf7.png
+feedback/index.png: feedback-f8670df78fed6815f1dea31e6857bdf7.png
 icons/social.png: icons/social-df53f31ccffcbf6caf47edc8568d4c13.png
 icons/social/index.png: icons/social-df53f31ccffcbf6caf47edc8568d4c13.png
 invite-friends.png: invite-friends-ae3417c8940d875a58bb7fac5cb35724.png
@@ -146,12 +148,12 @@ welcome.js: welcome-a7fa98ba2ef09a5dcc079d3f014a4e3c.js
 welcome/index.js: welcome-a7fa98ba2ef09a5dcc079d3f014a4e3c.js
 youtube_iframe_api.js: youtube_iframe_api-730da00968cb3fded517fd1dbeec746a.js
 youtube_iframe_api/index.js: youtube_iframe_api-730da00968cb3fded517fd1dbeec746a.js
-add-accounts.css: add-accounts-dca6eaf052e5d2e24ec0e1ac0f7874d4.css
-add-accounts/index.css: add-accounts-dca6eaf052e5d2e24ec0e1ac0f7874d4.css
+add-accounts.css: add-accounts-489764608612f0067994700f6933c781.css
+add-accounts/index.css: add-accounts-489764608612f0067994700f6933c781.css
 admin/active_admin.css: admin/active_admin-5f3e0c5f8f37e1cef280603ea326333e.css
 admin/active_admin/index.css: admin/active_admin-5f3e0c5f8f37e1cef280603ea326333e.css
-application.css: application-c82ab91d89f1598dd315412cc2a14b10.css
-application/index.css: application-c82ab91d89f1598dd315412cc2a14b10.css
+application.css: application-a01a8bd1c88a5f6c324212d1bdfd3c74.css
+application/index.css: application-a01a8bd1c88a5f6c324212d1bdfd3c74.css
 artist-profile.css: artist-profile-6c8610a820bf18e8efd04bc1160062e2.css
 artist-profile/index.css: artist-profile-6c8610a820bf18e8efd04bc1160062e2.css
 artists.css: artists-98a2e08f0059ece6e8f8f7e116e5cc8f.css
@@ -164,6 +166,8 @@ core.css: core-bacf4863cfd0c3b69c9a3cd729fa2454.css
 core/index.css: core-bacf4863cfd0c3b69c9a3cd729fa2454.css
 custom.css: custom-7c64821833bd38677dba9bbfed79f164.css
 custom/index.css: custom-7c64821833bd38677dba9bbfed79f164.css
+feedback-form.css: feedback-form-da1153c9e87b6c6bcb2f36d4ae04274d.css
+feedback-form/index.css: feedback-form-da1153c9e87b6c6bcb2f36d4ae04274d.css
 feedbacks.css: feedbacks-1b13569e9620782f423d4cd3ce931750.css
 feedbacks/index.css: feedbacks-1b13569e9620782f423d4cd3ce931750.css
 icons.css: icons-45a4d6f1a03b41ad325459d26a946c05.css

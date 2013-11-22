@@ -2,11 +2,10 @@
 	console.log('#{flash[:error].to_s}')
 	var errorFlash = '#{flash[:error].to_s}';
 	if(errorFlash.length > 0) {
-		$('#flash-board').hide().empty().html(errorFlash).fadeIn().fadeOut(8000);
+		console.log(errorFlash);
 	}
 	else {
-		$('#flash-board').hide().empty();
 		console.log('#{@report}');
-		$('#feedback-new').empty().html('Thank you for your feedback! We love to hear from the Soundmelon community on what you love and what you would love to see changed.');
+		$('#feedback-board .content').empty().html('<span>Thank you for your feedback! We love to hear from the Soundmelon community on what you love and what you would love to see changed.</span>');
 	}
 

@@ -18,12 +18,10 @@
 			.problem-list
 				.problem-button.report-buttons.checked
 					= f.radio_button :title, "not_a_song", {checked: true}
-					/= f.label :title, "not a song"
 					%span not a song
 				
 				.problem-button.report-buttons
 					= f.radio_button :title, "copyrighted_song"
-					/= f.label :title, "copyrighted"
 					%span copyrighted
 
 			= f.text_area :content, placeholder: "Add a comment...", rows: 3

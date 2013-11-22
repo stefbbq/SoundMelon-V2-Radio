@@ -12,11 +12,23 @@
 	}
 	
 	.sidebar {
-		width:111px;
-		height: 123px;
-		background: url('/assets/music-add.png');
-		top: 39px;
-		left: 107px;
+		
+		.wrapper {
+			
+			.chain {
+				background: url('/assets/music-add.png');
+				height: 99px;
+				width: 104px;
+				top: 50px;
+				left: 110px;
+			}
+			
+			.anchor {
+				top: 150px;
+				left: 201px;
+			}
+			
+		}
 	}
 	
 	.header {
@@ -30,7 +42,7 @@
 		
 		.links {
 			position: absolute;
-			top: 53px;
+			top: 47px;
 			left: 41px;
 			
 			> div {
