@@ -70,6 +70,10 @@ h1 {
 	src: url('FuturaCondensedMedium.eot?') format('eot'), url('FuturaCondensedMedium.woff') format('woff'), url('FuturaCondensedMedium.ttf') format('ttf');
 }
 @font-face {
+	font-family: FuturaStdCondensedLight;
+	src: url('FuturaStd-CondensedLight.eot?') format('eot'), url('FuturaStd-CondensedLight.woff') format('woff'), url('FuturaStd-CondensedLight.ttf') format('ttf');
+}
+@font-face {
 	font-family: FuturaHeavy;
 	src: url('FuturaHeavy.eot?') format('eot'), url('FuturaHeavy.woff') format('woff'), url('FuturaHeavy.ttf') format('ttf');
 }
@@ -78,6 +82,6 @@ h1 {
 	src: url('HelveticaNeueLTStd-Md.eot?') format('eot'), url('HelveticaNeueLTStd-Md.woff') format('woff'), url('HelveticaNeueLTStd-Md.ttf') format('ttf');
 }
 @font-face {
-	font-family: FuturaStdCondensedLight;
-	src: url('FuturaStd-CondensedLight.eot?') format('eot'), url('FuturaStd-CondensedLight.woff') format('woff'), url('FuturaStd-CondensedLight.ttf') format('ttf');
+	font-family: HelveticaNeueLight;
+	src: url('HelveticaNeueLTStd-Lt.eot?') format('eot'), url('HelveticaNeueLTStd-Lt.woff') format('woff'), url('HelveticaNeueLTStd-Lt.ttf') format('ttf');
 }

@@ -1,67 +1,72 @@
 = javascript_include_tag "youtube_iframe_api", "simple-slider.min", "sc_js_sdk"
 
-#player-box
-	.player
-		#youtube
-		#soundcloud
-		.overlay
+.content-wrapper
+	.radio-wrapper
+		#player-box
+			.player
+				#youtube
+				#soundcloud
+				.overlay
 
-	#radio-controls
-	
-		.player-buttons
-			.left
-				.content
-					.volume-container
-						#show-slider
-						.volume-controls
-							#volume-slider
-					.report-container
-						= link_to("report song", report_song_path(user_id: current_user.id, song_id: ''), remote: true, class: 'external-button', id: 'report-song')
-						.report-box
-							#report-board
-							.modal-tail
-				
-			.primary
+			#radio-controls
 			
-				.control-panel
-					/%a#replay-song replay 
-					.control.change-song#previous-song
-						%a.prev-image.control-image
-					.control.change-state#play-pause
-						%a.play-image.control-image
-					.control.change-song#next-song
-						%a.skip-image.control-image
+				.player-buttons
+					.left
+						.content
+							.volume-container
+								#show-slider
+								.volume-controls
+									#volume-slider
+							.report-container
+								= link_to("report song", report_song_path(user_id: current_user.id, song_id: ''), remote: true, class: 'external-button', id: 'report-song')
+								.report-box
+									#report-board
+									.modal-tail
+						
+					.primary
 					
-				.current-content
-					.currently-playing
-						%span.song-title
-							Press Play to start!
-						%span.artist
-							#{'--------------------'}
+						.control-panel
+							/%a#replay-song replay 
+							.control.change-song#previous-song
+								%a.prev-image.control-image
+							.control.change-state#play-pause
+								%a.play-image.control-image
+							.control.change-song#next-song
+								%a.skip-image.control-image
 							
-			.right
-				.content
-					%a.external-button who is this?
-					%a.external-button comments
-					%a.external-button like this song
+						.current-content
+							.currently-playing
+								%span.song-title
+									Press Play to start!
+								%span.artist
+									#{'--------------------'}
+									
+					.right
+						.content
+							= link_to('who is this', artist_info_path(song_id: ''), class: 'external-button', id: 'get-artist-info', remote: true)
+							/%a.external-button who is this?
+							/%a.external-button comments
+							/%a.external-button like this song
 
-		.seek-scrub
-			.content
-				.media-seeker
-					#seek-tools
-					#seek-slider
-				.seek-val
-					%span.current-time
-						#{'--:--'}
-					#{'/'}
-					%span.duration
-						#{'--:--'}
-		
-#radio-stations
-	%a#user-meta.idle Your Likes
-	%a#random.idle Random
-
-#artist-info
+				.seek-scrub
+					.content
+						.media-seeker
+							#seek-tools
+							#seek-slider
+						.seek-val
+							%span.current-time
+								#{'--:--'}
+							#{'/'}
+							%span.duration
+								#{'--:--'}
+								
+				
+		#radio-stations
+			%a#user-meta.idle Your Likes
+			%a#random.idle Random
+			
+	.callout-wrapper
+		.callout#show-artist-profile
 
 = render 'users/player_vars'
 = render 'users/player_functions'
@@ -111,15 +116,38 @@
 
 	$(document).ready(function(){
 	
-
-		$('#report-song').click(function() {
-			z = this.href.split(/song_id=|(?=&user_id)/);
-			this.href = z[0] + 'song_id=' + z[z.length-1];
+		$('#get-artist-info').click(function() {
+			z = this.href.split('song_id=');
+			this.href = z[0] + 'song_id=';
 			if(!currentSong) {
 				return false;
 			}
 			else {
-				//console.log(this.href);
+				calloutBox = $('.callout#show-artist-profile');
+				if(( calloutBox.css('display') === 'block' ) && (!newArtistProfile)) {
+					calloutBox.find('.container').remove();
+					calloutBox.hide();
+					$(this).removeClass('current-visit');
+					return false;
+				}
+				else {
+					newArtistProfile = false;
+					console.log(this.href);
+					this.href = this.href + currentSong['song_id'];
+					console.log(this.href);
+					$(this).addClass('current-visit');
+				}
+			}
+		});
+
+		$('#report-song').click(function() {
+			z = this.href.split(/song_id=|(?=&user_id)/);
+			this.href = z[0] + 'song_id=' + z[z.length-1];
+			reportBox = $('.report-box');
+			if(!currentSong) {
+				return false;
+			}
+			else {
 				y = this.href.split('song_id=');
 				this.href = y[0] + 'song_id=' + currentSong['song_id'] + y[1];
 				console.log(this.href)

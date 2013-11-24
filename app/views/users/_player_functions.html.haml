@@ -118,6 +118,11 @@
 				$('#youtube').hide();
 				$('#soundcloud, .overlay').show();
 			}
+			calloutBox = $('.callout#show-artist-profile');
+			if(calloutBox.css('display') === 'block') {
+				newArtistProfile = true;
+				$('#get-artist-info').click();
+			}
 		}
 		else {
 			//Songs list is now empty

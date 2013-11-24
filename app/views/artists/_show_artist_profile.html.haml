@@ -1,0 +1,23 @@
+.container
+	- @artist = Artist.find(artist_id)
+	.wrapper
+		.profile-picture{style: "background: url(#{@artist.artist_photo(:thumb)}) center no-repeat; background-size: 100%;"}
+		
+		.content
+			.label= @artist.artist_name
+			.sub-label 
+				%span.prefix Joined at 
+				%span.data= @artist.created_at.strftime("%b %d, %Y")
+			.sub-label
+				%span.prefix From 
+				%span.data= @artist.city
+			- if !@artist.website.nil?
+				- website = /^http/.match(@artist.website) ? @artist.website : "http://#{@artist.website}"
+				.sub-label
+					%span.prefix Visit 
+					%span.data= link_to "Website", website, target: '_blank'
+				
+		.suggested
+			.label suggested songs coming soon!
+		
+		.anchor

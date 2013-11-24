@@ -85,5 +85,9 @@ class ArtistsController < ApplicationController
 			flash[:unlink_success] = true
 		end
 	end
+	
+	def show_artist_info
+		@artist_id = Song.find_by_song_id(params[:song_id]).artist_id
+	end
 
 end

@@ -1,6 +1,9 @@
 class Artist < ActiveRecord::Base
   attr_accessible :artist_name, :youtube_token, :soundcloud_token, :artist_photo,
-									:website, :biography, :genre_tags
+									:website, :city, :genre_tags
+	
+	before_save :record_city
+	
 	has_attached_file :artist_photo,
 		storage: :dropbox,
 		dropbox_credentials: Rails.root.join("config/dropbox.yml"),
@@ -15,4 +18,9 @@ class Artist < ActiveRecord::Base
 	serialize :youtube_token
 	serialize :soundcloud_token
 	serialize :genre_tags
+	
+	private
+		def record_city
+			self.city = self.user.city
+		end
 end

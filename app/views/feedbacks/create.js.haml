@@ -1,11 +1,9 @@
 :plain
-	console.log('#{flash[:error].to_s}')
 	var errorFlash = '#{flash[:error].to_s}';
 	if(errorFlash.length > 0) {
 		console.log(errorFlash);
 	}
 	else {
-		console.log('#{@report}');
 		$('#feedback-board .content').empty().html('<span>Thank you for your feedback! We love to hear from the Soundmelon community on what you love and what you would love to see changed.</span>');
 	}
 

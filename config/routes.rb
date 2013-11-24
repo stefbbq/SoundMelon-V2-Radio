@@ -48,6 +48,7 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/artist_profile_update', to: 'artists#profile_update'
 	match '/unlink_media_account', to: 'artists#unlink_media_account'
 	match '/artist_profile_edit', to: 'artists#profile_edit'
+	match '/artist_info', to: 'artists#show_artist_info'
 
 #Song routes
 	match '/make_public', to: 'songs#make_public'

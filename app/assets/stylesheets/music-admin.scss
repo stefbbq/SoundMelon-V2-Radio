@@ -208,9 +208,9 @@ $music-viewport-height: 271px;
 				.track {
 					height: $music-viewport-height;
 				}
-				.thumb {
+/*				.thumb {
 					height: 95px !important;
-				}
+				}*/
 			}
 			
 			.song-wrapper {
@@ -265,6 +265,7 @@ $music-viewport-height: 271px;
 				@include border-bottom-right-radius(8px);
 				@include border-bottom-left-radius(8px);
 				text-align: center;
+				line-height: 12px;
 				
 				.divider {
 					height: 6px;

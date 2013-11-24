@@ -17,8 +17,8 @@
 				%span= link_to("Logout", signout_path)
 				
 			- else
-				Find your tune.
-				%a.hover-link#learn-more Learn more
+				%span Find your tune.
+				%span#learn-more= link_to "Learn more!", "http://about.soundmelon.com", target: '_blank'
 			
 		- if signed_in?
 			.modal-boxes
@@ -45,10 +45,6 @@
 					.spinner
 					#feedback-new
 
-
-	.modal#more-info
-		Phasellus luctus malesuada velit, eu pellentesque eros imperdiet a. Donec in sagittis dolor. Proin pretium magna ac lectus pretium, non viverra dolor sagittis. Ut sit amet mauris a massa lacinia porta. Cras tristique urna ipsum. Aenean vehicula condimentum laoreet.
-
 :javascript
 	function smartModal(modal, content) {
 		//Ajax load into modal if content is not available. modal, content are ids.
@@ -74,10 +70,6 @@
 		else {
 			console.log('yo wait up');
 		}
-	});
-
-	$('#learn-more').click(function() {
-		$('#more-info').toggle();
 	});
 
 	$('#artist-show').click(function() {

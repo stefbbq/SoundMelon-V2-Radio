@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122203219) do
+ActiveRecord::Schema.define(:version => 20131123180432) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(:version => 20131122203219) do
     t.integer  "artist_photo_file_size"
     t.datetime "artist_photo_updated_at"
     t.string   "website"
-    t.text     "biography"
     t.text     "genre_tags"
+    t.string   "city"
   end
 
   create_table "blocked_uploads", :force => true do |t|
