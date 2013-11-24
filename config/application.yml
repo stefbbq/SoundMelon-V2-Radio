@@ -45,7 +45,7 @@ development:
 
 production:
   #HOST_ADDR: 'http://salty-ravine-5239.herokuapp.com'
-  HOST_ADDR: 'http://soundmelon-stg.herokuapp.com'
+  HOST_ADDR: 'http://soundmelon.com'
   
 #   Misc Vars
   SMTP_PORT: 465
