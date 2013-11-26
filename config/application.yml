@@ -42,6 +42,9 @@ development:
   
 #   Misc Vars
   SMTP_PORT: 587
+  
+ staging:
+  HOST_ADDR: 'http://soundmelon-stg.herokuapp.com'
 
 production:
   #HOST_ADDR: 'http://salty-ravine-5239.herokuapp.com'
