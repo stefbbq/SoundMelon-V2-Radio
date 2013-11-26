@@ -118,11 +118,11 @@ $player-width: 564px;
 						position: absolute;
 						@include background(linear-gradient(rgba(128,128,128,1) 40%, rgba(128,128,128,0) 95%));
 						@include border-radius(11px);
-						left: 3px;
-						bottom: 6px;
-						width: 24px;
+						left: -1px;
+						bottom: 11px;
+						width: 25px;
 						height: 113px;
-						padding-top: 5px;
+						padding: 5px 0 0 2px;
 						
 						.ui-slider-vertical {
 							@include background(linear-gradient(rgb(63,63,63), rgb(45,45,45)));
@@ -131,7 +131,7 @@ $player-width: 564px;
 							@include box-shadow(1px 0px 0px rgba(1,1,1,0.15));
 							@include border-radius(11px);
 							border-bottom: 1px solid #585858;
-							margin: 9px 0 0 6px;
+							margin: 12px 0 0 6px;
 						}
 						
 						.ui-slider-handle {
@@ -317,6 +317,7 @@ $player-width: 564px;
 /* 			@include border-image(linear-gradient(rgba(105,105,105,1), rgba(105,105,105,0))); */
 			@include background(linear-gradient(rgb(248,248,248), rgb(171,171,171)));
 /* 			@include box-shadow(1px 1px 3px rgba(1,1,1,0.35)); */
+			cursor: pointer;
 
 			.control-image {
 				display: block;

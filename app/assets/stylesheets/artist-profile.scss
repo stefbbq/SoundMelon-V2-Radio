@@ -30,7 +30,7 @@
 		
 		.header {
 			position: relative;
-			top: -43px;
+			top: -49px;
 			
 			.right {
 				width: 100%;
@@ -151,5 +151,17 @@
 				}
 			}
 		}
+	}
+}
+
+/* IE Specific Artis Panels Styles */
+html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
+	
+	.modal#artist-profile {
+	
+		.sidebar {
+			top: 294px;
+		}
+	
 	}
 }

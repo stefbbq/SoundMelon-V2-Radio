@@ -6,7 +6,7 @@ $feedback-height: 303px;
 	width: $feedback-width;
 	height: $feedback-height;
 	right: 17px;
-	bottom: 106px;
+	bottom: 105px;
 	
 	.sidebar {
 		
@@ -16,12 +16,12 @@ $feedback-height: 303px;
 				background: url('/assets/feedback.png');
 				height: 104px;
 				width: 110px;
-				top: 262px;
+				top: 260px;
 				left: -50px;
 			}
 			
 			.anchor {
-				top: 368px;
+				top: 366px;
 				left: 36px;
 			}
 			
@@ -32,7 +32,7 @@ $feedback-height: 303px;
 			
 		.header {
 			.right {
-				top: -30px;
+				top: -33px;
 				right: 15px;
 			}
 		}
@@ -141,5 +141,17 @@ $feedback-height: 303px;
 			}
 		}
 		
+	}
+}
+
+/* IE Specific Artis Panels Styles */
+html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
+	
+	.modal#feedback-board, .modal#user-edit, .modal#user-invites {
+	
+		.sidebar {
+			top: 2px;
+		}
+	
 	}
 }
