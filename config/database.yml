@@ -40,12 +40,3 @@ production:
   username: smrd
   password: petrucci91
 #  socket: /var/run/mysqld/mysqld.sock
-
-staging:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: sm_radio_staging
-  pool: 5
-  username: smrd
-  password: petrucci91
