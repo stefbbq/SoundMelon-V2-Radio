@@ -5,6 +5,7 @@ $music-viewport-height: 271px;
 	//Styles for Music Admin
 	bottom: 255px;
 	right: -175px;
+/* 	display: none; */
 	
 	.sidebar {
 		width: 178px;
@@ -41,21 +42,9 @@ $music-viewport-height: 271px;
 			top: 17px;
 			
 			.header {
-/* 				top: 9px; */
 				position: relative;
 				
-				.right {
-/* 					top: 0; */
-					width: 39%;
-					right: 11px;
-				}
-				
 				.left {
-					width: 33%;
-					text-align: right;
-					position: absolute;
-					left: 7px;
-					top: 17px;
 					cursor: pointer;
 					
 					.go-back {
@@ -167,15 +156,22 @@ $music-viewport-height: 271px;
 		
 		.header {
 			position: relative;
-/* 			top: -10px; */
 			
 			span {
 				padding: 0;
 			}
 			
 			.right {
-				width: 100%;
-/* 				top: 10px; */
+				width: 50%;
+				right: 11px;
+			}
+			
+			.left {
+				width: 33%;
+				text-align: right;
+				position: absolute;
+				left: 7px;
+				top: 17px;
 			}
 			
 			.reload-content {

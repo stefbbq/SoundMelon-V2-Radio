@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 		@removed_fb_meta = @current_fb_meta.keys - @new_fb_meta
 		@new_fb_meta_hash = @current_fb_meta.except(*@removed_fb_meta)
 		
-		@added_fb_meta_lst = @new_fb_meta_hash.keys - @current_fb_meta.keys
+		@added_fb_meta_lst = @new_fb_meta - @current_fb_meta.keys
 		@added_fb_meta_lst.each do |item|
 			@new_fb_meta_hash = update_count_hash(@new_fb_meta_hash, item)
 		end

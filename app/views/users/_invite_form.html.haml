@@ -10,9 +10,15 @@
 			= f.submit "send", class: 'overlay'
 			%span send
 
-	.spinner
-
 :javascript
 	$(document).ready(function() {
 		attachEmailCheck($('#invite-form .email-check'));
+		
+		$(document).ajaxStart(function() {
+			$('.modal#user-invites .spinner').show();
+		});
+
+		$(document).ajaxStop(function() {
+			$('.modal#user-invites .spinner').hide();
+		});
 	});

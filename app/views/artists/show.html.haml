@@ -1,62 +1,39 @@
-.container
+- @artist = current_artist
 
-	.sidebar
-		.wrapper
-			.chain
-			.anchor
+- @all_songs = []
+- if !@artist.youtube_token.nil?
+	- yt_ids = yt_auth_ids
+	- yt_tokens = @artist.youtube_token
+	- @yt_client = new_yt_client(yt_ids, yt_tokens)
+	- if yt_tokens[:expires_at] < Time.now.to_i
+		- @yt_client = refresh_yt_client(@yt_client)
+	- @yt_client.my_videos.videos.each do |video|
+		- @all_songs << [Time.parse(video.published_at.to_s), video]
+
+- if !@artist.soundcloud_token.nil?
+	- @sc_client = refresh_sc_client(@artist)
+	- tracks = @sc_client.get('/me/tracks', order: 'created_at')
+	- tracks.each do |track|
+		- @all_songs << [Time.parse(track.created_at), track]
+
+- if @all_songs.size > 0
+	- @all_songs = @all_songs.sort_by {|pair| pair[0]}
+	- @all_songs = @all_songs.reverse
 	
-	.main-content
-	
-		.header
-			.right
-				.reload-content{title: 'Reload Songs'}
-					
-					= link_to artist_show_path, remote: true, class: 'reload-button' do
-						%span.div-link
-				%span your tunes
-			
-		
-		.content
-
-			- @artist = current_artist
-
-			- @all_songs = []
-			- if !@artist.youtube_token.nil?
-				- yt_ids = yt_auth_ids
-				- yt_tokens = @artist.youtube_token
-				- @yt_client = new_yt_client(yt_ids, yt_tokens)
-				- if yt_tokens[:expires_at] < Time.now.to_i
-					- @yt_client = refresh_yt_client(@yt_client)
-				- @yt_client.my_videos.videos.each do |video|
-					- @all_songs << [Time.parse(video.published_at.to_s), video]
-
-			- if !@artist.soundcloud_token.nil?
-				- @sc_client = refresh_sc_client(@artist)
-				- tracks = @sc_client.get('/me/tracks', order: 'created_at')
-				- tracks.each do |track|
-					- @all_songs << [Time.parse(track.created_at), track]
-
-			- if @all_songs.size > 0
-				- @all_songs = @all_songs.sort_by {|pair| pair[0]}
-				- @all_songs = @all_songs.reverse
+#scrollbar1.custom-scroller
+	.scrollbar
+		.track
+			.thumb
+				.end
 				
-			#scrollbar1.custom-scroller
-				.scrollbar
-					.track
-						.thumb
-							.end
-							
-				.viewport
-					.overview#available-uploads
-						= render 'artists/available_uploads', all_songs: @all_songs
-					
-		.footer
-			= render "artists/music_admin_footer"
+	.viewport
+		.overview#available-uploads
+			= render 'artists/available_uploads', all_songs: @all_songs
 
 :javascript
 
 	$(document).ready(function() {
-		$('.modal#music-admin .reload-content').click(function() {
+		$('.modal#music-admin .reload-content, .div-link').click(function() {
 			$('#music-admin .spinner').show();
 		});
 		

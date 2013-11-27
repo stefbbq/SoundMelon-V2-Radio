@@ -1,12 +1,13 @@
 :plain
-	var noAccounts = #{current_artist.youtube_token.nil? && current_artist.soundcloud_token.nil?};
-	console.log(noAccounts);
-	if(noAccounts) {
-		$('.modal#music-add').empty().html('#{j( render template: "users/add_media_account", formats: [:html] )}').show();
-	}
-	else {
-		$('.modal#music-admin #artist-media').empty().html('#{j( render template: "artists/show", formats: [:html] )}');
-		$('.modal#music-admin #scrollbar1').tinyscrollbar();
-	}
+	//var noAccounts = #{current_artist.youtube_token.nil? && current_artist.soundcloud_token.nil?};
+	//console.log(noAccounts);
+	//if(noAccounts) {
+		//$('.modal#music-add').empty().html('#{j( render template: "users/add_media_account", formats: [:html] )}').show();
+	//}
+	//else {
+	$('.modal#music-admin #artist-media .content').empty().html('#{j( render template: "artists/show", formats: [:html] )}');
+	$('.modal#music-admin #artist-media .footer').empty().html('#{j( render "artists/music_admin_footer" )}')
+	$('.modal#music-admin #scrollbar1').tinyscrollbar();
+	//}
 	console.log('reloading...');
 	

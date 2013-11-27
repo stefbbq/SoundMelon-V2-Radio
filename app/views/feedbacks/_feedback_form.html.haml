@@ -1,50 +1,31 @@
-.container
+#feedback-form
+	= form_for(@report, url: feedback_send_path, remote: true, :validate => true) do |f|
+	
+		.top
+			.label Select a type:
 
-	.sidebar
-		.wrapper
-			.chain
-			.anchor
-	
-	.main-content
-	
-		.header
-			.right
-				%span submit feedback
+		.problem-list
+			.problem-button.feedback-buttons.checked
+				= f.radio_button :category, "bug", {checked: true, class: 'feedback-radio'}
+				%span bug
 			
-		
-		.content
-
-			#feedback-form
-				= form_for(@report, url: feedback_send_path, remote: true, :validate => true) do |f|
+			.problem-button.feedback-buttons
+				= f.radio_button :category, "suggestion", class: 'feedback-radio'
+				%span suggestion
 				
-					.top
-						.label Select a type:
+			.problem-button.feedback-buttons
+				= f.radio_button :category, "comment", class: 'feedback-radio'
+				%span comment
 
-					.problem-list
-						.problem-button.feedback-buttons.checked
-							= f.radio_button :category, "bug", {checked: true, class: 'feedback-radio'}
-							%span bug
-						
-						.problem-button.feedback-buttons
-							= f.radio_button :category, "suggestion", class: 'feedback-radio'
-							%span suggestion
-							
-						.problem-button.feedback-buttons
-							= f.radio_button :category, "comment", class: 'feedback-radio'
-							%span comment
+		= f.text_area :content, placeholder: 'Add a description', class: 'text-box'
 
-					= f.text_area :content, placeholder: 'Add a description', class: 'text-box'
-
-					.bottom
-						.wrapper
-							.cancel.button 
-								%span cancel
-							.submit.button 
-								%span submit
-								.submit-wrapper= f.submit 'Submit', onclick: 'showFormSpin(this)', class: 'overlay'
-						
-
-					.spinner
+		.bottom
+			.wrapper
+				.cancel.button 
+					%span cancel
+				.submit.button 
+					%span submit
+					.submit-wrapper= f.submit 'Submit', onclick: 'showFormSpin(this)', class: 'overlay'
 
 :javascript
 	$(document).ready(function() {

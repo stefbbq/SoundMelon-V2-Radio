@@ -165,12 +165,19 @@ body > .footer {
 				color: rgba(black, 0.5);
 			}
 			
-			.left {
-				text-align: left;
+			.right {
+				width: 50%;
+				right: 11px;
+				text-align: right;
 			}
 			
-			.right {
+			.left {
+				text-align: left;
+				width: 33%;
 				text-align: right;
+				position: absolute;
+				left: 7px;
+				top: 17px;
 			}
 		}
 		

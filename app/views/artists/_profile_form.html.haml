@@ -1,77 +1,60 @@
-.container
+#artist-profile-form
 
-	.sidebar
-		.wrapper
-			.chain
-			.anchor
+	- @artist = current_artist
+					
+	.name.form-block.single-input
 	
-	.main-content
-	
-		.header
-			.right
-				%span profile
-			
+		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+			= f.hidden_field :id, value: @artist.id
+
 		
-		.content
-			#artist-profile-form
-				.spinner
+			%span.label Artist Name
+			= f.text_field :artist_name, class: 'text-box'
+	
+	.photo.form-block
+		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+			= f.hidden_field :id, value: @artist.id
 
-				- @artist = current_artist
-								
-				.name.form-block.single-input
+		
+			%span.label Your Artist Photo
+			.sub-label This is how people will see you when they click on your artist name in the player.
+			
+			.photo-edit
+				.content
 				
-					= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
-						= f.hidden_field :id, value: @artist.id
-
-					
-						%span.label Artist Name
-						= f.text_field :artist_name, class: 'text-box'
-				
-				.photo.form-block
-					= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
-						= f.hidden_field :id, value: @artist.id
-
-					
-						%span.label Your Artist Photo
-						.sub-label This is how people will see you when they click on your artist name in the player.
+					.upload-wrapper
+						.preview{style: "background: url(#{@artist.artist_photo.url(:thumb)}) center no-repeat; background-size: 100%;"}
+						= f.file_field :artist_photo, class: 'file-select overlay'
 						
-						.photo-edit
-							.content
-							
-								.upload-wrapper
-									.preview{style: "background: url(#{@artist.artist_photo.url(:thumb)}) center no-repeat; background-size: 100%;"}
-									= f.file_field :artist_photo, class: 'file-select overlay'
-									
-								.submit-wrapper
-									.underlay
-										%span upload image
-									= f.submit "upload image", class: 'overlay'
-						
-				.website.form-block.single-input
+					.submit-wrapper
+						.underlay
+							%span upload image
+						= f.submit "upload image", class: 'overlay'
+			
+	.website.form-block.single-input
 
-					= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
-						- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
-						= f.hidden_field :id, value: @artist.id
+		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+			- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
+			= f.hidden_field :id, value: @artist.id
 
-						%span.label Website
-						= f.text_field :website, class: 'text-box'
-						
-				.artist-tags.form-block
-					= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
-						- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
-						= f.hidden_field :id, value: @artist.id
+			%span.label Website
+			= f.text_field :website, class: 'text-box'
+			
+	.artist-tags.form-block
+		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
+			- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
+			= f.hidden_field :id, value: @artist.id
 
-						.sub-label Include tags so fans can discover you, eg: "metal", "indie", "toronto", "experimental"
-						.tag-form= f.text_area :genre_tags, value: @genre_tags.join(','), id: 'artist-genre-tags'
+			.sub-label Include tags so fans can discover you, eg: "metal", "indie", "toronto", "experimental"
+			.tag-form= f.text_area :genre_tags, value: @genre_tags.join(','), id: 'artist-genre-tags'
 
 :javascript
-
 	$(document).ajaxStart(function() {
-		$('#artist-profile-form .spinner').show();
+		$('.modal#artist-profile .spinner').show();
 	});
 
 	$(document).ajaxStop(function() {
-		$('#artist-profile-form .spinner').hide();
+		$('.modal#artist-profile .spinner').hide();
 	});
 
 	$('#artist-profile-form form').children('input[type=text], textarea').typing({

@@ -8,12 +8,13 @@
 	.main-content
 	
 		.header
+			.left
+				.spinner
 			.right
 				%span settings
 			
 		
 		.content
-			.spinner
 			.settings-panel
 				.meta-form.form
 
@@ -36,6 +37,14 @@
 						= link_to "remove account", @user, method: :delete, data: {confirm: "Are you sure you want to delete your SoundMelon account?"} 
 					
 :javascript
+	$(document).ajaxStart(function() {
+		$('.modal#user-edit .spinner').show();
+	});
+
+	$(document).ajaxStop(function() {
+		$('.modal#user-edit .spinner').hide();
+	});
+
 	$('#user-edit .render-block .fb-meta-tags').tagsInput({
 		'removeWithBackspace': true,
 		'defaultText': 'Add your own...',
