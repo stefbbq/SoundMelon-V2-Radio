@@ -80,7 +80,8 @@
 					ytPlayer.setVolume(volume);
 				}
 				else if(firstSource === 'soundcloud') {
-					playSCSong(currentSong);
+					loadSCSong(currentSong);
+					//playSCTrack();
 					$('#youtube').hide();
 					$('#soundcloud, .overlay').show();
 				}
@@ -114,7 +115,8 @@
 				$('#youtube').show();
 			}
 			else if(nextSong['upload_source'] === 'soundcloud') {
-				playSCSong(currentSong);
+				loadSCSong(currentSong);
+				//playSCTrack();
 				$('#youtube').hide();
 				$('#soundcloud, .overlay').show();
 			}
@@ -155,10 +157,10 @@
 		runInitSC = true;
 	}
 
-	function playSCSong(song) {
+	function loadSCSong(song) {
+		console.log('about to stream!');
 		SC.stream('/tracks/' + song['song_id'], {
 			preferFlash: false,
-			playHTML5Audio: true,
 			onfinish: function() {
 					console.log('finished this SC song...');
 					clearInterval(scrubInterval);
@@ -166,10 +168,15 @@
 				}
 			}, function(sound) {
 				scWidget = sound;
-				scWidget.setVolume(volume);
-				scWidget.play();
-				scrubInterval = setInterval(seekTracker, scrubDelay);
+				playSCTrack();
 			});
+	}
+	
+	function playSCTrack() {
+		console.log('should play now...');
+		scWidget.setVolume(volume);
+		scWidget.play();
+		scrubInterval = setInterval(seekTracker, scrubDelay);
 	}
 
 	function arr_difference(a1, a2) {

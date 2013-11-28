@@ -62,7 +62,7 @@ class ArtistsController < ApplicationController
 
 	def profile_update
 		@artist = Artist.find_by_id(params[:artist][:id])
-		params[:artist][:genre_tags] = !params[:artist][:genre_tags].nil? ? params[:artist][:genre_tags].split(',') : []
+		params[:artist][:genre_tags] = !params[:artist][:genre_tags].nil? ? params[:artist][:genre_tags].split(',') : @artist.genre_tags
 		if @artist.update_attributes(params[:artist])
 			flash[:profile_updated] = true
 		end

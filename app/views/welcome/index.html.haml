@@ -5,9 +5,6 @@
 		%h1.bg-title Find Your Tune
 		.buttons
 			#sign-in= link_to('CONNECT WITH FACEBOOK', "/auth/facebook", remote: true)
-			= #link_to('REGISTER', signup_path, remote: true, class: 'page_link')
-		.log-in
-			= #link_to('Sign in', signin_path, remote: true, class: 'page_link bg-faded')
 
 :javascript
 	$('#fb-root').remove();
@@ -42,3 +39,10 @@
 		  cookie: true
 		});
 	};
+	
+	var mozillaFlashMsg = '<div class="flash-msg">soundmelon needs flashplayer to run in firefox so please install it!</div>';
+	var isFlash = navigator.mimeTypes ["application/x-shockwave-flash"] !== undefined ? 'flash' : 'no-flash';
+	if(($.browser['mozilla']) && isFlash === 'no-flash') {
+		$('.inner-content .buttons #sign-in').html(mozillaFlashMsg);
+	}
+	$('.inner-content .buttons').show();

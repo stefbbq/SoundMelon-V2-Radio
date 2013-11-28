@@ -231,6 +231,14 @@ body > .footer {
 	display: none;
 }
 
+.flash-msg {
+	font-size: 26px;
+	font-family: FuturaHeavy;
+	text-transform: uppercase;
+	text-align: center;
+	color: rgba(black, 0.7);
+}
+
 /* IE Specific Radio Styles */
 html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 	body > .footer {
