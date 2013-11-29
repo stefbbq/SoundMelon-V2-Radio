@@ -43,6 +43,6 @@
 	var mozillaFlashMsg = '<div class="flash-msg">soundmelon needs flashplayer to run in firefox so please install it!</div>';
 	var isFlash = navigator.mimeTypes ["application/x-shockwave-flash"] !== undefined ? 'flash' : 'no-flash';
 	if(($.browser['mozilla']) && isFlash === 'no-flash') {
-		$('.inner-content .buttons #sign-in').html(mozillaFlashMsg);
+		$('.inner-content .buttons').html(mozillaFlashMsg);
 	}
 	$('.inner-content .buttons').show();

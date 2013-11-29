@@ -44,23 +44,35 @@ development:
   SMTP_PORT: 587
 
 production:
+
+  #Host Address
+  #Staging
   HOST_ADDR: 'http://soundmelon-stg.herokuapp.com'
-  #HOST_ADDR: 'http://www.soundmelon.com'
   
-#   Misc Vars
-  SMTP_PORT: 465
+  #Production
+  #HOST_ADDR: 'http://www.soundmelon.com'
   
   #Youtube API Keys
   YOUTUBE_APP_ID: '1035080270379-ir19dkk7bs2tsmuritfhpsosugr9nsks.apps.googleusercontent.com'
   YOUTUBE_SECRET: 'OAc7NznbZVV8CDxXN21EZ_OW'
 
   #Soundcloud API Keys
-  SOUNDCLOUD_APP_ID: 'a0abc4d3e9b5e2259a15bf7b4bf5bd7e'
-  SOUNDCLOUD_SECRET: '89cd57111d284e6849a871e53161c170'
+  #Staging
+  SOUNDCLOUD_APP_ID: 'f935e629060303e3953d1a28a8f39f7d'
+  SOUNDCLOUD_SECRET: '50cd4cb028a187ee49c502d949033df4'
+  
+  #Production
+  #SOUNDCLOUD_APP_ID: 'a0abc4d3e9b5e2259a15bf7b4bf5bd7e'
+  #SOUNDCLOUD_SECRET: '89cd57111d284e6849a871e53161c170'
 
   #Facebook API Keys
-  FACEBOOK_APP_ID: "229832890501503"
-  FACEBOOK_SECRET: "ddc81e09946aec32e6ee543b776c7985"
+  #Staging
+  FACEBOOK_APP_ID: "181884905339445"
+  FACEBOOK_SECRET: "431da7a7d11969e8d4c811ce7bdae834"
+  
+  #Production
+  #FACEBOOK_APP_ID: "229832890501503"
+  #FACEBOOK_SECRET: "ddc81e09946aec32e6ee543b776c7985"
 
   #Dropbox API Keys
   DROPBOX_APP_KEY: "omo0cqzrkq6gjji"
