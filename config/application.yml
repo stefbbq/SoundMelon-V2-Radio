@@ -6,29 +6,12 @@
 # STRIPE_API_KEY: EdAvEPVEC3LuaTg5Q3z6WbDVqZlcBQ8Z
 # STRIPE_PUBLIC_KEY: pk_BRgD57O8fHja9HxduJUszhef6jCyS
 
-#Youtube API Keys
-YOUTUBE_APP_ID: '1035080270379-o8mnqtq490m1v2v1btgjfl1o54u3v0b3.apps.googleusercontent.com'
-YOUTUBE_SECRET: '-mEtRYHzGaAqa-035VdwtdiK'
-YOUTUBE_DEV_KEY: 'AI39si4xwZsnYS8ZPjdY36jy8jGCyBxCavTy1Xj_P5DtaCibNDzilGmeCLRPD9mTz0mHoPhm9LlF2REKzq5ivQQGLRe4g8uqHg'
-
-#Soundcloud API Keys
-SOUNDCLOUD_APP_ID: 'aed36f8bf087fe7716c9e594a211e8fb'
-SOUNDCLOUD_SECRET: 'dfd9ce380afd86f81619ad1b1dca8d72'
-
-#Facebook API Keys
-FACEBOOK_APP_ID: "220521528108018"
-FACEBOOK_SECRET: "a2385662ccd25e557324887744e4ff4e"
-
 #EchoNest API Keys
 ECHONEST_API_KEY: "SOPAE06QKB7SLUHUZ"
 ECHONEST_CONSUMER_KEY: "60d17e7c93300fc37e7f26cfe48317a6"
 ECHONEST_SHARED_SECRET: "sDlPOAkwQsaozTJ50IfAzA"
 
-#Dropbox API Keys
-DROPBOX_APP_KEY: "05fonmrmp17g5am"
-DROPBOX_APP_SECRET: "w2gqpufkalkenw6"
-DROPBOX_ACCESS_TOKEN: "2f1camyaod7fii7d"
-DROPBOX_ACCESS_TOKEN_SECRET: "zdwhiarh0sddo59"
+#Dropbox User Info
 DROPBOX_USER_ID: "22368238"
 DROPBOX_ACCESS_TYPE: "app_folder"
 
@@ -40,8 +23,24 @@ development:
 #   HOST_ADDR: 'http://localhost:3000'
   HOST_ADDR: 'http://soundmelon.ngrok.com'
   
-#   Misc Vars
-  SMTP_PORT: 587
+  #Youtube API Keys
+  YOUTUBE_APP_ID: '1035080270379-o8mnqtq490m1v2v1btgjfl1o54u3v0b3.apps.googleusercontent.com'
+  YOUTUBE_SECRET: '-mEtRYHzGaAqa-035VdwtdiK'
+  YOUTUBE_DEV_KEY: 'AI39si4xwZsnYS8ZPjdY36jy8jGCyBxCavTy1Xj_P5DtaCibNDzilGmeCLRPD9mTz0mHoPhm9LlF2REKzq5ivQQGLRe4g8uqHg'
+
+  #Soundcloud API Keys
+  SOUNDCLOUD_APP_ID: 'aed36f8bf087fe7716c9e594a211e8fb'
+  SOUNDCLOUD_SECRET: 'dfd9ce380afd86f81619ad1b1dca8d72'
+
+  #Facebook API Keys
+  FACEBOOK_APP_ID: "220521528108018"
+  FACEBOOK_SECRET: "a2385662ccd25e557324887744e4ff4e"
+  
+  #Dropbox API Keys
+  DROPBOX_APP_KEY: "05fonmrmp17g5am"
+  DROPBOX_APP_SECRET: "w2gqpufkalkenw6"
+  DROPBOX_ACCESS_TOKEN: "2f1camyaod7fii7d"
+  DROPBOX_ACCESS_TOKEN_SECRET: "zdwhiarh0sddo59"
 
 production:
 
@@ -79,5 +78,3 @@ production:
   DROPBOX_APP_SECRET: "d2lp814khhb80ls"
   DROPBOX_ACCESS_TOKEN: "ldiw09lev4b5y8sy"
   DROPBOX_ACCESS_TOKEN_SECRET: "9khtx5y9xklt7aa"
-  DROPBOX_USER_ID: "22368238"
-  DROPBOX_ACCESS_TYPE: "app_folder"
