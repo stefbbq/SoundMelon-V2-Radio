@@ -74,7 +74,14 @@ production:
   FACEBOOK_SECRET: "ddc81e09946aec32e6ee543b776c7985"
 
   #Dropbox API Keys
-  DROPBOX_APP_KEY: "omo0cqzrkq6gjji"
-  DROPBOX_APP_SECRET: "d2lp814khhb80ls"
-  DROPBOX_ACCESS_TOKEN: "ldiw09lev4b5y8sy"
-  DROPBOX_ACCESS_TOKEN_SECRET: "9khtx5y9xklt7aa"
+  #Staging
+#   DROPBOX_APP_KEY: "omo0cqzrkq6gjji"
+#   DROPBOX_APP_SECRET: "d2lp814khhb80ls"
+#   DROPBOX_ACCESS_TOKEN: "ldiw09lev4b5y8sy"
+#   DROPBOX_ACCESS_TOKEN_SECRET: "9khtx5y9xklt7aa"
+  
+  #Production
+  DROPBOX_APP_KEY: "pget2g76chyzoby"
+  DROPBOX_APP_SECRET: "duw9sg2qicxmk6f"
+  DROPBOX_ACCESS_TOKEN: "exyyh7vxk02o3lpz"
+  DROPBOX_ACCESS_TOKEN_SECRET: "saw3pnnhpc78hwf" 
