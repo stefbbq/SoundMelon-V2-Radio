@@ -31,7 +31,7 @@
 			= render 'artists/available_uploads', all_songs: @all_songs
 
 :javascript
-
+	$('.modal#music-admin #scrollbar1').tinyscrollbar();
 	$(document).ready(function() {
 		$('.modal#music-admin .reload-content, .div-link').click(function() {
 			$('#music-admin .spinner').show();

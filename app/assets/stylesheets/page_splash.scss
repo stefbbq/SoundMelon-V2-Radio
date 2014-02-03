@@ -4,11 +4,11 @@
 //
 //buttons
 .buttons {
-	display: none;
+//	display: none;
 	#facebook {
 		@include splash-fb-button();
 	}
-	a {
+	#sign-in a {
 		@include splash-generic-button();
 	}
 }

@@ -1,0 +1,19 @@
+.unlink-form
+	= form_for(@artist, remote: true, url: unlink_media_account_path) do |f|
+		= f.hidden_field :id, value: @artist.id
+		= f.hidden_field :account, value: @source
+		Would you like to unlink your 
+		%span{class: @source == 'youtube' ? 'yt-link' : 'sc-link'}= @source.capitalize
+		account from Soundmelon?
+
+		.wrapper
+			.submit.button
+				%span yes
+				.submit-wrapper= f.submit "yes", class: 'overlay'
+			.cancel.button
+				%span no
+		
+:javascript
+	$('.unlink-form .cancel').click(function() {
+		$('#artist-media .unlink-form').remove();
+	});

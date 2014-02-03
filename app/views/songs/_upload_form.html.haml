@@ -22,7 +22,7 @@
 				- song_private = params[:song_private]
 				- song_id = params[:song_id]
 				- song_url = params[:song_url]
-				- song_title = params[:song_title]
+				
 				- song_image = params[:song_image]
 			- else
 				- @song = Song.find(params[:id])
@@ -33,8 +33,9 @@
 				- song_private = @song.is_private
 				- song_id = @song.song_id
 				- song_url = @song.song_url
-				- song_title = @song.song_title
+				/- song_title = @song.song_title
 				- song_image = @song.song_image
+			- song_title = params[:song_title]
 				
 			- state = @song.active ? 'ACTIVE' : 'INACTIVE'
 			- on_state_class = @song.active ? 'toggle-select' : ''

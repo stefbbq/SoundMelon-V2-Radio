@@ -144,6 +144,9 @@ $player-width: 564px;
 							&:hover {
 								@include background(linear-gradient(rgb(200,200,200), rgb(150,150,150)));
 							}
+							&:focus {
+								outline: 0;
+							}
 						}
 						
 						.ui-slider-range-min {
@@ -314,9 +317,7 @@ $player-width: 564px;
 			display: inline-block;
 			@include border-radius(100%);
 			border: 3px solid #696a69;
-/* 			@include border-image(linear-gradient(rgba(105,105,105,1), rgba(105,105,105,0))); */
 			@include background(linear-gradient(rgb(248,248,248), rgb(171,171,171)));
-/* 			@include box-shadow(1px 1px 3px rgba(1,1,1,0.35)); */
 			cursor: pointer;
 
 			.control-image {
@@ -364,6 +365,9 @@ $player-width: 564px;
 			
 			.song-title {
 				font-size: 23px;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
 				
 			}
 			.artist {

@@ -181,8 +181,13 @@ $music-viewport-height: 271px;
 				position: relative;
 				top: 3px;
 				background: url('/assets/reload.png') left no-repeat;
+				opacity: 0.5;
 				background-size: 100% 100%;
 				cursor: pointer;
+				
+				&:hover {
+					opacity: 0.7;
+				}
 			}
 		}
 		
@@ -197,6 +202,11 @@ $music-viewport-height: 271px;
 			#scrollbar1.custom-scroller {
 				width: 302px;
 				clear: both;
+
+				.scrollbar {
+					z-index: 10;
+				}
+				
 				.viewport {
 					width: 297px;
 					height: $music-viewport-height;
@@ -205,9 +215,6 @@ $music-viewport-height: 271px;
 				.track {
 					height: $music-viewport-height;
 				}
-/*				.thumb {
-					height: 95px !important;
-				}*/
 			}
 			
 			.song-wrapper {

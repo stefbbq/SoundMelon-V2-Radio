@@ -46,6 +46,7 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/yt_oauth_callback', to: 'artists#yt_oauth_callback'
 	match '/artist_show', to: 'artists#show'
 	match '/artist_profile_update', to: 'artists#profile_update'
+	match '/request_unlink', to: 'artists#request_unlink'
 	match '/unlink_media_account', to: 'artists#unlink_media_account'
 	match '/artist_profile_edit', to: 'artists#profile_edit'
 	match '/artist_info', to: 'artists#show_artist_info'

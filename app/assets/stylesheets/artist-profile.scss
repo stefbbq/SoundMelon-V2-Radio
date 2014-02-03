@@ -38,6 +38,11 @@
 			@include border-radius(8px);
 			text-transform: none;
 			
+			.text-box {
+				line-height: auto;
+				padding: 0 0 0 5px;
+			}
+			
 			#artist-profile-form {
 				position: relative;
 				
@@ -126,10 +131,11 @@
 								top: -16px;
 								
 								.underlay {
-									height: 27px;
-									width: 128px;
+									height: 100%;
+									width: 100%;
 									text-transform: uppercase;
 									text-align: center;
+									line-height: 34px;
 								}
 								
 								.overlay {

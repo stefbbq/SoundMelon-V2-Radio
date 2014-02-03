@@ -107,36 +107,19 @@ $feedback-height: 303px;
 					top: 252px;
 					
 					.button {
-						display: inline-block;
 						height: 41px;
 						width: 139px;
-						@include border-radius(4px);
-						text-transform: uppercase;
-						text-align: center;
 						line-height: 44px;
 						
-						&.cancel {
-							cursor: pointer;
-							color: white;
-							@include background(linear-gradient(rgb(70,70,70), rgb(42,42,42)));
-						}
-						
 						&.submit {
-							@include background(linear-gradient(rgb(226,226,226), rgb(196,196,196)));
-							color: rgba(black, 0.8);
 							
 							.submit-wrapper {
-								position: relative;
 								
 								.overlay {
-									position: absolute;
-									cursor: pointer;
 									height: 41px;
 									width: 139px;
 									top: -44px;
 									left: 0px;
-									opacity: 0;
-									z-index: 2;
 								}
 							}
 						}

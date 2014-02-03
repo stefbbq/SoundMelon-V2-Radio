@@ -6,7 +6,7 @@
 		- if !@artist.youtube_token.nil?
 			%span connected to 
 			.yt-link 
-				%a youtube
+				= link_to("youtube", request_unlink_path(artist: {source: 'youtube', id: current_artist.id}), remote: true, class: 'request-unlink', id: 'youtube-unlink')
 
 		- else
 			%span add 
@@ -19,8 +19,10 @@
 		- if !@artist.soundcloud_token.nil?
 			%span connected to 
 			.sc-link
-				%a soundcloud
+				= link_to("soundcloud", request_unlink_path(artist: {source: 'soundcloud', id: current_artist.id}), remote: true, class: 'request-unlink', id: 'soundcloud-unlink')
 
 		- else
 			%span add 
 			.sc-link= link_to("soundcloud", sc_request_path)
+			
+:javascript
