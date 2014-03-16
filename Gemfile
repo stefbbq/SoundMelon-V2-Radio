@@ -43,10 +43,10 @@ gem 'jquery-ui-rails'
 #gem "omniauth-oauth2", "~> 1.1.1"
 gem "faraday"
 gem "soundcloud"
-gem "nokogiri", '1.5.2'
+gem "nokogiri"
 gem 'omniauth-facebook', '1.4.0'
 gem 'figaro'
-gem "koala", "~> 1.7.0rc1"
+gem "koala"
 gem "echonest", git: "git://github.com/timcase/echowrap.git", ref: "828467d"
 gem "paperclip", "~> 3.0"
 gem "paperclip-dropbox", ">= 1"
