@@ -15,9 +15,9 @@ class InvitesController < ApplicationController
 			@user.save
 			UserMailer.invite_message(@email, @user, @invite.token).deliver
 		elsif !@formatted
-			flash[:error] = 'Invalid email address'
+			write_flash('error', 'Invalid email address')
 		elsif @in_db
-			flash[:error] = 'This email address already exists in our records.'
+			write_flash('warning', 'This email address already exists in our records.')
 		end
 	end
 

@@ -37,7 +37,7 @@ end
 
 gem 'jquery-rails', '2.0.2'
 gem "haml-rails"
-gem "youtube_it"
+gem "youtube_it", "~> 2.4.0"
 gem 'jquery-ui-rails'
 #gem "oauth2", "~> 0.9.2"
 #gem "omniauth-oauth2", "~> 1.1.1"
@@ -52,7 +52,7 @@ gem "paperclip", "~> 3.0"
 gem "paperclip-dropbox", ">= 1"
 gem "remotipart", "~> 1.0"
 gem 'activeadmin'
-gem "meta_search",    '>= 1.1.0.pre'
+gem "meta_search", '>= 1.1.0.pre'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'

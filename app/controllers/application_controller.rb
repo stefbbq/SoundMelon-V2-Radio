@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+	class ApplicationController < ActionController::Base
 	helper ApplicationHelper
   protect_from_forgery
 #	include SessionsHelper

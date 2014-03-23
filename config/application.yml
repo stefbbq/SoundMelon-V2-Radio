@@ -20,9 +20,12 @@ INVITE_LIMIT: 3
 
 
 development:
-#   HOST_ADDR: 'http://localhost:3000'
-  HOST_ADDR: 'http://soundmelon.ngrok.com'
-  
+  HOST_ADDR: 'http://localhost:3000'
+#   HOST_ADDR: 'http://soundmelon.ngrok.com'
+
+
+  ##
+  ##Localhost Keys
   #Youtube API Keys
   YOUTUBE_APP_ID: '1035080270379-o8mnqtq490m1v2v1btgjfl1o54u3v0b3.apps.googleusercontent.com'
   YOUTUBE_SECRET: '-mEtRYHzGaAqa-035VdwtdiK'
@@ -41,6 +44,20 @@ development:
   DROPBOX_APP_SECRET: "w2gqpufkalkenw6"
   DROPBOX_ACCESS_TOKEN: "2f1camyaod7fii7d"
   DROPBOX_ACCESS_TOKEN_SECRET: "zdwhiarh0sddo59"
+  
+  ##
+  ##Ngrok Keys
+#   YOUTUBE_APP_ID: '1035080270379-2hukcfctb6m0mmetrok28h4h7p28hfjg.apps.googleusercontent.com'
+#   YOUTUBE_SECRET: '7RaYsJE5hvZDqHqlOfFtEbi1'
+
+  #Soundcloud API Keys
+#   SOUNDCLOUD_APP_ID: 'a0003ecfabe1304a10c8f7e8bfb6d49f'
+#   SOUNDCLOUD_SECRET: '9b82b1c4c6d531e6d298ba653903028e'
+
+  #Facebook API Keys
+#   FACEBOOK_APP_ID: "719251288120014"
+#   FACEBOOK_SECRET: "e828e948b8fdb39ee1e30fba4df3df80"
+
 
 production:
 

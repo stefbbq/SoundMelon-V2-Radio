@@ -1,2 +1,5 @@
 :plain
-	console.log('#{flash[:picture_updated]}');
+	var messageFlash = #{@messages.to_json};
+	if(messageFlash) {
+		FlashManager.showMessage(messageFlash);
+	}

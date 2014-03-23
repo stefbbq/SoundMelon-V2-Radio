@@ -1,0 +1,17 @@
+.menu
+	- if signed_in?
+		- if current_user.terms
+			= render 'users/music_footer'
+		
+		%span= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
+		
+		%span
+			%a.hover-link#edit-page Settings
+		
+		%span= link_to "Invite Friends", user_invites_path, remote: true, id: 'invite-page-link'
+		
+		%span= link_to("Logout", signout_path)
+		
+	- else
+		%span Find your tune.
+		%span#learn-more= link_to "Learn more!", "http://about.soundmelon.com", target: '_blank'

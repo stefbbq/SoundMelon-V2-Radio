@@ -1,2 +1,6 @@
 :plain
-	console.log('something...');
+	var flashMsg = #{@messages.to_json};
+	console.log(flashMsg);
+	if(flashMsg) {
+		FlashManager.showMessage(flashMsg);
+	}

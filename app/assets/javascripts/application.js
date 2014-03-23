@@ -18,3 +18,11 @@
 //= require jquery.validate.additional-methods
 //= require design
 //= require jquery.ui.slider
+//= require jquery.tagsinput.min
+//= require jquery.typing-0.2.0.min
+//= require jquery.tinyscrollbar.min
+//= require TweenMax
+
+
+//= require SMflashManager
+//= require SMhome

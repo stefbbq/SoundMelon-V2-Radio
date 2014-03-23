@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 	def update_user_meta
 		params[:user][:user_meta] = params[:user][:user_meta].split(',')
 		update_attrs(params)
-		flash[:meta_updated] = true
+		write_flash('notification', 'Your Likes have been updated!')
 	end
 
 	def update_fb_meta
@@ -55,6 +55,7 @@ class UsersController < ApplicationController
 		end
 		params[:user][:fb_meta] = @new_fb_meta_hash
 		@user.update_attributes(params[:user])
+		write_flash('notification', 'Your Likes have been updated!')
 	end
 
 	def accept_terms

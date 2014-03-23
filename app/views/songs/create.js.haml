@@ -1,5 +1,8 @@
 :plain
-	console.log('#{params}');
+	var messageFlash = #{@messages.to_json};
+	if(messageFlash) {
+		FlashManager.showMessage(messageFlash);
+	}
 	$('##{@song.song_id} .song-content .song-link').remove();
 	$('##{@song.song_id} .song-content').append('#{j( link_to "", edit_song_path(@song), remote: true, class: "song-link edit" )}');
 	$('##{@song.song_id} .song-content .song-link').append('<span class="div-link"></span>');

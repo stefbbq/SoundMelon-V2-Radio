@@ -1,98 +1,15 @@
 .logo
 	= image_tag('core/footer_logo.png')
 .right
-	%small		
-		.menu
-			- if signed_in?
-				- if current_user.terms
-					= render 'users/music_footer'
-				
-				%span= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
-				
-				%span
-					%a.hover-link#edit-page Settings
-				
-				%span= link_to "Invite Friends", user_invites_path, remote: true, id: 'invite-page-link'
-				
-				%span= link_to("Logout", signout_path)
-				
-			- else
-				%span Find your tune.
-				%span#learn-more= link_to "Learn more!", "http://about.soundmelon.com", target: '_blank'
+	%small
+		= render 'layouts/footer_menu'
 			
 		- if signed_in?
-			.modal-boxes
-				
-				.modal#music-add
-				
-				.modal#music-admin
-					#artist-media
-						.container
-							.sidebar
-								.wrapper
-									.chain
-									.anchor
-							.main-content
-								.header
-									.left
-										.spinner
-									.right
-										.reload-content{title: 'Reload Songs'}
-											= link_to artist_show_path, remote: true, class: 'reload-button' do
-												%span.div-link
-										%span your tunes
-								.content
-								.footer
-					
-				.modal#artist-profile
-					#profile-section
-						.container
-
-							.sidebar
-								.wrapper
-									.chain
-									.anchor
-							.main-content
-								.header
-									.left
-										.spinner
-									.right
-										%span profile
-								.content
-
-				.modal#user-edit
-					#user-settings
-						= render "users/settings"
-						
-				.modal#user-invites
-					#invites-page
-						.container
-							.sidebar
-								.wrapper
-									.chain
-									.anchor
-							.main-content
-								.header
-									.left
-										.spinner
-									.right
-										%span invite friends
-								.content
-					
-				.modal#feedback-board
-					#feedback-new
-						.container
-							.sidebar
-								.wrapper
-									.chain
-									.anchor
-							.main-content
-								.header
-									.left
-										.spinner
-									.right
-										%span submit feedback
-								.content
+			= render "layouts/modal_boxes"
+	#flash-board.notification
+		%span.message
+		.severity
+			%span.level
 
 :javascript
 	function smartModal(modal, content) {

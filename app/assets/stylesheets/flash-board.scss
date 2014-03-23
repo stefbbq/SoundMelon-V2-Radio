@@ -1,0 +1,47 @@
+@import "compass/css3";
+
+#flash-board {
+	height: 25px;
+	width: 100%;
+	position: absolute;
+	top: -3px;
+	text-align: right;
+	display: none;
+	
+	.message {
+		position: relative;
+		top: 5px;
+	}
+	
+	.severity {
+		width: 106px;
+		height: 23px;
+		color: black;
+		@include border-radius(3px);
+		display: inline-block;
+		margin-left: 10px;
+		text-align: center;
+		text-transform: capitalize;
+		
+		.level {
+			position: relative;
+			top: 5px;
+		}
+	}
+	
+	&.notification {
+		.message { color: rgb(193,193,193); }
+		.severity { background: rgb(193,193,193); }
+	}
+	
+	&.warning {
+		.message { color: rgb(254,137,0); }
+		.severity { background: rgb(254,137,0); }
+	}
+	
+	&.error {
+		.message { color: red; }
+		.severity { background: red; }
+	}
+	
+}

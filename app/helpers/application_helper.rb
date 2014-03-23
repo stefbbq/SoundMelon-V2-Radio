@@ -223,3 +223,14 @@ module ApplicationHelper
 	end
 
 end
+
+def write_flash(severity, message)
+	flash[:message] = message
+	flash[:severity] = severity
+	flash_to_hash
+end
+
+def flash_to_hash
+	now_hash = flash.now.flash.to_hash
+	@messages = flash.to_hash.merge(now_hash).select{ |_, v| v.present? }
+end

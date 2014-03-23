@@ -9,12 +9,11 @@ class FeedbacksController < ApplicationController
 	def create
 		@category = params[:feedback][:category]
 		@content = params[:feedback][:content]
-		flash[:error] = nil
 		if @content.size > 0
 			@report = Feedback.new(params[:feedback])
 			@report.save
-		elsif @content.size > 0
-			flash[:error] = 'Please fill out the form completely'
+		elsif @content.size == 0
+			write_flash('error', 'Please fill out the form completely')
 		end
 	end
 

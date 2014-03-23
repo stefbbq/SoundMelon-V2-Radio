@@ -13,7 +13,7 @@ class SongsController < ApplicationController
 			@song = Song.create(params[:song].except(:artist_id))
 			if @song.save
 				@song.update_column(:artist_id, params[:song][:artist_id])
-				flash[:upload_created] = true
+				write_flash('notification', 'Your tune has been uploaded!')
 			end
 		else
 			@song = Song.find_by_song_id(params[:song][:song_id])
@@ -29,7 +29,7 @@ class SongsController < ApplicationController
 # 		params[:song][:sm_tags] = params[:song][:sm_tags].split(',')
 		@song = Song.find(params[:id])
 		@song.update_attributes(params[:song].except(:artist_id))
-# 		flash[:upload_updated] = true
+		write_flash('notification', 'Your changes have been saved')
 	end
 	
 	def edit

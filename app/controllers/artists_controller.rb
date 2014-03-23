@@ -40,7 +40,7 @@ class ArtistsController < ApplicationController
 
 	def sc_request
 		client = Soundcloud.new(sc_auth_ids)
-		redirect_to client.authorize_url(display: 'popup')
+		redirect_to client.authorize_url
 	end
 
 	def sc_oauth_callback
@@ -64,7 +64,7 @@ class ArtistsController < ApplicationController
 		@artist = Artist.find_by_id(params[:artist][:id])
 		params[:artist][:genre_tags] = !params[:artist][:genre_tags].nil? ? params[:artist][:genre_tags].split(',') : @artist.genre_tags
 		if @artist.update_attributes(params[:artist])
-			flash[:profile_updated] = true
+			write_flash('notification', 'Your Profile has been updated')
 		end
 	end
 	
@@ -87,7 +87,7 @@ class ArtistsController < ApplicationController
 			@artist.soundcloud_token = nil
 		end
 		if @artist.save
-			flash[:unlink_success] = true
+			write_flash('notification', "Your #{@account} account has been unlinked")
 		end
 	end
 	

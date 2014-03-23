@@ -1,7 +1,7 @@
 :plain
-	var errorFlash = '#{flash[:error].to_s}';
-	if(errorFlash.length > 0) {
-		console.log(errorFlash);
+	var errorFlash = #{@messages.to_json};
+	if(errorFlash) {
+		FlashManager.showMessage(errorFlash);
 	}
 	else {
 		invites = #{ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)}

@@ -2,8 +2,7 @@
 	accountId = '#{"#" + @account + "-unlink"}'
 	console.log(accountId);
 	$('#music-admin .reload-content .div-link').click();
-	//$('#artist-profile #unlink-media ' + accountId).fadeOut().remove()
-	//$('#artist-profile #unlink-media').append("<div id='fade-msg'>You have successfully unlinked your #{@account} account from Soundmelon.</div>").fadeIn();
-	//$('.modal#music-admin #artist-profile #fade-msg').fadeOut(8000, function() {
-	//	$(this).remove();
-	//});
+	var messageFlash = #{@messages.to_json};
+	if(messageFlash) {
+		FlashManager.showMessage(messageFlash);
+	}
