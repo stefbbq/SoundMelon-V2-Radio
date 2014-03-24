@@ -82,6 +82,9 @@ class UsersController < ApplicationController
 		@user = User.find_by_id(params[:user][:id])
 		@user.update_attributes(params[:user])
 	end
+	
+	def add_media_account
+	end
 
 	def destroy
 		User.find(params[:id]).destroy

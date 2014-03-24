@@ -1,2 +1,3 @@
 :plain
-	$('.modal#music-add').empty().html('#{j( render template: "users/add_media_account", formats: [:html] )}').show();
+	console.log('add account');
+	$('.modal#music-add .main-content .content').html('#{j( render template: "users/add_media_account", formats: [:html] )}');

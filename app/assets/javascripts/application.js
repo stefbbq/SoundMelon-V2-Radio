@@ -23,6 +23,7 @@
 //= require jquery.tinyscrollbar.min
 //= require TweenMax
 
-
+//= require SMmodalItem
+//= require SMmodalManager
 //= require SMflashManager
 //= require SMhome

@@ -3,12 +3,12 @@
 		- if current_user.terms
 			= render 'users/music_footer'
 		
-		%span= link_to "Feedback", feedback_form_path, remote: true, id: 'feedback-link'
+		%span= link_to "Feedback", feedback_form_path, remote: true, "data-modal" => 'feedback-board', id: 'feedback-link', class: 'modal-link'
 		
 		%span
-			%a.hover-link#edit-page Settings
+			%a.hover-link#edit-page.modal-link{"data-modal" => 'user-edit'} Settings
 		
-		%span= link_to "Invite Friends", user_invites_path, remote: true, id: 'invite-page-link'
+		%span= link_to "Invite Friends", user_invites_path, remote: true, "data-modal" => 'user-invites', id: 'invite-page-link', class: 'modal-link'
 		
 		%span= link_to("Logout", signout_path)
 		

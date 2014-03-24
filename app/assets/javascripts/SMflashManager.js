@@ -1,3 +1,6 @@
+//
+//Flash Message Class
+
 var SMflashManager = (function() {
 	return function() {
 		//

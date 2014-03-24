@@ -183,7 +183,7 @@ body > .footer {
 		}
 		
 		.content {
-			@include background(rgba(black, 1));
+			background: black;
 		}
 	}
 }
