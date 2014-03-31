@@ -11,18 +11,21 @@
 // GO AFTER THE REQUIRES BELOW. ('require_tree .' was removed)
 //
 //= require jquery
-//= require rails.validations
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require jquery.validate
-//= require jquery.validate.additional-methods
-//= require design
 //= require jquery.ui.slider
 //= require jquery.tagsinput.min
 //= require jquery.typing-0.2.0.min
 //= require jquery.tinyscrollbar.min
 //= require TweenMax
+//= require youtube_iframe_api
+//= require simple-slider.min
+//= require sc_js_sdk
+//= require utilities
 
+//= require SMartistsManager
+//= require SMplayersManager
+//= require SMradioManager
 //= require SMmodalItem
 //= require SMmodalManager
 //= require SMflashManager

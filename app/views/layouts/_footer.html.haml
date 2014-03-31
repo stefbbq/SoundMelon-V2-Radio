@@ -11,15 +11,11 @@
 		.severity
 			%span.level
 
-/= render 'layouts/modal_js'
+			
 :javascript
 
 
 	$('document').ready(function() {
-		//Add AJAX-loaders
-		$(document).ajaxStop(function() {
-			$('.spinner').hide();		
-		});
 
 		var fromCallback = '#{flash[:music_account_callback].to_s}';
 		if(fromCallback === 'true') {

@@ -26,11 +26,9 @@ SMmodalItem = function($link, $index){
 	//
 	//behaviour
 	function toggleModal(){
-		console.log(active);
 		if(!isActive()) {
 			object.show();
 			activate();
-			console.log(base);
 			console.log(isActive());
 			if(isLoaded()) {
 				return false;
