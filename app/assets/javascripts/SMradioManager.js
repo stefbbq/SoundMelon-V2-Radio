@@ -10,7 +10,7 @@ var ytQuality = 'large';
 var scrubDelay = 1500;
 
 var SMradioManager = function(scAppId) {
-	var playersManager, artistsManager, songs, songHistory, playedUpdate, currentSong, playLast, lastPlayed, lastStation, currentStation, seekVal, position;
+	var playersManager, artistsManager, songs, songHistory, playedUpdate, currentSong, playLast, lastPlayed, lastStation, currentStation, seekVal, position, stillBuffering;
 	
 	var songHistory = []; //full browser history of played songs
 	var playedUpdate = []; //gets sent to the server as an update
@@ -32,7 +32,7 @@ var SMradioManager = function(scAppId) {
 	//
 	//behaviour
 	function playBehaviour() {
-		$(this).children('.control-image').toggleClass('play-image pause-image')
+		$(this).children('.control-image').removeClass('play-image pause-image').addClass('loading-image');
 		if(currentSong) {
 			playPause();
 		}
@@ -108,14 +108,26 @@ var SMradioManager = function(scAppId) {
 			url: '/request_playlist',
 			data: radioStation,
 			success: function(data) {
-				songs = shuffleList(data);
-				console.log(songs);
-				if(songs.length > 0) {
+				if(data.length > 0) {
+					songs = shuffleList(data);
 					executePlaylist();
-				}
+				} 
+				else requestHistoryReset();
 			}
 		});
 		playedUpdate = [];
+	}
+
+	function requestHistoryReset() {
+		$.ajax({
+			url: '/request_history_reset',
+			data: {station: currentStation, user_id: currentUserId},
+			success: function(data) {
+				songs = shuffleList(data);
+				console.log(songs);
+				executePlaylist();
+			}
+		});
 	}
 	
 	function executePlaylist() {
@@ -129,7 +141,6 @@ var SMradioManager = function(scAppId) {
 				
 				runOnYTReady = true;
 			}
-// 			setTimeout(executePlaylist, 400);
 		}
 		else {
 			//Once players are ready execute the playlist
@@ -139,6 +150,7 @@ var SMradioManager = function(scAppId) {
 				var firstSource = firstSong['upload_source'];
 				currentSong = firstSong;
 				artistsManager.showArtistInfo(currentSong);
+				// playPause();
 				if(firstSource === 'youtube') {
 					$('#soundcloud, .overlay').hide();
 					$('#youtube').css('display', 'block');
@@ -150,6 +162,7 @@ var SMradioManager = function(scAppId) {
 					$('#youtube').hide();
 					$('#soundcloud, .overlay').show();
 				}
+				setTimeout(checkPlaying, 10000);
 			}
 		}
 	}
@@ -214,11 +227,47 @@ var SMradioManager = function(scAppId) {
 				newArtistProfile = true;
 				$('#get-artist-info').click();
 			}
+			setTimeout(checkPlaying, 10000);
 		}
 		else {
 			//Songs list is now empty
 			newSongsList();
 		}
+	}
+
+	function checkPlaying() {
+		var showError;
+		if(currentSong['upload_source'] === 'youtube') {
+			var status = ytPlayer.getPlayerState();
+			if(/3|-1/.test(status)) {
+				showError = true;
+			}
+		}
+		else if(currentSong['upload_source'] === 'soundcloud') {
+			console.log(scWidget.isBuffering);
+			if(!scWidget || scWidget.isBuffering) {
+				showError = true;
+			}
+		}
+		if(showError) {
+			var message;
+			if(stillBuffering) {
+				message = {
+					severity: 'error', 
+					message: 'There was a loading error, please reload the page.'
+				};
+			}
+			else {
+				message = {
+					severity: 'warning', 
+					message: 'Please wait while we get the content!'
+				};
+			}
+			FlashManager.showMessage(message);
+			stillBuffering = true;
+			setTimeout(checkPlaying, 10000);
+		}
+		else console.log('no load delays!');
 	}
 	
 	function seekTracker() {
@@ -309,6 +358,7 @@ var SMradioManager = function(scAppId) {
 		enable: enable,
 		seekTracker: seekTracker,
 		executePlaylist: executePlaylist,
+		playNextSong: playNextSong,
 		
 		//vars
 		playersManager: playersManager

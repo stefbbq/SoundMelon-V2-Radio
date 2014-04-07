@@ -28,6 +28,7 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/user_invites', to: 'users#new_invites'
 	match '/user_remove', to: 'users#destroy'
 
+
 #Admin routes
 #	post 'send_mass_email' => 'users#send_mass_email'
 
@@ -54,6 +55,7 @@ SoundMelonV2Radio::Application.routes.draw do
 #Song routes
 	match '/make_public', to: 'songs#make_public'
 	match '/request_playlist', to: 'songs#request_playlist'
+  match '/request_history_reset', to: 'songs#history_reset'
 	match '/get_source_tags', to: 'songs#get_source_tags'
 	match '/new_song', to: 'songs#new'
 	match '/edit_song', to: 'songs#edit'

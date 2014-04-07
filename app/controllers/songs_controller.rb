@@ -58,18 +58,23 @@ class SongsController < ApplicationController
 			@station == 'random'
 		end
 		update_song_history(@user, params[:played_songs])
-		@history = @user.song_history
-		@active_songs = Song.where(active: true)
 		@playlist_size = 3
-		@active_songs = filter_by_history(@user, @active_songs, @history, @playlist_size, @station)
-
-		@active_ids = []
-		@active_songs.each do |song|
-			artist = Artist.find_by_id(song.artist_id)
-			all_tags = song.source_tags
-			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: artist.artist_photo.url(:thumb)}
+		@active_ids = create_playlist(@user, @playlist_size, @station)
+		respond_to do |format|
+			format.json {render json: @active_ids}
+			format.js
 		end
+	end
 
+	def history_reset
+		@user = User.find_by_id(params[:user_id])
+		@station = params[:station]
+		@user.song_history = nil
+		@user.save
+		@playlist_size = 3
+		@station = 'random'
+		@active_ids = create_playlist(@user, @playlist_size, @station)
+		
 		respond_to do |format|
 			format.json {render json: @active_ids}
 			format.js

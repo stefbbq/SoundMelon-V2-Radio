@@ -29,4 +29,3 @@
 //= require SMmodalItem
 //= require SMmodalManager
 //= require SMflashManager
-//= require SMhome

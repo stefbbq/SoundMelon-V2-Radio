@@ -93,12 +93,14 @@ $player-width: 564px;
 	
 	.left, .primary, .right {
 		display: inline-block;
-		font-family: 'FuturaHeavy';
-		position: absolute;
+		font-family: 'Futura';
+		float: left;
+		position: relative;
 	}
 	
 	.left {
 		height: 100%;
+		width: 25%;
 		
 			.content {
 /* 				overflow: hidden; */
@@ -304,7 +306,6 @@ $player-width: 564px;
 	.primary {
 		width: 50%;
 		top: -30px;
-		left: 141px;
 
 		.control-panel {
 			margin-left: 62px;
@@ -350,6 +351,10 @@ $player-width: 564px;
 				.pause-image {
 					background: url('/assets/pause.png') no-repeat center;
 				}
+
+				.loading-image {
+					background: url('/assets/ajax-loader.gif') no-repeat center;
+				}
 			}
 		}
 		
@@ -378,7 +383,7 @@ $player-width: 564px;
 	}
 	
 	.right {
-		left: 460px;
+		width: 25%;
 		height: 100%;
 		.content {
 			overflow: hidden;

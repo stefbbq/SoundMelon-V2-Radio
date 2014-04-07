@@ -23,8 +23,22 @@ var SMplayersManager = function($scAppId) {
 			onfinish: function() {
 					console.log('finished this SC song...');
 					clearInterval(scrubInterval);
-					playNextSong();
-				}
+					$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image');
+					RadioManager.playNextSong();
+			},
+			onresume: function() {
+				$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
+			},
+			onstop: function() {
+				$('#play-pause .control-image').removeClass('loading-image').addClass('play-image');
+			},
+			onpause: function() {
+				$('#play-pause .control-image').removeClass('loading-image').addClass('play-image');
+			},
+			onplay: function() {
+
+				$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
+			}
 			}, function(sound) {
 				scWidget = sound;
 				playSCTrack();
@@ -78,22 +92,31 @@ var SMplayersManager = function($scAppId) {
 	
 	function ytStateChange() {
 		console.log(event.data);
-		if(ytPlayer.getPlayerState() === 0) {
+		var state = ytPlayer.getPlayerState();
+		if(state === 0) {
 			clearInterval(scrubInterval);
-			playNextSong();
+			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image');
+			RadioManager.playNextSong();
 		}
-		else if(ytPlayer.getPlayerState() === 1) {
+		else if(state === 1) {
 			scrubInterval = setInterval(RadioManager.seekTracker, scrubDelay);
+			$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
 			if(ytPlayer.getPlaybackQuality !== ytQuality) {
 				setQuality(ytQuality);
 			}
+		}
+		else if(state === 2) {
+			$('#play-pause .control-image').removeClass('loading-image').addClass('play-image');
+		}
+		else if(state === 3) {
+			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image');
 		}
 	}
 	
 	function ytError() {
 		console.log(event);
 		if(/100|101|150/.test(event.data)) {
-			playNextSong();
+			RadioManager.playNextSong();
 		}
 	}
 	

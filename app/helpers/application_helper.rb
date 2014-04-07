@@ -154,10 +154,24 @@ module ApplicationHelper
 		user.save
 	end
 
+	def create_playlist(user, playlist_size, station)
+		@history = user.song_history
+		@active_songs = Song.where(active: true)
+		@active_songs = filter_by_history(user, @active_songs, @history, playlist_size, station)
+		@active_ids = []
+		@active_songs.each do |song|
+			artist = Artist.find_by_id(song.artist_id)
+			all_tags = song.source_tags
+			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: artist.artist_photo.url(:thumb)}
+		end
+		return @active_ids
+	end
+
 	def filter_by_history(user, songs, history, n, station)
 		#Return an array of Song songs given an array of 
 		#Song and user song history history
 		black_list = []
+		history = history.nil? ? {} : history
 		history.keys.each do |song_id|
 			last_played = history[song_id]['last_played']
 			if Time.now.to_i - last_played < 3600
