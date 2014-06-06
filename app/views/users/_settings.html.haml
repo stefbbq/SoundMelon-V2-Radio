@@ -25,7 +25,7 @@
 					.tags-wrapper.form-block
 						.render-block= render 'users/fb_meta_form'
 
-						.sub-label= link_to "Reload FB likes (replaces all current likes)", reload_fb_meta_path, remote: true
+						.sub-label= link_to "Reload FB likes (replaces all current likes)", reload_fb_meta_path(id: current_user.id), remote: true
 						
 				.account-form.form-block.form
 					- @user = current_user

@@ -24,6 +24,7 @@ var SMplayersManager = function($scAppId) {
 					console.log('finished this SC song...');
 					clearInterval(scrubInterval);
 					$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image');
+					$(".seek-scrub").addClass('disable');
 					RadioManager.playNextSong();
 			},
 			onresume: function() {
@@ -36,7 +37,7 @@ var SMplayersManager = function($scAppId) {
 				$('#play-pause .control-image').removeClass('loading-image').addClass('play-image');
 			},
 			onplay: function() {
-
+				$(".seek-scrub").removeClass('disable');
 				$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
 			}
 			}, function(sound) {
@@ -95,11 +96,13 @@ var SMplayersManager = function($scAppId) {
 		var state = ytPlayer.getPlayerState();
 		if(state === 0) {
 			clearInterval(scrubInterval);
+			$(".seek-scrub").addClass('disable');
 			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image');
 			RadioManager.playNextSong();
 		}
 		else if(state === 1) {
 			scrubInterval = setInterval(RadioManager.seekTracker, scrubDelay);
+			$(".seek-scrub").removeClass('disable');
 			$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
 			if(ytPlayer.getPlaybackQuality !== ytQuality) {
 				setQuality(ytQuality);

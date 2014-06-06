@@ -54,6 +54,11 @@ $player-width: 564px;
 		@include background(rgba(0,0,0,0.25));
 		@include border-bottom-radius(10px);
 		position: relative;
+
+		&.disable {
+			.track, .highlight-track, .dragger {color: rgba(black, 0.5);}
+			#overlay-mask {display: block;}
+		}
 		
 		.content {
 			height: 100%;
@@ -68,6 +73,15 @@ $player-width: 564px;
 			}
 		}
 		
+		#overlay-mask {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+
 		.slider {
 			width: 450px;
 			height: 8px;
@@ -353,7 +367,8 @@ $player-width: 564px;
 				}
 
 				.loading-image {
-					background: url('/assets/ajax-loader.gif') no-repeat center;
+					background: url('/assets/loader.gif') no-repeat center;
+					background-size: 100% 100%;
 				}
 			}
 		}
