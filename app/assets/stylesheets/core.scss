@@ -10,8 +10,8 @@ html, body {
   font-family: "Trebuchet MS", arial, verdana, tahoma;
   font-size: 13px;  
 	font-weight: normal;
-  //color: $text-color; 
-	//background: $footer-bg-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body { 
 	//background: url(core/background.jpg) no-repeat;
@@ -31,6 +31,14 @@ a {
   text-decoration: none;
   color: #f44848;
   &:hover { text-decoration: none; color: #ff9393; }
+
+  &.filled-link {
+  	position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	top: 0;
+  	left: 0;
+  }
 }
 
 //

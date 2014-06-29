@@ -48,6 +48,10 @@ class SongsController < ApplicationController
 			@song = @client.get('/tracks/' + @song_id)
 			@client.put(@song.uri, :track => {:sharing => 'public'})
 		end
+		@song_local = Song.find_by_song_id(params[:song_id])
+		if @local_song
+			@local_song.update_column(:is_private, false)
+		end
 	end
 
 	def request_playlist

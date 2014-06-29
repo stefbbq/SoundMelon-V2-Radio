@@ -138,6 +138,12 @@ $music-viewport-height: 271px;
 					}
 				}
 				
+				.private {
+					width: 80%;
+					margin: 0 auto;
+					text-transform: none;
+					font-size: 24px;
+				}
 				.song-form {
 					.source-tags {
 						position: relative;
@@ -239,6 +245,25 @@ $music-viewport-height: 271px;
 						background-image: url('right-chevrons.png');
 						background-position: 265px;
 						background-repeat: no-repeat;
+					}
+
+					.block-msg {
+						position: absolute;
+						top: 0;
+						left: 0;
+						height: 100%;
+						width: 100%;
+						background: rgba(black, 0.6);
+						text-align: center;
+						font-size: 14px;
+						text-transform: none;
+						color: white;
+						span {
+							position: relative;
+							top: 50%;
+							@include transform(translateY(-50%));
+						}
+
 					}
 				}
 			//End of .song-wrapper

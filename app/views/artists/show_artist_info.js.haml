@@ -1,2 +1,8 @@
 :plain
-	$('.callout#show-artist-profile').empty().html('#{j( render "artists/show_artist_profile", artist_id: @artist_id )}').show();
+	$('.callout#show-artist-profile').empty().html('#{j( render "artists/show_artist_profile", artist_id: @artist_id )}');
+
+	TweenLite.to($('.radio-wrapper'), 0.5, {left: -100, ease: Sine.easeInOut})
+	TweenLite.to($('.callout#show-artist-profile').closest('.callout-wrapper'), 0.5, {left: 455, ease: Sine.easeInOut, onComplete: function() {
+		$('.callout#show-artist-profile').addClass('visible');
+	}});
+	

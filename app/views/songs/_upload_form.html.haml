@@ -19,7 +19,7 @@
 				- duration = to_minutes(params[:duration].to_f)
 				- source_tags = params[:source_tags].nil? ? [] : params[:source_tags]
 				- upload_source = params[:upload_source]
-				- song_private = params[:song_private]
+				/- song_private = params[:song_private]
 				- song_id = params[:song_id]
 				- song_url = params[:song_url]
 				
@@ -30,13 +30,13 @@
 				- duration = @song.duration
 				- source_tags = @song.source_tags.nil? ? [] : @song.source_tags
 				- upload_source = @song.upload_source
-				- song_private = @song.is_private
+				/- song_private = @song.is_private
 				- song_id = @song.song_id
 				- song_url = @song.song_url
 				/- song_title = @song.song_title
 				- song_image = @song.song_image
 			- song_title = params[:song_title]
-				
+			- song_private = params[:song_private] == "true" || @song.is_private
 			- state = @song.active ? 'ACTIVE' : 'INACTIVE'
 			- on_state_class = @song.active ? 'toggle-select' : ''
 			- off_state_class = @song.active ? '' : 'toggle-select'
@@ -48,13 +48,13 @@
 					%span.song-title= song_title
 					%span.duration= duration
 					
-			- if song_private == true
+			- if song_private
 				.private
 					We can't stream private songs! Would you like to make this song public on #{upload_source}?
 					= link_to "Make Public!", make_public_path(song_id: song_id, upload_source: upload_source, artist_id: @artist.id), remote: true, class: 'make-public', onclick: "$(this).siblings('.spinner').show()"
 					.spinner
 
-			.song-form
+			.song-form{class: song_private ? "hidden" : ""}
 				
 				= form_for(@song, remote: true) do |f|
 				

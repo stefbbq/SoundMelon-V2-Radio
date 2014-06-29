@@ -1,4 +1,8 @@
 :plain
-	songDivId = '#' + '#{@song_id}'
-	$(songDivId + ' .song-form').css('display', 'block');
-	$(songDivId + ' .private').remove();
+	var link = $("#artist-media .song-wrapper##{@song_id} .song-link").attr('href');
+	var linkSplit = link.split('song_private=true');
+	link = linkSplit[0] + 'song_private=false' + linkSplit[1];
+	$("#artist-media .song-wrapper##{@song_id} .song-link").attr('href', link);
+	$('.music-edit-song .song-form').css('display', 'block');
+	$('.music-edit-song .private').remove();
+	console.log($("#artist-media .song-wrapper##{@song_id} .song-link").attr('href'));

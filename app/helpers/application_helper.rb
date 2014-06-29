@@ -14,7 +14,8 @@ module ApplicationHelper
 	def sc_auth_ids
 		ids = {client_id: ENV["SOUNDCLOUD_APP_ID"],
 					 client_secret: ENV["SOUNDCLOUD_SECRET"],
-					 redirect_uri: ENV["HOST_ADDR"] + '/sc_oauth_callback'}
+					 redirect_uri: ENV["HOST_ADDR"] + '/sc_oauth_callback',
+					 display: "popup"}
 	end
 
 	def yt_oauth_setup

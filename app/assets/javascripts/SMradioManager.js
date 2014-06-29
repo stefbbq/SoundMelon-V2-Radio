@@ -63,7 +63,7 @@ var SMradioManager = function(scAppId) {
 	}
 	
 	function getArtistInfo() {
-		console.log(this);
+		// console.log(this);
 		artistsManager.setArtistInfo(this, currentSong);
 	}
 	
@@ -152,7 +152,7 @@ var SMradioManager = function(scAppId) {
 				artistsManager.showArtistInfo(currentSong);
 				// playPause();
 				if(firstSource === 'youtube') {
-					$('#soundcloud, .overlay').hide();
+					$('#soundcloud, .overlay, .overlay .song-link').hide();
 					$('#youtube').css('display', 'block');
 					ytPlayer.loadVideoById({videoId: firstSong['song_id']});
 					ytPlayer.setVolume(volume);
@@ -160,7 +160,7 @@ var SMradioManager = function(scAppId) {
 				else if(firstSource === 'soundcloud') {
 					playersManager.loadSCSong(currentSong);
 					$('#youtube').hide();
-					$('#soundcloud, .overlay').show();
+					$('#soundcloud, .overlay, .overlay .song-link').show();
 				}
 				setTimeout(checkPlaying, 10000);
 			}
@@ -214,16 +214,16 @@ var SMradioManager = function(scAppId) {
 			if(nextSong['upload_source'] === 'youtube') {
 				ytPlayer.loadVideoById({videoId: currentSong['song_id']});
 				ytPlayer.setVolume(volume);
-				$('#soundcloud, .overlay').hide();
+				$('#soundcloud, .overlay, .overlay .song-link').hide();
 				$('#youtube').show();
 			}
 			else if(nextSong['upload_source'] === 'soundcloud') {
 				playersManager.loadSCSong(currentSong);
 				$('#youtube').hide();
-				$('#soundcloud, .overlay').show();
+				$('#soundcloud, .overlay, .overlay .song-link').show();
 			}
 			calloutBox = $('.callout#show-artist-profile');
-			if(calloutBox.css('display') === 'block') {
+			if(calloutBox.css('opacity') === 1) {
 				newArtistProfile = true;
 				$('#get-artist-info').click();
 			}
