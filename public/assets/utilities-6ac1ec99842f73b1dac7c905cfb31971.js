@@ -1,0 +1,1 @@
+function arr_difference(r,n){return difference=$.grep(r,function(r){return $.inArray(r,n)<0})}function shuffleList(r){for(var n=r,e=n.length-1;e>0;e--){var t=Math.floor(Math.random()*(e+1)),f=n[e];n[e]=n[t],n[t]=f}return n}function secToMinSec(r){var n=Math.floor(r),e=Math.floor(n/60),t=n%60;10>t&&(t="0"+t);var f=e+":"+t;return f}function spinnerAjaxStop(){$(".spinner").hide()}

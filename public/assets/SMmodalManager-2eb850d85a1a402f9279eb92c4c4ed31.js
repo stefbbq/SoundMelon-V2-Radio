@@ -1,0 +1,1 @@
+var SMmodalManager=function(){return function(){function n(){a()}function a(){for(var n=$(".modal-link"),a=0;a<n.length;a++)e(n[a],a)}function e(n,a){var e=new SMmodalItem($(n),a);e.enable(),o.push(e)}var o=[];return n(),{enable:n,modalItems:o}}}();
