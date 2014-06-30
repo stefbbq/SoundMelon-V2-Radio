@@ -8,9 +8,23 @@
 	#facebook {
 		@include splash-fb-button();
 	}
-	#sign-in a {
-		@include splash-generic-button();
+	#sign-in {
+		position: relative;
+		a {
+			@include splash-generic-button();
+		}
+		.login-spinner {
+			position: absolute;
+			background: url('/assets/loader.gif') center no-repeat;
+			height: 24px;
+			width: 24px;
+			background-size: 100% 100%;
+			top: calc(50% - 12px);
+			left: calc(50% - 12px);
+			display: none;
+		}
 	}
+
 }
 #register_form {
 	visibility: hidden;

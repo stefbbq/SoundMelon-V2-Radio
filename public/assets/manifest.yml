@@ -118,8 +118,8 @@ yt-logo.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
 yt-logo/index.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
 application.js: application-f4075c5b070bfad0a0dbca3279d6eb40.js
 application/index.js: application-f4075c5b070bfad0a0dbca3279d6eb40.js
-application.css: application-7388b8e3915e690e224334ff9e2428bb.css
-application/index.css: application-7388b8e3915e690e224334ff9e2428bb.css
+application.css: application-cb697fde009e35df6af1a7524afb4381.css
+application/index.css: application-cb697fde009e35df6af1a7524afb4381.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png

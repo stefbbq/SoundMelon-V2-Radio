@@ -4,7 +4,9 @@
 	.inner-content
 		%h1.bg-title Find Your Tune
 		.buttons
-			#sign-in= link_to('CONNECT WITH FACEBOOK', "/auth/facebook", remote: true)
+			#sign-in
+				= link_to('CONNECT WITH FACEBOOK', "/auth/facebook", remote: true)
+				.login-spinner
 
 :javascript
 	$('#fb-root').remove();
@@ -21,10 +23,17 @@
 
 	window.fbAsyncInit = function() {
 		$('#sign-in').click(function(e) {
-			console.log('#{ENV["FACEBOOK_APP_ID"]}');
+			//console.log('#{ENV["FACEBOOK_APP_ID"]}');
+			$(this).closest('.buttons').find('.login-spinner').show();
 		  e.preventDefault();
 		  FB.login(function(response) {
+		  	if(response.status === "unknown") {
+		  		$('#sign-in .login-spinner').hide();
+		  	}
+				console.log(response);
+				//
 		    if (response.authResponse) {
+					$('#sign-in a').hide();
 					$.ajax({
 						url: '/auth/facebook/callback',
 						data: {state: inviteToken}
