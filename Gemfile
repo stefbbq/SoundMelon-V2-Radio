@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 gem 'rails', '3.2.11'
+# gem 'activesupport', '4.1.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -51,7 +52,8 @@ gem "echonest", git: "git://github.com/timcase/echowrap.git", ref: "828467d"
 gem "paperclip", "~> 3.0"
 gem "paperclip-dropbox", ">= 1"
 gem "remotipart", "~> 1.0"
-gem 'activeadmin'
+# gem 'activeadmin'
+gem 'activeadmin', github: 'gregbell/active_admin', branch: '0-6-stable'
 gem "meta_search", '>= 1.1.0.pre'
 
 # To use ActiveModel has_secure_password

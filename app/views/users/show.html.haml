@@ -8,12 +8,16 @@
 			#radio-view
 				= render "users/radio_player"
 
-:javascript
-	$(document).ready(function() {
-		$(document).mouseup(function(e) {
-			var container = $('.modal, .volume-controls, .report-box');
-			if(!container.is(e.target) && container.has(e.target).length == 0) {
-				container.hide();
-			}
+	:javascript
+		$(document).ready(function() {
+		
+			ModalManager.enable();
+			RadioManager.enable();
+
+			$(document).mouseup(function(e) {
+				var container = $('.modal, .volume-controls, .report-box');
+				if(!container.is(e.target) && container.has(e.target).length == 0) {
+					container.hide();
+				}
+			});
 		});
-	});
