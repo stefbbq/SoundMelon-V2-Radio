@@ -116,8 +116,8 @@ x_mark.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 x_mark/index.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 yt-logo.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
 yt-logo/index.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
-application.js: application-ea4355cc563e0ca61b7d01ad2d52fa38.js
-application/index.js: application-ea4355cc563e0ca61b7d01ad2d52fa38.js
+application.js: application-1746daf0c75cb94a67fd8f0bc84ca78a.js
+application/index.js: application-1746daf0c75cb94a67fd8f0bc84ca78a.js
 application.css: application-cb697fde009e35df6af1a7524afb4381.css
 application/index.css: application-cb697fde009e35df6af1a7524afb4381.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png

@@ -154,6 +154,7 @@ var SMradioManager = function(scAppId) {
 				if(firstSource === 'youtube') {
 					$('#soundcloud, .overlay, .overlay .song-link').hide();
 					$('#youtube').css('display', 'block');
+					bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 1000);
 					ytPlayer.loadVideoById({videoId: firstSong['song_id']});
 					ytPlayer.setVolume(volume);
 				}
@@ -212,6 +213,7 @@ var SMradioManager = function(scAppId) {
 			
 			console.log('hiding .player');
 			if(nextSong['upload_source'] === 'youtube') {
+				bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 1000);
 				ytPlayer.loadVideoById({videoId: currentSong['song_id']});
 				ytPlayer.setVolume(volume);
 				$('#soundcloud, .overlay, .overlay .song-link').hide();

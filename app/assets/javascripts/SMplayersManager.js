@@ -1,10 +1,24 @@
 //Players Manager
-var ytPlayer, scWidget;
+var ytPlayer, scWidget, bufferInterval, bufferLength;
 
 var SMplayersManager = function($scAppId) {
 	var scAppId = $scAppId;
 	var playerHeight = '320';
 	var playerWidth = '564';
+
+	function loadInterval() {
+		if(song.upload_source === "soundcloud") {
+			scWidget.stop().load().play();
+		}
+		else if(song.upload_source === "youtube") {
+			ytPlayer.stopVideo().playVideo();
+		}
+		var message = {
+			severity: "Standby",
+			message: "Servers are slow today, please wait!"
+		}
+		FlashManager.showMessage(message);
+	}
 	
 	function initSCPlayer() {
 		//Load the SC player the first time a SC file is streamed in session
@@ -18,6 +32,7 @@ var SMplayersManager = function($scAppId) {
 
 	function loadSCSong(song) {
 		console.log('about to stream!');
+		bufferInterval = setInterval(function() {loadInterval(song)}, 1000);
 		SC.stream('/tracks/' + song['song_id'], {
 			preferFlash: false,
 			onfinish: function() {
@@ -37,8 +52,14 @@ var SMplayersManager = function($scAppId) {
 				$('#play-pause .control-image').removeClass('loading-image').addClass('play-image');
 			},
 			onplay: function() {
+				// alert('ready!');
+				clearInterval(bufferInterval);
 				$(".seek-scrub").removeClass('disable');
 				$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
+			},
+			onready: function() {
+
+				
 			}
 			}, function(sound) {
 				scWidget = sound;
@@ -101,6 +122,7 @@ var SMplayersManager = function($scAppId) {
 			RadioManager.playNextSong();
 		}
 		else if(state === 1) {
+			clearInterval(bufferInterval);
 			scrubInterval = setInterval(RadioManager.seekTracker, scrubDelay);
 			$(".seek-scrub").removeClass('disable');
 			$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
@@ -127,6 +149,7 @@ var SMplayersManager = function($scAppId) {
 		onYouTubeIframeAPIReady: onYouTubeIframeAPIReady,
 		initSCPlayer: initSCPlayer,
 		loadSCSong: loadSCSong,
-		playSCTrack: playSCTrack
+		playSCTrack: playSCTrack,
+		loadInterval: loadInterval
 	}
 }
