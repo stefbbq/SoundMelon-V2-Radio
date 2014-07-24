@@ -6,8 +6,7 @@ var SMplayersManager = function($scAppId) {
 	var playerHeight = '320';
 	var playerWidth = '564';
 
-	function loadInterval() {
-		var song = currentSong;
+	function loadInterval(song) {
 		if(song.upload_source === "soundcloud") {
 			scWidget.stop().load().play();
 		}
