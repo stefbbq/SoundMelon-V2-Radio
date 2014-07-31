@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 			end
 		end
 		if !user.terms
-			UserMailer.registration_confirmation(user).deliver
+			# UserMailer.registration_confirmation(user).deliver
 		end
     session[:user_id] = user.id
 		respond_to do |format|

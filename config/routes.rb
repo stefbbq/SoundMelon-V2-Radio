@@ -7,7 +7,8 @@ SoundMelonV2Radio::Application.routes.draw do
 	resources :songs
   
   root to: 'welcome#index'
-  
+
+  match '/about', to: redirect('http://about.soundmelon.com')
 #Session routes
 #  match '/signup', to: 'users#new'
 #	match '/signin',  to: 'sessions#new'
@@ -65,6 +66,7 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/send_invite' => 'invites#create'
 	match "/:invite_token", to: redirect('/')
 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -119,5 +121,5 @@ SoundMelonV2Radio::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id))(.:format)'
+  # match ':controller(/:action(/:id))(.:format)'
 end

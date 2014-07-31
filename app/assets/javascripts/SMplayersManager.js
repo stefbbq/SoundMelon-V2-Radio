@@ -8,7 +8,7 @@ var SMplayersManager = function($scAppId) {
 
 	function loadInterval(song) {
 		if(song.upload_source === "soundcloud") {
-			scWidget.stop().load().play();
+			scWidget.load().play();
 		}
 		else if(song.upload_source === "youtube") {
 			ytPlayer.stopVideo().playVideo();
@@ -32,7 +32,7 @@ var SMplayersManager = function($scAppId) {
 
 	function loadSCSong(song) {
 		console.log('about to stream!');
-		bufferInterval = setInterval(function() {loadInterval(song)}, 1000);
+		bufferInterval = setInterval(function() {loadInterval(song)}, 5000);
 		SC.stream('/tracks/' + song['song_id'], {
 			preferFlash: false,
 			onfinish: function() {

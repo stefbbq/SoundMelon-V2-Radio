@@ -25,6 +25,28 @@ var SMradioManager = function(scAppId) {
 		$('#get-artist-info').click(getArtistInfo);
 		$('#radio-stations a').click(setStation);
 		$('#report-song').click(openReportForm);
+
+		$('.volume-container #volume-slider').slider('value', volume);
+		
+		$('.volume-container #show-slider, .volume-controls').hover(function() {
+			$('.volume-controls').toggle();
+		});
+
+		$('#seek-slider').simpleSlider({
+			highlight: true
+		});
+		$('#seek-slider').simpleSlider('setValue', 0);
+		$('#seek-slider').bind('slider:changed', function(event, data) {
+			seekValue = data['value'];
+			position = secToMinSec(currentSongTime(currentSong));
+			$('#radio-controls .seek-scrub .seek-val span.current-time').text(position);
+		});
+
+		$('.media-seeker .slider').mouseup(function() {
+			clearInterval(scrubInterval);
+			console.log('initialize...');
+			manualSeek(seekValue);
+		});
 		
 		$('#radio-stations #user-meta').trigger('click');
 	}
@@ -132,6 +154,7 @@ var SMradioManager = function(scAppId) {
 	
 	function executePlaylist() {
 		console.log('trying to execute playlist');
+		setTimeout(checkPlaying, 10000);
 		if(!ytPlayerReady) {
 			//Wait until players are ready
 			if(!runOnYTReady) {
@@ -154,7 +177,7 @@ var SMradioManager = function(scAppId) {
 				if(firstSource === 'youtube') {
 					$('#soundcloud, .overlay, .overlay .song-link').hide();
 					$('#youtube').css('display', 'block');
-					bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 1000);
+					bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 5000);
 					ytPlayer.loadVideoById({videoId: firstSong['song_id']});
 					ytPlayer.setVolume(volume);
 				}
@@ -163,7 +186,6 @@ var SMradioManager = function(scAppId) {
 					$('#youtube').hide();
 					$('#soundcloud, .overlay, .overlay .song-link').show();
 				}
-				setTimeout(checkPlaying, 10000);
 			}
 		}
 	}
@@ -213,7 +235,7 @@ var SMradioManager = function(scAppId) {
 			
 			console.log('hiding .player');
 			if(nextSong['upload_source'] === 'youtube') {
-				bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 1000);
+				bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 5000);
 				ytPlayer.loadVideoById({videoId: currentSong['song_id']});
 				ytPlayer.setVolume(volume);
 				$('#soundcloud, .overlay, .overlay .song-link').hide();
@@ -334,27 +356,6 @@ var SMradioManager = function(scAppId) {
 		}
 	});
 	
-	$('.volume-container #volume-slider').slider('value', volume);
-	
-	$('.volume-container #show-slider, .volume-controls').hover(function() {
-		$('.volume-controls').toggle();
-	});
-
-	$('#seek-slider').simpleSlider({
-		highlight: true
-	});
-	$('#seek-slider').simpleSlider('setValue', 0);
-	$('#seek-slider').bind('slider:changed', function(event, data) {
-		seekValue = data['value'];
-		position = secToMinSec(currentSongTime(currentSong));
-		$('#radio-controls .seek-scrub .seek-val span.current-time').text(position);
-	});
-
-	$('.media-seeker .slider').mouseup(function() {
-		clearInterval(scrubInterval);
-		console.log('initialize...');
-		manualSeek(seekValue);
-	});
 
 	return {
 		enable: enable,
