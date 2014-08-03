@@ -1,7 +1,118 @@
+@import "compass";
+
 .log-in {
 	margin-top: 20px;
 	
 	a {
 		color: gray;
+	}
+}
+
+#terms-page {
+	.title {
+		font-size: 40px;
+		font-family: FuturaCondensedMedium;
+		color: rgba(black, 0.25);
+		text-shadow: 0 1px 0 rgba(white, 0.25);
+		text-align: center;
+	}
+
+	.body {
+		font-size: 12px;
+		line-height: 16px;
+		font-family: HelveticaNeue;
+		color: rgba(black, 0.6);
+		background: rgba(white, 0.6);
+		@include border-radius(8px);
+		@include box-shadow(rgba(black, 0.1) 0 0 5px 2px inset);
+		height: 240px;
+		width: calc(100% - 20px);
+		margin: 35px auto 45px;
+		border: 1px rgba(black, 0.25) solid;
+		padding: 10px;
+		overflow: hidden;
+
+		.block {
+			padding-bottom: 10px;
+		}
+		.indent {
+			padding: 10px 0 0 10px;
+			width: calc(100% - 20px);
+			&:nth-child(1) {padding-top: 0;}
+		}
+		.indent-2 {
+			padding-left: 25px;
+			// width: calc(100% - 50px);
+		}
+		.bullet {
+			padding-right: 25px;
+			float: left;
+		}
+		.point {
+			float: right;
+			width: 90%;
+		}
+	}
+
+	#scrollbar-terms.custom-scroller {
+		width: 100%;
+		height: 100%;
+		clear: both;
+		position: relative;
+
+		.scrollbar {
+			z-index: 10;
+			position: absolute;
+			right: 0;
+
+			.thumb {
+				left: 0;
+			}
+		}
+		
+		.viewport {
+			width: 100%;
+			height: calc(100% - 5px);
+			// top: -271px;
+		}
+		.track {
+			height: 10px;
+		}
+	}
+
+	#terms-submit {
+		width: 185px;
+		height: 40px;
+		margin: 0 auto;
+		font-family: FuturaCondensedMedium;
+		font-size: 26px;
+		color: rgba(black, 0.5);
+		position: relative;
+		cursor: pointer;
+
+		input[type="submit"] {
+			height: 100%;
+			width: 100%;
+			cursor: pointer;
+			border: none;
+			@include background(linear-gradient(to bottom, rgba(white,0.02), rgba(blue, 0.02)), rgba(black,0.07));
+			@include border-radius(8px);
+		}
+
+		span {
+			position: absolute;
+			top: 50%;
+			@include transform(translateY(-50%));
+			width: 100%;
+			text-align: center;
+			height: 27.5px;
+			z-index: -1;
+		}
+
+		&:hover {
+			input[type="submit"] {
+				@include background(linear-gradient(to bottom, rgba(white,0.05), rgba(blue, 0.05)), rgba(black,0.2));
+			}
+		}
 	}
 }

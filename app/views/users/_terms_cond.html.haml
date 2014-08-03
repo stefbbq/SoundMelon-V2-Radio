@@ -1,7 +1,10 @@
 #terms-page
-	%h1 Terms And Conditions
+	= render "users/terms_copy"
 	- @user = current_user
 	= form_for(@user, remote: true, url: accept_terms_path) do |f|
 		= f.hidden_field :id, value: @user.id
 		= f.hidden_field :terms, value: true
-		#terms-submit= f.submit "I ACCEPT"
+		#terms-submit
+			%span I ACCEPT
+			= f.submit ""
+

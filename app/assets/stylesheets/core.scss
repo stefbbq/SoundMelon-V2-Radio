@@ -59,6 +59,10 @@ h1 {
 	@include single-text-shadow(0px, 1px, 0px, false, white);
 }
 
+
+.clear {
+	clear: both;
+}
 //
 //fonts
 @font-face {
