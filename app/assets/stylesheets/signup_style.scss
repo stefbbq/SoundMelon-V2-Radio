@@ -125,7 +125,11 @@
 	font-size: 20px;
 	color: rgba(black, 0.4);
 	text-align: center;
-	
+	position: fixed;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	@include transform(translateY(-50%));
 	.spinner {
 		margin: 20px auto;
 	}

@@ -55,8 +55,12 @@ h1 {
 	@include single-text-shadow(0px, 1px, 0px, false, white);
 }
 .bg-title {
-	opacity: .4;
-	@include single-text-shadow(0px, 1px, 0px, false, white);
+	font-size: 40px;
+	font-family: FuturaCondensedMedium;
+	color: rgba(black, 0.25);
+	text-shadow: 0 1px 0 rgba(white, 0.25);
+	text-align: center;
+	margin-bottom: 10px;
 }
 
 

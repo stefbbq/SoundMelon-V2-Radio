@@ -79,4 +79,12 @@
 	$(".footer .menu a").click(function() {
 		ga('send', 'event', 'button', 'click', $(this).attr("href"));
 	});
-
+	$("#radio-stations a").click(function() {
+		ga('send', 'event', 'button', 'click', 'station-'+$(this).attr('id'));
+	});
+	$("#radio-controls .control-panel .control").click(function() {
+		ga('send', 'event', 'button', 'click', 'radio-control-'+$(this).attr('id'));
+	});
+	$("#radio-controls .external-button").click(function() {
+		ga('send', 'event', 'button', 'click', $(this).attr('id'));
+	});
