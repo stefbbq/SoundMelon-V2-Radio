@@ -116,10 +116,10 @@ x_mark.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 x_mark/index.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 yt-logo.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
 yt-logo/index.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
-application.js: application-c7842f475ff971950b9f023e04809f6a.js
-application/index.js: application-c7842f475ff971950b9f023e04809f6a.js
-application.css: application-9a853730b69f3d6dc3d236201b82ab6d.css
-application/index.css: application-9a853730b69f3d6dc3d236201b82ab6d.css
+application.js: application-3f53b6952bcdf234662c986c7d4624b8.js
+application/index.js: application-3f53b6952bcdf234662c986c7d4624b8.js
+application.css: application-4b38c0203ce39e8e906678e6e3accab2.css
+application/index.css: application-4b38c0203ce39e8e906678e6e3accab2.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png

@@ -2,29 +2,29 @@
 
 #music-add {
 	//Styles for Add Music Accounts
-	left: -80px;
-	bottom: 102px;
+	// left: -80px;
+	// bottom: 102px;
 	height: 90px;
-	
+	right: 165px;
 	.main-content {
 		left: 190px;
-		top: -13px;
+		// top: -34px;
 	}
 	
 	.sidebar {
-		
+		bottom: 211px;
 		.wrapper {
 			
 			.chain {
 				background: url('/assets/music-add.png');
 				height: 99px;
 				width: 104px;
-				top: 50px;
+				top: 52px;
 				left: 110px;
 			}
 			
 			.anchor {
-				top: 150px;
+				top: 153px;
 				left: 201px;
 			}
 			

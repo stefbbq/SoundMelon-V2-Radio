@@ -3,43 +3,44 @@ $music-viewport-height: 271px;
 
 .modal#music-admin {
 	//Styles for Music Admin
-	bottom: 255px;
-	right: -175px;
+	// bottom: 255px;
+	// right: -175px;
 /* 	display: none; */
+	width: auto;
 	
 	.sidebar {
-		width: 178px;
-		height: 117px;
-		left: -172px;
-		top: 296px;
+		// width: 178px;
+		// height: 117px;
+		// left: -172px;
+		// top: 296px;
 		
 		.wrapper {
-			height: 100%;
-			width: 100%;
-			top: 8px;
+			// height: 100%;
+			// width: 100%;
+			// top: 8px;
 			
 			.chain {
 				background: url('/assets/music-admin.png') no-repeat;
 				height: 108px;
 				width: 175px;
-				bottom: 13px;
-				left: 14px;
+				top: -5px;
+				left: -148px;
 			}
 			
 			.anchor {
-				bottom: 0;
-				left: 10px;
+				// bottom: 0;
+				left: -152px;
 			}
 		}
 
 	}
 	
 	.main-content {
-		top: 15px;
+		// top: 15px;
 		
 		&.song-view {
 			//Styles for Song Edit and New
-			top: 17px;
+			// top: 17px;
 			
 			.header {
 				position: relative;
@@ -85,6 +86,7 @@ $music-viewport-height: 271px;
 						width: 43px;
 						@include border-radius(5px);
 						border: 2px solid rgb(190,190,190);
+						cursor: pointer;
 						
 						.toggle-state {
 							display: block;

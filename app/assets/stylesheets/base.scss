@@ -38,9 +38,20 @@ a, a:link, a:visited {
 }
 
 .hover-link {
-	&:hover { cursor: pointer; };
+	&:hover { 
+		cursor: pointer;
+ 	}
 }
-
+.modal-link, .hover-link {
+	&:hover {
+		color: #dd0048 !important;
+		text-shadow: rgba(red, 0.6) 0 0 3px;
+		&#add-account, &#artist-show, &#artist-profile-edit {
+			color: rgb(57,255,20) !important;
+			text-shadow: rgba(white, 0.6) 0 0 3px;
+		}
+	}
+}
 //
 //footer
 body > .footer {
@@ -116,11 +127,12 @@ body > .footer {
 //other
 .modal {
 	display: none;
-	position: absolute;
-	height: 200px;
+	position: fixed;
+	// bottom: 50px;
+	// height: 200px;
 	width: 500px;
 	bottom: 91px;
-	right: -8px;
+	right: 45px;
 	
 	.container {
 		
@@ -129,15 +141,17 @@ body > .footer {
 		text-transform: uppercase;
 		position: relative;
 		
-		.sidebar, .main-content {
-			display: inline-block;
-			position: absolute;
-		}
+		// .sidebar, .main-content {
+		// 	display: inline-block;
+			
+		// }
 		
 		.sidebar {
+			position: fixed;
+			bottom: 165px;
 			.wrapper {
 				position: relative;
-				
+				top: initial;
 				.chain, .anchor {
 					position: absolute;
 				}
@@ -146,12 +160,15 @@ body > .footer {
 					height: 9px;
 					width: 18px;
 					background: url('/assets/callout-dot.png');
+					top: 107px;
 				}
 			}
 		}
 		
 		.main-content {
 			width: 302px;
+			position: relative;
+			top: -30px;
 		}
 		
 		.header {
@@ -193,7 +210,7 @@ body > .footer {
 
 .form-block {
 	width: 100%;
-	position: absolute;
+	// position: absolute;
 }
 
 .spinner {

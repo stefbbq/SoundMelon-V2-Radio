@@ -1,21 +1,14 @@
 #artist-profile-form
-
 	- @artist = current_artist
-					
 	.name.form-block.single-input
-	
 		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
-			= f.hidden_field :id, value: @artist.id
-
-		
 			%span.label Artist Name
 			= f.text_field :artist_name, class: 'text-box'
+			= f.hidden_field :id, value: @artist.id
 	
 	.photo.form-block
 		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
 			= f.hidden_field :id, value: @artist.id
-
-		
 			%span.label Your Artist Photo
 			.sub-label This is how people will see you when they click on your artist name in the player.
 			
@@ -25,11 +18,18 @@
 					.upload-wrapper
 						.preview{style: "background: url(#{@artist.artist_photo.url(:thumb)}) center no-repeat; background-size: 100%;"}
 						= f.file_field :artist_photo, class: 'file-select overlay'
-						
-					.submit-wrapper
-						.underlay
-							%span upload image
-						= f.submit "upload image", class: 'overlay'
+
+					.action-buttons
+
+						.submit-wrapper
+							.underlay
+								%span browse
+							= f.file_field :artist_photo, class: 'overlay'
+
+						.submit-wrapper
+							.underlay
+								%span upload image
+							= f.submit "upload image", class: 'overlay'
 			
 	.website.form-block.single-input
 
@@ -77,7 +77,7 @@
 		}
 	});
 	
-	$('#artist-profile-form .photo-edit .file-select').on('change', function() {
+	$('#artist-profile-form .photo-edit input[type="file"]').on('change', function() {
 		readURL(this);
 	});
 	

@@ -1,7 +1,8 @@
 #invites-page
 
 	.top
-		- invites_left = ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)
+		/- invites_left = ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)
+		- invites_left = 99
 		.label.counter Invites Remaining: #{invites_left}
 		
 	.middle

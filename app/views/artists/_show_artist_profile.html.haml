@@ -1,7 +1,7 @@
 .container
 	- @artist = Artist.find(artist_id)
 	.wrapper
-		.profile-picture{style: "background: url(#{@artist.artist_photo(:thumb)}) center no-repeat; background-size: 100%;"}
+		.profile-picture{style: "background: url(#{@artist.artist_photo(:thumb)}) center no-repeat; background-size: cover;"}
 		
 		.content
 			.label= @artist.artist_name

@@ -4,9 +4,9 @@ $invite-height: 192px;
 
 .modal#user-invites {
 	width: $invite-width;
-	height: $invite-height;
-	right: 17px;
-	bottom: 106px;
+	// height: $invite-height;
+	// right: 45px;
+	// bottom: 106px;
 	
 	.sidebar {
 		
@@ -16,12 +16,12 @@ $invite-height: 192px;
 				background: url('/assets/invite-friends.png');
 				height: 104px;
 				width: 261px;
-				bottom: -255px;
+				// bottom: -255px;
 				left: -50px;
 			}
 			
 			.anchor {
-				top: 256px;
+				// top: 256px;
 				left: 199px;
 			}
 			
@@ -41,7 +41,7 @@ $invite-height: 192px;
 		}
 		
 		.content {
-			height: $invite-height;
+			// height: $invite-height;
 			width: $invite-width;
 			@include border-radius(8px);
 			text-transform: none;
@@ -72,7 +72,7 @@ $invite-height: 192px;
 						
 						&.submit-invite {
 							@include background(linear-gradient(rgb(226,226,226), rgb(196,196,196)));
-							position: absolute;
+							position: relative;
 							
 							.text-box {
 								height: 35px;
@@ -135,17 +135,16 @@ $invite-height: 192px;
 				
 				.middle {
 					width: 100%;
-					height: 102px;
-					top: 10px;
+					// height: 102px;
+					margin: 10px 0 5px;
 				}
 				
 				.bottom {
 					width: 100%;
 					height: 45px;
-					
+					padding-bottom: 3px;
 					.text-button.submit-invite {
-						bottom: 2px;
-						left: 7px;
+						margin: 0 auto;
 					}
 				}
 			}

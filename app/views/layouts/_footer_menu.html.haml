@@ -10,8 +10,8 @@
 		
 		%span= link_to "Invite Friends", user_invites_path, remote: true, "data-modal" => 'user-invites', id: 'invite-page-link', class: 'modal-link'
 		
-		%span= link_to("Logout", signout_path)
+		%span= link_to("Logout", signout_path, class: 'hover-link')
 		
 	- else
 		%span Find your tune.
-		%span#learn-more= link_to "Learn more!", "http://about.soundmelon.com", target: '_blank'
+		%span#learn-more= link_to "Learn more!", "http://about.soundmelon.com", target: '_blank', class: 'hover-link'

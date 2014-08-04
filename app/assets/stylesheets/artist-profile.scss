@@ -9,24 +9,24 @@
 
 .modal#artist-profile {
 	//Styles for Music Admin
-	bottom: 255px;
-	right: -175px;
+	width: auto;
+	// bottom: 255px;
+	// right: -175px;
 	
-	.sidebar {
+	.chain {
 		background: url('/assets/artist-profile.png') no-repeat;
 		width: 151px;
 		height: 133px;
 		left: -130px;
-		top: 292px;
-		
-		.anchor {
-			top: 55px;
-			left: 77px;
-		}
+		top: -17px;
+	}
+	.anchor {
+		// top: 107px;
+		left: -53px;
 	}
 	
 	.main-content {
-		top: -175px;
+		// top: -175px;
 		
 		.header {
 			position: relative;
@@ -34,25 +34,40 @@
 		}
 		
 		.content {
-			height: 518px;
+			// height: 518px;
 			@include border-radius(8px);
 			text-transform: none;
 			
 			.text-box {
-				line-height: auto;
+				// line-height: auto;
 				padding: 0 0 0 5px;
 			}
 			
 			#artist-profile-form {
 				position: relative;
 				
+				.form-block {
+					padding: 10px 0;
+					text-align: left;
+				}
+				.label {
+					margin: 0 10px;
+				}
 				.name {
 					height: 42px;
-					top: 9px;
+					.label {
+						position: relative;
+						top: 10px;
+					}
+					input.text-box {
+						position: absolute;
+						top: 10px;
+						right: 7px;
+					}
 				}
 				
 				.website {
-					top: 261px;
+					// top: 261px;
 					
 					.text-box {
 						width: 196px;
@@ -60,35 +75,33 @@
 				}
 				
 				.artist-tags {
-					
+					padding: 0;
 					.tag-form {
 						position: relative;
-						
+						padding: 7px;
 						.tagsinput {
-							position: absolute;
-							left: 7px;
-							top: 7px;
+							// position: absolute;
+							// margin: 7px auto;
 						}
 					}
 				}
 				
 				.photo {
-					height: 185px;
+					// height: 150px;
 					top: 62px;
 					border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
 					border-top: 2px dashed rgba(255, 255, 255, 0.2);
 					
 					.label {
 						display: block;
-						margin-left: 13px;
-						margin-top: 10px;
+						// margin: 10px;
 					}
 					
 					.photo-edit {
 						
 						.content {
 							height: 100%;
-							width: 69%;
+							width: 78%;
 							margin: 20px auto;
 							
 							.preview, .submit-wrapper{
@@ -109,26 +122,34 @@
 							}
 							
 							.upload-wrapper {
-								width: 68px;
-								height: 68px;
-								display: inline-block;
+								width: 75px;
+								height: 75px;
+								float: left;
 								
 								.preview {
-									width: 64px;
-									height: 64px;
+									width: 74px;
+									height: 74px;
 									
 								}
 								
 								.file-select {
-									height: 68px;
-									width: 68px;
+									height: 75px;
+									width: 75px;
 								}
+							}
+
+							.action-buttons {
+								overflow: hidden;
+								padding-left: 25px;
 							}
 							
 							.submit-wrapper {
 								height: 31px;
 								width: 131px;
-								top: -16px;
+								// top: -16px;
+								opacity: 0.7;
+
+								&:hover {opacity: 1;}
 								
 								.underlay {
 									height: 100%;

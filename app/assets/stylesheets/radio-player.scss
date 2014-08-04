@@ -134,7 +134,12 @@ $player-width: 564px;
 		
 			.content {
 /* 				overflow: hidden; */
-				margin: 26px 0 0 19px;
+				// margin: 26px 0 0 19px;
+				margin-left: 19px;
+				position: relative;
+				top: 50%;
+				@include transform(translateY(-50%));
+				line-height: 18px;
 				
 				> div {
 					display: inline-block;
@@ -203,6 +208,8 @@ $player-width: 564px;
 						background: url('/assets/volume.png');
 						width: 24px;
 						height: 22px;
+						opacity: 0.8;
+						&:hover{opacity: 1;}
 					}
 				}
 				
@@ -355,6 +362,14 @@ $player-width: 564px;
 				display: block;
 				height: 100%;
 				width: 100%;
+				opacity: 0.9;
+			}
+
+			&:hover {
+				@include background(linear-gradient(rgb(171,171,171), rgb(248,248,248)));
+				.control-image {
+					opacity: 1;
+				}
 			}
 			
 			&.change-song {
@@ -418,12 +433,30 @@ $player-width: 564px;
 		height: 100%;
 		.content {
 			overflow: hidden;
-			margin: 36px 20px 12px 20px;
-				.external-button {
-					display: block;
-					margin-bottom: 5px;
-					float: right;
+			// margin: 36px 20px 12px 20px;
+			margin-right: 20px;
+			position: relative;
+			top: 50%;
+			@include transform(translateY(-50%));
+			line-height: 18px;
+			.external-button {
+				display: block;
+				margin-bottom: 5px;
+				float: right;
+			}
+
+			#get-artist-info {
+				opacity: 0;
+				visibility: hidden;
+				&.show-button {
+					opacity: 0.2;
+					visibility: visible;
+
+					&:hover {
+						opacity: 0.6;
+					}
 				}
+			}
 		}
 	}
 

@@ -4,7 +4,8 @@
 		FlashManager.showMessage(errorFlash);
 	}
 	else {
-		invites = #{ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)}
+		//invites = #{ENV['INVITE_LIMIT'].to_s.to_i - (current_user.invites.nil? ? 0 : current_user.invites.size)}
+		invites = 99;
 		$('#invites-page .label.counter').html('Invites Remaining: ' + invites);
 		$('#invites-page .bottom #invite-form .submit-invite .text-box').val('');
 		if(invites === 0) {

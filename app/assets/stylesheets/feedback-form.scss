@@ -5,23 +5,23 @@ $feedback-height: 303px;
 .modal#feedback-board {
 	width: $feedback-width;
 	height: $feedback-height;
-	right: 17px;
-	bottom: 105px;
+	// right: 45px;
+	// bottom: 105px;
 	
 	.sidebar {
-		
+		// bottom: 165px;
 		.wrapper {
 			
 			.chain {
 				background: url('/assets/feedback.png');
 				height: 104px;
 				width: 110px;
-				top: 260px;
+				// top: 260px;
 				left: -50px;
 			}
 			
 			.anchor {
-				top: 366px;
+				// top: 107px;
 				left: 36px;
 			}
 			
@@ -85,6 +85,10 @@ $feedback-height: 303px;
 						@include background(linear-gradient(rgba(white, 0.6), rgba(white, 0.5)));
 						color: rgba(white, 0.8);
 					}
+					&:hover {
+						@include background(linear-gradient(rgba(white, 0.3), rgba(white, 0.2)));
+						color: rgba(white, 0.4);
+					}
 					
 					.feedback-radio {
 						display: none;
@@ -112,7 +116,7 @@ $feedback-height: 303px;
 						line-height: 44px;
 						
 						&.submit {
-							
+							cursor: pointer;
 							.submit-wrapper {
 								
 								.overlay {
@@ -122,6 +126,11 @@ $feedback-height: 303px;
 									left: 0px;
 								}
 							}
+						}
+
+						&:hover {
+							@include background(linear-gradient(rgba(white, 0.6), rgba(white, 0.5)));
+							color: rgba(white, 0.8);
 						}
 					}
 				}
