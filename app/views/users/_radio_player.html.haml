@@ -69,3 +69,14 @@
 	console.log(currentUserId);
 	RadioManager = new SMradioManager($('#soundcloud').attr('data-app-id'));
 
+	//setup GA events
+	$("#learn-more a").click(function() {
+		ga('send', 'event', 'button', 'click', 'about-soundmelon');
+	});
+	$("#sign-in a").click(function() {
+		ga('send', 'event', 'button', 'click', 'signin-signup');
+	});
+	$(".footer .menu a").click(function() {
+		ga('send', 'event', 'button', 'click', $(this).attr("href"));
+	});
+
