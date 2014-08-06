@@ -55,6 +55,7 @@ $player-width: 564px;
 		cursor: pointer;
 		font-weight: bold;
 		@include text-shadow(1px 1px 3px rgba(1,1,1,0.2));
+		font-family: FuturaHeavy;
 		
 		&:hover {
 			opacity: 0.6;
@@ -409,7 +410,7 @@ $player-width: 564px;
 			text-align: center;
 			color: rgb(204,204,204);
 			@include text-shadow(1px 1px 3px rgba(1,1,1,0.35));
-						
+			font-family: FuturaHeavy;
 			span {
 				display: block;
 			}
