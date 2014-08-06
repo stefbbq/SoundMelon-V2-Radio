@@ -414,10 +414,16 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 
 /* Firefox specific styles */
 html[data-useragent*='Firefox'] {
-	.modal#music-admin
+	.modal#music-admin {
+		
 		#scrollbar1 {
 			.viewport {
 				top: 0 !important;
 			}
 		}
+
+		.container .header {top: -50px;}
+
+	}
+
 }
