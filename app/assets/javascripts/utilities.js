@@ -30,3 +30,14 @@ function secToMinSec(sec) {
 function spinnerAjaxStop() {
 	$('.spinner').hide();
 }
+
+function findPos(obj) {
+	var curLeft = curTop = 0;
+	if (obj.offsetParent) {
+		do {
+			curLeft += obj.offsetLeft;
+			curTop += obj.offsetTop;
+		} while (obj = obj.offsetParent);
+	}
+	return {x:curLeft, y:curTop};
+}

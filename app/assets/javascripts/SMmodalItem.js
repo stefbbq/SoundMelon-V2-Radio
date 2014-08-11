@@ -2,7 +2,7 @@
 //Modal Class
 
 SMmodalItem = function($link, $index){
-	var base, link, object, index, name, active;
+	var base, link, object, index, name, active, sidebar;
 	index = $index;
 	active = false;
 	
@@ -10,6 +10,7 @@ SMmodalItem = function($link, $index){
 	link = $link;
 	name = link.attr('data-modal');
 	object = $('#' + name);
+	sidebar = object.find('.sidebar');
 	
 	//
 	//config
@@ -18,9 +19,11 @@ SMmodalItem = function($link, $index){
 	}
 	function initBehaviour() {
 		link.click(toggleModal);
-		$(document).mouseup(function($e) {
-			smartHide($e);
-		});
+		setModalClose();
+		// setSidebar();
+		// $(document).mouseup(function($e) {
+		// 	smartHide($e);
+		// });
 	}
 	
 	//
@@ -28,8 +31,11 @@ SMmodalItem = function($link, $index){
 	function toggleModal(){
 		if(!isActive()) {
 			object.show();
+			console.log('activating from: ' + isActive());
 			activate();
-			console.log(isActive());
+			$('.footer .menu a').removeClass('active-red active-green');
+			if(link.hasClass('hover-red')) link.addClass('active-red');
+			else link.addClass('active-green');
 			if(isLoaded()) {
 				return false;
 			}
@@ -38,8 +44,11 @@ SMmodalItem = function($link, $index){
 			}
 		}
 		else {
+			console.log('deactivating from: ' + isActive());
+			link.removeClass('active-red active-green');
 			object.hide();
 			deactivate();
+
 		}
 	}
 	
@@ -49,10 +58,44 @@ SMmodalItem = function($link, $index){
 	
 	function smartHide($e) {
 		if(!object.is($e.target) && object.has($e.target).length === 0) {
+
 			object.hide();
 			deactivate();
 		}
 	}
+
+	function setModalClose() {
+		$(document).click(function(e) {
+			object.each(function() {
+				var $el = $(this);
+
+				if( 
+						this !== e.target &&
+	        	!$el.has(e.target).length &&
+	          ( !$(e.target).is('.modal') )
+	        ) {
+					// $el.removeClass(disableClass);
+					link.removeClass('active-red active-green');
+					object.hide();
+					deactivate();
+				}
+			});
+		});
+	}
+
+	// function setVendorClose(box, boxClass, disableClass) {
+	// 	jQuery(document).click(function(e) {
+	// 		box.each(function() {
+	// 			var $el = jQuery(this);
+
+	// 			if( this !== e.target &&
+	//         	!$el.has(e.target).length &&
+	//           !$(e.target).is('.modal')) {
+	// 				$el.removeClass(disableClass);
+	// 			}
+	// 		});
+	// 	});
+	// }
 	
 	function activate() {
 		active = true;
@@ -72,6 +115,7 @@ SMmodalItem = function($link, $index){
 		activate: activate,
 		deactivate: deactivate,
 		//variables
-		index: index
+		index: index,
+		modalId: object.attr('id')
 	}
 }

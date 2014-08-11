@@ -150,6 +150,13 @@
 								opacity: 0.7;
 
 								&:hover {opacity: 1;}
+								&.disabled {
+									opacity: 0.3;
+									&:hover {opacity: 0.3;}
+									.overlay {
+										cursor: default;
+									}
+								}
 								
 								.underlay {
 									height: 100%;
@@ -162,6 +169,8 @@
 								.overlay {
 									height: 100%;
 									width: 100%;
+									top: 50%;
+									@include transform(translateY(-50%));
 								}
 							}
 						}

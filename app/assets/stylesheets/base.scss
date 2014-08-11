@@ -1,6 +1,8 @@
 @import "compass";
 @import "variables";
 @import "controls";
+$hover-red: #fd6868;
+$hover-green: #8aff9a;
 
 a, a:link, a:visited {
 	text-decoration: none;
@@ -38,20 +40,30 @@ a, a:link, a:visited {
 }
 
 .hover-link {
-	&:hover { 
-		cursor: pointer;
- 	}
+	cursor: pointer;
 }
-.modal-link, .hover-link {
+.hover-red {
 	&:hover {
-		color: #dd0048 !important;
-		text-shadow: rgba(red, 0.6) 0 0 3px;
-		&#add-account, &#artist-show, &#artist-profile-edit {
-			color: rgb(57,255,20) !important;
-			text-shadow: rgba(white, 0.6) 0 0 3px;
-		}
+		color: $hover-red !important;
 	}
 }
+.hover-green {
+	&:hover {
+		color: $hover-green !important;
+	}
+}
+.active-red {color: $hover-red !important;}
+.active-green {color: $hover-green !important;}
+// .modal-link, .hover-link {
+// 	&:hover {
+// 		color: #fd6868 !important;
+// 		// text-shadow: rgba(red, 0.6) 0 0 3px;
+// 		&#add-account, &#artist-show, &#artist-profile-edit {
+// 			color: #8aff9a !important;
+// 			// text-shadow: rgba(white, 0.6) 0 0 3px;
+// 		}
+// 	}
+// }
 //
 //footer
 body > .footer {

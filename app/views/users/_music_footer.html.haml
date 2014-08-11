@@ -1,5 +1,5 @@
 - if !current_user.is_artist?
-	%span.menu-artist Artist? Add your #{link_to("tunes" , add_media_account_path, remote: true, "data-modal" => 'music-add', class: 'hover-link modal-link', id: 'add-account')}
+	%span.menu-artist Artist? Add your #{link_to("tunes" , add_media_account_path, remote: true, "data-modal" => 'music-add', class: 'hover-link modal-link hover-green', id: 'add-account')}
 
 - else
-	%span.menu-artist Manage #{link_to("Music" , artist_show_path, remote: true, "data-modal" => 'music-admin', class: 'hover-link add-content modal-link', id: 'artist-show')} or your #{link_to("Artist Profile", artist_profile_edit_path, remote: true, "data-modal" => 'artist-profile', class: 'hover-link modal-link', id: 'artist-profile-edit')}
+	%span.menu-artist Manage #{link_to("Music" , artist_show_path, remote: true, "data-modal" => 'music-admin', class: 'hover-link add-content modal-link hover-green', id: 'artist-show')} or your #{link_to("Artist Profile", artist_profile_edit_path, remote: true, "data-modal" => 'artist-profile', class: 'hover-link modal-link hover-green', id: 'artist-profile-edit')}

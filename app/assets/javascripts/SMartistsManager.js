@@ -44,7 +44,7 @@ var SMartistsManager = function() {
 		duration = duration[duration.length - 1];
 		songDuration.text(duration);
 		songLink.attr('href', song.song_url);
-		$("#get-artist-info").addClass("show-button");
+		$(".external-button").addClass("show-button");
 	}
 	
 	return {

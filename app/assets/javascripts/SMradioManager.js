@@ -168,12 +168,14 @@ var SMradioManager = function(scAppId) {
 		else {
 			//Once players are ready execute the playlist
 			console.log('all ready and initialized!');
+
 			if(songs.length > 0) {
 				var firstSong = songs[0];
 				var firstSource = firstSong['upload_source'];
 				currentSong = firstSong;
 				artistsManager.showArtistInfo(currentSong);
 				// playPause();
+				$(".change-song").addClass('enable-control');
 				if(firstSource === 'youtube') {
 					$('#soundcloud, .overlay, .overlay .song-link').hide();
 					$('#youtube').css('display', 'block');
@@ -186,6 +188,7 @@ var SMradioManager = function(scAppId) {
 					$('#youtube').hide();
 					$('#soundcloud, .overlay, .overlay .song-link').show();
 				}
+
 			}
 		}
 	}

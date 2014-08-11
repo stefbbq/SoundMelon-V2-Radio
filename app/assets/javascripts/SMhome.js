@@ -2,7 +2,8 @@ var FlashManager, ModalManager;
 
 $(document).ready(function() {
 	FlashManager = new SMflashManager();
-	ModalManager = new SMmodalManager();
+	console.log('setting up modals now...');
+	ModalManager = SMmodalManager();
 	
 	//Add AJAX-loaders
 	$(document).ajaxStop(spinnerAjaxStop);

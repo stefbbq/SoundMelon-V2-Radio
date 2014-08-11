@@ -56,9 +56,16 @@ $player-width: 564px;
 		font-weight: bold;
 		@include text-shadow(1px 1px 3px rgba(1,1,1,0.2));
 		font-family: FuturaHeavy;
-		
-		&:hover {
-			opacity: 0.6;
+		opacity: 0;
+		visibility: hidden;
+
+		&.show-button {
+			opacity: 0.2;
+			visibility: visible;
+
+			&:hover {
+				opacity: 0.6;
+			}
 		}
 		
 		&.current-visit {
@@ -376,6 +383,13 @@ $player-width: 564px;
 			&.change-song {
 				width: 40px;
 				height: 40px;
+				opacity: 0;
+				visibility: hidden;
+
+				&.enable-control {
+					opacity: 1;
+					visibility: visible;
+				}
 				
 				.skip-image {
 					background: url('/assets/skip.png') no-repeat center;
@@ -446,18 +460,18 @@ $player-width: 564px;
 				float: right;
 			}
 
-			#get-artist-info {
-				opacity: 0;
-				visibility: hidden;
-				&.show-button {
-					opacity: 0.2;
-					visibility: visible;
+			// #get-artist-info {
+			// 	opacity: 0;
+			// 	visibility: hidden;
+			// 	&.show-button {
+			// 		opacity: 0.2;
+			// 		visibility: visible;
 
-					&:hover {
-						opacity: 0.6;
-					}
-				}
-			}
+			// 		&:hover {
+			// 			opacity: 0.6;
+			// 		}
+			// 	}
+			// }
 		}
 	}
 
@@ -474,9 +488,12 @@ $player-width: 564px;
 #radio-stations {
 	margin-top: 8px;
 	margin-left: 10px;
+	font-size: 18pt;
+	font-family: "FuturaCondensedMedium";
+	.label {
+		opacity: 0.2;
+	}
 	a {
-		font-size: 18pt;
-		font-family: "FuturaCondensedMedium";
 		cursor: pointer;
 		
 		&.idle {
