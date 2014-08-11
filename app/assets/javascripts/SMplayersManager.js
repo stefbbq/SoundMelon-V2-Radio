@@ -38,24 +38,24 @@ var SMplayersManager = function($scAppId) {
 			onfinish: function() {
 					console.log('finished this SC song...');
 					clearInterval(scrubInterval);
-					$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image');
+					$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image ');
 					$(".seek-scrub").addClass('disable');
 					RadioManager.playNextSong();
 			},
 			onresume: function() {
-				$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
+				$('#play-pause .control-image').removeClass('loading-image ').addClass('pause-image');
 			},
 			onstop: function() {
-				$('#play-pause .control-image').removeClass('loading-image').addClass('play-image');
+				$('#play-pause .control-image').removeClass('loading-image ').addClass('play-image');
 			},
 			onpause: function() {
-				$('#play-pause .control-image').removeClass('loading-image').addClass('play-image');
+				$('#play-pause .control-image').removeClass('loading-image ').addClass('play-image');
 			},
 			onplay: function() {
 				// alert('ready!');
 				clearInterval(bufferInterval);
 				$(".seek-scrub").removeClass('disable');
-				$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
+				$('#play-pause .control-image').removeClass('loading-image ').addClass('pause-image');
 			},
 			onready: function() {
 
@@ -118,23 +118,23 @@ var SMplayersManager = function($scAppId) {
 		if(state === 0) {
 			clearInterval(scrubInterval);
 			$(".seek-scrub").addClass('disable');
-			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image');
+			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image ');
 			RadioManager.playNextSong();
 		}
 		else if(state === 1) {
 			clearInterval(bufferInterval);
 			scrubInterval = setInterval(RadioManager.seekTracker, scrubDelay);
 			$(".seek-scrub").removeClass('disable');
-			$('#play-pause .control-image').removeClass('loading-image').addClass('pause-image');
+			$('#play-pause .control-image').removeClass('loading-image ').addClass('pause-image');
 			if(ytPlayer.getPlaybackQuality !== ytQuality) {
 				setQuality(ytQuality);
 			}
 		}
 		else if(state === 2) {
-			$('#play-pause .control-image').removeClass('loading-image').addClass('play-image');
+			$('#play-pause .control-image').removeClass('loading-image ').addClass('play-image');
 		}
 		else if(state === 3) {
-			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image');
+			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('loading-image ');
 		}
 	}
 	

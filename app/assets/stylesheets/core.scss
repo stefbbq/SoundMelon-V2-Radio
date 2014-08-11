@@ -101,3 +101,24 @@ h1 {
 	font-family: HelveticaNeueLight;
 	src: url('HelveticaNeueLTStd-Lt.eot?') format('eot'), url('HelveticaNeueLTStd-Lt.woff') format('woff'), url('HelveticaNeueLTStd-Lt.ttf') format('ttf');
 }
+
+//mixins
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }
+  @keyframes $animation-name {
+    @content;
+  }
+}
+
+
+//
+//Keyframes
+@include keyframes(play) {
+	from { background-position: 0; }
+	to { background-position: -424px; }
+}

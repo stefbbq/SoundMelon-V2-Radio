@@ -76,6 +76,8 @@ core/background.jpg: core/background-9eac1016abaff91294829b160e8b5b08.jpg
 core/background/index.jpg: core/background-9eac1016abaff91294829b160e8b5b08.jpg
 core/footer_logo.png: core/footer_logo-c639417cb7eac01bc00928953c1d5e1f.png
 core/footer_logo/index.png: core/footer_logo-c639417cb7eac01bc00928953c1d5e1f.png
+favicon.png: favicon-9a5cfced7bde049a7ac52de9c9568c85.png
+favicon/index.png: favicon-9a5cfced7bde049a7ac52de9c9568c85.png
 feedback.png: feedback-076cf6651b48cec64ab1a87e90f474f0.png
 feedback/index.png: feedback-076cf6651b48cec64ab1a87e90f474f0.png
 icons/social.png: icons/social-df53f31ccffcbf6caf47edc8568d4c13.png
@@ -84,6 +86,10 @@ invite-friends.png: invite-friends-ae3417c8940d875a58bb7fac5cb35724.png
 invite-friends/index.png: invite-friends-ae3417c8940d875a58bb7fac5cb35724.png
 loader.gif: loader-cbf01389279daf6b0929dbc2b3a6c2e3.gif
 loader/index.gif: loader-cbf01389279daf6b0929dbc2b3a6c2e3.gif
+loader.png: loader-2e6c933e7fb54ad1872443e05530315a.png
+loader/index.png: loader-2e6c933e7fb54ad1872443e05530315a.png
+loader_white.png: loader_white-deec87d27398033e1d0073520471fe02.png
+loader_white/index.png: loader_white-deec87d27398033e1d0073520471fe02.png
 music-add.png: music-add-4361345c23e3cb7da632ebeb684d73da.png
 music-add/index.png: music-add-4361345c23e3cb7da632ebeb684d73da.png
 music-admin.png: music-admin-b3702658fb5544d6d400eec57b40ec87.png
@@ -116,10 +122,10 @@ x_mark.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 x_mark/index.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 yt-logo.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
 yt-logo/index.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
-application.js: application-945b9596c40fd4b903f04abb7da0e1ed.js
-application/index.js: application-945b9596c40fd4b903f04abb7da0e1ed.js
-application.css: application-4f1adda35078533e317abea049e2edd3.css
-application/index.css: application-4f1adda35078533e317abea049e2edd3.css
+application.js: application-93ded6d61fc473476dcb590032398802.js
+application/index.js: application-93ded6d61fc473476dcb590032398802.js
+application.css: application-407a1d06406c5339e6cf8872df6ea6db.css
+application/index.css: application-407a1d06406c5339e6cf8872df6ea6db.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png

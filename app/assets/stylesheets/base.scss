@@ -226,12 +226,31 @@ body > .footer {
 	// position: absolute;
 }
 
+// .spinner {
+// 	background-image: url('/assets/loader.gif');
+// 	height: 24px;
+// 	width: 24px;
+// 	background-size: 100% 100%;
+// 	display: none;
+// }
+
 .spinner {
-	background-image: url('/assets/loader.gif');
+	background-image: url('/assets/loader.png');
+	// background-image: url('/assets/loader_white.png');
+	// background-image: url('/assets/loader_gray.png');
 	height: 24px;
 	width: 24px;
-	background-size: 100% 100%;
+	background-size: 877%;
+	// @include animation(play .5s steps(8) infinite);
+	-webkit-animation: play .5s steps(8) infinite; /* Safari 4+ */
+	-moz-animation:    play .5s steps(8) infinite; /* Fx 5+ */
+	-o-animation:      play .5s steps(8) infinite; /* Opera 12+ */
+	animation:         play .5s steps(8) infinite; /* IE 10+, Fx 29+ */
+	position: relative;
 	display: none;
+	// top: calc(50% - 26px);
+	// left: calc(50% - 27px);
+	// display: none;
 }
 
 .tick-mark {
