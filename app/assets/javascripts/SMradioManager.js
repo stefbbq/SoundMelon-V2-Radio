@@ -250,7 +250,7 @@ var SMradioManager = function(scAppId) {
 				$('#soundcloud, .overlay, .overlay .song-link').show();
 			}
 			calloutBox = $('.callout#show-artist-profile');
-			if(calloutBox.css('opacity') === 1) {
+			if(calloutBox.closest('.callout-wrapper').css('z-index') === -1) {
 				newArtistProfile = true;
 				$('#get-artist-info').click();
 			}
