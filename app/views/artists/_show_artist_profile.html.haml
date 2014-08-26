@@ -16,7 +16,7 @@
 			- social_links = {'website' => {'link' => @artist.website, 'tagline' => 'visit our'}, 'facebook' => {'link' => @artist.facebook_link, 'tagline' => 'like us on'}, 'twitter' => {'link' => @artist.twitter_link, 'tagline' => 'follow us on'}}
 			- social_links.keys.each do |key|
 				- link = social_links[key]['link']
-				- if link.size > 0
+				- if !link.nil? && link.size > 0
 					.artist-link
 						- tagline = social_links[key]['tagline']
 						- link = /^http/.match(link) ? link : "http://#{link}"
