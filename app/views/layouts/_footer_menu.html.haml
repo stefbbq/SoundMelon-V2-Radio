@@ -1,19 +1,34 @@
+.sm-social
+	.social-icon.twitter
+		%a.filled-link{href: "https://www.twitter.com/soundmelon", target: '_blank'}
+	.social-icon.facebook
+		%a.filled-link{href: "https://www.facebook.com/soundmelon", target: '_blank'}
+
+.vertical-divider
+
 .menu
 	- if signed_in?
 		- if current_user.terms
 			= render 'users/music_footer'
-		
-		%span= link_to "Feedback", feedback_form_path, remote: true, "data-modal" => 'feedback-board', id: 'feedback-link', class: 'modal-link hover-red'
-		
-		%span
-			%a.hover-link.hover-red#edit-page.modal-link{"data-modal" => 'user-edit'} Settings
-		
-		%span= link_to "Invite Friends", user_invites_path, remote: true, "data-modal" => 'user-invites', id: 'invite-page-link', class: 'modal-link hover-red'
-		
-		/%span#learn-more= link_to "About", "http://about.soundmelon.com", target: '_blank', class: 'hover-link'
 
-		%span= link_to("Logout", signout_path, class: 'hover-link hover-red')
+		.link-box.menu-hover
+			.link-icon.invites-icon
+			%span.label.modal-link Invite Friends
+			= link_to "", user_invites_path, remote: true, "data-modal" => 'user-invites', id: 'invite-page-link', class: 'modal-link filled-link'
 		
-	- else
-		%span Find your tune.
-		%span#learn-more= link_to "Learn more!", "http://about.soundmelon.com", target: '_blank', class: 'hover-link hover-red'
+		.link-box.menu-hover
+			.link-icon.feedback-icon
+			%span.label.modal-link Feedback
+			= link_to "", feedback_form_path, remote: true, "data-modal" => 'feedback-board', id: 'feedback-link', class: 'filled-link modal-link'
+		
+		.link-box.menu-hover
+			.link-icon.settings-icon
+			/%span.label.modal-link Settings
+			- full_name = current_user.first_name
+			%span.label.modal-link= full_name
+			%a.filled-link#edit-page.modal-link{"data-modal" => 'user-edit'}
+		
+	.link-box.menu-hover
+		.link-icon.about-icon
+		%span.label.modal-link Learn More
+		= link_to "", "http://about.soundmelon.com", target: '_blank', class: 'filled-link'

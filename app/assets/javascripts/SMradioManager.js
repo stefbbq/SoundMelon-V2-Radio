@@ -54,7 +54,7 @@ var SMradioManager = function(scAppId) {
 	//
 	//behaviour
 	function playBehaviour() {
-		$(this).children('.control-image').removeClass('play-image pause-image').addClass('loading-image ');
+		$(this).children('.control-image').removeClass('play-image pause-image').addClass('spinner ');
 		if(currentSong) {
 			playPause();
 		}

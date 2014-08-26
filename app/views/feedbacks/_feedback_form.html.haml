@@ -1,10 +1,7 @@
 #feedback-form
-	= form_for(@report, url: feedback_send_path, remote: true, :validate => true) do |f|
-	
-		.top
-			.label Select a type:
-
-		.problem-list
+	= form_for(@report, url: feedback_send_path, remote: true, :validate => true) do |f|		
+		.problem-list.section-wrapper
+			.label Select type:
 			.problem-button.feedback-buttons.checked
 				= f.radio_button :category, "bug", {checked: true, class: 'feedback-radio'}
 				%span bug
@@ -17,15 +14,18 @@
 				= f.radio_button :category, "comment", class: 'feedback-radio'
 				%span comment
 
-		= f.text_area :content, placeholder: 'Add a description', class: 'text-box', onfocus: "this.placeholder=''", onblur: "this.placeholder='Add a description'"
+		.section-wrapper= f.text_area :content, placeholder: 'Add a description', class: 'text-box', onfocus: "this.placeholder=''", onblur: "this.placeholder='Add a description'"
+
+		.section-divider
 
 		.bottom
 			.wrapper
 				.cancel.button 
 					%span cancel
-				.submit.button 
+				.submit.button{onclick: 'showFormSpin(this); $(this).closest("form").submit();'}
+					/= f.submit 'Submit', onclick: 'showFormSpin(this)'
 					%span submit
-					.submit-wrapper= f.submit 'Submit', onclick: 'showFormSpin(this)', class: 'overlay'
+					/.submit-wrapper= f.submit 'Submit', onclick: 'showFormSpin(this)', class: 'overlay'
 
 :javascript
 	$(document).ready(function() {

@@ -1,0 +1,79 @@
+@import "compass";
+@import "variables";
+//footer
+body > .footer {
+	// @include background(linear-gradient(rgba(black, .7), black));
+	background-color: rgba(black, 0.85);
+	height: $footer-height;
+	width: 100%;	
+	position: fixed;
+	bottom: 0px;
+	font-family: 'HelveticaNeue';
+	font-size: 14px;
+	color: white;
+	
+	.logo {
+		position: absolute;
+		left: 18px;
+		bottom: $footer-height - 55px;
+//		display: none;
+	}
+	
+	.right {
+		float: right;
+		position: relative;
+		height: 100%;
+		// // width: 562px;
+		// top: 17px;
+		// right: 23px;
+		color: rgba(white, .8);
+		
+		.menu {
+			height: 100%;
+			font-family: HelveticaRoman;
+			font-size: 12px;
+			display: inline-block;
+			vertical-align: top;
+			.link-box {
+				position: relative;
+				height: 100%;
+				width: 80px;
+				text-align: center;
+				display: inline-block;
+				margin-top: 10px;
+				cursor: pointer;
+				
+				.link-icon {
+					opacity: 0.8;
+					margin-bottom: 5px;
+				}
+
+				&:hover {
+					.link-icon {
+						opacity: 1;
+					}
+				}
+			}
+
+			.splash-footer {
+				position: relative;
+				top: 50%;
+				@include transform(translateY(-50%));
+				margin-right: 25px;
+				font-size: 14px;
+			}
+		}
+	}
+	.vertical-divider {margin: 0 5px;}
+	.sm-social {
+		display: inline-block;
+		height: 100%;
+		position: relative;
+		.social-icon {
+			position: relative;
+			margin: 8px 0;
+		}
+	}
+
+	#more-info { display: none; }
+}

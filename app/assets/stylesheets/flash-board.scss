@@ -1,47 +1,71 @@
 @import "compass/css3";
+@import "variables";
 
 #flash-board {
-	height: 25px;
+	height: 65px;
 	width: 100%;
 	position: absolute;
-	top: -3px;
-	text-align: right;
+	top: 0;
+	left: 0;
+	background: rgba(white, 0.5);
+	// @include box-shadow(0 0 1px 1px rgba(black,0.2));
+	text-align: center;
 	display: none;
 	
 	.message {
+		font-family: HelveticaNeue;
+		color: rgba(black, 0.65);
+		font-size: 18px;
 		position: relative;
-		top: 5px;
+		top: 50%;
+		@include transform(translateY(-50%));
+		margin-top: 2px;
 	}
 	
 	.severity {
-		width: 106px;
-		height: 23px;
+		// width: 106px;
+		// height: 23px;
 		color: black;
+		position: absolute;
+		right: 25px;
+		background: rgba(black, 0.1);
 		@include border-radius(3px);
-		display: inline-block;
-		margin-left: 10px;
+		font-family: HelveticaRoman;
 		text-align: center;
-		text-transform: capitalize;
-		
+		text-transform: uppercase;
+		cursor: pointer;
+		top: 50%;
+		@include transform(translateY(-50%));
+
+		&:hover {
+			background: rgba(black, 0.13);
+		}
+
 		.level {
-			position: relative;
-			top: 5px;
+			float: left;
+			width: 100px;
+			margin-top: 6px;
+		}
+		.close {
+			height: 23px;
+			width: 23px;
+			overflow: hidden;
+			background: url('/assets/close.png') center no-repeat, rgba(black, 0.1);
 		}
 	}
 	
 	&.notification {
-		.message { color: rgb(193,193,193); }
-		.severity { background: rgb(193,193,193); }
+		.close {display: none;}
 	}
-	
-	&.warning {
-		.message { color: rgb(254,137,0); }
-		.severity { background: rgb(254,137,0); }
-	}
-	
+
 	&.error {
-		.message { color: red; }
-		.severity { background: red; }
+		background: rgba(#c5462b, 0.78);
+		.message { color: rgba(white, 0.85); }
+		.severity { background: rgba(white, 0.8); }
 	}
 	
+	@media #{$tablet-mobile} {
+		text-align: left;
+		.message {margin-left: 25px;}
+	}
 }

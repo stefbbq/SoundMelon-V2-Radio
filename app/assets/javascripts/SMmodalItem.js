@@ -2,7 +2,7 @@
 //Modal Class
 
 SMmodalItem = function($link, $index){
-	var base, link, object, index, name, active, sidebar;
+	var base, link, object, index, name, active, sidebar, linkBox, linkBoxes;
 	index = $index;
 	active = false;
 	
@@ -12,6 +12,9 @@ SMmodalItem = function($link, $index){
 	object = $('#' + name);
 	sidebar = object.find('.sidebar');
 	
+	linkBox = $link.closest('.link-box');
+	linkBoxes = $(".footer .menu .link-box");
+
 	//
 	//config
 	function enable() {
@@ -19,11 +22,12 @@ SMmodalItem = function($link, $index){
 	}
 	function initBehaviour() {
 		link.click(toggleModal);
-		setModalClose();
-		// setSidebar();
-		// $(document).mouseup(function($e) {
-		// 	smartHide($e);
-		// });
+		$(document).ready(function() {
+			setModalClose();
+			setModalPosition();
+			$(window).resize(setModalPosition);
+		})
+
 	}
 	
 	//
@@ -31,11 +35,11 @@ SMmodalItem = function($link, $index){
 	function toggleModal(){
 		if(!isActive()) {
 			object.show();
-			console.log('activating from: ' + isActive());
+			// console.log('activating from: ' + isActive());
 			activate();
-			$('.footer .menu a').removeClass('active-red active-green');
-			if(link.hasClass('hover-red')) link.addClass('active-red');
-			else link.addClass('active-green');
+			linkBoxes.removeClass('menu-active');
+			if(linkBox.hasClass('hover-red')) linkBox.addClass('menu-active');
+			else linkBox.addClass('menu-active');
 			if(isLoaded()) {
 				return false;
 			}
@@ -45,8 +49,6 @@ SMmodalItem = function($link, $index){
 		}
 		else {
 			console.log('deactivating from: ' + isActive());
-			link.removeClass('active-red active-green');
-			object.hide();
 			deactivate();
 
 		}
@@ -66,16 +68,18 @@ SMmodalItem = function($link, $index){
 
 	function setModalClose() {
 		$(document).click(function(e) {
+			// console.log("document clicked");
 			object.each(function() {
 				var $el = $(this);
-
+				// console.log($el);
 				if( 
 						this !== e.target &&
 	        	!$el.has(e.target).length &&
-	          ( !$(e.target).is('.modal') )
+	          ( !$(e.target).is('.modal, .go-back') )
 	        ) {
 					// $el.removeClass(disableClass);
-					link.removeClass('active-red active-green');
+					// console.log('hiding: ' + name);
+					linkBox.removeClass('menu-active');
 					object.hide();
 					deactivate();
 				}
@@ -83,19 +87,23 @@ SMmodalItem = function($link, $index){
 		});
 	}
 
-	// function setVendorClose(box, boxClass, disableClass) {
-	// 	jQuery(document).click(function(e) {
-	// 		box.each(function() {
-	// 			var $el = jQuery(this);
-
-	// 			if( this !== e.target &&
-	//         	!$el.has(e.target).length &&
-	//           !$(e.target).is('.modal')) {
-	// 				$el.removeClass(disableClass);
-	// 			}
-	// 		});
-	// 	});
-	// }
+	function setModalPosition() {
+		var linkIndex = linkBox.index();
+		var linkBoxesLength = linkBoxes.length;
+		if(linkIndex < linkBoxesLength - 2) {
+			console.log(linkBox.index());
+			var linkPos = findPos($link[0]);
+			var offset = 100;
+			var linkLeftPos = linkPos.x - offset;
+			object.css('left', linkLeftPos);
+		}
+		else if(linkIndex === linkBoxesLength - 2) {
+			object.addClass('second-last-modal');
+		}
+		else {
+			object.addClass('last-modal');
+		}
+	}
 	
 	function activate() {
 		active = true;
@@ -103,6 +111,8 @@ SMmodalItem = function($link, $index){
 	
 	function deactivate() {
 		active = false;
+		linkBox.removeClass('menu-active menu-active');
+		object.hide();
 	}
 	
 	function isActive() {

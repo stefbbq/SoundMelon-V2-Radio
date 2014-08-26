@@ -1,5 +1,6 @@
 :plain
-	var flashMsg = #{@messages.to_json};;
+	var flashMsg = #{@messages.to_json};
+	//flashMsg.severity = 'error';
 	if(flashMsg) {
 		FlashManager.showMessage(flashMsg);
 	}

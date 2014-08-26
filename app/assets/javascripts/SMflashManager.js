@@ -6,11 +6,16 @@ var SMflashManager = (function() {
 		//
 		//vars
 		flashBoard = $('#flash-board');
+		var severityBox = flashBoard.find('.severity');
 		
 		//
 		//setup
 		function enable() {
 			flashBoard.click(dismiss);
+			severityBox.click(function() {
+				animateOut(0);
+			});
+
 		}
 		function disable() {
 			flashBoard.ubnind('click');
@@ -36,7 +41,9 @@ var SMflashManager = (function() {
 			}
 			flashBoard.find('.severity .level').html(severity);
 			flashBoard.find('.message').html(message.message);
-			animateIn(animateOut);
+			var delay = severity === 'error' ? 999 : 5;
+			animateIn(animateOut, delay);
+			// animateIn();
 		}
 		
 		function dismiss() {
@@ -46,18 +53,22 @@ var SMflashManager = (function() {
 		
 		//
 		//animations
-		function animateIn(callback){
-			$('.footer .menu').css('visibility', 'hidden');
+		function animateIn(callback, delay){
+			// $('.footer .menu').css('visibility', 'hidden');
 			flashBoard.show();
-			TweenLite.from(flashBoard, 0.4, {top: 200, onComplete: callback});
+			TweenLite.from(flashBoard, 0.4, {top: -flashBoard.height(), onComplete: callback, onCompleteParams: [delay]});
 		}
 		
-		function animateOut(){
-			TweenLite.to(flashBoard, 0.4, {top: 200, onComplete: function(){
+		function animateOut(delay){
+			var anim = TweenLite.to(flashBoard, 0.4, {top: -flashBoard.height(), onComplete: function(){
 				flashBoard.hide();
 				flashBoard.css('top', 0);
 				$('.footer .menu').css('visibility', 'visible');
-			}, delay: 2});
+			}}).delay(delay);
+
+			if(delay === 999) {
+				TweenLite.killDelayedCallsTo(flashBoard);
+			}
 			
 		}
 		

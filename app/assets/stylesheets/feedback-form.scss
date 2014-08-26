@@ -4,48 +4,15 @@ $feedback-height: 303px;
 
 .modal#feedback-board {
 	width: $feedback-width;
-	height: $feedback-height;
-	// right: 45px;
-	// bottom: 105px;
-	
-	.sidebar {
-		// bottom: 165px;
-		.wrapper {
-			
-			.chain {
-				background: url('/assets/feedback.png');
-				height: 104px;
-				width: 110px;
-				// top: 260px;
-				left: -50px;
-			}
-			
-			.anchor {
-				// top: 107px;
-				left: 36px;
-			}
-			
-		}
-	}
 	
 	.main-content {
-			
-		.header {
-			
-			.left {
-				top: -30px;
-			}
-			.right {
-				top: -33px;
-				right: 15px;
-			}
-		}
 		
 		.content {
-			height: $feedback-height;
+			// height: $feedback-height;
 			width: $feedback-width;
-			@include border-radius(8px);
+			// @include border-radius(8px);
 			text-transform: none;
+			font-size: 22px;
 			
 			.top {
 					height: 40px;
@@ -65,19 +32,20 @@ $feedback-height: 303px;
 			}
 			
 			.problem-list {
-				margin: 10px 0 0 7px;
+				padding: 10px 0;
+				.label {display: inline-block;}
 				
 				.problem-button {
 					display: inline-block;
-					height: 41px;
 					width: auto;
 					text-align: center;
 					@include background(linear-gradient(rgb(68,68,68), rgb(59,59,59)));
 					text-transform: uppercase;
-					padding: 0 9px;
+					letter-spacing: -1px;
+					padding: 7px 5px 4px;
 					margin: 0 1px;
 					@include border-radius(4px);
-					line-height: 45px;
+					// line-height: 45px;
 					color: rgba(black, 0.8);
 					cursor: pointer;
 					
@@ -85,7 +53,7 @@ $feedback-height: 303px;
 						@include background(linear-gradient(rgba(white, 0.6), rgba(white, 0.5)));
 						color: rgba(white, 0.8);
 					}
-					&:hover {
+					&:hover:not(.checked) {
 						@include background(linear-gradient(rgba(white, 0.3), rgba(white, 0.2)));
 						color: rgba(white, 0.4);
 					}
@@ -98,21 +66,25 @@ $feedback-height: 303px;
 			
 			.text-box {
 				height: 120px;
-				width: 280px;
-				margin: 10px 0 0 7px;
+				padding: 5px;
+				width: calc(100% - 14px);
+				font-size: inherit;
+				// @include set-placeholder-color(rgba(white, 0.2));
 			}
 			
 			.bottom {
-				border-top: 2px dashed rgb(64,64,64);
-				margin-top: 3px;
+				// border-top: 2px dashed rgb(64,64,64);
+				// margin-top: 3px;
 				
 				.wrapper {
-					left: 10px;
-					top: 252px;
+					width: auto;
+					position: relative;
+					padding: 10px;
+					text-align: center;
 					
 					.button {
 						height: 41px;
-						width: 139px;
+						width: 49%;
 						line-height: 44px;
 						
 						&.submit {

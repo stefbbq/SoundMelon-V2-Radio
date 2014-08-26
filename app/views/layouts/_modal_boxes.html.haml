@@ -8,7 +8,8 @@
 					.anchor
 			.main-content
 				.header
-					%span add songs with
+					.section-wrapper
+						.title add songs with
 				.content
 	
 	.modal#music-admin
@@ -20,30 +21,33 @@
 						.anchor
 				.main-content
 					.header
-						.left
-							.spinner
-						.right
-							.reload-content{title: 'Reload Songs'}
-								= link_to artist_show_path, remote: true, class: 'reload-button' do
-									%span.div-link
-							%span your tunes
-					.content
+						.section-wrapper
+							.left
+								.spinner.white-spinner
+							.header-right
+								.reload-content{title: 'Reload Songs'}
+									= link_to artist_show_path, remote: true, class: 'reload-button' do
+										%span.div-link
+								.title
+									your tunes
+							.clear
+					.content.songs-container
 					.footer
 		
 	.modal#artist-profile
 		#profile-section
 			.container
-
 				.sidebar
 					.wrapper
 						.chain
 						.anchor
 				.main-content
 					.header
-						.left
-							.spinner
-						.right
-							%span profile
+						.section-wrapper
+							.left
+								.spinner.white-spinner
+							.header-right
+								.title profile
 					.content
 
 	.modal#user-edit
@@ -59,10 +63,11 @@
 						.anchor
 				.main-content
 					.header
-						.left
-							.spinner
-						.right
-							%span invite friends
+						.section-wrapper
+							.left
+								.spinner.white-spinner
+							.header-right
+								.title invite friends
 					.content
 		
 	.modal#feedback-board
@@ -74,8 +79,9 @@
 						.anchor
 				.main-content
 					.header
-						.left
-							.spinner
-						.right
-							%span submit feedback
+						.section-wrapper
+							.left
+								.spinner.white-spinner
+							.header-right
+								.title	 submit feedback
 					.content

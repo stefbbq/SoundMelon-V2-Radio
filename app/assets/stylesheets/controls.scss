@@ -46,11 +46,11 @@
 	&.cancel {
 		cursor: pointer;
 		color: white;
-		@include background(linear-gradient(rgb(70,70,70), rgb(42,42,42)));
+		@include background(linear-gradient(rgb(59,59,59), rgb(53,53,53)));
 	}
 	
 	&.submit {
-		@include background(linear-gradient(rgb(226,226,226), rgb(196,196,196)));
+		@include background(linear-gradient(rgb(215,215,215), rgb(207,207,207)));
 		color: rgba(black, 0.8);
 		
 		.submit-wrapper {

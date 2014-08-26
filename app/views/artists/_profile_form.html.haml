@@ -1,15 +1,18 @@
 #artist-profile-form
 	- @artist = current_artist
-	.name.form-block.single-input
+	.name.form-block.single-input.section-wrapper
 		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
-			%span.label Artist Name
+			.label Artist Name
 			= f.text_field :artist_name, class: 'text-box'
 			= f.hidden_field :id, value: @artist.id
+			.clear
 	
-	.photo.form-block
+	.section-divider
+	.photo.form-block.section-wrapper
 		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
 			= f.hidden_field :id, value: @artist.id
-			%span.label Your Artist Photo
+			.label Your Artist Photo
+			.clear
 			.sub-label This is how people will see you when they click on your artist name in the player.
 			
 			.photo-edit
@@ -30,17 +33,30 @@
 							.underlay
 								%span upload image
 							= f.submit "upload image", class: 'overlay'
+	.section-divider
 			
-	.website.form-block.single-input
+	.website.form-block.single-input.section-wrapper
 
 		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
 			- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
 			= f.hidden_field :id, value: @artist.id
 
-			%span.label Website
-			= f.text_field :website, class: 'text-box'
-			
-	.artist-tags.form-block
+			.input-wrapper
+				.label Website
+				= f.text_field :website, class: 'text-box'
+				.clear
+
+			.input-wrapper
+				.label Facebook
+				= f.text_field :facebook_link, class: 'text-box'
+				.clear
+
+			.input-wrapper
+				.label Twitter
+				= f.text_field :twitter_link, class: 'text-box'
+				.clear
+
+	.artist-tags.form-block.section-wrapper
 		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
 			- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
 			= f.hidden_field :id, value: @artist.id
@@ -57,7 +73,7 @@
 		$('.modal#artist-profile .spinner').hide();
 	});
 
-	$('#artist-profile-form form').children('input[type=text], textarea').typing({
+	$('#artist-profile-form form').find('input[type=text], textarea').typing({
 		stop: function(event, $elem) {
 			$elem.closest('form').submit();
 		},
@@ -67,7 +83,7 @@
 	$('#artist-genre-tags').tagsInput({
 		'defaultText': 'add more tags...',
 		'height': '150px',
-		'width': '284px',
+		'width': 'auto',
 		'onAddTag': function() {
 			console.log(this.id);
 			$(this).closest('form').submit();

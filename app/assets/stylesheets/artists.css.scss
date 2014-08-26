@@ -4,16 +4,16 @@
 @import "compass/css3";
 
 .sc-link {
-	
-	a {
-		color: rgb(251,91,0);
+	a {color: rgb(251,91,0);}
+	&:hover {
+		a {color: lighten(rgb(251,91,0), 10);}
 	}
 }
 
 .yt-link {
-	
-	a {
-		color: rgb(228,54,55);
+	a {color: rgb(228,54,55);}
+	&:hover {
+		a {color: lighten(rgb(228,54,55), 10);}
 	}
 }
 
@@ -33,7 +33,8 @@
 		width: 125px;
 		@include border-radius(10px);
 		background-size: 100% 100%;
-		display: inline-block;
+		// display: inline-block;
+		float: left;
 		margin: 3px 0 0 3px;
 	}
 
@@ -58,11 +59,9 @@
 	}
 
 	.song-information {
-		width: 53%;
-		display: inline-block;
-		position: absolute;
-		left: 130px;
-		top: 4px;
+		// width: 53%;
+		overflow: hidden;
+		padding-left: 5px;
 		
 		span {
 			padding: 0;

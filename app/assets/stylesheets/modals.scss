@@ -1,0 +1,91 @@
+@import "compass/css3";
+//
+//Modals
+.modal {
+	display: none;
+	position: fixed;
+	bottom: 121px;
+	
+	.container {
+		
+		font-family: FuturaCondensedLight;
+		font-size: 26px;
+		text-transform: uppercase;
+		position: relative;
+		
+		.sidebar {
+			position: fixed;
+			bottom: 165px;
+			.wrapper {
+				position: relative;
+				top: initial;
+
+				.chain {
+					height: 110px;
+					width: 204px;
+					background-image: url('/assets/chains.png');
+					background-position: 0;
+					background-repeat: none;
+					position: absolute;
+					top: -10px;
+					left: -55px;
+				}
+			}
+		}
+		
+		.main-content {
+			width: 302px;
+			position: relative;
+		}
+
+		.header {
+			background-color: rgba(#1d1d1d, 0.9);
+			text-align: right;
+			@include border-top-right-radius(8px);
+			@include border-top-left-radius(8px);
+
+			.title {
+				color: rgba(white, 0.9);
+				padding: 10px 0 5px;
+				display: inline-block;
+			}
+			.spinner {
+				position: relative;
+				top: 12px;
+				left: 5px;
+			}
+			.left {float: left;}
+		}
+				
+		.content {
+			background: rgba(black, 0.85);
+			@include border-bottom-right-radius(8px);
+			@include border-bottom-left-radius(8px);
+			min-height: 60px;
+		}
+	}
+
+	&.second-last-modal {
+		left: auto;
+		right: 45px;
+		.sidebar .wrapper .chain {
+			background-position: 646px 0;
+			width: 283px;
+			left: -51px;
+		}
+	}
+}
+
+//core modal styles
+.modal {
+	.section-wrapper {
+		width: 95%;
+		margin: 0 auto;
+	}
+
+	.section-divider {
+		height: 2px;
+		width: 100%;
+		border-bottom: 2px dotted rgba(white, 0.2);
+	}
+}

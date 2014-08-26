@@ -7,74 +7,50 @@ $music-viewport-height: 271px;
 	// right: -175px;
 /* 	display: none; */
 	width: auto;
-	
-	.sidebar {
-		// width: 178px;
-		// height: 117px;
-		// left: -172px;
-		// top: 296px;
-		
-		.wrapper {
-			// height: 100%;
-			// width: 100%;
-			// top: 8px;
-			
-			.chain {
-				background: url('/assets/music-admin.png') no-repeat;
-				height: 108px;
-				width: 175px;
-				top: -5px;
-				left: -152px;
-			}
-			
-			.anchor {
-				// bottom: 0;
-				left: -152px;
-			}
-		}
 
-	}
 	
 	.main-content {
 		// top: 15px;
+
+		.header {
+			.reload-content {
+				display: inline-block;
+				position: relative;
+				top: 3px;
+			}
+
+			.back-btn {
+				vertical-align: baseline;
+				padding-right: 5px;
+				// @include filter(invert(100%));
+			}
+			.go-back {
+				cursor: pointer;
+				opacity: 0.7;
+				&:hover {opacity: 1;}
+			}
+		}
 		
 		&.song-view {
 			//Styles for Song Edit and New
-			// top: 17px;
-			
-			.header {
-				position: relative;
-				
-				.left {
-					cursor: pointer;
-					
-					.go-back {
-						position: relative;
-						
-						img {
-							position: absolute;
-							left: -22px;
-							top: 3px;
-						}
-					}
-				}
-			}
 			
 			.content {
-				height: 303px;
-				@include border-radius(8px);
+				// height: 303px;
+				@include border-bottom-left-radius(8px);
+				@include border-bottom-right-radius(8px);
 				
 				.song-basic {
-					margin: 4px 0 0 4px;
-					
+					margin: 10px auto;
 					.song-information {
-						top: 40px;
-						left: 135px;
+						padding: 10px 0px 0 10px;
+					}
+					.song-image {
+						margin: 0;
 					}
 				}
 				
 				.song-state {
-					margin-left: 8px;
+					// margin-left: 8px;
 					position: relative;
 					
 					> div {
@@ -90,31 +66,16 @@ $music-viewport-height: 271px;
 						
 						.toggle-state {
 							display: block;
-							height: 52%;
+							// height: 52%;
 							width: 100%;
 							font-size: 16px;
 							position: relative;
 							line-height: 18px;
-							
-							span {
-								padding: 0;
-								position: absolute;
+							text-align: center;
+							.switch-box {
+								padding: 3px 0 0;
 							}
-							
-							&.on {
-								span {
-									top: 2px;
-									left: 14px;
-								}
-							}
-							
-							&.off {
-								span {
-									top: 4px;
-									left: 13px;
-								}
-							}
-							
+
 							&.toggle-select {
 								@include background(linear-gradient(rgb(198,198,198), rgb(170,170,170)));
 								color: black;
@@ -149,11 +110,11 @@ $music-viewport-height: 271px;
 				.song-form {
 					.source-tags {
 						position: relative;
-						
+						padding: 10px 0 8px;
 						.tagsinput {
-							position: absolute;
-							left: 8px;
-							top: 3px;
+							// position: absolute;
+							// left: 8px;
+							// top: 3px;
 							padding: 0;
 						}
 					}
@@ -162,53 +123,41 @@ $music-viewport-height: 271px;
 		//End of styles for Song Edit and New
 		}
 		
-		.header {
-			position: relative;
+		// .header {
+		// 	position: relative;
 			
-			span {
-				padding: 0;
-			}
+		// 	span {
+		// 		padding: 0;
+		// 	}
 			
-			.right {
-				width: 50%;
-				right: 11px;
-			}
+		// 	.right {
+		// 		width: 50%;
+		// 		right: 11px;
+		// 	}
 			
-			.left {
-				width: 33%;
-				text-align: right;
-				position: absolute;
-				left: 7px;
-				top: 17px;
-			}
+		// 	.left {
+		// 		width: 33%;
+		// 		text-align: right;
+		// 		position: absolute;
+		// 		left: 7px;
+		// 		top: 17px;
+		// 	}
 			
-			.reload-content {
-				display: inline-block;
-				height: 25px;
-				width: 25px;
-				position: relative;
-				top: 3px;
-				background: url('/assets/reload.png') left no-repeat;
-				opacity: 0.5;
-				background-size: 100% 100%;
-				cursor: pointer;
-				
-				&:hover {
-					opacity: 0.7;
-				}
-			}
-		}
+
+		// }
 		
 		.content {
-			height: 276px;
+			// height: 276px;
 			width: 100%;
 			overflow: hidden;
-			@include border-top-right-radius(8px);
-			@include border-top-left-radius(8px);
+			@include border-radius(0);
 			border-top: none;
+			&.songs-container {
+				min-height: $music-viewport-height;
+			}
 			
 			#scrollbar1.custom-scroller {
-				width: 302px;
+				width: 100%;
 				clear: both;
 
 				.scrollbar {
@@ -216,9 +165,9 @@ $music-viewport-height: 271px;
 				}
 				
 				.viewport {
-					width: 297px;
+					// width: 297px;
 					height: $music-viewport-height;
-					top: -271px;
+					// top: -271px;
 				}
 				.track {
 					height: $music-viewport-height;
@@ -238,14 +187,14 @@ $music-viewport-height: 271px;
 					height: 74px;
 					width: 277px;
 					margin: 8px 0 8px 5px;
-					padding-right: 5px;
+					// padding-right: 5px;
 					@include border-radius(4px);
 					cursor: pointer;
 					
 					&:hover {
 						background: rgba(white, 0.3);
 						background-image: url('right-chevrons.png');
-						background-position: 265px;
+						background-position: 98%;
 						background-repeat: no-repeat;
 					}
 
@@ -256,13 +205,14 @@ $music-viewport-height: 271px;
 						height: 100%;
 						width: 100%;
 						background: rgba(black, 0.6);
+						@include border-radius(3px);
 						text-align: center;
 						font-size: 14px;
 						text-transform: none;
 						color: white;
 						span {
 							position: relative;
-							top: 50%;
+							top: 40%;
 							@include transform(translateY(-50%));
 						}
 
@@ -279,7 +229,7 @@ $music-viewport-height: 271px;
 			background: black;
 			@include border-bottom-right-radius(8px);
 			@include border-bottom-left-radius(8px);
-			font-family: FuturaStdCondensedLight;
+			font-family: FuturaCondensedLight;
 			font-size: 16px;
 			
 			div {
@@ -290,7 +240,7 @@ $music-viewport-height: 271px;
 				padding: 0;
 			}
 			
-			.content {
+			.footer-content {
 				height: 100%;
 				width: 100%;
 				@include border-bottom-right-radius(8px);
@@ -309,7 +259,7 @@ $music-viewport-height: 271px;
 				
 				.setting-section {
 					width: auto;
-					padding-top: 6px;
+					padding-top: 9px;
 				}
 				
 			}
@@ -327,55 +277,46 @@ $music-viewport-height: 271px;
 }
 
 /* IE/Firefox Specific Artist Panels Styles */
-html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'], html[data-useragent*='Firefox'] {
+// html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'], html[data-useragent*='Firefox'] {
 	
-	.modal#music-add {
+// 	.modal#music-admin {
+// 		// bottom: 251px;
 		
-		.content {
-			.links {
-				top: 45px;
-			}
-		}
-	}
-	
-	.modal#music-admin {
-		// bottom: 251px;
-		
-		.content {
+// 		.content {
 			
-			.song-state {
-				.toggle-switch {
-					.toggle-state {
-						&.on {
-							span {
-								top: 0 !important;
-							}
-						}
-						&.off {
-							span {
-								top: 2px !important;
-							}
-						}
-					}
-				}
+// 			.song-state {
+// 				.toggle-switch {
+// 					.toggle-state {
+// 						&.on {
+// 							span {
+// 								top: 0 !important;
+// 							}
+// 						}
+// 						&.off {
+// 							span {
+// 								top: 2px !important;
+// 							}
+// 						}
+// 					}
+// 				}
 				
-				.state {
-					top: 12px !important;
-				}
-			}
-		}
+// 				.state {
+// 					top: 12px !important;
+// 				}
+// 			}
+// 		}
 		
-		.footer {
+// 		.footer {
 			
-			.content {
+// 			.content {
 				
-				.setting-section {
-					padding-top: 4px;
-				}
-			}
-		}
-	}
-}
+// 				.setting-section {
+// 					padding-top: 4px;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 /* IE Specific Artis Panels Styles */
 html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {

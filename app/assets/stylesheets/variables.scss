@@ -1,6 +1,11 @@
-$footer-height: 50px;
+$footer-height: 65px;
 $radius: 9px;
 
 //
 //colors
 $bg-text-highlight: #cf3125;
+
+
+//
+//media queries
+$tablet-mobile: "only screen and (max-device-width: 767px), (max-width: 767px)";

@@ -247,7 +247,7 @@ $player-width: 564px;
 								padding-top: 8px;
 								text-transform: uppercase;
 /* 								text-align: center; */
-								font-family: FuturaCondensedMedium;
+								font-family: FuturaCondensedLight;
 								font-size: 18px;
 								
 								.title {
@@ -356,6 +356,7 @@ $player-width: 564px;
 			margin-left: 62px;
 			margin-right: 60px;
 			overflow: hidden;
+			text-align: center;
 		}
 		
 		.control {
@@ -385,10 +386,12 @@ $player-width: 564px;
 				height: 40px;
 				opacity: 0;
 				visibility: hidden;
+				display: none;
 
 				&.enable-control {
 					opacity: 1;
 					visibility: visible;
+					display: inline-block;
 				}
 				
 				.skip-image {
@@ -412,12 +415,9 @@ $player-width: 564px;
 					background: url('/assets/pause.png') no-repeat center;
 				}
 
-				.loading-image {
-					// height: 50px;
-					// width: 50px;
-					// background-size: 845%;
-					background: url('/assets/loader.gif') no-repeat center;
-					background-size: 100% 100%;
+				.spinner {
+					background-size: 810% 100%;
+					@include transform(scale(0.6));
 				}
 			}
 		}
@@ -427,9 +427,13 @@ $player-width: 564px;
 			text-align: center;
 			color: rgb(204,204,204);
 			@include text-shadow(1px 1px 3px rgba(1,1,1,0.35));
-			font-family: FuturaHeavy;
+			font-family: FuturaBook;
 			span {
 				display: block;
+			}
+
+			.first-load {
+				margin-top: 10px;
 			}
 			
 			.song-title {

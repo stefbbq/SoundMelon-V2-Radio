@@ -15,10 +15,12 @@ var SMartistsManager = function() {
 			var calloutBox = $('.callout#show-artist-profile');
 
 			if(calloutBox.hasClass('visible')) {
-				TweenLite.to( $('.callout#show-artist-profile').closest('.callout-wrapper'), 0.5, {left: 232, ease: Sine.easeInOut, onComplete: function() {
+				$('.callout#show-artist-profile').closest('.callout-wrapper').css('z-index', '-1')
+				TweenLite.to( $('.callout#show-artist-profile').closest('.callout-wrapper'), 0.5, {right: '31%', ease: Sine.easeInOut, onComplete: function() {
 					calloutBox.find('.container').remove();
 				}});
-				TweenLite.to($(".radio-wrapper"), 0.5, {left: 0, ease: Sine.easeInOut});
+				// TweenLite.to($(".radio-wrapper"), 0.5, {left: 0, ease: Sine.easeInOut});
+				centerRadioCallout('collapse');
 				$($link).removeClass('current-visit');
 				$('.callout#show-artist-profile').removeClass('visible')
 				return false;
@@ -45,6 +47,7 @@ var SMartistsManager = function() {
 		songDuration.text(duration);
 		songLink.attr('href', song.song_url);
 		$(".external-button").addClass("show-button");
+		$(".currently-playing").removeClass('first-load');
 	}
 	
 	return {

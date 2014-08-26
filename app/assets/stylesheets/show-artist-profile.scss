@@ -9,7 +9,8 @@
 	}
 	
 	.callout-wrapper {
-		left: 232px;
+		width: 225px;
+		right: 31%;
 		z-index: -1;
 	}
 	.radio-wrapper {
@@ -20,45 +21,47 @@
 .callout#show-artist-profile {
 	// display: none;
 	// opacity: 0;
-	height: 444px;
-	width: 332px;
+	// height: 444px;
+	// width: 332px;
 	background: white;
 	@include border-top-right-radius(8px);
 	@include border-bottom-right-radius(8px);
+
 
 	.container {
 		
 		.wrapper {
 			top: 0;
-			left: 15px;
+			// padding-left: 8px;
 			position: relative;
-			
+			background: white;
+			@include border-top-right-radius(8px);
+			@include border-bottom-right-radius(8px);
+
 			.profile-picture, .content, .suggested {
-				position: absolute;
+				// position: absolute;
 			}
 			
 			.profile-picture {
-				height: 120px;
-				width: 120px;
-				display: inline-block;
+				height: 225px;
+				width: 225px;
+				@include border-top-right-radius(8px);
+				// display: inline-block;
 			}
 			
 			.content {
-				display: inline-block;
-				top: 13px;
-				left: 135px;
-				height: 100px;
-				width: 200px;
+				background: rgb(242,242,242);
+				padding: 15px;
 				
 				.label {
-					font-family: FuturaCondensedMedium;
+					font-family: FuturaCondensedLight;
 					font-size: 32px;
 					color: rgba(black, 0.7);
 				}
 				
 				.sub-label {
 					font-family: HelveticaNeueLight;
-					font-size: 14px;
+					font-size: 12px;
 					color: rgba(black, 0.5);
 					margin: 0;
 					
@@ -71,23 +74,28 @@
 						}
 					}
 				}
+
 			}
 			
-			.suggested {
-				height: 286px;
-				width: 100%;
-				top: 158px;
-				left: -15px;
-				background: rgb(242,242,242);
+			.artist-social {
+				padding: 15px;
+				color: rgba(black, 0.7);
+				text-transform: underline;
 				@include border-bottom-right-radius(8px);
-				
-				.label {
-					padding-top: 95px;
-					font-family: FuturaCondensedBold;
-					font-size: 42px;
-					text-align: center;
-					text-transform: uppercase;
-					color: rgba(black, 0.2);
+				.artist-link {
+					margin: 10px 0;
+					&:nth-child(1) {margin-top: 0;}
+					&:last-child {margin-bottom: 0;}
+				}
+				.prefix {
+					font-size: 14px;
+					font-family: HelveticaNeueLight;
+				}
+				.artist-social-link {
+					font-family: HelveticaRoman;
+					font-size: 20px;
+					text-transform: capitalize;
+					a {color: inherit;}
 				}
 			}
 			
@@ -100,13 +108,14 @@
 				border-top: 10px solid transparent;
 				border-right: 10px solid white;
 				top: 352px;
-				left: -15px;
+				left: -10px;
 				opacity: 0;
 			}
 		}
 	}
 
 	&.visible {
+		// z-index: 0;
 		.anchor {opacity: 1 !important;}
 	}
 

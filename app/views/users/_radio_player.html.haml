@@ -26,19 +26,18 @@
 					
 						.control-panel
 							/%a#replay-song replay 
-							.control.change-song#previous-song
-								%a.prev-image.control-image
+							/ .control.change-song#previous-song
+							/ 	%a.prev-image.control-image
 							.control.change-state#play-pause
 								%a.play-image.control-image
 							.control.change-song#next-song
 								%a.skip-image.control-image
 							
 						.current-content
-							.currently-playing
+							.currently-playing.first-load
 								%span.song-title
 									Press Play to start!
 								%span.artist
-									#{'--------------------'}
 									
 					.right
 						.content
@@ -89,3 +88,4 @@
 	$("#radio-controls .external-button").click(function() {
 		ga('send', 'event', 'button', 'click', $(this).attr('id'));
 	});
+

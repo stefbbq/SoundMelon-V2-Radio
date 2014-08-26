@@ -4,6 +4,10 @@
 		FlashManager.showMessage(errorFlash);
 	}
 	else {
-		$('#feedback-board .content').empty().html('<span>Thank you for your feedback! We love to hear from the Soundmelon community on what you love and what you would love to see changed.</span>');
+		FlashManager.showMessage({
+			message: 'Thank you for your feedback!',
+			severity: 'notification'
+		})
+		$('#feedback-board .content .text-box').val('');
 	}
 

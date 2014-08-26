@@ -11,6 +11,17 @@
 }
 
 //social
-#facebook-icon { @include sprite-img("icons/social.png", 1, 1, 32px, 32px); }
-#twitter-icon { @include sprite-img("icons/social.png", 2, 1, 32px, 32px); }
-#linkedin-icon { @include sprite-img("icons/social.png", 3, 1, 32px, 32px); }
+.facebook-icon { @include sprite-img("icons/social.png", 1, 1, 32px, 32px); }
+.twitter-icon { @include sprite-img("icons/social.png", 2, 1, 32px, 32px); }
+.linkedin-icon { @include sprite-img("icons/social.png", 3, 1, 32px, 32px); }
+
+.social-icon {
+	height: 20px;
+	width: 20px;
+	background-image: url('/assets/social-icons.png');
+	opacity: 0.4;
+	&:hover {opacity: 0.8;}
+	&.facebook {
+		background-position: 33% 0;
+	}
+}

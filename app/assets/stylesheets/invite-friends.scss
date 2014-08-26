@@ -8,56 +8,42 @@ $invite-height: 192px;
 	// right: 45px;
 	// bottom: 106px;
 	
-	.sidebar {
-		
-		.wrapper {
-			
-			.chain {
-				background: url('/assets/invite-friends.png');
-				height: 104px;
-				width: 261px;
-				// bottom: -255px;
-				left: -50px;
-			}
-			
-			.anchor {
-				// top: 256px;
-				left: 199px;
-			}
-			
-		}
-	}
-	
 	.main-content {
 			
-		.header {
-			.right {
-				top: -33px;
-				right: 15px;
-			}
-			.left {
-				top: -30px;
-			}
-		}
+		// .header {
+		// 	.right {
+		// 		top: -33px;
+		// 		right: 15px;
+		// 	}
+		// 	.left {
+		// 		top: -30px;
+		// 	}
+		// }
 		
 		.content {
 			// height: $invite-height;
-			width: $invite-width;
-			@include border-radius(8px);
+			// width: $invite-width;
+			// @include border-radius(8px);
 			text-transform: none;
+			.section-wrapper {
+				padding: 7px 0 0px;
+				&.bottom {
+					padding: 0 0 7px;
+				}
+			}
 			
 			#invites-page {
 				
 				.top {
-					height: 40px;
-					width: 100%;
-					position: relative;
-					top: 5px;
+					// height: 40px;
+					// width: 100%;
+					// position: relative;
+					// top: 5px;
 					
 					.label {
-						position: absolute;
-						top: 8px;
-						left: 13px;
+						// position: absolute;
+						// top: 8px;
+						// left: 13px;
 					}
 				}
 				
@@ -67,7 +53,7 @@ $invite-height: 192px;
 					.text-button {
 						display: block;
 						height: 37px;
-						width: 284px;
+						width: auto;
 						line-height: 30px;
 						
 						&.submit-invite {
@@ -76,7 +62,7 @@ $invite-height: 192px;
 							
 							.text-box {
 								height: 35px;
-								width: 219px;
+								width: 75%;
 							}
 							
 							.button {
@@ -94,7 +80,7 @@ $invite-height: 192px;
 						}
 						
 						&.invited-invite, &.joined-invite {
-							margin: 0 0 6px 7px;
+							// margin: 0 0 6px 7px;
 							
 							.text-box {
 								height: 37px;
@@ -108,7 +94,7 @@ $invite-height: 192px;
 						&.invited-invite {
 							@include background(linear-gradient(rgb(90,90,90), rgb(78,78,78)));
 							border-color: rgb(90,90,90);
-							
+							margin-bottom: 7px;
 							.text-box {
 								color: rgba(white, 0.3);
 							}
@@ -134,15 +120,15 @@ $invite-height: 192px;
 				}
 				
 				.middle {
-					width: 100%;
+					// width: 100%;
 					// height: 102px;
-					margin: 10px 0 5px;
+					// margin: 10px 0 5px;
 				}
 				
 				.bottom {
-					width: 100%;
-					height: 45px;
-					padding-bottom: 3px;
+					// width: 100%;
+					// height: 45px;
+					// padding-bottom: 7px;
 					.text-button.submit-invite {
 						margin: 0 auto;
 					}

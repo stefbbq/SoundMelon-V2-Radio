@@ -1,6 +1,6 @@
 class Artist < ActiveRecord::Base
   attr_accessible :artist_name, :youtube_token, :soundcloud_token, :artist_photo,
-									:website, :city, :genre_tags
+									:website, :city, :genre_tags, :facebook_link, :twitter_link
 	
 	before_save :record_city
 	

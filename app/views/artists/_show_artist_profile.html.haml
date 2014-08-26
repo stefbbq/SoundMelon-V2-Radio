@@ -1,7 +1,7 @@
 .container
 	- @artist = Artist.find(artist_id)
 	.wrapper
-		.profile-picture{style: "background: url(#{@artist.artist_photo(:thumb)}) center no-repeat; background-size: cover;"}
+		.profile-picture{style: "background: url(#{@artist.artist_photo(:medium)}) center no-repeat; background-size: cover;"}
 		
 		.content
 			.label= @artist.artist_name
@@ -11,13 +11,16 @@
 			.sub-label
 				%span.prefix From 
 				%span.data= @artist.city
-			- if !@artist.website.nil?
-				- website = /^http/.match(@artist.website) ? @artist.website : "http://#{@artist.website}"
-				.sub-label
-					%span.prefix Visit 
-					%span.data= link_to "Website", website, target: '_blank'
-				
-		.suggested
-			.label suggested songs coming soon!
-		
+
+		.artist-social
+			- social_links = {'website' => {'link' => @artist.website, 'tagline' => 'visit our'}, 'facebook' => {'link' => @artist.facebook_link, 'tagline' => 'like us on'}, 'twitter' => {'link' => @artist.twitter_link, 'tagline' => 'follow us on'}}
+			- social_links.keys.each do |key|
+				- link = social_links[key]['link']
+				- if !link.nil?
+					.artist-link
+						- tagline = social_links[key]['tagline']
+						- link = /^http/.match(link) ? link : "http://#{link}"
+						%span.prefix= tagline
+						%span.artist-social-link= link_to key, link, target: '_blank'
+						
 		.anchor

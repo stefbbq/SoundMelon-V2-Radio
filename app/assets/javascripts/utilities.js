@@ -41,3 +41,9 @@ function findPos(obj) {
 	}
 	return {x:curLeft, y:curTop};
 }
+
+function centerRadioCallout(command) {
+	var totalWidth = command === "expand" ? $(".radio-wrapper").width() + $('.callout-wrapper').width() : $(".radio-wrapper").width();
+	// $(".main-content").width(totalWidth);
+	TweenLite.to($('#page-content'), 0.5, {width: totalWidth})
+}

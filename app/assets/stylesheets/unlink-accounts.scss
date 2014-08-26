@@ -9,7 +9,7 @@
 		z-index: 10;
 		@include border-top-right-radius(8px);
 		@include border-top-left-radius(8px);
-		font-family: FuturaCondensedMedium;
+		font-family: FuturaBook;
 		font-size: 24px;
 		text-transform: none;
 		text-align: center;
@@ -28,6 +28,13 @@
 					height: 30px;
 					width: 65px;
 					line-height: 33px;
+					font-family: FuturaCondensedLight;
+					cursor: pointer;
+
+					&:hover {
+						@include background(linear-gradient(rgba(white, 0.6), rgba(white, 0.5)));
+						color: rgba(white, 0.8);
+					}
 					
 					.submit-wrapper {
 						height: 100%;

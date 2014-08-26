@@ -4,7 +4,7 @@
 	//Styles for Add Music Accounts
 	// left: -80px;
 	// bottom: 102px;
-	height: 90px;
+	// height: 90px;
 	right: 75px;
 	width: auto;
 	.main-content {
@@ -13,38 +13,39 @@
 	}
 	
 	.sidebar {
-		bottom: 211px;
+		// bottom: 211px;
 		.wrapper {
 			
-			.chain {
-				background: url('/assets/music-add.png');
-				height: 99px;
-				width: 104px;
-				top: 52px;
-				left: -89px;
-			}
+			// .chain {
+			// 	background: url('/assets/music-add.png');
+			// 	height: 99px;
+			// 	width: 104px;
+			// 	top: 52px;
+			// 	left: -89px;
+			// }
 			
-			.anchor {
-				top: 153px;
-				left: 3px;
-			}
+			// .anchor {
+			// 	top: 153px;
+			// 	left: 3px;
+			// }
 			
 		}
 	}
 	
-	.header {
-		height: 29px;
-		text-align: center;
-	}
+	// .header {
+	// 	height: 29px;
+	// 	text-align: center;
+	// }
 	
 	.content {
 		height: 61px;
-		@include border-radius(8px);
+		// @include border-radius(8px);
 		
 		.links {
-			position: absolute;
-			top: 47px;
-			left: 41px;
+			position: relative;
+			top: 50%;
+			@include transform(translateY(-50%));
+			text-align: center;
 			
 			> div {
 				display: inline-block;

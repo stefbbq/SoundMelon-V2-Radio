@@ -57,7 +57,7 @@
 							%span This song has been blocked due to reporting and investigation.
 					- if bad_duration
 						.block-msg 
-							%span This song is deemed to have too #{too_short ? 'short' : 'long'} a duration for SoundMelon.
+							%span This song is too #{too_short ? 'short' : 'long'}!
 				- if !is_blocked && !bad_duration && !Song.exists?(song_id: song_id)
 					= link_to new_song_path({song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags, song_title: song.title, song_image: img_src, duration: duration}), remote: true, class: 'song-link new' do
 						%span.div-link
@@ -66,4 +66,4 @@
 					= link_to edit_song_path({id: id, song_id: song_id, upload_source: upload_source, song_url: song_url, song_private: song_private, source_tags: source_tags, song_title: song.title, song_image: img_src, duration: duration}), remote: true, class: 'song-link edit' do
 						%span.div-link
 						
-			.border-bottom
+			.section-divider

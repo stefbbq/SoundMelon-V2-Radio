@@ -4,8 +4,8 @@
 	@include border-radius(8px);
 	border: 2px solid rgb(221,221,221);
 	@include background(linear-gradient(rgb(74,74,74), rgb(64,64,64)));
-	font-family: FuturaCondensedMedium;
-	font-size: 26px;
+	font-family: FuturaCondensedLight;
+	font-size: 22px;
 	color: rgba(white, 0.8);
 	
 	&:focus {
@@ -15,7 +15,7 @@
 }
 
 .single-input {
-	text-align: center;
+	// text-align: center;
 	
 	.label {
 		padding-right: 4px;
@@ -45,7 +45,8 @@
 		@include border-top-right-radius(0px);
 		@include border-bottom-right-radius(0px);
 		border: none;
-		text-align: center;
+		padding-left: 5px;
+		// text-align: center;
 	}
 	
 	.button {
@@ -76,24 +77,40 @@
 		background: rgb(146,146,146);
 		color: inherit;
 		font-family: inherit;
-		font-size: 26px;
+		font-size: 22px;
 		text-transform: none;
 		margin: 5px -1px 1px 5px;
+		position:relative;
 		
+		&:hover {
+			background-color: lighten(#929292, 30);
+			a {display: block;}
+
+		}
+		a {
+			position: absolute;
+			font-family: FuturaBook;
+			font-size: 22px !important;
+			color: rgba(black, 0.6) !important;
+			height: 100%;
+			width: 100%;
+			text-align: center;
+			display: none;
+			top: 1px;
+		}		
+
 		span {
 			line-height: 33px;
 			padding-left: 9px;
 		}
-		
-		a {
-			display: none;
-		}
+
 	}
 	
 	>div input {
-		width: 128px !important;
-		font-family: FuturaCondensedMedium;
-		font-size: 26px;
+		// width: 128px !important;
+		font-family: FuturaCondensedLight;
+		color: rgba(white, 0.8) !important;
+		font-size: 22px;
 		margin: 0;
 		
 	}
