@@ -16,7 +16,14 @@ body > .footer {
 		position: absolute;
 		left: 18px;
 		bottom: $footer-height - 55px;
-//		display: none;
+		img {max-width: 100%;}
+		@media #{media-width-res(1100)} {
+			width: 300px;
+			bottom: 36px;
+		}
+		@media #{media-width-res(800)} {
+			display: none;
+		}
 	}
 	
 	.right {
