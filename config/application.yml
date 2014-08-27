@@ -20,24 +20,24 @@ INVITE_LIMIT: 3
 
 
 development:
-  HOST_ADDR: 'http://localhost:3000'
-#   HOST_ADDR: 'http://soundmelon.ngrok.com'
+  # HOST_ADDR: 'http://localhost:3000'
+  HOST_ADDR: 'http://soundmelon.ngrok.com'
 
 
   ##
   ##Localhost Keys
   #Youtube API Keys
-  YOUTUBE_APP_ID: '1035080270379-o8mnqtq490m1v2v1btgjfl1o54u3v0b3.apps.googleusercontent.com'
-  YOUTUBE_SECRET: '-mEtRYHzGaAqa-035VdwtdiK'
-  YOUTUBE_DEV_KEY: 'AI39si4xwZsnYS8ZPjdY36jy8jGCyBxCavTy1Xj_P5DtaCibNDzilGmeCLRPD9mTz0mHoPhm9LlF2REKzq5ivQQGLRe4g8uqHg'
+  # YOUTUBE_APP_ID: '1035080270379-o8mnqtq490m1v2v1btgjfl1o54u3v0b3.apps.googleusercontent.com'
+  # YOUTUBE_SECRET: '-mEtRYHzGaAqa-035VdwtdiK'
+  # YOUTUBE_DEV_KEY: 'AI39si4xwZsnYS8ZPjdY36jy8jGCyBxCavTy1Xj_P5DtaCibNDzilGmeCLRPD9mTz0mHoPhm9LlF2REKzq5ivQQGLRe4g8uqHg'
 
-  #Soundcloud API Keys
-  SOUNDCLOUD_APP_ID: 'aed36f8bf087fe7716c9e594a211e8fb'
-  SOUNDCLOUD_SECRET: 'dfd9ce380afd86f81619ad1b1dca8d72'
+  # #Soundcloud API Keys
+  # SOUNDCLOUD_APP_ID: 'aed36f8bf087fe7716c9e594a211e8fb'
+  # SOUNDCLOUD_SECRET: 'dfd9ce380afd86f81619ad1b1dca8d72'
 
-  #Facebook API Keys
-  FACEBOOK_APP_ID: "220521528108018"
-  FACEBOOK_SECRET: "a2385662ccd25e557324887744e4ff4e"
+  # #Facebook API Keys
+  # FACEBOOK_APP_ID: "220521528108018"
+  # FACEBOOK_SECRET: "a2385662ccd25e557324887744e4ff4e"
   
   #Dropbox API Keys
   DROPBOX_APP_KEY: "05fonmrmp17g5am"
@@ -47,16 +47,16 @@ development:
   
   ##
   ##Ngrok Keys
-#   YOUTUBE_APP_ID: '1035080270379-2hukcfctb6m0mmetrok28h4h7p28hfjg.apps.googleusercontent.com'
-#   YOUTUBE_SECRET: '7RaYsJE5hvZDqHqlOfFtEbi1'
+  YOUTUBE_APP_ID: '1035080270379-2hukcfctb6m0mmetrok28h4h7p28hfjg.apps.googleusercontent.com'
+  YOUTUBE_SECRET: '7RaYsJE5hvZDqHqlOfFtEbi1'
 
   #Soundcloud API Keys
-#   SOUNDCLOUD_APP_ID: 'a0003ecfabe1304a10c8f7e8bfb6d49f'
-#   SOUNDCLOUD_SECRET: '9b82b1c4c6d531e6d298ba653903028e'
+  SOUNDCLOUD_APP_ID: 'a0003ecfabe1304a10c8f7e8bfb6d49f'
+  SOUNDCLOUD_SECRET: '9b82b1c4c6d531e6d298ba653903028e'
 
   #Facebook API Keys
-#   FACEBOOK_APP_ID: "719251288120014"
-#   FACEBOOK_SECRET: "e828e948b8fdb39ee1e30fba4df3df80"
+  FACEBOOK_APP_ID: "719251288120014"
+  FACEBOOK_SECRET: "e828e948b8fdb39ee1e30fba4df3df80"
 
 
 production:

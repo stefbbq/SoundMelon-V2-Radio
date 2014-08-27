@@ -141,14 +141,40 @@ h1 {
 // 	font-family: FuturaHeavy;
 // 	src: url('FuturaHeavy.eot?') format('eot'), url('FuturaHeavy.woff') format('woff'), url('FuturaHeavy.ttf') format('ttf');
 // }
+// @font-face {
+// 	font-family: HelveticaNeue;
+// 	src: url('HelveticaNeueLTStd-Md.eot?') format('eot'), url('HelveticaNeueLTStd-Md.woff') format('woff'), url('HelveticaNeueLTStd-Md.ttf') format('ttf');
+// }
+// @font-face {
+// 	font-family: HelveticaNeueLight;
+// 	src: url('HelveticaNeueLTStd-Lt.eot?') format('eot'), url('HelveticaNeueLTStd-Lt.woff') format('woff'), url('HelveticaNeueLTStd-Lt.ttf') format('ttf');
+// }
 @font-face {
-	font-family: HelveticaNeue;
-	src: url('HelveticaNeueLTStd-Md.eot?') format('eot'), url('HelveticaNeueLTStd-Md.woff') format('woff'), url('HelveticaNeueLTStd-Md.ttf') format('ttf');
+  font-family: HelveticaNeue;
+  src: url('HelveticaNeueLTStd-Md.eot'); /* IE9 Compat Modes */
+  src: url('HelveticaNeueLTStd-Md.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('HelveticaNeueLTStd-Md.woff') format('woff'), /* Modern Browsers */
+       url('HelveticaNeueLTStd-Md.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('HelveticaNeueLTStd-Md.svg#297525cf3c6ba1ff86516c4aa7d9abf5') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
 }
+
+
 @font-face {
-	font-family: HelveticaNeueLight;
-	src: url('HelveticaNeueLTStd-Lt.eot?') format('eot'), url('HelveticaNeueLTStd-Lt.woff') format('woff'), url('HelveticaNeueLTStd-Lt.ttf') format('ttf');
+  font-family: HelveticaNeueLight;
+  src: url('HelveticaNeueLTStd-Lt.eot'); /* IE9 Compat Modes */
+  src: url('HelveticaNeueLTStd-Lt.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('HelveticaNeueLTStd-Lt.woff') format('woff'), /* Modern Browsers */
+       url('HelveticaNeueLTStd-Lt.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('HelveticaNeueLTStd-Lt.svg#ab53f55f9c010d958855493bf21fef17') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
 }
+
+
 @font-face {
   font-family: HelveticaRoman;
   src: url('HelveticaNeueLTStd-Roman.eot'); /* IE9 Compat Modes */

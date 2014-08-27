@@ -172,13 +172,13 @@ a, a:link, a:visited {
 }
 
 /* IE Specific Radio Styles */
-html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
-	body > .footer {
-		.right {
-			top: 15px;
-		}
-	}
-}
+// html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
+// 	body > .footer {
+// 		.right {
+// 			top: 15px;
+// 		}
+// 	}
+// }
 
 /* Firefox Specific Radio Styles  */
 // html[data-useragent*='Firefox'] {

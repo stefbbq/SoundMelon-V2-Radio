@@ -10,9 +10,33 @@
 	
 	.callout-wrapper {
 		width: 225px;
-		// height: 444px;
+		height: 444px;
 		right: 31%;
 		z-index: -1;
+		background: white;
+		@include border-top-right-radius(8px);
+		@include border-bottom-right-radius(8px);
+
+		.spinner {
+			position: absolute;
+			top: calc(50% - 12px);
+			left: calc(50% - 12px);
+			// display: block;
+		}
+
+
+		.anchor {
+			position: absolute;
+			z-index: 3;
+			width: 0; 
+			height: 0; 
+			border-bottom: 10px solid transparent;
+			border-top: 10px solid transparent;
+			border-right: 10px solid white;
+			top: 352px;
+			left: -10px;
+			opacity: 0;
+		}
 	}
 	.radio-wrapper {
 		// z-index: 2;
@@ -20,14 +44,10 @@
 }
 
 .callout#show-artist-profile {
-	// display: none;
-	// opacity: 0;
-	// height: 444px;
-	// width: 332px;
+	height: 100%;
 	background: white;
 	@include border-top-right-radius(8px);
 	@include border-bottom-right-radius(8px);
-
 
 	.container {
 		
@@ -100,24 +120,12 @@
 				}
 			}
 			
-			.anchor {
-				position: absolute;
-				z-index: 3;
-				width: 0; 
-				height: 0; 
-				border-bottom: 10px solid transparent;
-				border-top: 10px solid transparent;
-				border-right: 10px solid white;
-				top: 352px;
-				left: -10px;
-				opacity: 0;
-			}
 		}
 	}
 
 	&.visible {
 		// z-index: 0;
-		.anchor {opacity: 1 !important;}
+		// .anchor {opacity: 1 !important;}
 	}
 
 }

@@ -124,9 +124,9 @@
 	text-align: center;
 	position: fixed;
 	width: 100%;
-	top: 50%;
+	top: calc(50% - 65px);
 	left: 0;
-	@include transform(translateY(-100%));
+	@include transform(translateY(-50%));
 }
 
 #init-fb-meta {

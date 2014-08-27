@@ -15,7 +15,10 @@ var SMartistsManager = function() {
 			var calloutBox = $('.callout#show-artist-profile');
 
 			if(calloutBox.hasClass('visible')) {
-				$('.callout#show-artist-profile').closest('.callout-wrapper').css('z-index', '-1')
+				var anchor = $('.callout#show-artist-profile').closest('.callout-wrapper').find('.anchor');
+				$('.callout#show-artist-profile').closest('.callout-wrapper').css('z-index', '-1');
+				TweenLite.to(anchor, 0.3, {opacity:0});
+				TweenLite.to($('#player-box'), 0.5, {css:{borderBottomRightRadius:10, borderTopRightRadius:10}});
 				TweenLite.to( $('.callout#show-artist-profile').closest('.callout-wrapper'), 0.5, {right: '31%', ease: Sine.easeInOut, onComplete: function() {
 					calloutBox.find('.container').remove();
 				}});
@@ -26,6 +29,16 @@ var SMartistsManager = function() {
 				return false;
 			}
 			else {
+				var profileWrapper = $('.callout#show-artist-profile').closest('.callout-wrapper');
+				centerRadioCallout('expand');
+				profileWrapper.find('.spinner').show();
+				TweenLite.to($('.radio-wrapper'), 0.5, {left: 0, ease: Sine.easeInOut});
+				TweenLite.to($('#player-box'), 0.5, {css:{borderBottomRightRadius:0, borderTopRightRadius:0}});
+				TweenLite.to(profileWrapper, 0.5, {ease: Sine.easeInOut, right: 0, onComplete: function() {
+					var anchor = profileWrapper.find('.anchor');
+					TweenLite.to(anchor, 0.3, {opacity:1});
+				 	$('.callout#show-artist-profile').addClass('visible').closest('.callout-wrapper').css('z-index', '0');
+				}});
 				newArtistProfile = false;
 				// console.log($link.href);
 				$link.href = $link.href + currentSong['song_id'];

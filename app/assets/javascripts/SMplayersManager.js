@@ -104,7 +104,7 @@ var SMplayersManager = function($scAppId) {
 		ytPlayerReady = true;
 		console.log('yt is now ready!');
 		setQuality(ytQuality);
-		console.log(event);
+		// console.log(event);
 		RadioManager.executePlaylist();
 	}
 	
@@ -139,7 +139,7 @@ var SMplayersManager = function($scAppId) {
 	}
 	
 	function ytError() {
-		console.log(event);
+		// console.log(event);
 		if(/100|101|150/.test(event.data)) {
 			RadioManager.playNextSong();
 		}

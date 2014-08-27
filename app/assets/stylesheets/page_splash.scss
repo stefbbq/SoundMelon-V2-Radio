@@ -14,15 +14,22 @@
 			@include splash-generic-button();
 		}
 		.login-spinner {
-			position: absolute;
+			position: relative;
 			// background: url('/assets/loader.gif') center no-repeat;
 			// height: 24px;
 			// width: 24px;
 			// background-size: 100% 100%;
-			top: calc(50% - 12px);
-			left: calc(50% - 12px);
+			// top: calc(50% - 12px);
+			// left: calc(50% - 12px);
+			margin: 0 auto;
 			display: none;
 		}
+	}
+
+	.flash-msg {
+		font-family: FuturaHeavy;
+		text-transform: uppercase;
+		color: rgba(black, 0.7);
 	}
 
 }
