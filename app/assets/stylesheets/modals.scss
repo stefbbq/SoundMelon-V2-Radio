@@ -89,3 +89,9 @@
 		border-bottom: 2px dotted rgba(white, 0.2);
 	}
 }
+
+html[data-useragent*='Windows NT 6.3'] {
+	.modal .container .header .title {
+		padding-top: 7px;
+	}
+}

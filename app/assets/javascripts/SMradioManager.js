@@ -260,6 +260,11 @@ var SMradioManager = function(scAppId) {
 			setTimeout(checkPlaying, 10000);
 			setTimeout(function() {
 				$("#next-song").removeClass('disable');
+				calloutBox = $('.callout#show-artist-profile');
+				if(calloutBox.hasClass('visible')) {
+					newArtistProfile = true;
+					$('#get-artist-info').click();
+				}
 			}, 3000);
 		}
 		else {
