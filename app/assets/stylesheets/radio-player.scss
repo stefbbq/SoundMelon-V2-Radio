@@ -425,7 +425,7 @@ $player-width: 564px;
 				}
 
 				.spinner {
-					background-size: 810% 100%;
+					background-size: 815% 100%;
 					@include transform(scale(0.6));
 				}
 			}
@@ -572,12 +572,14 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 			}
 		}
 		
-		.primary {
-			.current-content {
-				margin-top: 5px;
-			}
+		// .primary {
+		// 	.current-content {
+		// 		margin-top: 5px;
+		// 	}
+		// }
+		.current-content .currently-playing.first-load {
+			margin-top: 0;
 		}
-		
 	}
 }
 
