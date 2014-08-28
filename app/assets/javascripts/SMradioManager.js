@@ -258,6 +258,9 @@ var SMradioManager = function(scAppId) {
 				$('#get-artist-info').click();
 			}
 			setTimeout(checkPlaying, 10000);
+			setTimeout(function() {
+				$("#next-song").removeClass('disable');
+			}, 3000);
 		}
 		else {
 			//Songs list is now empty

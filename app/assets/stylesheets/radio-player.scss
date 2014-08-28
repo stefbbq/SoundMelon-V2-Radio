@@ -431,9 +431,10 @@ $player-width: 564px;
 			}
 
 			&.disable {
-				$disable-bg: linear-gradient(rgba(248,248,248, 0.7), rgba(171,171,171, 0.7));
-				@include background($disable-bg);
+				$disable-bg: linear-gradient(rgb(248,248,248), rgb(171,171,171));
+				// @include background($disable-bg);
 				.skip-image {opacity: 0.5;}
+				cursor: default;
 				&:hover {@include background($disable-bg);}
 				&:active {@include background($disable-bg);}
 			}
