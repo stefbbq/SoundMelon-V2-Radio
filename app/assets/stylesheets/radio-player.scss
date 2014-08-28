@@ -389,7 +389,6 @@ $player-width: 564px;
 			&:active {
 				@include background(linear-gradient(rgb(171,171,171), rgb(248,248,248)));
 			}
-
 			
 			&.change-song {
 				width: 40px;
@@ -430,6 +429,15 @@ $player-width: 564px;
 					@include transform(scale(0.6));
 				}
 			}
+
+			&.disable {
+				$disable-bg: linear-gradient(rgba(248,248,248, 0.7), rgba(171,171,171, 0.7));
+				@include background($disable-bg);
+				.skip-image {opacity: 0.5;}
+				&:hover {@include background($disable-bg);}
+				&:active {@include background($disable-bg);}
+			}
+
 		}
 		
 		.current-content {

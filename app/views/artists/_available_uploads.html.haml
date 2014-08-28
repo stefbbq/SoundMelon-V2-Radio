@@ -10,6 +10,7 @@
 			- source_abbr = 'YT'
 			- @current_song = Song.where(artist_id: current_artist.id, song_id: song_id)
 			- img_src = song.thumbnails.first.url
+			- no_brand = false
 			- source_tags = song.keywords
 		- if song.class == Hashie::Mash
 			- song_id = song.id
@@ -21,6 +22,7 @@
 			- @current_song = Song.where(artist_id: current_artist.id, song_id: song_id)
 			- sc_logo = "/assets/sc-placeholder.png"
 			- img_src = (song.artwork_url.nil?) ? sc_logo : song.artwork_url
+			- no_brand = (song.artwork_url.nil?) ? true : false
 			- source_tags = ( song.genre.nil? ? [] : song.genre.split() ) | ( song.tag_list.nil? ? [] : song.tag_list.split(' ') )
 			- source_tags.delete_if {|tag| tag.include? "soundcloud:source"}
 		- is_blocked = BlockedUpload.exists?(song_id: song_id)
@@ -47,7 +49,8 @@
 			
 				.song-basic
 					.song-image{style: "background: url(#{img_src}) center no-repeat"}
-						.brand-logo{class: 'source-' + source_abbr.downcase}
+						- if !no_brand
+							.brand-logo{class: 'source-' + source_abbr.downcase}
 					.song-information
 						%span.song-title= song.title
 						%span.duration= to_minutes(duration)

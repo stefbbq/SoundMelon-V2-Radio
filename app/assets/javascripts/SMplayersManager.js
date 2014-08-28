@@ -39,7 +39,7 @@ var SMplayersManager = function($scAppId) {
 					console.log('finished this SC song...');
 					clearInterval(scrubInterval);
 					$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
-					$(".seek-scrub").addClass('disable');
+					$(".seek-scrub, #next-song").addClass('disable');
 					RadioManager.playNextSong();
 			},
 			onresume: function() {
@@ -54,7 +54,7 @@ var SMplayersManager = function($scAppId) {
 			onplay: function() {
 				// alert('ready!');
 				clearInterval(bufferInterval);
-				$(".seek-scrub").removeClass('disable');
+				$(".seek-scrub, #next-song").removeClass('disable');
 				$('#play-pause .control-image').removeClass('spinner ').addClass('pause-image').show();
 			},
 			onready: function() {
@@ -117,14 +117,14 @@ var SMplayersManager = function($scAppId) {
 		var state = ytPlayer.getPlayerState();
 		if(state === 0) {
 			clearInterval(scrubInterval);
-			$(".seek-scrub").addClass('disable');
+			$(".seek-scrub, #next-song").addClass('disable');
 			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
 			RadioManager.playNextSong();
 		}
 		else if(state === 1) {
 			clearInterval(bufferInterval);
 			scrubInterval = setInterval(RadioManager.seekTracker, scrubDelay);
-			$(".seek-scrub").removeClass('disable');
+			$(".seek-scrub, #next-song").removeClass('disable');
 			$('#play-pause .control-image').removeClass('spinner ').addClass('pause-image').show();
 			if(ytPlayer.getPlaybackQuality !== ytQuality) {
 				setQuality(ytQuality);

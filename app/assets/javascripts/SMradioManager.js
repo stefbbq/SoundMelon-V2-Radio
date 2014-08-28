@@ -64,16 +64,19 @@ var SMradioManager = function(scAppId) {
 	}
 	
 	function nextBehaviour() {
-		clearInterval(scrubInterval);
-		$('#seek-slider').simpleSlider('setValue', 0);
-		if(currentSong) {
-			if(currentSong['upload_source'] === 'youtube') {
-				ytPlayer.stopVideo();
+		if(!$(this).hasClass('disable')) {
+			clearInterval(scrubInterval);
+			$('#seek-slider').simpleSlider('setValue', 0);
+			if(currentSong) {
+				if(currentSong['upload_source'] === 'youtube') {
+					ytPlayer.stopVideo();
+				}
+				else if(currentSong['upload_source'] === 'soundcloud') {
+					scWidget.pause();
+				}
+				playNextSong();
 			}
-			else if(currentSong['upload_source'] === 'soundcloud') {
-				scWidget.pause();
-			}
-			playNextSong();
+			$(this).addClass('disable');
 		}
 	}
 	
@@ -250,7 +253,7 @@ var SMradioManager = function(scAppId) {
 				$('#soundcloud, .overlay, .overlay .song-link').show();
 			}
 			calloutBox = $('.callout#show-artist-profile');
-			if(calloutBox.closest('.callout-wrapper').css('z-index') === -1) {
+			if(calloutBox.hasClass('visible')) {
 				newArtistProfile = true;
 				$('#get-artist-info').click();
 			}
