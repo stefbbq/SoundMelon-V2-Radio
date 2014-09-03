@@ -4,7 +4,7 @@
 	= f.hidden_field :status, value: 'invited'
 
 	.text-button.submit-invite
-		= f.text_field :email, class: 'email-check text-box'
+		= f.text_field :email, class: 'email-check text-box', placeholder: 'Invite via email'
 		
 		.button
 			= f.submit "send", class: 'overlay'

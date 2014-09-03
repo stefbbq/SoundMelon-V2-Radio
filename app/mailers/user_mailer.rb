@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-	default from: 'miniflckr.mailer@gmail.com'
+	default from: ENV['HELLO_EMAIL']
 
   def registration_confirmation(user)
 		@user = user
