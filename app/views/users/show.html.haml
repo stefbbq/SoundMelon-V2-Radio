@@ -1,36 +1,27 @@
 - if !current_user.terms
 	= render 'users/terms_cond'
 - else
-	/= javascript_include_tag "SMhome"
+
 	#user_page
 
 		#radio-container
 			#radio-view
 				= render "users/radio_player"
 
-- if current_user.invites.nil? || current_user.invites.size == 0
-	.warn-user.hidden
-		.message You can invite your friends to SoundMelon!
-		.severity Invite Friends
-		.click(data-click="#invite-page-link")
+	- if current_user.invites.nil? || current_user.invites.size == 0
+		.warn-user.hidden
+			.message You can invite your friends to SoundMelon!
+			.severity Invite Friends
+			.click(data-click="#invite-page-link")
 
-- if current_artist
-	- if current_artist.first_song_added && !current_artist.profile_edited
-		.warn-user.warn-artist.hidden
-			.message You can update your Artist Profile!
-			.severity Your Profile
-			.click(data-click="#artist-profile-edit")
+	- if current_artist
+		- if current_artist.first_song_added && !current_artist.profile_edited
+			.warn-user.warn-artist.hidden
+				.message You can update your Artist Profile!
+				.severity Your Profile
+				.click(data-click="#artist-profile-edit")
 
-:javascript
-	$(document).ready(function() {
-	
-		ModalManager.enable();
-		RadioManager.enable();
-
-		$(document).mouseup(function(e) {
-			var container = $('.modal, .volume-controls, .report-box');
-			if(!container.is(e.target) && container.has(e.target).length == 0) {
-				container.hide();
-			}
+	:javascript
+		$(document).ready(function() {
+			initHomeFunctionality();
 		});
-	});

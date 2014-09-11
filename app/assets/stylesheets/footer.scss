@@ -20,7 +20,7 @@ body > .footer {
 		width: 45%;
 		height: 250%;
 
-		@media #{media-width-res(820)} {
+		@media #{media-width-res(950)} {
 			display: none;
 		}
 	}
@@ -34,7 +34,7 @@ body > .footer {
 		// right: 23px;
 		color: rgba(white, .8);
 
-		@media #{media-width-res(820)} {
+		@media #{media-width-res(950)} {
 			float: none;
 			.menu-wrapper {text-align: center;}
 		}
@@ -53,6 +53,14 @@ body > .footer {
 				display: inline-block;
 				margin-top: 10px;
 				cursor: pointer;
+				display: none;
+				visibility: hidden;
+				opacity: 0;
+				&.visible-box {
+					display: inline-block;
+					visibility: visible;
+					opacity: 1;
+				}
 				
 				.link-icon {
 					opacity: 0.8;

@@ -65,7 +65,10 @@ class ArtistsController < ApplicationController
 		params[:artist][:genre_tags] = !params[:artist][:genre_tags].nil? ? params[:artist][:genre_tags].split(',') : @artist.genre_tags
 		if @artist.update_attributes(params[:artist])
 			@artist.update_column(:profile_edited, true)
-			write_flash('notification', 'Your Profile has been updated')
+			if(params[:artist][:artist_photo])
+				write_flash('notification', 'Your Profile has been updated')
+			end
+			
 		end
 	end
 	

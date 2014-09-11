@@ -341,7 +341,7 @@ var SMradioManager = function(scAppId) {
 				newArtistProfile = true;
 				$('#get-artist-info').click();
 			}
-		}, 3000);
+		}, 1000);
 	}
 
 	function manualSeek(seekTo) {

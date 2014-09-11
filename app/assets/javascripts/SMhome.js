@@ -6,6 +6,27 @@ $.fn.justify = function() {
 	$(this).append("<span style='display: inline-block;visibility: hidden;width:100%'></span>");
 }
 
+function initHomeFunctionality() {
+
+	$(".link-box").css({
+		display: 'inline-block',
+		visibility: 'visible'
+	});
+	TweenLite.to('.link-box', 0.5, {opacity:1, onComplete: function() {
+		$('.link-box').addClass('visible-box');
+	}});
+
+	ModalManager.enable();
+	RadioManager.enable();
+
+	$(document).mouseup(function(e) {
+		var container = $('.modal, .volume-controls, .report-box');
+		if(!container.is(e.target) && container.has(e.target).length == 0) {
+			container.hide();
+		}
+	});
+}
+
 $(document).ready(function() {
 	FlashManager = new SMflashManager();
 	console.log('setting up modals now...');

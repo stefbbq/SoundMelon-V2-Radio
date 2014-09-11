@@ -116,6 +116,7 @@ $music-viewport-height: 365px;
 								cursor: pointer;
 								z-index: 2;
 								opacity: 0;
+
 							}
 							
 							.upload-wrapper {
@@ -169,6 +170,7 @@ $music-viewport-height: 365px;
 									width: 100%;
 									top: 50%;
 									@include transform(translateY(-50%));
+									left: 0;
 								}
 							}
 						}

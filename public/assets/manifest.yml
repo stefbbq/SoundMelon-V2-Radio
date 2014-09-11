@@ -75,6 +75,8 @@ HelveticaNeueLTStd-Roman.ttf: HelveticaNeueLTStd-Roman-9773e6236c2e3f0470fff44d1
 HelveticaNeueLTStd-Roman/index.ttf: HelveticaNeueLTStd-Roman-9773e6236c2e3f0470fff44d1be1f249.ttf
 HelveticaNeueLTStd-Roman.woff: HelveticaNeueLTStd-Roman-f4d06a12c232c16d960148e68da101b5.woff
 HelveticaNeueLTStd-Roman/index.woff: HelveticaNeueLTStd-Roman-f4d06a12c232c16d960148e68da101b5.woff
+ORIGsc-placeholder.png: ORIGsc-placeholder-cd5e07538633f4be684bb015a8385861.png
+ORIGsc-placeholder/index.png: ORIGsc-placeholder-cd5e07538633f4be684bb015a8385861.png
 ajax-loader.gif: ajax-loader-85c0d7296760ce61f5824916cae31877.gif
 ajax-loader/index.gif: ajax-loader-85c0d7296760ce61f5824916cae31877.gif
 artist-default.jpg: artist-default-0e01e6f05ede198c9347e5683e346be2.jpg
@@ -135,8 +137,8 @@ right-chevrons.png: right-chevrons-1df398535657f69ad274fc7d7d22dfda.png
 right-chevrons/index.png: right-chevrons-1df398535657f69ad274fc7d7d22dfda.png
 sc-logo.png: sc-logo-bdafb3beba25fb86c2df365d05674e64.png
 sc-logo/index.png: sc-logo-bdafb3beba25fb86c2df365d05674e64.png
-sc-placeholder.png: sc-placeholder-cd5e07538633f4be684bb015a8385861.png
-sc-placeholder/index.png: sc-placeholder-cd5e07538633f4be684bb015a8385861.png
+sc-placeholder.png: sc-placeholder-ca1c429f19670b37473866c89093cf50.png
+sc-placeholder/index.png: sc-placeholder-ca1c429f19670b37473866c89093cf50.png
 sc-radio-bg.jpg: sc-radio-bg-afa15ef9ee88e001c651675fee97cf93.jpg
 sc-radio-bg/index.jpg: sc-radio-bg-afa15ef9ee88e001c651675fee97cf93.jpg
 skip.png: skip-fce051625a725e56274c429c021dda1f.png
@@ -157,10 +159,10 @@ x_mark.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 x_mark/index.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 yt-logo.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
 yt-logo/index.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
-application.js: application-d0cc56df86b7ef85ab063de42f3aa051.js
-application/index.js: application-d0cc56df86b7ef85ab063de42f3aa051.js
-application.css: application-555c88daf0dfed05b3b0cbaeba50b587.css
-application/index.css: application-555c88daf0dfed05b3b0cbaeba50b587.css
+application.js: application-b72a3fe6063a0768749f8e27cca47953.js
+application/index.js: application-b72a3fe6063a0768749f8e27cca47953.js
+application.css: application-f1493bf00c0f0452a87692b6bc9e6923.css
+application/index.css: application-f1493bf00c0f0452a87692b6bc9e6923.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png

@@ -82,6 +82,12 @@ SMmodalItem = function($link, $index){
 					// console.log('hiding: ' + name);
 					linkBox.removeClass('menu-active');
 					object.hide();
+					if(name === "artist-profile" && active) {
+						FlashManager.showMessage({
+							message: "Your profile has been updated",
+							severity: "notification"
+						});
+					}
 					deactivate();
 				}
 			});

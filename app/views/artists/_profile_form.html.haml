@@ -66,6 +66,7 @@
 				.label iTunes
 				= f.text_field :itunes_link, class: 'text-box'
 				.clear
+			= f.submit "", class: 'hidden'
 
 			.section-divider.padded-divider
 
@@ -86,13 +87,10 @@
 		$('.modal#artist-profile .spinner').hide();
 	});
 
-	$('#artist-profile-form form').find('input[type=text], textarea').typing({
-		stop: function(event, $elem) {
-			console.log($elem);
-			$elem.closest('form').submit();
-		},
-		delay: 400
+	$('#artist-profile-form form').find('input[type=text], textarea').blur(function() {
+		$(this).closest('form').submit();
 	});
+
 
 	$('#artist-genre-tags').tagsInput({
 		'defaultText': 'add more tags...',

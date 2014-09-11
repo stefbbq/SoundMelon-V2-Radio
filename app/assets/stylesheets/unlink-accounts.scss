@@ -3,7 +3,7 @@
 #music-admin .main-content > .content {
 	
 	.unlink-form {
-		height: 276px;
+		height: 365px;
 		position: absolute;
 		background: rgba(black, 0.83);
 		z-index: 10;
@@ -16,7 +16,8 @@
 		
 		form {
 			position: relative;
-			top: 20%;
+			top: 50%;
+			@include transform(translateY(-50%));
 			width: 90%;
 			margin: 0 auto;
 			

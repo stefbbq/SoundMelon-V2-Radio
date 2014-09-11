@@ -37,7 +37,7 @@
 				- song_url = @song.song_url
 				/- song_title = @song.song_title
 				- song_image = @song.song_image
-				- no_brand = !(/placeholder/ =~ song_image).nil?
+			- no_brand = !(/placeholder/ =~ song_image).nil?
 			- song_title = params[:song_title]
 			- song_private = params[:song_private] == "true" || @song.is_private
 			- state = @song.active ? 'ACTIVE' : 'INACTIVE'
@@ -45,7 +45,7 @@
 			- off_state_class = @song.active ? '' : 'toggle-select'
 			
 			.song-basic.section-wrapper
-				.song-image{style: "background: url(#{song_image}) center no-repeat"}
+				.song-image{style: "background: url(#{song_image}) center / cover no-repeat"}
 					- if !no_brand
 						.brand-logo{class: 'source-' + source_abbr}
 				.song-information
@@ -57,7 +57,7 @@
 				.private
 					We can't stream private songs! Would you like to make this song public on #{upload_source}?
 					= link_to "Make Public!", make_public_path(song_id: song_id, upload_source: upload_source, artist_id: @artist.id), remote: true, class: 'make-public', onclick: "$(this).siblings('.spinner').show()"
-					.spinner
+					.spinner.white-spinner
 
 			.song-form.section-wrapper{class: song_private ? "hidden" : ""}
 				
