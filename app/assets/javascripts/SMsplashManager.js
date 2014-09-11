@@ -4,6 +4,7 @@ SMsplashManager = (function() {
 	var slideDelay = 3000;
 	var animDur = 0.5;
 	var index = 1;
+	var maxOpacity = 0.5;
 	
 	var captions = [
 		'Genuine Fans',
@@ -26,7 +27,7 @@ SMsplashManager = (function() {
 			TweenLite.to(captionBox, animDur, {opacity: 0, onComplete: function() {
 				// index = index === captions.length ? 0 : index;
 				captionBox.html(captions[index]);
-				TweenLite.to(captionBox, animDur, {opacity: 1})
+				TweenLite.to(captionBox, animDur, {opacity: maxOpacity})
 				console.log(index);
 				index = index === captions.length - 1 ? 0 : index + 1;
 			}});
