@@ -39,20 +39,20 @@
 	}
 
 	.brand-logo {
-		height: 17px;
-		width: 42px;
+		height: 26px;
+		width: 50px;
 		float: right;
 		margin: 3px;
 		
 		&.source-yt {
 			background: url('/assets/yt-logo.png') center no-repeat;
-			background-size: 100% 100%;
+			background-size: contain;
 			
 		}
 		
 		&.source-sc {
 			background: url('/assets/sc-logo.png') center no-repeat;
-			background-size: 100% 100%;
+			background-size: contain;
 			width: 35px;
 			height: 25px;
 		}
