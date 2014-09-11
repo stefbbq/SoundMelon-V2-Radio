@@ -74,10 +74,10 @@ production:
 
   #Host Address
   #Staging
-#   HOST_ADDR: 'http://soundmelon-stg.herokuapp.com'
-  
+  HOST_ADDR: 'http://soundmelon-stg.herokuapp.com'
+
   #Production
-  HOST_ADDR: 'http://www.soundmelon.com'
+  # HOST_ADDR: 'http://www.soundmelon.com'
   
   #Youtube API Keys
   YOUTUBE_APP_ID: '1035080270379-ir19dkk7bs2tsmuritfhpsosugr9nsks.apps.googleusercontent.com'
