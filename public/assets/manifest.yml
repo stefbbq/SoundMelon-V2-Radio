@@ -97,8 +97,8 @@ close.png: close-32754eb0c6cb10ecf05eff9911f5c0a3.png
 close/index.png: close-32754eb0c6cb10ecf05eff9911f5c0a3.png
 core/background.jpg: core/background-9eac1016abaff91294829b160e8b5b08.jpg
 core/background/index.jpg: core/background-9eac1016abaff91294829b160e8b5b08.jpg
-core/footer_logo.png: core/footer_logo-c639417cb7eac01bc00928953c1d5e1f.png
-core/footer_logo/index.png: core/footer_logo-c639417cb7eac01bc00928953c1d5e1f.png
+core/footer_logo.png: core/footer_logo-2b68b33cd14c3bdacde60d7ccbf79da2.png
+core/footer_logo/index.png: core/footer_logo-2b68b33cd14c3bdacde60d7ccbf79da2.png
 favicon.png: favicon-9a5cfced7bde049a7ac52de9c9568c85.png
 favicon/index.png: favicon-9a5cfced7bde049a7ac52de9c9568c85.png
 feedback.png: feedback-076cf6651b48cec64ab1a87e90f474f0.png
@@ -157,10 +157,10 @@ x_mark.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 x_mark/index.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 yt-logo.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
 yt-logo/index.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
-application.js: application-59658f153e109de8b10e6b289a198145.js
-application/index.js: application-59658f153e109de8b10e6b289a198145.js
-application.css: application-6f4fd6a7be0b95496d2ce679d877dd80.css
-application/index.css: application-6f4fd6a7be0b95496d2ce679d877dd80.css
+application.js: application-cfd5fe2ff7e74969cd460e27eef281aa.js
+application/index.js: application-cfd5fe2ff7e74969cd460e27eef281aa.js
+application.css: application-e2f1fe889043eae42158d4d07c479e83.css
+application/index.css: application-e2f1fe889043eae42158d4d07c479e83.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png
