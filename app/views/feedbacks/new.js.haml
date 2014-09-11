@@ -1,3 +1,4 @@
 :plain
 	console.log('feedback new...')
 	$('.modal#feedback-board .main-content .content').empty().html('#{j( render "feedbacks/feedback_form" )}')
+	$('.modal#feedback-board').show();

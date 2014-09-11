@@ -103,6 +103,16 @@
 				text-transform: underline;
 				@include border-bottom-right-radius(8px);
 
+				.no-info {
+					text-align: center;
+					position: relative;
+					top: 65px;
+					font-size: 21px;
+					text-transform: uppercase;
+					color: rgba(black, 0.2);
+					font-family: FuturaCondensedMedium;
+				}
+
 				.social-items {
 					padding: 15px 0 11px;
 					text-align: center;

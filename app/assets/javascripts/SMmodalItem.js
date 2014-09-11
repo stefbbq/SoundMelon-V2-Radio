@@ -22,11 +22,12 @@ SMmodalItem = function($link, $index){
 	}
 	function initBehaviour() {
 		link.click(toggleModal);
+		setModalClose();
+		setModalPosition();
+		$(window).resize(setModalPosition);
 		$(document).ready(function() {
-			setModalClose();
-			setModalPosition();
-			$(window).resize(setModalPosition);
-		})
+
+		});
 
 	}
 	

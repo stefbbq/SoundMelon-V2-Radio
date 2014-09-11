@@ -66,7 +66,10 @@ class UsersController < ApplicationController
 		@user = User.find_by_id(params[:user][:id])
 		@user_genres = collect_genres(@user)
 		params[:user][:fb_meta] = @user_genres
-		update_attrs(params)
+		@user.update_attributes(params[:user])
+		# @all_genres = params[:user][:fb_meta]
+		# update_attrs(params)
+		# @user.update_attributes(fb_meta: @user_genres)
 	end
 
 	def reload_fb_meta

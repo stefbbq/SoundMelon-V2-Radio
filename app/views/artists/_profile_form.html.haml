@@ -7,7 +7,9 @@
 			= f.hidden_field :id, value: @artist.id
 			.clear
 	
-	.section-divider
+	.section-wrapper
+		.section-divider
+
 	.photo.form-block.section-wrapper
 		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
 			= f.hidden_field :id, value: @artist.id
@@ -33,7 +35,8 @@
 							.underlay
 								%span upload image
 							= f.submit "upload image", class: 'overlay'
-	.section-divider
+	.section-wrapper
+		.section-divider
 			
 	.website.form-block.single-input.section-wrapper
 

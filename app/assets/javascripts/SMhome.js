@@ -23,7 +23,8 @@ $(document).ready(function() {
 				FlashManager.showMessage({
 					message: warning.find('.message').html(),
 					severity: warning.find('.severity').html(),
-					click: warning.find('.click').attr('data-click')
+					click: warning.find('.click').attr('data-click'),
+					delay: 15
 				});
 			}, delay);
 		});

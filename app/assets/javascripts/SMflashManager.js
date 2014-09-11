@@ -43,6 +43,7 @@ var SMflashManager = (function() {
 			flashBoard.find('.message').html(message.message);
 			// var delay = severity !== 'warning' || severity !== 'notification' ? 999 : 5;
 			var delay = ['warning', 'notification'].indexOf(severity) === -1 ? 999 : 5;
+			var delay = message.delay ? message.delay : delay;
 			animateIn(animateOut, delay);
 			if(severities.indexOf(severity) === -1 && message.click) {
 				severityBox.unbind('click', defaultClick);

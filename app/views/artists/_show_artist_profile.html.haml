@@ -15,7 +15,9 @@
 
 		.artist-social
 			- social_links = {'twitter' => {'link' => @artist.twitter_link, 'tagline' => 'follow us on'}, 'facebook' => {'link' => @artist.facebook_link, 'tagline' => 'like us on'}, 'website' => {'link' => @artist.website, 'tagline' => 'visit our'}}
-			- if @artist.website || @artist.facebook_link || @artist.twitter_link
+			- has_social = @artist.website || @artist.facebook_link || @artist.twitter_link
+			- has_itunes = @artist.itunes_link
+			- if has_social
 				.social-items
 					.label visit artist at
 
@@ -26,7 +28,7 @@
 							.artist-link.artist-social-icon{class: key}
 								%a.filled-link{href: link, target: '_blank'}
 
-			- if @artist.itunes_link
+			- if has_itunes
 				.purchase-items
 					- if !@artist.itunes_link.nil? && @artist.itunes_link.size > 0
 						.itunes-logo
@@ -34,3 +36,5 @@
 							- link = /^http/.match(link) ? link : "http://#{link}"
 							- link += '?at=' + ENV['ITUNES_TOKEN']
 							%a.filled-link{href: link, target: '_blank'}
+			- if !has_social && !has_itunes
+				.no-info No additional info

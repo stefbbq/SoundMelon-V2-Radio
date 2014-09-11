@@ -41,7 +41,7 @@
 		$('#sign-in').click(function(e) {
 			//console.log('#{ENV["FACEBOOK_APP_ID"]}');
 			$(".bg-title").hide();
-			$(this).closest('.buttons').find('.login-spinner').show();
+			$('#sign-in .login-spinner').show();
 			$(".buttons").find('.left, .right').hide();
 			$('.intro-blurb, .rotating-caption').hide();
 		  e.preventDefault();
