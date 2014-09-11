@@ -4,7 +4,8 @@ var ytPlayerReady = false;
 var scPlayerReady = false;
 var runOnYTReady = false;
 var runInitSC = false;
-var newArtistProfile, scrubInterval;
+var newArtistProfile;
+var scrubInterval;
 var volume = 100;
 var ytQuality = 'large';
 var scrubDelay = 500;
@@ -49,10 +50,18 @@ var SMradioManager = function(scAppId) {
 			$('#radio-controls .seek-scrub .seek-val span.current-time').text(position);
 		});
 
-		$('.media-seeker .slider').mouseup(function() {
-			clearInterval(scrubInterval);
+		$('.media-seeker .slider').find('.track, .highlight-track').click(function() {
+			scrubInterval.stop();
 			console.log('initialize...');
 			manualSeek(seekValue);
+			if(getPlayerState() === 1) scrubInterval.start();
+		});
+
+		$('.media-seeker .dragger').mousedown(function() {
+			scrubInterval.stop();
+		}).mouseup(function() {
+			manualSeek(seekValue);
+			if(getPlayerState() === 1) scrubInterval.start();
 		});
 		
 		$('#radio-stations #user-meta').trigger('click');
@@ -73,7 +82,7 @@ var SMradioManager = function(scAppId) {
 	function nextBehaviour() {
 		if(scWidget) scWidget.stop();
 		if(!$(this).hasClass('disable')) {
-			clearInterval(scrubInterval);
+			scrubInterval.stop();
 			$('#seek-slider').simpleSlider('setValue', 0);
 			if(currentSong) {
 				if(currentSong['upload_source'] === 'youtube') {
@@ -191,6 +200,7 @@ var SMradioManager = function(scAppId) {
 					$('#soundcloud, .overlay, .overlay .song-link').hide();
 					$('#youtube').css('display', 'block');
 					bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 5000);
+					ytFirstPlayForSong = true;
 					ytPlayer.loadVideoById({videoId: firstSong['song_id']});
 					ytPlayer.setVolume(volume);
 				}
@@ -216,6 +226,7 @@ var SMradioManager = function(scAppId) {
 			if(/[25]|-1/.test(playerState)){
 				//Play video if it is paused (2), cued (5), or unstarted (-1)
 				ytPlayer.setVolume(volume);
+				ytFirstPlayForSong = true;
 				ytPlayer.playVideo();
 			}
 			else if(/[13]/.test(playerState)) {
@@ -256,6 +267,7 @@ var SMradioManager = function(scAppId) {
 			console.log('hiding .player');
 			if(nextSong['upload_source'] === 'youtube') {
 				bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 5000);
+				ytFirstPlayForSong = true;
 				ytPlayer.loadVideoById({videoId: currentSong['song_id']});
 				ytPlayer.setVolume(volume);
 				$('#soundcloud, .overlay, .overlay .song-link').hide();
@@ -278,6 +290,22 @@ var SMradioManager = function(scAppId) {
 			//Songs list is now empty
 			newSongsList();
 		}
+	}
+
+	function getPlayerState() {
+		//-1: unstarted, 1: playing, 2: paused
+		if(!currentSong) return -1;
+		else {
+			if(currentSong['upload_source'] === 'youtube') {
+				var state = ytPlayer.getPlayerState();
+				if(/1|2/.test(state)) return state;
+			}
+			else if(currentSong['upload_source'] === 'soundcloud') {
+				var state = scWidget.paused ? 2 : 1;
+				return state;
+			}
+		}
+
 	}
 
 	function checkPlaying() {
@@ -328,10 +356,11 @@ var SMradioManager = function(scAppId) {
 			else if(currentSong['upload_source'] === 'soundcloud') {
 				newVal = scWidget.position / scWidget.durationEstimate;
 			}
-			// console.log(newVal);
+			console.log(newVal);
 			$('#seek-slider').simpleSlider('setValue', newVal);
 		}
 	}
+	scrubInterval = SMinterval(seekTracker, scrubDelay);
 
 	function loadInArtistInfo() {
 		setTimeout(function() {
@@ -355,7 +384,7 @@ var SMradioManager = function(scAppId) {
 				scWidget.setPosition( seekTo * scWidget.duration );
 				console.log(scWidget.position);
 			}
-			scrubInterval = setInterval(seekTracker, scrubDelay);
+			// scrubInterval.start();
 		}
 	}
 	
@@ -399,6 +428,7 @@ var SMradioManager = function(scAppId) {
 		seekTracker: seekTracker,
 		executePlaylist: executePlaylist,
 		playNextSong: playNextSong,
+		getPlayerState: getPlayerState,
 		
 		//vars
 		playersManager: playersManager

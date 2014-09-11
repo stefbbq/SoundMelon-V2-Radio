@@ -50,7 +50,7 @@ var SMartistsManager = function() {
 		centerRadioCallout('expand');
 		profileWrapper.find('.spinner').show();
 		TweenLite.to($('.radio-wrapper'), 0.5, {left: 0, ease: Sine.easeInOut});
-		TweenLite.to($('#player-box, .player'), 0.5, {css:{borderBottomRightRadius:0, borderTopRightRadius:0}});
+		TweenLite.to($('#player-box, .player, #player-box .player .overlay'), 0.5, {css:{borderBottomRightRadius:0, borderTopRightRadius:0}});
 		TweenLite.to(profileWrapper, 0.5, {ease: Sine.easeInOut, right: 0, onComplete: function() {
 			var anchor = profileWrapper.find('.anchor');
 			TweenLite.to(anchor, 0.3, {opacity:1});

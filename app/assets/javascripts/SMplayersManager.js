@@ -1,5 +1,5 @@
 //Players Manager
-var ytPlayer, scWidget, bufferInterval, bufferLength;
+var ytPlayer, scWidget, bufferInterval, bufferLength, ytFirstPlayForSong;
 
 var SMplayersManager = function($scAppId) {
 	var scAppId = $scAppId;
@@ -37,18 +37,22 @@ var SMplayersManager = function($scAppId) {
 			preferFlash: false,
 			onfinish: function() {
 					console.log('finished this SC song...');
-					clearInterval(scrubInterval);
+					scrubInterval.stop();
 					$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
 					$(".seek-scrub, #next-song").addClass('disable');
 					RadioManager.playNextSong();
 			},
 			onresume: function() {
+
 				$('#play-pause .control-image').removeClass('spinner ').addClass('pause-image').show();
 			},
 			onstop: function() {
+				scrubInterval.stop();
 				$('#play-pause .control-image').removeClass('spinner ').addClass('play-image').show();
 			},
 			onpause: function() {
+				scrubInterval.stop();
+				console.log("This SC is paused, scrubinterval is closed");
 				$('#play-pause .control-image').removeClass('spinner ').addClass('play-image').show();
 			},
 			onplay: function() {
@@ -56,6 +60,8 @@ var SMplayersManager = function($scAppId) {
 				clearInterval(bufferInterval);
 				$(".seek-scrub, #next-song").removeClass('disable');
 				$('#play-pause .control-image').removeClass('spinner ').addClass('pause-image').show();
+				scrubInterval.start()
+				console.log('onplay SC'); 
 			},
 			onready: function() {
 
@@ -71,7 +77,7 @@ var SMplayersManager = function($scAppId) {
 		console.log('should play now...');
 		scWidget.setVolume(volume);
 		scWidget.play();
-		scrubInterval = setInterval(RadioManager.seekTracker, scrubDelay);
+		// scrubInterval.start()
 	}
 	
 	
@@ -116,25 +122,35 @@ var SMplayersManager = function($scAppId) {
 		// console.log(event.data);
 		var state = ytPlayer.getPlayerState();
 		if(state === 0) {
-			clearInterval(scrubInterval);
+			scrubInterval.stop();
 			$(".seek-scrub, #next-song").addClass('disable');
 			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
 			RadioManager.playNextSong();
 		}
 		else if(state === 1) {
 			clearInterval(bufferInterval);
-			scrubInterval = setInterval(RadioManager.seekTracker, scrubDelay);
 			$(".seek-scrub, #next-song").removeClass('disable');
 			$('#play-pause .control-image').removeClass('spinner ').addClass('pause-image').show();
 			if(ytPlayer.getPlaybackQuality !== ytQuality) {
 				setQuality(ytQuality);
 			}
+			if(ytFirstPlayForSong) {
+				scrubInterval.start()
+				ytFirstPlayForSong = false;
+			}
 		}
 		else if(state === 2) {
-			$('#play-pause .control-image').removeClass('spinner ').addClass('play-image').show();
+			scrubInterval.stop();
+			$('#play-pause .control-image').removeClass('spinner').addClass('play-image').show();
+			
 		}
 		else if(state === 3) {
+			
 			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
+		}
+		else if(state === 5) {
+			// alert('YT is state 5');
+			// ytFirstPlayForSong = true;
 		}
 	}
 	

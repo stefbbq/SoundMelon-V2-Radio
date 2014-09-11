@@ -24,6 +24,7 @@
 //= require sc_js_sdk
 //= require utilities
 
+//= require SMinterval
 //= require SMsplashManager
 //= require SMartistsManager
 //= require SMplayersManager
