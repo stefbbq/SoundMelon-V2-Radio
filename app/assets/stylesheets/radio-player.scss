@@ -645,9 +645,10 @@ html[data-useragent*='Firefox'] {
 		.seek-scrub {
 			
 			.content {
-				top: 8px;
+				top: 12px;
 			}
 		}
+		.seek-val {top: -1px;}
 		
 		.left {
 			

@@ -113,7 +113,7 @@ var SMplayersManager = function($scAppId) {
 	}
 	
 	function ytStateChange() {
-		console.log(event.data);
+		// console.log(event.data);
 		var state = ytPlayer.getPlayerState();
 		if(state === 0) {
 			clearInterval(scrubInterval);

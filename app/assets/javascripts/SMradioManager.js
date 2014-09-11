@@ -71,6 +71,7 @@ var SMradioManager = function(scAppId) {
 	}
 	
 	function nextBehaviour() {
+		if(scWidget) scWidget.stop();
 		if(!$(this).hasClass('disable')) {
 			clearInterval(scrubInterval);
 			$('#seek-slider').simpleSlider('setValue', 0);
@@ -327,7 +328,7 @@ var SMradioManager = function(scAppId) {
 			else if(currentSong['upload_source'] === 'soundcloud') {
 				newVal = scWidget.position / scWidget.durationEstimate;
 			}
-			console.log(newVal);
+			// console.log(newVal);
 			$('#seek-slider').simpleSlider('setValue', newVal);
 		}
 	}
