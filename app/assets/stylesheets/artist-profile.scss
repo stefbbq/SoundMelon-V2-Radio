@@ -1,4 +1,5 @@
 @import "compass/css3";
+$music-viewport-height: 365px;
 
 .sub-label {
 	font-family: HelveticaNeue;
@@ -31,10 +32,13 @@
 		// 	top: -49px;
 		// }
 		
-		.content {
+		> .content {
 			// height: 518px;
 			// @include border-radius(8px);
 			text-transform: none;
+			max-height: $music-viewport-height;
+			overflow-y: scroll;
+			overflow-x: hidden;
 			
 			.text-box {
 				// line-height: auto;
@@ -47,6 +51,8 @@
 				.form-block {
 					padding: 10px 0;
 					text-align: left;
+					&.website {padding-bottom: 0;}
+					&.artist-tags {padding-top: 0;}
 				}
 				.label {
 					margin: 8px 0 0;
@@ -68,6 +74,9 @@
 					
 					.text-box {
 						width: 185px;
+					}
+					.input-wrapper:nth-child(3) {
+						margin-top: 0;
 					}
 				}
 				
@@ -129,6 +138,7 @@
 							.action-buttons {
 								overflow: hidden;
 								padding-left: 20px;
+								margin-bottom: -9px;
 							}
 							
 							.submit-wrapper {

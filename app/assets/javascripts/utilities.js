@@ -47,3 +47,22 @@ function centerRadioCallout(command) {
 	// $(".main-content").width(totalWidth);
 	TweenLite.to($('#page-content'), 0.5, {width: totalWidth})
 }
+
+function shareOnFacebook() {
+	var link = $(this);
+	console.log(link);
+	// var post = $(this).closest('.wrapper');
+	// var postID = link.attr('data-post-id');
+	var img = 'http://www.soundmelon.com/assets/core/footer_logo.png';
+
+	FB.ui({
+	method: 'feed',
+		name: 'SoundMelon Radio',
+		link: 'http://www.soundmelon.com',
+		picture: img,
+		caption: "",
+		description: "SoundMelon Radio"
+	}, function(response) {
+		console.log(response);
+	});
+}

@@ -4,9 +4,25 @@
 	.inner-content.vertical-center
 		.bg-title Find Your Tune
 		.buttons
-			#sign-in
-				= link_to('CONNECT WITH FACEBOOK', "/auth/facebook", remote: true)
-				.login-spinner.spinner
+			.left
+				#sign-in
+					= link_to('CONNECT WITH FACEBOOK', "/auth/facebook", remote: true)
+					.caveat
+						for basic social connectivity, learning about your likes and what city you live in.
+			.right
+				.about-button= link_to('LEARN MORE', "http://about.soundmelon.com", target: '_blank')
+			.clear
+			.login-spinner.spinner
+
+		.intro-blurb
+			%p SoundMelon is a radio tuned to you. By connecting with Facebook, we learn about your likes and the city you’re in and we create a station of local artists you might be in to. It’s all we use Facebook for, and we respect your privacy.
+
+			%p If you’re an artist, you can add songs quickly and easily by signing up and connecting SoundCloud or YouTube.
+
+			%p SoundMelon is and always will be free to use.
+
+		.rotating-caption
+			Genuine Fans
 
 :javascript
 	$('#fb-root').remove();
@@ -26,6 +42,8 @@
 			//console.log('#{ENV["FACEBOOK_APP_ID"]}');
 			$(".bg-title").hide();
 			$(this).closest('.buttons').find('.login-spinner').show();
+			$(".buttons").find('.left, .right').hide();
+			$('.intro-blurb, .rotating-caption').hide();
 		  e.preventDefault();
 		  FB.login(function(response) {
 		  	if(response.status === "unknown") {

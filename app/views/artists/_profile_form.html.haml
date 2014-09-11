@@ -56,6 +56,16 @@
 				= f.text_field :twitter_link, class: 'text-box'
 				.clear
 
+			.section-divider.padded-divider
+
+			.input-wrapper
+				.sub-label{style:"padding-bottom: 10px;"} Add a link to your iTunes profile so fans can access your catalogue and buy tunes.
+				.label iTunes
+				= f.text_field :itunes_link, class: 'text-box'
+				.clear
+
+			.section-divider.padded-divider
+
 	.artist-tags.form-block.section-wrapper
 		= form_for(@artist, remote: true, url: artist_profile_update_path) do |f|
 			- @genre_tags = @artist.genre_tags.nil? ? [] : @artist.genre_tags
@@ -75,6 +85,7 @@
 
 	$('#artist-profile-form form').find('input[type=text], textarea').typing({
 		stop: function(event, $elem) {
+			console.log($elem);
 			$elem.closest('form').submit();
 		},
 		delay: 400

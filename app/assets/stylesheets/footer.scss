@@ -15,13 +15,12 @@ body > .footer {
 	.logo {
 		position: absolute;
 		left: 18px;
-		bottom: $footer-height - 55px;
-		img {max-width: 100%;}
-		@media #{media-width-res(1100)} {
-			width: 300px;
-			bottom: 36px;
-		}
-		@media #{media-width-res(800)} {
+		bottom: -16px;
+		background: url('/assets/core/footer_logo.png') left center / contain no-repeat;
+		width: 45%;
+		height: 250%;
+
+		@media #{media-width-res(820)} {
 			display: none;
 		}
 	}
@@ -34,6 +33,11 @@ body > .footer {
 		// top: 17px;
 		// right: 23px;
 		color: rgba(white, .8);
+
+		@media #{media-width-res(820)} {
+			float: none;
+			.menu-wrapper {text-align: center;}
+		}
 		
 		.menu {
 			height: 100%;
@@ -76,6 +80,9 @@ body > .footer {
 		display: inline-block;
 		height: 100%;
 		position: relative;
+		top: -5.5px;
+		margin-right: 6px;
+
 		.social-icon {
 			position: relative;
 			margin: 8px 0;

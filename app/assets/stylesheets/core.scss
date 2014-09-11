@@ -54,19 +54,18 @@ h1 {
 	font-weight: bold;
 	@include single-text-shadow(0px, 1px, 0px, false, white);
 }
-.bg-title {
+.bg-title, .caveat {
 	font-size: 40px;
 	font-family: FuturaCondensedMedium;
 	color: rgba(black, 0.25);
-	text-shadow: 0 1px 0 rgba(white, 0.25);
+	// text-shadow: 0 1px 0 rgba(white, 0.25);
 	text-align: center;
-	margin-bottom: 10px;
+	margin-bottom: 50px;
 }
 
-
-.clear {
-	clear: both;
-}
+.left {float: left;}
+.right {float: right;}
+.clear {clear: both;}
 
 //
 //Icons
@@ -100,6 +99,41 @@ h1 {
   // &.about-icon {
   //   background-position: 86% 0;
   // }
+}
+
+.sm-social-icon {
+  height: 40px;
+  width: 40px;
+  background-image: url('/assets/sm-cta-sprite.png');
+  opacity: 0.8;
+  &:hover {opacity: 1;}
+
+  &.twitter {
+    background-position: 100% 0;
+  }
+}
+
+.artist-social-icon {
+  height: 27px;
+  width: 27px;
+  background-image: url('/assets/artist-social-icons.png');
+  background-repeat: no-repeat;
+  position: relative;
+  opacity: 0.75;
+  &:hover {opacity: 1;}
+  &.facebook {
+    background-position: 50% 0;
+  }
+  &.website {
+    background-position: 100% 0;
+  }
+}
+.itunes-logo {
+  height: 40px;
+  width: 110px;
+  background: url('/assets/itunesLogo.png') center no-repeat;
+  margin: 32px auto 0;
+  position: relative;
 }
 
 .reload-content {

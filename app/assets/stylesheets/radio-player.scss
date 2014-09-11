@@ -3,7 +3,7 @@
 @import "controls.scss";
 //
 //player vars
-$player-height: 444px;
+$player-height: 484px;
 $player-width: 564px;
 
 #player-box {
@@ -22,14 +22,17 @@ $player-width: 564px;
 			height: 100%;
 			@include border-top-radius(10px);
 			@include background(linear-gradient(rgba(0,0,0,0) 75%, rgba(black, 0.05) 85%, rgba(0,0,0,0.3)), url('/assets/sc-radio-bg.jpg') no-repeat center / 100% 100%);
+			position: relative;
 
 			.song-link {
 				height: 55px;
 				width: 80px;
 				background: url('/assets/sc-logo.png') center / contain no-repeat;
-				top: 54.5%;
+				position: absolute;
+				top: auto;
 				left: auto;
-				right: 0;
+				bottom: 10px;
+				right: 10px;
 				opacity: 0.7;
 				display: none;
 
@@ -41,7 +44,7 @@ $player-width: 564px;
 	}
 	
 	.player-buttons {
-		height: 82px;
+		height: 122px;
 		position: relative;
 	}
 	
@@ -212,11 +215,14 @@ $player-width: 564px;
 					}
 				
 					#show-slider {
-/* 						display: inline-block; */
+						visibility: hidden;
 						background: url('/assets/volume.png');
 						width: 24px;
 						height: 22px;
 						opacity: 0.8;
+						&.show-button {
+							visibility: visible;
+						}
 						&:hover{opacity: 1;}
 					}
 				}
@@ -447,6 +453,7 @@ $player-width: 564px;
 			color: rgb(204,204,204);
 			@include text-shadow(1px 1px 3px rgba(1,1,1,0.35));
 			font-family: FuturaBook;
+			margin-top: 20px;
 			span {
 				display: block;
 			}
@@ -506,13 +513,14 @@ $player-width: 564px;
 	}
 
 	#radio-controls {
-		height: 126px;
+		height: 166px;
 		border-top: 1px solid rgba(white, 0.2);
 		@include border-radius(0 0 10px 10px);
 	}
 }
 
 #radio-stations {
+	display: none;
 	margin-top: 8px;
 	margin-left: 10px;
 	font-size: 18pt;
@@ -533,6 +541,53 @@ $player-width: 564px;
 		
 		&.streaming {
 			color: rgba(0,0,0,0.8);
+		}
+	}
+}
+
+#sm-social-cta {
+	position: absolute;
+	font-family: FuturaCondensedMedium;
+	left: -120px;
+	text-align: justify;
+	text-transform: uppercase;
+	color: rgba(white, 0.9);
+	width: 110px;
+	@include text-shadow(0 -2px rgba(black, 0.2));
+
+	@media #{media-width-res(1050)} {
+		display: none;
+	}
+
+	.copy-container {
+		@include background(linear-gradient(rgb(90,90,90), rgb(70,70,70)));
+		@include border-radius(6px 6px 0 0);
+		padding: 3px 10px;
+
+		.copy-box:nth-child(1) {
+			border-bottom: 1px dashed white;
+		}
+		.copy-box {
+			padding: 7px 0;
+		}
+
+		.large {
+			font-size: 38px;
+			letter-spacing: 3px;
+		}
+		.medium {font-size: 28px;}
+		.small {font-size: 20px;}
+	}
+
+	.links-container {
+		@include background(linear-gradient(rgb(35,35,35), rgb(30,30,30)));
+		@include border-radius(0 0 6px 6px);
+		text-align: center;
+		.sm-social-icon {
+			display: inline-block;
+			margin: 12px 3px;
+			position: relative;
+			cursor: pointer;
 		}
 	}
 }

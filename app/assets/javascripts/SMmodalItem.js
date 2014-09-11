@@ -90,14 +90,14 @@ SMmodalItem = function($link, $index){
 	function setModalPosition() {
 		var linkIndex = linkBox.index();
 		var linkBoxesLength = linkBoxes.length;
-		if(linkIndex < linkBoxesLength - 2) {
+		if(linkIndex < linkBoxesLength - 2 || innerWidth < 801) {
 			console.log(linkBox.index());
 			var linkPos = findPos($link[0]);
 			var offset = 100;
 			var linkLeftPos = linkPos.x - offset;
 			object.css('left', linkLeftPos);
 		}
-		else if(linkIndex === linkBoxesLength - 2) {
+		else if(linkIndex === linkBoxesLength - 2 && innerWidth > 800) {
 			object.addClass('second-last-modal');
 		}
 		else {

@@ -77,8 +77,12 @@ HelveticaNeueLTStd-Roman.woff: HelveticaNeueLTStd-Roman-f4d06a12c232c16d960148e6
 HelveticaNeueLTStd-Roman/index.woff: HelveticaNeueLTStd-Roman-f4d06a12c232c16d960148e68da101b5.woff
 ajax-loader.gif: ajax-loader-85c0d7296760ce61f5824916cae31877.gif
 ajax-loader/index.gif: ajax-loader-85c0d7296760ce61f5824916cae31877.gif
+artist-default.jpg: artist-default-0e01e6f05ede198c9347e5683e346be2.jpg
+artist-default/index.jpg: artist-default-0e01e6f05ede198c9347e5683e346be2.jpg
 artist-profile.png: artist-profile-bbb10568062181fce0923a8a43320cf5.png
 artist-profile/index.png: artist-profile-bbb10568062181fce0923a8a43320cf5.png
+artist-social-icons.png: artist-social-icons-82fdb6d14b45275221d619708eb149be.png
+artist-social-icons/index.png: artist-social-icons-82fdb6d14b45275221d619708eb149be.png
 back.png: back-354e58d02e9a744901f64767b9fddef5.png
 back/index.png: back-354e58d02e9a744901f64767b9fddef5.png
 callout-dot.png: callout-dot-499081eeecbab2ddfa403d8dad89083c.png
@@ -107,6 +111,8 @@ icons/social.png: icons/social-df53f31ccffcbf6caf47edc8568d4c13.png
 icons/social/index.png: icons/social-df53f31ccffcbf6caf47edc8568d4c13.png
 invite-friends.png: invite-friends-ae3417c8940d875a58bb7fac5cb35724.png
 invite-friends/index.png: invite-friends-ae3417c8940d875a58bb7fac5cb35724.png
+itunesLogo.png: itunesLogo-25fd12f9581909f128966cce1c2ca50b.png
+itunesLogo/index.png: itunesLogo-25fd12f9581909f128966cce1c2ca50b.png
 loader.gif: loader-cbf01389279daf6b0929dbc2b3a6c2e3.gif
 loader/index.gif: loader-cbf01389279daf6b0929dbc2b3a6c2e3.gif
 loader.png: loader-2e6c933e7fb54ad1872443e05530315a.png
@@ -135,6 +141,8 @@ sc-radio-bg.jpg: sc-radio-bg-afa15ef9ee88e001c651675fee97cf93.jpg
 sc-radio-bg/index.jpg: sc-radio-bg-afa15ef9ee88e001c651675fee97cf93.jpg
 skip.png: skip-fce051625a725e56274c429c021dda1f.png
 skip/index.png: skip-fce051625a725e56274c429c021dda1f.png
+sm-cta-sprite.png: sm-cta-sprite-b7491c0a064ae68e5b7a95ed6486fdea.png
+sm-cta-sprite/index.png: sm-cta-sprite-b7491c0a064ae68e5b7a95ed6486fdea.png
 social-icons.png: social-icons-2b34e130d6a8806b6985dc8db8c7acbe.png
 social-icons/index.png: social-icons-2b34e130d6a8806b6985dc8db8c7acbe.png
 spinner.gif: spinner-da5a9360fd2be9f2771124387446e68d.gif
@@ -149,10 +157,10 @@ x_mark.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 x_mark/index.png: x_mark-fa54fa252172e9c470a7d57b4d063168.png
 yt-logo.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
 yt-logo/index.png: yt-logo-96178a4c51768e0ea1c049b89ef71783.png
-application.js: application-9ccf1c90bc8f133069bfa14a7e65394b.js
-application/index.js: application-9ccf1c90bc8f133069bfa14a7e65394b.js
-application.css: application-e53fe643199c4ca7ab426609cd121ca3.css
-application/index.css: application-e53fe643199c4ca7ab426609cd121ca3.css
+application.js: application-59658f153e109de8b10e6b289a198145.js
+application/index.js: application-59658f153e109de8b10e6b289a198145.js
+application.css: application-6f4fd6a7be0b95496d2ce679d877dd80.css
+application/index.css: application-6f4fd6a7be0b95496d2ce679d877dd80.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png

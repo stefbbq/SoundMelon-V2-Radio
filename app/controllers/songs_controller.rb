@@ -13,6 +13,7 @@ class SongsController < ApplicationController
 			@song = Song.create(params[:song].except(:artist_id))
 			if @song.save
 				@song.update_column(:artist_id, params[:song][:artist_id])
+				Artist.find(params[:song][:artist_id]).update_column(:first_song_added, true)
 				write_flash('notification', 'Your tune has been uploaded!')
 			end
 		else

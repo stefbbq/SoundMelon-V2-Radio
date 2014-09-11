@@ -64,6 +64,7 @@ class ArtistsController < ApplicationController
 		@artist = Artist.find_by_id(params[:artist][:id])
 		params[:artist][:genre_tags] = !params[:artist][:genre_tags].nil? ? params[:artist][:genre_tags].split(',') : @artist.genre_tags
 		if @artist.update_attributes(params[:artist])
+			@artist.update_column(:profile_edited, true)
 			write_flash('notification', 'Your Profile has been updated')
 		end
 	end

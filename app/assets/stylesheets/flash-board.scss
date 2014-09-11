@@ -7,7 +7,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: rgba(white, 0.5);
+	background: rgba(white, 0.7);
 	// @include box-shadow(0 0 1px 1px rgba(black,0.2));
 	text-align: center;
 	display: none;
@@ -43,7 +43,8 @@
 
 		.level {
 			float: left;
-			width: 100px;
+			// width: 100px;
+			padding: 0 10px;
 			margin-top: 6px;
 		}
 		.close {
@@ -76,7 +77,7 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 		.message {margin-top: 0;}
 		.severity .level {
 			margin: 0;
-			padding: 3px 0;
+			padding: 3px 10px;
 		}
 	}
 }

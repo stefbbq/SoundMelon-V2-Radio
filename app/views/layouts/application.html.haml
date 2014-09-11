@@ -8,13 +8,10 @@
 		= stylesheet_link_tag "application", media: "all"
 		= csrf_meta_tags
 		= render 'layouts/ga'
+		= render 'layouts/twitter'
+
 	%body
 		.bg-wrapper
-			#flash-board.notification
-				.message
-				.severity
-					.level
-					.close
 
 		.wrapper
 			#page-content
@@ -23,6 +20,8 @@
 					= yield
 		.footer
 			= render 'layouts/footer'
+
+		= render 'layouts/flash_board'
 
 :javascript
 	//deal with IE for CSS

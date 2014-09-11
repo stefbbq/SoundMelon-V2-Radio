@@ -8,19 +8,29 @@
 			.sub-label 
 				%span.prefix Joined at 
 				%span.data= @artist.created_at.strftime("%b %d, %Y")
-			.sub-label
-				%span.prefix From 
-				%span.data= @artist.city
+			- if !@artist.city.nil? && @artist.city.size > 0
+				.sub-label
+					%span.prefix From 
+					%span.data= @artist.city
 
 		.artist-social
-			- social_links = {'website' => {'link' => @artist.website, 'tagline' => 'visit our'}, 'facebook' => {'link' => @artist.facebook_link, 'tagline' => 'like us on'}, 'twitter' => {'link' => @artist.twitter_link, 'tagline' => 'follow us on'}}
-			- social_links.keys.each do |key|
-				- link = social_links[key]['link']
-				- if !link.nil? && link.size > 0
-					.artist-link
-						- tagline = social_links[key]['tagline']
-						- link = /^http/.match(link) ? link : "http://#{link}"
-						%span.prefix= tagline
-						%span.artist-social-link= link_to key, link, target: '_blank'
+			- social_links = {'twitter' => {'link' => @artist.twitter_link, 'tagline' => 'follow us on'}, 'facebook' => {'link' => @artist.facebook_link, 'tagline' => 'like us on'}, 'website' => {'link' => @artist.website, 'tagline' => 'visit our'}}
+			- if @artist.website || @artist.facebook_link || @artist.twitter_link
+				.social-items
+					.label visit artist at
 
-		/ .anchor
+					- social_links.keys.each do |key|
+						- link = social_links[key]['link']
+						- if !link.nil? && link.size > 0
+							- link = /^http/.match(link) ? link : "http://#{link}"
+							.artist-link.artist-social-icon{class: key}
+								%a.filled-link{href: link, target: '_blank'}
+
+			- if @artist.itunes_link
+				.purchase-items
+					- if !@artist.itunes_link.nil? && @artist.itunes_link.size > 0
+						.itunes-logo
+							- link = @artist.itunes_link
+							- link = /^http/.match(link) ? link : "http://#{link}"
+							- link += '?at=' + ENV['ITUNES_TOKEN']
+							%a.filled-link{href: link, target: '_blank'}

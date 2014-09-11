@@ -5,16 +5,16 @@ var SMflashManager = (function() {
 	return function() {
 		//
 		//vars
+		var currentMessage;
 		flashBoard = $('#flash-board');
 		var severityBox = flashBoard.find('.severity');
+		var severities = ['warning', 'notification', 'error'];
 		
 		//
 		//setup
 		function enable() {
 			flashBoard.click(dismiss);
-			severityBox.click(function() {
-				animateOut(0);
-			});
+			severityBox.click(defaultClick);
 
 		}
 		function disable() {
@@ -26,7 +26,7 @@ var SMflashManager = (function() {
 		function showMessage(message) {
 			 TweenLite.killTweensOf(flashBoard);
 			var severity = message.severity;
-			
+			currentMessage = message;
 			switch(severity) {
 				case "notification":
 					flashBoard.addClass('notification').removeClass('error warning');
@@ -41,8 +41,13 @@ var SMflashManager = (function() {
 			}
 			flashBoard.find('.severity .level').html(severity);
 			flashBoard.find('.message').html(message.message);
-			var delay = severity === 'error' ? 999 : 5;
+			// var delay = severity !== 'warning' || severity !== 'notification' ? 999 : 5;
+			var delay = ['warning', 'notification'].indexOf(severity) === -1 ? 999 : 5;
 			animateIn(animateOut, delay);
+			if(severities.indexOf(severity) === -1 && message.click) {
+				severityBox.unbind('click', defaultClick);
+				severityBox.click(customClick);
+			}
 			// animateIn();
 		}
 		
@@ -50,7 +55,18 @@ var SMflashManager = (function() {
 			animateOut();
 		}
 		
-		
+		function defaultClick() {
+			animateOut(0);
+		}
+
+		function customClick() {
+			console.log(currentMessage.click);
+			$(currentMessage.click).click();
+			animateOut(0);
+			severityBox.unbind('click');
+			severityBox.click(defaultClick);
+		}
+
 		//
 		//animations
 		function animateIn(callback, delay){
@@ -78,7 +94,8 @@ var SMflashManager = (function() {
 			//functions
 			enable: enable,
 			disable: disable,
-			showMessage: showMessage
+			showMessage: showMessage,
+			animateOut: animateOut
 		}
 	}
 })();

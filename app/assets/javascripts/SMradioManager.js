@@ -7,10 +7,11 @@ var runInitSC = false;
 var newArtistProfile, scrubInterval;
 var volume = 100;
 var ytQuality = 'large';
-var scrubDelay = 1500;
+var scrubDelay = 500;
+var firstRun = true;
 
 var SMradioManager = function(scAppId) {
-	var playersManager, artistsManager, songs, songHistory, playedUpdate, currentSong, playLast, lastPlayed, lastStation, currentStation, seekVal, position, stillBuffering;
+	var playersManager, artistsManager, songs, songHistory, playedUpdate, currentSong, playLast, lastPlayed, lastStation, currentStation, seekVal, position, stillBuffering, checkTimeout;
 	
 	var songHistory = []; //full browser history of played songs
 	var playedUpdate = []; //gets sent to the server as an update
@@ -20,8 +21,14 @@ var SMradioManager = function(scAppId) {
 		playersManager = new SMplayersManager(scAppId);
 		artistsManager = new SMartistsManager();
 		$('#radio-controls #play-pause').click(playBehaviour);
+		key('space', function() {
+			$('#radio-controls #play-pause').trigger('click');
+		});
 		$('#radio-controls #next-song').click(nextBehaviour);
-		$('#radio-controls #previous-song').click(prevBehaviour);
+		key('right', function() {
+			$('#radio-controls #next-song').trigger('click');
+		});
+		// $('#radio-controls #previous-song').click(prevBehaviour);
 		$('#get-artist-info').click(getArtistInfo);
 		$('#radio-stations a').click(setStation);
 		$('#report-song').click(openReportForm);
@@ -191,7 +198,13 @@ var SMradioManager = function(scAppId) {
 					$('#youtube').hide();
 					$('#soundcloud, .overlay, .overlay .song-link').show();
 				}
-
+				if(firstRun) {
+					 $("#get-artist-info").trigger('click');
+					 firstRun = false;
+				}
+				else {
+					loadInArtistInfo();
+				}
 			}
 		}
 	}
@@ -258,14 +271,7 @@ var SMradioManager = function(scAppId) {
 				$('#get-artist-info').click();
 			}
 			setTimeout(checkPlaying, 10000);
-			setTimeout(function() {
-				$("#next-song").removeClass('disable');
-				calloutBox = $('.callout#show-artist-profile');
-				if(calloutBox.hasClass('visible')) {
-					newArtistProfile = true;
-					$('#get-artist-info').click();
-				}
-			}, 3000);
+			loadInArtistInfo();
 		}
 		else {
 			//Songs list is now empty
@@ -275,7 +281,8 @@ var SMradioManager = function(scAppId) {
 
 	function checkPlaying() {
 		var showError;
-		if(currentSong['upload_source'] === 'youtube') {
+		if(!currentSong) showErrrow = true;
+		else if(currentSong['upload_source'] === 'youtube') {
 			var status = ytPlayer.getPlayerState();
 			if(/3|-1/.test(status)) {
 				showError = true;
@@ -287,6 +294,7 @@ var SMradioManager = function(scAppId) {
 				showError = true;
 			}
 		}
+
 		if(showError) {
 			var message;
 			if(stillBuffering) {
@@ -303,9 +311,11 @@ var SMradioManager = function(scAppId) {
 			}
 			FlashManager.showMessage(message);
 			stillBuffering = true;
-			setTimeout(checkPlaying, 10000);
+			checkTimeout = setTimeout(checkPlaying, 10000);
 		}
 		else console.log('no load delays!');
+		clearTimeout(checkTimeout);
+		FlashManager.animateOut(0);
 	}
 	
 	function seekTracker() {
@@ -315,10 +325,22 @@ var SMradioManager = function(scAppId) {
 				newVal = ytPlayer.getCurrentTime() / ytPlayer.getDuration();
 			}
 			else if(currentSong['upload_source'] === 'soundcloud') {
-				newVal = scWidget.position / scWidget.duration;
+				newVal = scWidget.position / scWidget.durationEstimate;
 			}
+			console.log(newVal);
 			$('#seek-slider').simpleSlider('setValue', newVal);
 		}
+	}
+
+	function loadInArtistInfo() {
+		setTimeout(function() {
+			$("#next-song").removeClass('disable');
+			calloutBox = $('.callout#show-artist-profile');
+			if(calloutBox.hasClass('visible')) {
+				newArtistProfile = true;
+				$('#get-artist-info').click();
+			}
+		}, 3000);
 	}
 
 	function manualSeek(seekTo) {

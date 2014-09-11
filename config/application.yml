@@ -19,6 +19,9 @@ ECHONEST_SHARED_SECRET: "sDlPOAkwQsaozTJ50IfAzA"
 DROPBOX_USER_ID: "22368238"
 DROPBOX_ACCESS_TYPE: "app_folder"
 
+#iTunes Token
+ITUNES_TOKEN: "10lLjX"
+
 #Misc Vars
 INVITE_LIMIT: 3
 
@@ -44,10 +47,14 @@ development:
   FACEBOOK_SECRET: "a2385662ccd25e557324887744e4ff4e"
   
   #Dropbox API Keys
-  DROPBOX_APP_KEY: "05fonmrmp17g5am"
-  DROPBOX_APP_SECRET: "w2gqpufkalkenw6"
-  DROPBOX_ACCESS_TOKEN: "2f1camyaod7fii7d"
-  DROPBOX_ACCESS_TOKEN_SECRET: "zdwhiarh0sddo59"
+  # DROPBOX_APP_KEY: "05fonmrmp17g5am"
+  # DROPBOX_APP_SECRET: "w2gqpufkalkenw6"
+  # DROPBOX_ACCESS_TOKEN: "2f1camyaod7fii7d"
+  # DROPBOX_ACCESS_TOKEN_SECRET: "zdwhiarh0sddo59"
+  DROPBOX_APP_KEY: "pget2g76chyzoby"
+  DROPBOX_APP_SECRET: "duw9sg2qicxmk6f"
+  DROPBOX_ACCESS_TOKEN: "exyyh7vxk02o3lpz"
+  DROPBOX_ACCESS_TOKEN_SECRET: "saw3pnnhpc78hwf" 
   
   ##
   ##Ngrok Keys

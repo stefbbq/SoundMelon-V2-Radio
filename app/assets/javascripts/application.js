@@ -17,12 +17,14 @@
 //= require jquery.tagsinput.min
 //= require jquery.typing-0.2.0.min
 //= require jquery.tinyscrollbar.min
+//= require keymaster.js
 //= require TweenMax
 //= require youtube_iframe_api
 //= require simple-slider.min
 //= require sc_js_sdk
 //= require utilities
 
+//= require SMsplashManager
 //= require SMartistsManager
 //= require SMplayersManager
 //= require SMradioManager

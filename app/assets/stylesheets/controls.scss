@@ -6,34 +6,40 @@
 @mixin splash-fb-button(){
 	@include border-radius($radius);
 	@include single-box-shadow(rgba(black, .05), 0px, 3px, 6px);
-	@include background(linear-gradient(90deg, rgba(#7eabdd, .8), rgba(#4e8bad, .8)));
+	// @include background(linear-gradient(90deg, rgba(#7eabdd, .8), rgba(#4e8bad, .8)));
+	@include background(linear-gradient(rgba(#7eabdd, .8), rgba(#4e8bad, .8)));
 	border: none;
-	padding: 10px;
+	padding: 10px 20px;
 	color: white;
-	font-size: 24px;	
+	font-size: 30px;	
 	display: inline-block;
 	font-family: FuturaCondensedMedium;
 	text-decoration: none;
 	cursor: pointer;
 	
 	&:hover {
-		@include background(linear-gradient(90deg, rgba(#8ebbed, .8), rgba(#6e9bcd, .8)));
+		// @include background(linear-gradient(90deg, rgba(#8ebbed, .8), rgba(#6e9bcd, .8)));
+		@include background(linear-gradient(rgba(#8ebbed, .8), rgba(#6e9bcd, .8)));
 	};
 }
 @mixin splash-generic-button(){
 	@include border-radius($radius);
+	// @include single-box-shadow(rgba(black, .05), 0px, 3px, 6px);
 	@include single-box-shadow(rgba(black, .05), 0px, 3px, 6px);
+	// @include background(linear-gradient(rgba(#7eabdd, .8), rgba(#4e8bad, .8)));
 	@include background(linear-gradient(90deg, rgba(white, .8), rgba(white, .5)));
-	border: 1px solid rgba(black, .3);
-	padding: 10px;
+	// border: 1px solid rgba(black, .3);
+	padding: 10px 10px 8px;
 	color: rgba(black, .6);
-	font-size: 24px;
+	// color: white;
+	font-size: 30px;
 	display: inline-block;
 	font-family: FuturaCondensedMedium;
 	text-decoration: none;
-	
+	// width: 270px;
 	&:hover {
 		@include background(linear-gradient(90deg, rgba(white, 1), rgba(white, .7)));
+		// @include background(linear-gradient(rgba(#8ebbed, .8), rgba(#6e9bcd, .8)));
 	};
 }
 

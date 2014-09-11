@@ -1,6 +1,6 @@
 class Artist < ActiveRecord::Base
   attr_accessible :artist_name, :youtube_token, :soundcloud_token, :artist_photo,
-									:website, :city, :genre_tags, :facebook_link, :twitter_link
+									:website, :city, :genre_tags, :facebook_link, :twitter_link, :itunes_link
 	
 	before_save :record_city
 	
@@ -11,7 +11,7 @@ class Artist < ActiveRecord::Base
 		dropbox_options: {
       path: proc { |style| "#{style}/#{id}_#{artist_photo.original_filename}" }
     },
-		default_url: "/assets/core/footer_logo.png"
+		default_url: "/assets/artist-default.jpg"
 	belongs_to :user
 	has_many :song, dependent: :destroy
 	has_many :reports, as: :reportable #Allow Song to be reported
