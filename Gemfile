@@ -55,6 +55,7 @@ gem "remotipart", "~> 1.0"
 # gem 'activeadmin'
 gem 'activeadmin', github: 'gregbell/active_admin', branch: '0-6-stable'
 gem "meta_search", '>= 1.1.0.pre'
+gem "geocoder"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'

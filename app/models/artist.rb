@@ -22,5 +22,6 @@ class Artist < ActiveRecord::Base
 	private
 		def record_city
 			self.city = self.user.city
+			self.city_coords = self.user.city_coords
 		end
 end

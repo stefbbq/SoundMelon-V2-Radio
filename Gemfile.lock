@@ -120,6 +120,7 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     fssm (0.2.10)
+    geocoder (1.2.5)
     haml (4.0.5)
       tilt
     haml-rails (0.4)
@@ -316,6 +317,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.1.0)
   faraday
   figaro
+  geocoder
   haml-rails
   jquery-rails (= 2.0.2)
   jquery-ui-rails

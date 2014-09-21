@@ -99,7 +99,7 @@ module ApplicationHelper
 		songs.each do |song|
 # 			all_tags = song.sm_tags | song.source_tags
 			all_tags = song.source_tags
-			scored_songs << [song, score_song(user_meta, fb_meta, all_tags)]
+			scored_songs << [song, score_song(user_meta, fb_meta, all_tags, user.city_coords, song.artist.city_coords)]
 		end
 		scored_songs = scored_songs.sort_by {|song,score| score}
 		return scored_songs
@@ -110,12 +110,23 @@ module ApplicationHelper
 		return songs.shuffle[0..(n-1)]
 	end
 
-	def score_song(user_meta, fb_meta, song_tags, alpha=0.5)
+	def score_song(user_meta, fb_meta, song_tags, user_coords, song_coords, alpha=0.5)
 		#Return a song score given a hash of user meta data
 		#and an array of tags for the song
 		fbm_score = fb_meta.nil? ? 1 : get_fbm_score(fb_meta, song_tags)
 		um_score = user_meta.nil? ? 1 : get_um_score(user_meta, song_tags)
-		agg_score = alpha*fbm_score + (1-alpha)*um_score
+		city_score = user_coords.nil? || song_coords.nil? ? 0 : get_city_score(user_coords, song_coords)
+		# agg_score = alpha*fbm_score + (1-alpha)*um_score
+		agg_score = alpha * (fbm_score + um_score + city_score)
+	end
+
+	def get_city_score(user_coords, song_coords)
+		score = 0.0
+		# user_coords = Geocoder.coordinates(user_city)
+		# song_coords = Geocoder.coordinates(song_city)
+		dist = Geocoder::Calculations.distance_between(user_coords.split(",").map(&:to_i), song_coords.split(",").map(&:to_i))
+		score = dist == 0 ? 1 : 1/dist
+		return score
 	end
 
 	def get_fbm_score(fb_meta, song_tags)

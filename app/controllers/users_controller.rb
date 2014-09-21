@@ -72,6 +72,31 @@ class UsersController < ApplicationController
 		# @user.update_attributes(fb_meta: @user_genres)
 	end
 
+	def add_city
+		@user = User.find_by_id(params[:user][:id])
+		update_attrs(params)
+		@user.update_column(:city_coords, Geocoder.coordinates(params[:user][:city]).join(','))
+	end
+
+	def search_cities
+		@address = params[:address]
+		@cities = Geocoder.search(@address)
+		limit = 5
+		@json = {}
+		i = 0
+		@cities.each do |city|
+			if i == limit
+				break
+			end
+			@json[i] = city.data
+			i += 1
+		end
+		respond_to do |format|
+			format.json {render json: @json.to_json}
+			format.js
+		end
+	end
+
 	def reload_fb_meta
 		@user = User.find_by_id(params[:id])
 		@user_genres = collect_genres(@user)

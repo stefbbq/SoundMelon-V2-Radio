@@ -1,6 +1,12 @@
 :plain
+	console.log("#{current_user.city}");
+	var city = "#{current_user.city}";
+	if(city === '') {
+		$('.main_page_div').empty().html("#{escape_javascript( render 'users/add_city' )}");
+	}
+	else {
+		$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
+		$(".modal#user-edit #user-settings").empty().html("#{escape_javascript( render 'users/settings' )}");
 
-	$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
-	$(".modal#user-edit #user-settings").empty().html("#{escape_javascript( render 'users/settings' )}")
-
-	initHomeFuntionality();
+		initHomeFuntionality();
+	}

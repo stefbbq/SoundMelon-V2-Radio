@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
 			user.oauth_token['extended_token'] = koala_oauth.exchange_access_token_info(user.oauth_token.token)
 			if !user.custom_city
 				user.city = auth.info.location
+				user.city_coords = Geocoder.coordinates(user.city).join(",") if !user.city.nil? && user.city != ''
 			end
       user.save!
     end

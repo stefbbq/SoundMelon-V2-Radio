@@ -19,6 +19,8 @@ SoundMelonV2Radio::Application.routes.draw do
 #User routes
 	match '/accept_terms', to: 'users#accept_terms'
 	match '/init_fb_meta', to: 'users#init_fb_meta'
+  match '/search_cities', to: 'users#search_cities'
+  match '/add_city', to: 'users#add_city'
 	match '/reload_fb_meta', to: 'users#reload_fb_meta'
 	match '/user_meta', to: 'users#edit_meta'
 	match '/update_fb_meta', to: 'users#update_fb_meta'
