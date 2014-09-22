@@ -23,40 +23,41 @@
 					%a.song-link.filled-link{href: "#", target: '_blank', title: 'Opens a new tab'}
 
 			#radio-controls
-			
 				.player-buttons
-					.left
-						.content
+					.primary				
+						
+						/ 	.report-container
+						/ 	= link_to("report song", report_song_path(user_id: current_user.id, song_id: ''), remote: true, class: 'external-button', id: 'report-song')
+						/ 	.report-box
+						/ 		#report-board
+						/ 		.modal-tail
+						.control-panel
 							.volume-container
-								#show-slider
+								.control.volume#volume.disable
+									%a.volume-image.control-image
 								.volume-controls
 									#volume-slider
-							.report-container
-								= link_to("report song", report_song_path(user_id: current_user.id, song_id: ''), remote: true, class: 'external-button', id: 'report-song')
-								.report-box
-									#report-board
-									.modal-tail
-						
-					.primary
-					
-						.control-panel
-							/%a#replay-song replay 
-							/ .control.change-song#previous-song
-							/ 	%a.prev-image.control-image
 							.control.change-state#play-pause
 								%a.play-image.control-image
-							.control.change-song#next-song.disable
+							.control.next-song#next-song.disable
 								%a.skip-image.control-image
 							
 						.current-content
 							.currently-playing.first-load
 								%span.song-title
-									Press Play to start!
+									Press play to start!
 								%span.artist
 									
 					.right
 						.content
-							= link_to('who is this', artist_info_path(song_id: ''), class: 'external-button', id: 'get-artist-info', remote: true)
+							.playlist
+								= link_to('station:', artist_info_path(song_id: ''), id: 'station-panel-button', remote: true)
+								= link_to('favourites', artist_info_path(song_id: ''), id: 'favoruites-panel-button', remote: true)
+							.song
+								= link_to('who is this', artist_info_path(song_id: ''), id: 'get-artist-info', remote: true)
+								= link_to('share song', artist_info_path(song_id: ''), id: 'shareSong-panel-button', remote: true)
+								= link_to('see discussion', artist_info_path(song_id: ''), id: 'discussion-panel-button', remote: true)
+
 
 				.seek-scrub
 					.content
