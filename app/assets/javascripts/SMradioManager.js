@@ -1,4 +1,4 @@
-//Radio Manager
+//radio manager
 
 var ytPlayerReady = false;
 var scPlayerReady = false;
@@ -17,11 +17,18 @@ var SMradioManager = function(scAppId) {
 	var songHistory = []; //full browser history of played songs
 	var playedUpdate = []; //gets sent to the server as an update
 	
-	
 	function enable() {
 		playersManager = new SMplayersManager(scAppId);
 		artistsManager = new SMartistsManager();
+
+		//basic commands
 		$('#radio-controls #play-pause').click(playBehaviour);
+		$('#get-artist-info').click(getArtistInfo);
+		$('#radio-stations a').click(setStation);
+		$('#report-song').click(openReportForm);
+		$('#radio-stations #user-meta').trigger('click');
+		
+		//keyboard bindings
 		key('space', function() {
 			$('#radio-controls #play-pause').trigger('click');
 		});
@@ -29,20 +36,13 @@ var SMradioManager = function(scAppId) {
 		key('right', function() {
 			$('#radio-controls #next-song').trigger('click');
 		});
-		// $('#radio-controls #previous-song').click(prevBehaviour);
-		$('#get-artist-info').click(getArtistInfo);
-		$('#radio-stations a').click(setStation);
-		$('#report-song').click(openReportForm);
-
-		$('.volume-container #volume-slider').slider('value', volume);
 		
-		$('.volume-container #show-slider, .volume-controls').hover(function() {
-			$('.volume-controls').toggle();
-		});
+		//volume controls
+		$('.volume-container #volume-slider').slider('value', volume);
+		$('.volume-container').hover(function() { $('.volume-controls').toggle(); });
 
-		$('#seek-slider').simpleSlider({
-			highlight: true
-		});
+		//volume controls
+		$('#seek-slider').simpleSlider({ highlight: true });
 		$('#seek-slider').simpleSlider('setValue', 0);
 		$('#seek-slider').bind('slider:changed', function(event, data) {
 			seekValue = data['value'];
@@ -50,21 +50,18 @@ var SMradioManager = function(scAppId) {
 			$('#radio-controls .seek-scrub .seek-val span.current-time').text(position);
 		});
 
+		//time seek controls
 		$('.media-seeker .slider').find('.track, .highlight-track').click(function() {
 			scrubInterval.stop();
-			console.log('initialize...');
 			manualSeek(seekValue);
 			if(getPlayerState() === 1) scrubInterval.start();
 		});
-
 		$('.media-seeker .dragger').mousedown(function() {
 			scrubInterval.stop();
 		}).mouseup(function() {
 			manualSeek(seekValue);
 			if(getPlayerState() === 1) scrubInterval.start();
 		});
-		
-		$('#radio-stations #user-meta').trigger('click');
 	}
 	
 	//
@@ -195,7 +192,9 @@ var SMradioManager = function(scAppId) {
 				currentSong = firstSong;
 				artistsManager.showArtistInfo(currentSong);
 				// playPause();
-				$(".change-song").addClass('enable-control');
+				$(".next-song").addClass('enable-control');
+				$(".volume").addClass('enable-control');
+				
 				if(firstSource === 'youtube') {
 					$('#soundcloud, .overlay, .overlay .song-link').hide();
 					$('#youtube').css('display', 'block');

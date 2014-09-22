@@ -1,6 +1,7 @@
 @import "variables";
 @import "compass/css3";
 @import "controls.scss";
+
 //
 //player vars
 $player-height: 484px;
@@ -47,34 +48,6 @@ $player-width: 564px;
 		height: 122px;
 		position: relative;
 	}
-	
-	.external-button {
-		font-size: 11px;
-		height: 11px;
-		text-transform: uppercase;
-		color: white;
-		opacity: 0.2;
-		text-decoration: none;
-		cursor: pointer;
-		font-weight: bold;
-		@include text-shadow(1px 1px 3px rgba(1,1,1,0.2));
-		font-family: FuturaHeavy;
-		opacity: 0;
-		visibility: hidden;
-
-		&.show-button {
-			opacity: 0.2;
-			visibility: visible;
-
-			&:hover {
-				opacity: 0.6;
-			}
-		}
-		
-		&.current-visit {
-			opacity: 0.94 !important;
-		}
-	}
 		
 	.seek-scrub {
 		height: 40px;
@@ -91,7 +64,7 @@ $player-width: 564px;
 			height: 100%;
 			width: 100%;
 			position: absolute;
-			left: 20px;
+			left: 18px;
 			top: 12px;
 
 			> div {
@@ -110,7 +83,7 @@ $player-width: 564px;
 		}
 
 		.slider {
-			width: 450px;
+			width: 445px;
 			height: 8px;
 			display: inline-block;
 			margin: 0 !important;
@@ -132,248 +105,235 @@ $player-width: 564px;
 		}
 	}
 	
-	.left, .primary, .right {
+  .primary, .right {
 		display: inline-block;
 		font-family: 'Futura';
-		float: left;
 		position: relative;
 	}
 	
-	.left {
-		height: 100%;
-		width: 25%;
-		
-			.content {
-/* 				overflow: hidden; */
-				// margin: 26px 0 0 19px;
-				margin-left: 19px;
-				position: relative;
-				top: 50%;
-				@include transform(translateY(-50%));
-				line-height: 18px;
+	.primary {
+    width: 100%;
+    margin: 0px;
+		top: -30px;
+    text-align: center;
+    
+		.volume-container {
+			margin-top: 6px;
+      display: inline-block;
+			
+			.volume-controls {
+				display: none;
+				position: absolute;
+				@include background(linear-gradient(rgba(128,128,128,1) 40%, rgba(128,128,128,0) 95%));
+				@include border-radius(11px);
+				bottom: 116px;
+        left: 13px;
+				width: 25px;
+				height: 113px;
+				padding: 5px 0 0 2px;
 				
-				> div {
-					display: inline-block;
+				.ui-slider-vertical {
+					@include background(linear-gradient(rgb(63,63,63), rgb(45,45,45)));
+					width: 11px;
+					height: 80px;
+					@include box-shadow(1px 0px 0px rgba(1,1,1,0.15));
+					@include border-radius(11px);
+					border-bottom: 1px solid #585858;
+					margin: 12px 0 0 6px;
 				}
 				
-				.volume-container {
-					margin-top: 6px;
+				.ui-slider-handle {
+					@include background(linear-gradient(rgb(248,248,248), rgb(171,171,171)));
+					@include box-shadow(1px 1px 3px rgba(1,1,1,0.36));
+					@include border-radius(10px);
+					left: -4px;
+					width: 17px;
+					height: 17px;
+					&:hover {
+						@include background(linear-gradient(rgb(200,200,200), rgb(150,150,150)));
+					}
+					&:focus {
+						outline: 0;
+					}
+				}
+				
+				.ui-slider-range-min {
+					@include background(linear-gradient(rgb(0, 234, 83), rgb(0, 169, 59)));
+					@include border-radius(11px);
+				}
+				
+				.ui-widget-content {
+					border: none;
+				}
+				
+				.slider {
+					width: 80px;
+					height: 11px;
+					margin: 0 !important;
+					padding: 0 0 25px 23px;
+				}
+			}
+		
+			#show-slider {
+				visibility: hidden;
+				background: url('/assets/volume.png');
+				width: 24px;
+				height: 22px;
+				opacity: 0.8;
+        
+				&.show-button {	visibility: visible; }
+				&:hover{ opacity: 1; }
+			}
+		}
+    
+		.content {
+			margin-left: 19px;
+			position: relative;
+			top: 50%;
+			@include transform(translateY(-50%));
+			line-height: 18px;
+			
+			> div {
+				display: inline-block;
+			}
+			
+			.report-container {
+				vertical-align: 7px;
+				
+				.external-button {
+					margin-left: 9px;
+				}
+				
+				.report-box {
+					display: none;
 					position: relative;
 					
-					
-					.volume-controls {
-						display: none;
+					#report-board {
 						position: absolute;
-						@include background(linear-gradient(rgba(128,128,128,1) 40%, rgba(128,128,128,0) 95%));
-						@include border-radius(11px);
-						left: -1px;
-						bottom: 11px;
-						width: 25px;
-						height: 113px;
-						padding: 5px 0 0 2px;
+						z-index: 2;
+						// height: 164px;
+						width: 305px;
+						bottom: 40px;
+						left: -125px;
+						background: rgb(238, 238, 238);
+						@include border-radius(7px);
 						
-						.ui-slider-vertical {
-							@include background(linear-gradient(rgb(63,63,63), rgb(45,45,45)));
-							width: 11px;
-							height: 80px;
-							@include box-shadow(1px 0px 0px rgba(1,1,1,0.15));
-							@include border-radius(11px);
-							border-bottom: 1px solid #585858;
-							margin: 12px 0 0 6px;
-						}
-						
-						.ui-slider-handle {
-							@include background(linear-gradient(rgb(248,248,248), rgb(171,171,171)));
-							@include box-shadow(1px 1px 3px rgba(1,1,1,0.36));
-							@include border-radius(10px);
-							left: -4px;
-							width: 17px;
-							height: 17px;
-							&:hover {
-								@include background(linear-gradient(rgb(200,200,200), rgb(150,150,150)));
-							}
-							&:focus {
-								outline: 0;
-							}
-						}
-						
-						.ui-slider-range-min {
-							@include background(linear-gradient(rgb(0, 234, 83), rgb(0, 169, 59)));
-							@include border-radius(11px);
-						}
-						
-						.ui-widget-content {
-							border: none;
-						}
-						
-						.slider {
-							width: 80px;
-							height: 11px;
-							margin: 0 !important;
-							padding: 0 0 25px 23px;
-						}
-					}
-				
-					#show-slider {
-						visibility: hidden;
-						background: url('/assets/volume.png');
-						width: 24px;
-						height: 22px;
-						opacity: 0.8;
-						&.show-button {
-							visibility: visible;
-						}
-						&:hover{opacity: 1;}
-					}
-				}
-				
-				.report-container {
-/* 					position: relative; */
-					vertical-align: 7px;
-					
-					.external-button {
-						margin-left: 9px;
-					}
-					
-					.report-box {
-						display: none;
-						position: relative;
-						
-						#report-board {
-							position: absolute;
-							z-index: 2;
-							// height: 164px;
-							width: 305px;
-							bottom: 40px;
-							left: -125px;
-							background: rgb(238, 238, 238);
-							@include border-radius(7px);
-							
-							.report-form {
-								padding-top: 8px;
-								text-transform: uppercase;
+						.report-form {
+							padding-top: 8px;
+							text-transform: uppercase;
 /* 								text-align: center; */
-								font-family: FuturaCondensedLight;
-								font-size: 18px;
-								
-								form, .title {
-									text-align: center;
-								}
+							font-family: FuturaCondensedLight;
+							font-size: 18px;
+							
+							form, .title {
+								text-align: center;
+							}
 
-								
-								input[type=radio] {
-									display: none;
-								}
-								
-								textarea {
-									margin: 0 8px 0 8px;
-									width: 266px;
-									height: 45px;
-									font-family: FuturaBook;
-									font-size: 12px;
-									border: 1px solid #bebebe;
-									@include box-shadow(0 0 1px #bebebe);
-								}
-								
-								.report-buttons {
-									height: 27px;
-									width: 92px;
-									@include border-radius(3px);
-									font-family: inherit;
-									font-size: inherit;
-								}
-								
-								.problem-submit {
-									height: 38px;
-									width: 100%;
-									background: white;
-									@include border-bottom-right-radius(6px);
-									@include border-bottom-left-radius(6px);
-									// position: absolute;
-									// top: 126px;
-									// text-align: submit;
+							
+							input[type=radio] {
+								display: none;
+							}
+							
+							textarea {
+								margin: 0 8px 0 8px;
+								width: 266px;
+								height: 45px;
+								font-family: FuturaBook;
+								font-size: 12px;
+								border: 1px solid #bebebe;
+								@include box-shadow(0 0 1px #bebebe);
+							}
+							
+							.report-buttons {
+								height: 27px;
+								width: 92px;
+								@include border-radius(3px);
+								font-family: inherit;
+								font-size: inherit;
+							}
+							
+							.problem-submit {
+								height: 38px;
+								width: 100%;
+								background: white;
+								@include border-bottom-right-radius(6px);
+								@include border-bottom-left-radius(6px);
+								// position: absolute;
+								// top: 126px;
+								// text-align: submit;
 /* 									margin-top: 4px; */
-									
-									.submit-report {
-										background: rgb(0,211,74);
-										text-shadow: none;
-										box-shadow: none;
-										text-transform: inherit;
-										border: 0;
-										margin: 0;
-										padding: 0;
-										// margin-left: 106px;
-										margin-top: 4px;
-										line-height: 29px;
-										color: white;
-										cursor: pointer;
-									}
+								
+								.submit-report {
+									background: rgb(0,211,74);
+									text-shadow: none;
+									box-shadow: none;
+									text-transform: inherit;
+									border: 0;
+									margin: 0;
+									padding: 0;
+									// margin-left: 106px;
+									margin-top: 4px;
+									line-height: 29px;
+									color: white;
+									cursor: pointer;
 								}
+							}
+							
+							
+							.problem-list {
+								margin: 5px auto;
+								width: 62%;
 								
-								
-								.problem-list {
-									margin: 5px auto;
-									width: 62%;
+								.problem-button {
+									display: inline-block;
+									position: relative;
+									// height: 27px;
+									padding: 5px 0px 0px;
+									width: 92px;
+									background: rgb(190,190,190);
+									cursor: pointer;
 									
-									.problem-button {
-										display: inline-block;
-										position: relative;
-										// height: 27px;
-										padding: 5px 0px 0px;
-										width: 92px;
-										background: rgb(190,190,190);
-										cursor: pointer;
-										
-										&.checked {
-											background: #f44848;
-										}
-										
-										span {
-											// position: absolute;
-											// bottom: 0px;
-											line-height: 25px;
-											width: 100%;
-											text-align: center;
-											color: white;
-										}
+									&.checked {
+										background: #f44848;
+									}
+									
+									span {
+										// position: absolute;
+										// bottom: 0px;
+										line-height: 25px;
+										width: 100%;
+										text-align: center;
+										color: white;
 									}
 								}
 							}
 						}
-						
-						.modal-tail {
-							position: absolute;
-							z-index: 1;
-							width: 0; 
-							height: 0; 
-							border-left: 17px solid transparent;
-							border-right: 17px solid transparent;
-							border-top: 17px solid white;
-							bottom: 24px;
-							left: 22px;
-							// left: 50%;
-							// @include transform(translateX(-50%));
-						}
+					}
+					
+					.modal-tail {
+						position: absolute;
+						z-index: 1;
+						width: 0; 
+						height: 0; 
+						border-left: 17px solid transparent;
+						border-right: 17px solid transparent;
+						border-top: 17px solid white;
+						bottom: 24px;
+						left: 22px;
+						// left: 50%;
+						// @include transform(translateX(-50%));
 					}
 				}
-
 			}
-	}
-	
-	.primary {
-		width: 50%;
-		top: -30px;
+		}
 
 		.control-panel {
-			margin-left: 62px;
-			margin-right: 60px;
-			overflow: hidden;
-			text-align: center;
 		}
 		
 		.control {
 			vertical-align: middle;
 			display: inline-block;
+      margin-left: -4px;
 			@include border-radius(100%);
 			border: 3px solid #696a69;
 			@include background(linear-gradient(rgb(248,248,248), rgb(171,171,171)));
@@ -386,22 +346,38 @@ $player-width: 564px;
 				opacity: 0.9;
 			}
 
-			&:active, &:hover {
-				.control-image {opacity: 1;}
-			}
-			&:hover {
-				@include background(linear-gradient(rgb(255,255,255), rgb(190,190,190)));
-			}
-			&:active {
-				@include background(linear-gradient(rgb(171,171,171), rgb(248,248,248)));
+			&:active, &:hover {	.control-image {opacity: 1;} }
+			&:hover {	@include background(linear-gradient(rgb(255,255,255), rgb(190,190,190)));	}
+			&:active { @include background(linear-gradient(rgb(171,171,171), rgb(248,248,248))); }
+      
+			&.change-state { //play or pause
+				width: 52px;
+				height: 52px;
+        position: relative;
+        z-index: 10;
+        
+				.play-image {
+					background: url('/assets/play.png') no-repeat center;
+					background-position: 60% 50%;
+				}
+				.pause-image {
+					background: url('/assets/pause.png') no-repeat center;
+				}
+				.spinner {
+					background-size: 815% 100%;
+					@include transform(scale(0.6));
+				}
 			}
 			
-			&.change-song {
+			&.next-song { //next song button
+        @include border-radius(0px 24px 24px 0px);
 				width: 40px;
 				height: 40px;
 				opacity: 0;
 				visibility: hidden;
 				display: none;
+        margin-left: -12px;
+        width: 56px;
 
 				&.enable-control {
 					opacity: 1;
@@ -412,30 +388,30 @@ $player-width: 564px;
 				.skip-image {
 					background: url('/assets/skip.png') no-repeat center;
 				}
-				
 				.prev-image {
 					background: url('/assets/prev.png') no-repeat center;
 				}
 			}
-			
-			&.change-state {
-				width: 52px;
-				height: 52px;
-				.play-image {
-					background: url('/assets/play.png') no-repeat center;
-					background-position: 60% 50%;
-				}
-				
-				.pause-image {
-					background: url('/assets/pause.png') no-repeat center;
-				}
+      
+			&.volume { //volume control
+        @include border-radius(24px 0 0 24px);
+				width: 40px;
+				height: 40px;
+				opacity: 0;
+				visibility: hidden;
+				display: none;
+        margin-right: -12px;
+        width: 56px;
 
-				.spinner {
-					background-size: 815% 100%;
-					@include transform(scale(0.6));
+				&.enable-control {
+					opacity: 1;
+					visibility: visible;
+					display: inline-block;
 				}
+        
+				.volume-image {	background: url('/assets/volume.png') no-repeat center;	}
 			}
-
+			
 			&.disable {
 				$disable-bg: linear-gradient(rgb(248,248,248), rgb(171,171,171));
 				// @include background($disable-bg);
@@ -449,28 +425,22 @@ $player-width: 564px;
 		
 		.current-content {
 			width: 100%;
-			text-align: center;
 			color: rgb(204,204,204);
 			@include text-shadow(1px 1px 3px rgba(1,1,1,0.35));
 			font-family: FuturaBook;
 			margin-top: 20px;
-			span {
-				display: block;
-			}
-
-			.first-load {
-				margin-top: 10px;
-			}
+      
+			span { display: block; }
+			.first-load {	margin-top: 10px;	}
 			
 			.song-title {
-				font-size: 23px;
+				font-size: 26px;
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
-				
 			}
 			.artist {
-				font-size: 13px;
+				font-size: 16px;
 			}
 		}
 		
@@ -479,32 +449,46 @@ $player-width: 564px;
 	.right {
 		width: 25%;
 		height: 100%;
+    float: right;
+    margin-right: $player-control-margin;
+    
 		.content {
 			overflow: hidden;
-			// margin: 36px 20px 12px 20px;
-			margin-right: 20px;
 			position: relative;
 			top: 50%;
 			@include transform(translateY(-50%));
 			line-height: 18px;
-			.external-button {
-				display: block;
-				margin-bottom: 5px;
-				float: right;
-			}
+      
+      a { 
+        display: block;
+    		font-size: 12px;
+    		height: 16px;
+        text-align: right;
+    		text-transform: uppercase;
+    		color: white;
+    		opacity: 0.2;
+    		text-decoration: none;
+    		cursor: pointer;
+    		font-weight: bold;
+    		@include text-shadow(1px 1px 3px rgba(1,1,1,0.2));
+    		font-family: FuturaHeavy;
+        opacity: 0;
 
-			// #get-artist-info {
-			// 	opacity: 0;
-			// 	visibility: hidden;
-			// 	&.show-button {
-			// 		opacity: 0.2;
-			// 		visibility: visible;
+    		&.show-button {
+    			opacity: 0.2;
+    			visibility: visible;
 
-			// 		&:hover {
-			// 			opacity: 0.6;
-			// 		}
-			// 	}
-			// }
+    			&:hover {
+    				opacity: 0.6;
+    			}
+    		}
+	
+    		&.current-visit {
+    			opacity: 0.94 !important;
+    		}
+      }
+			.playlist { overflow: hidden; }
+      .song { margin-top: 10px; overflow: hidden; }
 		}
 	}
 
@@ -618,7 +602,6 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 		}
 	
 		.seek-scrub {
-			
 			.content {
 				bottom: -12px;
 			}
@@ -626,12 +609,6 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 				bottom: 24px;
 			}
 		}
-		
-		// .primary {
-		// 	.current-content {
-		// 		margin-top: 5px;
-		// 	}
-		// }
 		.current-content .currently-playing.first-load {
 			margin-top: 0;
 		}
@@ -639,7 +616,7 @@ html[data-useragent*='MSIE 10.0'], html[data-useragent*='Windows NT 6.3'] {
 }
 
 /* Firefox Specific Radio Styles  */
-html[data-useragent*='Firefox'] {
+  html[data-useragent*='Firefox'] {
 	#player-box {
 	
 		.seek-scrub {

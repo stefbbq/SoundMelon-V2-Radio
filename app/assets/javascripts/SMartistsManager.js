@@ -51,7 +51,10 @@ var SMartistsManager = function() {
 		duration = duration[duration.length - 1];
 		songDuration.text(duration);
 		songLink.attr('href', song.song_url);
-		$(".external-button, #show-slider").addClass("show-button");
+		
+		//things to run when the play button is first hit
+		$('.primary').css('margin', '0 0 0 18px').css('text-align', 'left').css('width', '65%');
+		$(".right a, #show-slider").addClass("show-button");
 		$(".currently-playing").removeClass('first-load');
 	}
 
