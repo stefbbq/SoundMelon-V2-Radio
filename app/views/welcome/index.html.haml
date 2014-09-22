@@ -27,6 +27,7 @@
 :javascript
 	$('#fb-root').remove();
 	$('body').prepend('<div id="fb-root"></div>');
+	var splashBGtween;
 
 	inviteToken = '#{@invite_token}'
 	console.log(inviteToken);
@@ -53,6 +54,7 @@
 				//
 		    if (response.authResponse) {
 					$('#sign-in a').hide();
+					splashBGtween = TweenLite.to('.bg-wrapper', 1, {opacity: 1, delay: 0.5, ease:Sine.easeInOut});
 					$.ajax({
 						url: '/auth/facebook/callback',
 						data: {state: inviteToken}
@@ -74,3 +76,10 @@
 		$('.inner-content .buttons').html(mozillaFlashMsg);
 	}
 	$('.inner-content .buttons').show();
+
+	$(document).ready(function() {
+		console.log("#{asset_path('1.jpg')}");
+		$(".splash-bg").css({
+			'background-image': 'url("#{asset_path('splash-bgs/' + rand(1..6).to_s + '.jpg')}")'
+		});
+	});

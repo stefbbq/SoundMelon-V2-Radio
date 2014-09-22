@@ -75,6 +75,9 @@
 			%span.label Stations: 
 			%a#user-meta.idle Your Likes
 			%a#random.idle Random
+
+		#favorites-box
+			= link_to('Favorite', add_favorite_path(song_id: ''), remote: true, class: 'add-to-favorites')
 			
 	.callout-wrapper
 		.spinner

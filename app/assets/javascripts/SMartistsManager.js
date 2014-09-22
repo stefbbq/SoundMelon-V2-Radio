@@ -5,14 +5,24 @@ var SMartistsManager = function() {
 	function setArtistInfo($link, $currentSong) {
 		var currentSong = $currentSong;
 		// console.log($link);
+		//set artist profile info
 		var z = $link.href.split('song_id=');
-		// console.log(z);
 		$link.href = z[0] + 'song_id=';
+
+		//reset favorite song link
+		var fav = $("#favorites-box .add-to-favorites");
+		var l = fav.attr('href').split('song_id=');
+		fav.attr('href', l[0] + 'song_id=')
+
 		if(!currentSong) {
 			return false;
 		}
 		else {
 			var calloutBox = $('.callout#show-artist-profile');
+
+			//set favorite song
+			fav.attr('href', fav.attr('href').replace('song_id=', 'song_id=' + currentSong['song_id']));
+
 			if(calloutBox.hasClass('visible') && !newArtistProfile) {
 				hideCallout();
 				$($link).removeClass('current-visit');

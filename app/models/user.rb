@@ -2,12 +2,13 @@ class User < ActiveRecord::Base
 	attr_accessible :first_name, :last_name, :username, 
 									:email, :email_confirmation, :password, :password_confirmation,
 									:is_artist, :fb_meta, :user_meta, :terms, :city, :custom_city,
-									:song_history, :invites
+									:song_history, :invites, :favorite_songs
 	serialize :oauth_token
 	serialize :fb_meta
 	serialize :user_meta
 	serialize :song_history
 	serialize :invites
+	serialize :favorite_songs
 #	has_secure_password
 	has_one :artist, dependent: :destroy
 	has_many :reports #Allow user to report others

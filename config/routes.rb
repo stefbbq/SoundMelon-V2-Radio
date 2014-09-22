@@ -24,6 +24,7 @@ SoundMelonV2Radio::Application.routes.draw do
 	match '/reload_fb_meta', to: 'users#reload_fb_meta'
 	match '/user_meta', to: 'users#edit_meta'
 	match '/update_fb_meta', to: 'users#update_fb_meta'
+  match '/add_favorite', to: 'users#add_favorite'
 # 	match '/update_user_meta', to: 'users#update_user_meta'
 	match '/user_account', to: 'users#edit_account'
 	match '/update_account', to: 'users#update_account'
