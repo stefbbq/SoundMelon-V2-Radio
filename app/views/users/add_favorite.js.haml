@@ -1,2 +1,9 @@
 :plain
-	console.log(@song.song_id);
+	console.log('#{current_user.favorite_songs}');
+	$("#callout-wrapper #favorites-panel").html('#{j( render partial: "favorites_list", locals: {favorites: @favorites} )}');
+	var linkBox = $("#add-to-favorites").closest('.favorites-link');
+	linkBox.toggleClass('filled');
+	if(RadioManager.currentSong()) {
+		val = linkBox.hasClass('filled') ? "true" : "false";
+		RadioManager.setFavoriteState(val);
+	}

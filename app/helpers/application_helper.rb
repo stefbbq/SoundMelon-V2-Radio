@@ -174,7 +174,7 @@ module ApplicationHelper
 		@active_songs.each do |song|
 			artist = Artist.find_by_id(song.artist_id)
 			all_tags = song.source_tags
-			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: artist.artist_photo.url(:thumb)}
+			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: artist.artist_photo.url(:thumb), favorite: user.favorite_songs.nil? ? 'false' : user.favorite_songs.include?(song.song_id).to_s}
 		end
 		return @active_ids
 	end

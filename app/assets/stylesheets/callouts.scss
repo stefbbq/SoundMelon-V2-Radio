@@ -41,23 +41,68 @@
 	.radio-wrapper {
 		// z-index: 2;
 	}
+
+	.section-wrapper {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.list-item {
+		padding: 8px 5%;
+		// margin: 5px 0 0;
+		color: rgba(black, 0.6);
+		font-family: HelveticaNeue;
+
+		&:hover {
+			background: rgb(250,234,233);
+		}
+		&.current {
+			background: rgb(250,234,233);
+			color: black;
+		}
+	}
+
+	.title {
+		font-size: 16px;
+	}
+	.sub-title {font-size: 12px;}
+
+	.item-info, .item-controls, .callout-sprite {display: inline-block; vertical-align: top;}
+
+	.item-info {
+		width: 75%;
+	}
+	.item-controls {
+		width: 22%;
+		position: relative;
+		top: 5px;
+		.callout-sprite {
+			position: relative;
+			opacity: 0.3;
+			&:hover {opacity: 0.8;}
+		}
+	}
+
 }
 
-.callout#show-artist-profile {
+.callout-wrapper .callout {
 	height: 100%;
 	background: white;
 	@include border-top-right-radius(8px);
 	@include border-bottom-right-radius(8px);
+	display: none;
 
 	.container {
-		
+		overflow-y: scroll;
+
 		.wrapper {
 			top: 0;
-			height: 444px;
 			position: relative;
-			background: white;
+			height: 484px;
 			@include border-top-right-radius(8px);
 			@include border-bottom-right-radius(8px);
+
+			> div:nth-child(1) {@include border-top-right-radius(8px);}
 
 			.profile-picture, .content, .suggested {
 				// position: absolute;
@@ -66,13 +111,13 @@
 			.profile-picture {
 				height: 225px;
 				width: 225px;
-				@include border-top-right-radius(8px);
+				
 				// display: inline-block;
 			}
 			
 			.content {
 				background: rgb(242,242,242);
-				padding: 15px;
+				padding: 15px 5%;
 				
 				.label {
 					font-family: FuturaCondensedLight;
@@ -146,9 +191,26 @@
 					a {color: inherit;}
 				}
 			}
+
+			.song-list {
+
+
+			}
+
+			.stations {
+				.item-controls {
+					float: right;
+					top: 0;
+					width: auto;
+				}
+			}
 			
 		}
 	}
+
+	// &#show-artist-profile {
+	// 	.wrapper {height: 444px;}
+	// }
 
 	&.visible {
 		// z-index: 0;

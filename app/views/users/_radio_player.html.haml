@@ -44,19 +44,22 @@
 							
 						.current-content
 							.currently-playing.first-load
-								%span.song-title
-									Press play to start!
+								.title-container
+									.song-title Press play to start!
+									.favorites-link.favorite-icon.hidden= link_to('', add_favorite_path(song_id: ''), remote: true, class: 'add-to-favorites filled-link', id: "add-to-favorites")
 								%span.artist
 									
 					.right
 						.content
 							.playlist
-								= link_to('station:', artist_info_path(song_id: ''), id: 'station-panel-button', remote: true)
-								= link_to('favourites', artist_info_path(song_id: ''), id: 'favoruites-panel-button', remote: true)
+								= link_to('#', id: 'station-panel-button', class: 'callout-action', "data-callout-id" => 'radio-stations', remote: true) do
+									%span.static-label station: 
+									%span.active-label
+								= link_to('favourites', show_favorites_path, id: 'favorites-panel-button', class: 'callout-action', "data-callout-id" => 'favorites-panel', remote: true)
 							.song
-								= link_to('who is this', artist_info_path(song_id: ''), id: 'get-artist-info', remote: true)
-								= link_to('share song', artist_info_path(song_id: ''), id: 'shareSong-panel-button', remote: true)
-								= link_to('see discussion', artist_info_path(song_id: ''), id: 'discussion-panel-button', remote: true)
+								= link_to('who is this', '#', id: 'get-artist-info', class: 'callout-action', "data-callout-id" => 'show-artist-profile')
+								/= link_to('share song', artist_info_path(song_id: ''), id: 'shareSong-panel-button', remote: true)
+								/= link_to('see discussion', artist_info_path(song_id: ''), id: 'discussion-panel-button', remote: true)
 
 
 				.seek-scrub
@@ -72,18 +75,21 @@
 								#{'--:--'}
 								
 				
-		#radio-stations
-			%span.label Stations: 
-			%a#user-meta.idle Your Likes
-			%a#random.idle Random
+		/ #radio-stations
+		/ 	%span.label Stations: 
+		/ 	%a#user-meta.idle Your Likes
+		/ 	%a#random.idle Random
 
-		#favorites-box
-			= link_to('Favorite', add_favorite_path(song_id: ''), remote: true, class: 'add-to-favorites')
+		/ #favorites-box
+		/ 	= link_to('Favorite', add_favorite_path(song_id: ''), remote: true, class: 'add-to-favorites')
 			
-	.callout-wrapper
+	.callout-wrapper#callout-wrapper
 		.spinner
+		.callout#radio-stations= render 'users/radio_stations'
 		.callout#show-artist-profile
+		.callout#favorites-panel
 		.anchor
+
 
 :javascript
 	var currentUserId = #{current_user.id};

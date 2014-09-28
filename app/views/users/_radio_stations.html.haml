@@ -1,0 +1,31 @@
+/ #radio-stations
+/ 	%span.label Stations: 
+/ 	%a#user-meta.idle Your Likes
+/ 	%a#random.idle Random
+
+.container
+	.wrapper
+		.section-wrapper.content
+			.label Stations
+
+		.stations
+			.station-item.list-item.current
+				.item-info
+					.title
+						%a#user-meta.idle{'data-label' => 'your likes'} Our Special Mix
+					.sub-title
+						based on your likes
+				.item-controls
+					.callout-sprite.pause
+			.station-item.list-item
+				.item-info
+					.title
+						%a#local-station.idle{'data-label' => 'local artists'} Local Artists
+				.item-controls
+					.callout-sprite.play
+			.station-item.list-item
+				.item-info
+					.title
+						%a#random.idle{'data-label' => 'random'} No Rules Radio
+				.item-controls
+					.callout-sprite.play

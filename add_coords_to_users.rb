@@ -6,7 +6,7 @@ users.each do |user|
 	coords = Geocoder.coordinates(user.city).join(",") if (!user.city.nil? && user.city != '')
 	user.update_column(:city_coords, coords)
 	puts coords
-	sleep(1)
+	sleep(0.5)
 	# if !user.city.nil? && user.city != ''
 	# 	coords = Geocoder.coordinates(user.city).join(",")
 		

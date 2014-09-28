@@ -1,7 +1,7 @@
 - if !current_user.terms
 	= render 'users/terms_cond'
 
-- elsif current_user.city.nil? && current_user.city == ''
+- elsif current_user.city.nil? || current_user.city.length == 0
 	= render 'users/add_city'
 
 - else

@@ -4,7 +4,7 @@ var ytPlayerReady = false;
 var scPlayerReady = false;
 var runOnYTReady = false;
 var runInitSC = false;
-var newArtistProfile;
+var newArtistProfile, CalloutManager;
 var scrubInterval;
 var volume = 100;
 var ytQuality = 'large';
@@ -20,6 +20,9 @@ var SMradioManager = function(scAppId) {
 	function enable() {
 		playersManager = new SMplayersManager(scAppId);
 		artistsManager = new SMartistsManager();
+		CalloutManager = new SMcalloutManager($("#callout-wrapper"));
+		CalloutManager.enable();
+		// FavoritesCallout = new SMcalloutItem($('#favorites-panel-button'), $(".callout-wrapper.favorites-panel"));
 
 		//basic commands
 		$('#radio-controls #play-pause').click(playBehaviour);
@@ -27,6 +30,7 @@ var SMradioManager = function(scAppId) {
 		$('#radio-stations a').click(setStation);
 		$('#report-song').click(openReportForm);
 		$('#radio-stations #user-meta').trigger('click');
+		$("#add-to-favorites").click(addToFavorites);
 		
 		//keyboard bindings
 		key('space', function() {
@@ -103,15 +107,17 @@ var SMradioManager = function(scAppId) {
 	
 	function getArtistInfo() {
 		// console.log(this);
-		artistsManager.setArtistInfo(this, currentSong);
+		artistsManager.setArtistInfo(currentSong);
 	}
 	
 	function setStation() {
 		lastStation = currentStation;
+		console.log(this.id);
 		if(lastStation !== this.id) {
 			$('#' + lastStation).toggleClass('idle streaming');
 			currentStation = this.id;
 			$('#' + currentStation).toggleClass('idle streaming');
+			$("#station-panel-button").find('.active-label').html($(this).attr('data-label'));
 			if(currentSong) {
 				if(currentSong['upload_source'] === 'youtube') {
 					ytPlayer.stopVideo();
@@ -280,7 +286,7 @@ var SMradioManager = function(scAppId) {
 			calloutBox = $('.callout#show-artist-profile');
 			if(calloutBox.hasClass('visible')) {
 				newArtistProfile = true;
-				$('#get-artist-info').click();
+				getArtistInfo();
 			}
 			setTimeout(checkPlaying, 10000);
 			loadInArtistInfo();
@@ -367,9 +373,18 @@ var SMradioManager = function(scAppId) {
 			calloutBox = $('.callout#show-artist-profile');
 			if(calloutBox.hasClass('visible')) {
 				newArtistProfile = true;
-				$('#get-artist-info').click();
+				getArtistInfo();
 			}
 		}, 1000);
+	}
+
+	function addToFavorites() {
+		var linkBox = $(this).closest('.favorites-link');
+		// linkBox.toggleClass('filled');
+		// if(currentSong) {
+		// 	if(currentSong['favorite'] === "false") currentSong['favorite'] = "true";
+		// 	else currentSong['favorite'] = "false";
+		// }
 	}
 
 	function manualSeek(seekTo) {
@@ -405,6 +420,10 @@ var SMradioManager = function(scAppId) {
 		}
 	}
 
+	function setFavoriteState(val) {
+		currentSong['favorite'] = val;
+	}
+
 	$('.volume-container #volume-slider').slider({
 		orientation: 'vertical',
 		range: 'min',
@@ -428,8 +447,12 @@ var SMradioManager = function(scAppId) {
 		executePlaylist: executePlaylist,
 		playNextSong: playNextSong,
 		getPlayerState: getPlayerState,
+		setFavoriteState: setFavoriteState,
 		
 		//vars
-		playersManager: playersManager
+		playersManager: playersManager,
+		currentSong: function() {
+			return currentSong;
+		}
 	}
 }

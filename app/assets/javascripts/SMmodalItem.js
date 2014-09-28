@@ -1,7 +1,7 @@
 //
 //Modal Class
 
-SMmodalItem = function($link, $index){
+var SMmodalItem = function($link, $index){
 	var base, link, object, index, name, active, sidebar, linkBox, linkBoxes;
 	index = $index;
 	active = false;

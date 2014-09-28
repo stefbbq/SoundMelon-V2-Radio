@@ -28,15 +28,15 @@ var SMflashManager = (function() {
 			var severity = message.severity;
 			currentMessage = message;
 			switch(severity) {
-				case "notification":
-					flashBoard.addClass('notification').removeClass('error warning');
-					break;
 				case "warning":
 					flashBoard.addClass('warning').removeClass('error notification');
 					break;
 				case "error":
 					console.log(severity);
 					flashBoard.addClass('error').removeClass('notification warning');
+					break;
+				default:
+					flashBoard.addClass('notification').removeClass('error warning');
 					break;
 			}
 			flashBoard.find('.severity .level').html(severity);

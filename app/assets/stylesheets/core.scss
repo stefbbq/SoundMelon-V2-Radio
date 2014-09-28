@@ -67,6 +67,12 @@ h1 {
 .right {float: right;}
 .clear {clear: both;}
 
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 //
 //Icons
 .link-icon {
@@ -99,6 +105,19 @@ h1 {
   // &.about-icon {
   //   background-position: 86% 0;
   // }
+}
+
+.callout-sprite {
+  height: 20px;
+  width: 20px;
+  background-image: url('/assets/callout-sprite.png');
+  background-repeat: no-repeat;
+  &.remove {
+    background-position: 25% 0;
+  }
+  &.pause {
+    background-position: 50% 0;
+  }
 }
 
 .sm-social-icon {
@@ -150,6 +169,16 @@ h1 {
   
   &:hover {
     opacity: 0.7;
+  }
+}
+
+.favorite-icon {
+  background-image: url('/assets/favorite.png');
+  background-size: contain;
+  height: 26px;
+  width: 26px;
+  &.filled {
+    background-image: url('/assets/favorite-filled.png');
   }
 }
 

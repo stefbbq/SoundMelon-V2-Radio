@@ -1,0 +1,30 @@
+.container
+	.wrapper
+		.section-wrapper.content
+			.label Your Favourites
+		.song-list.sortable
+			- @songs_list = favorites
+			- if @songs_list.nil? || @songs_list.size == 0
+				.label You have no favorites!
+			- else
+				- @songs_list.each do |song_id|
+					.song-item.list-item{'data-position' => @songs_list.index(song_id), 'data-song-id' => song_id}
+						- song = Song.find_by_song_id(song_id)
+						.song-info.item-info
+							.title.ellipsis= song.song_title
+							.sub-title
+								by
+								= song.artist.artist_name
+						.song-controls.item-controls
+							.callout-sprite.play
+							.callout-sprite.remove
+								= link_to('', add_favorite_path(song_id: song_id), remote: true, class: 'filled-link')
+
+	:javascript
+		$(".song-list.sortable").sortable().bind('sortupdate', function() {
+			var newList = setNewPositions($(".song-list"));
+			$.ajax({
+				url: '/update_favorites',
+				data: {favorites: newList}
+			});
+		});

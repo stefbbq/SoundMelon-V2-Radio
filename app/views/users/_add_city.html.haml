@@ -2,7 +2,7 @@
 	.title Add Your City
 
 	.intro-blurb
-		%p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis enim eget auctor elementum. In ac sapien molestie, suscipit augue id, facilisis velit.
+		%p We couldn't get your city from your Facebook, tell us where you're located so we can get you music local to you!
 
 	- @user = current_user
 	.add-city
@@ -12,15 +12,18 @@
 			- @default = @search['city'] == '' ? '' : @search['city'] + ', ' + @search['region_name']
 			= f.text_field :city, placeholder: 'e.g. "Toronto, Ontario"', value: @default, class: 'user-city'
 			.search-results
+	.spinner
 
 :javascript
 
 	function searchAddress() {
+		$(".user-location .spinner").show();
 		$.ajax({
 			url: '/search_cities',
 			data: {address: $('.add-city .user-city').val()}
 		}).success(function(data) {
 			console.log(data);
+			$(".user-location .spinner").hide();
 			populateGeoResults(data);
 		});
 	}

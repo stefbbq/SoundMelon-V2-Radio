@@ -1,0 +1,3 @@
+:plain
+	console.log('#{@favorites}');
+	$("#callout-wrapper #favorites-panel").html('#{j( render partial: "favorites_list", locals: {favorites: @favorites} )}');

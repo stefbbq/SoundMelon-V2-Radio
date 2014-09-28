@@ -430,14 +430,28 @@ $player-width: 564px;
 			font-family: FuturaBook;
 			margin-top: 20px;
       
-			span { display: block; }
+			// span { display: block; }
 			.first-load {	margin-top: 10px;	}
+
+			.title-container {
+				position: relative;
+				.favorites-link {
+					display: inline-block;
+					position: relative;
+					top: -4px;
+					margin-left: 5px;
+
+					&.hidden {display: none;}
+				}
+			}
 			
 			.song-title {
 				font-size: 26px;
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
+				max-width: calc(100% - 35px);
+				display: inline-block;
 			}
 			.artist {
 				font-size: 16px;
@@ -503,31 +517,31 @@ $player-width: 564px;
 	}
 }
 
-#radio-stations {
-	display: none;
-	margin-top: 8px;
-	margin-left: 10px;
-	font-size: 18pt;
-	font-family: "FuturaCondensedMedium";
-	.label {
-		opacity: 0.2;
-	}
-	a {
-		cursor: pointer;
+// #radio-stations {
+// 	display: none;
+// 	margin-top: 8px;
+// 	margin-left: 10px;
+// 	font-size: 18px;
+// 	font-family: "FuturaCondensedMedium";
+// 	.label {
+// 		opacity: 0.2;
+// 	}
+// 	a {
+// 		cursor: pointer;
 		
-		&.idle {
-			color: rgba(0,0,0,0.3);
+// 		&.idle {
+// 			color: rgba(0,0,0,0.3);
 			
-			&:hover {
-				color: rgba(0,0,0,0.6);
-			}
-		}
+// 			&:hover {
+// 				color: rgba(0,0,0,0.6);
+// 			}
+// 		}
 		
-		&.streaming {
-			color: rgba(0,0,0,0.8);
-		}
-	}
-}
+// 		&.streaming {
+// 			color: rgba(0,0,0,0.8);
+// 		}
+// 	}
+// }
 
 #sm-social-cta {
 	position: absolute;

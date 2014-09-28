@@ -37,6 +37,10 @@
 			@include box-shadow(none);
 			text-align: center;
 		}
+
+		.spinner {
+			margin: 10px auto;
+		}
 	}
 
 	.add-city {
@@ -50,6 +54,7 @@
 			background: rgba(black, 0.5);
 			text-align: left;
 			@include border-radius(8px);
+			@include box-shadow(rgba(0, 0, 0, 0.2) 0 0 15px 2px inset);
 			color: white;
 			font-family: HelveticaNeue;
 			font-size: 18px;

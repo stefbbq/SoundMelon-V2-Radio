@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require jquery.ui.slider
+//= require jquery.sortable.min
 //= require jquery.tagsinput.min
 //= require jquery.typing-0.2.0.min
 //= require jquery.tinyscrollbar.min
@@ -26,6 +27,7 @@
 
 //= require SMinterval
 //= require SMsplashManager
+//= require SMcalloutManager
 //= require SMartistsManager
 //= require SMplayersManager
 //= require SMradioManager

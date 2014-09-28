@@ -117,12 +117,25 @@ class UsersController < ApplicationController
 	def add_favorite
 		@user = User.find_by_id(current_user.id)
 		@song = Song.find_by_song_id(params[:song_id])
-		@favorites = @user.favorite_songs.nil? ? [] : @user.favorite_songs
+		@favorites = @user.favorite_songs.nil? || @user.favorite_songs.size == 0 ? [] : @user.favorite_songs
 		if !@favorites.include?(@song.song_id)
 			@favorites << @song.song_id
-			@user.update_attributes({favorite_songs: @favorites})
+		else
+			@favorites.delete(@song.song_id)
 		end
+		@user.update_attributes({favorite_songs: @favorites})
+		@favorites = @user.favorite_songs
+	end
 
+	def show_favorites
+		@user = User.find(current_user.id)
+		@favorites = @user.favorite_songs
+	end
+
+	def update_favorites
+		@new_list = params[:favorites]
+		@user = User.find(current_user.id)
+		@user.update_attributes({favorite_songs: @new_list})
 	end
 
 	def destroy

@@ -66,3 +66,14 @@ function shareOnFacebook() {
 		console.log(response);
 	});
 }
+
+function setNewPositions(list) {
+	var items = list.find('.list-item');
+	var newList = [];
+	for(i = 0; i < items.length; i++) {
+		var item = $(items[i]);
+		item.attr('data-position', i);
+		newList.push(item.attr('data-song-id'));
+	}
+	return newList;
+}
