@@ -62,9 +62,14 @@ class SongsController < ApplicationController
 		if (@user.fb_meta.keys.size == 0 && @user.user_meta.size == 0)
 			@station == 'random'
 		end
-		update_song_history(@user, params[:played_songs])
-		@playlist_size = 3
-		@active_ids = create_playlist(@user, @playlist_size, @station)
+		if @station == 'favorites'
+			@active_ids = create_favorites_playlist(@user, params[:song_list])
+		else
+			update_song_history(@user, params[:played_songs])
+			@playlist_size = 3
+			@active_ids = create_playlist(@user, @playlist_size, @station)
+		end
+
 		respond_to do |format|
 			format.json {render json: @active_ids}
 			format.js

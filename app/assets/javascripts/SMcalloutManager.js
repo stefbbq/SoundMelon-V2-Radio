@@ -7,21 +7,13 @@ var SMcalloutManager = function(calloutBox) {
 	var calloutLinks = $(".player-buttons .callout-action");
 	console.log(calloutLinks);
 	var active = false;
+	var anchor = calloutBox.find('.anchor');
 
 	function enable() {
 		calloutLinks.click(toggleCallout);
 	}
 
 	function toggleCallout() {
-		// console.log(triggerLink.attr('id'));
-		// if(!getActive()) {
-		// 	showCallout();
-		// 	setActive(true);
-		// }
-		// else {
-		// 	hideCallout();
-		// 	setActive(false);
-		// }
 		var link = $(this);
 		calloutLinks.removeClass('current-visit');
 		link.addClass('current-visit');
@@ -29,7 +21,13 @@ var SMcalloutManager = function(calloutBox) {
 		allBoxes.hide();
 		var relBox = callout.find('#' + link.attr('data-callout-id'));
 		relBox.show();
-		
+		var linkPos = findPos(link[0]);
+		var anchorPos = findPos(anchor[0]);
+		var diff = linkPos.y - anchorPos.y;
+		console.log(diff);
+		// anchor.css('top', '');
+		var newTop = parseInt(anchor.css('top')) + diff - 30;
+		TweenLite.to(anchor, 0.3, {top: newTop});
 	}
 
 	function getActive() {

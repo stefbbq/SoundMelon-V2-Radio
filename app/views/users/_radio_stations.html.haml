@@ -1,8 +1,3 @@
-/ #radio-stations
-/ 	%span.label Stations: 
-/ 	%a#user-meta.idle Your Likes
-/ 	%a#random.idle Random
-
 .container
 	.wrapper
 		.section-wrapper.content
@@ -12,20 +7,35 @@
 			.station-item.list-item.current
 				.item-info
 					.title
-						%a#user-meta.idle{'data-label' => 'your likes'} Our Special Mix
+						%a#user-meta.idle{'data-station-label' => 'your likes', 'data-station-id' => 'user-meta'} Our Special Mix
 					.sub-title
 						based on your likes
 				.item-controls
-					.callout-sprite.pause
+					.callout-sprite.play-pause
 			.station-item.list-item
 				.item-info
 					.title
-						%a#local-station.idle{'data-label' => 'local artists'} Local Artists
+						%a#local-station.idle{'data-station-label' => 'local artists', 'data-station-id' => 'local-station'} Local Artists
 				.item-controls
-					.callout-sprite.play
+					.callout-sprite.play-pause
 			.station-item.list-item
 				.item-info
 					.title
-						%a#random.idle{'data-label' => 'random'} No Rules Radio
+						%a#random.idle{'data-station-label' => 'random', 'data-station-id' => 'random'} No Rules Radio
 				.item-controls
-					.callout-sprite.play
+					.callout-sprite.play-pause
+
+	:javascript
+		$("#radio-stations .play-pause").click(function() {
+			var station = $(this).closest('.list-item');
+			var link = station.find('.title a');
+			if(station.hasClass('current')) {
+				$(this).toggleClass('play');
+				$('#play-pause .control-image').removeClass('spinner ').toggleClass('pause-image play-image').show();
+				RadioManager.playBehaviour();
+			}
+			else {
+				$(this).removeClass('play');
+				link.trigger('click');
+			}
+		});

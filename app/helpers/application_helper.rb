@@ -87,7 +87,7 @@ module ApplicationHelper
 		return my_hash
 	end
 
-	def user_scored_songs(user, songs)
+	def user_scored_songs(user, songs, station)
 		#Return an array of arrays of song,score pairs
 		#sorted by descending match given a User and an
 		#array of active Song songs 
@@ -99,7 +99,7 @@ module ApplicationHelper
 		songs.each do |song|
 # 			all_tags = song.sm_tags | song.source_tags
 			all_tags = song.source_tags
-			scored_songs << [song, score_song(user_meta, fb_meta, all_tags, user.city_coords, song.artist.city_coords)]
+			scored_songs << [song, score_song(user_meta, fb_meta, all_tags, user.city_coords, song.artist.city_coords, station)]
 		end
 		scored_songs = scored_songs.sort_by {|song,score| score}
 		return scored_songs
@@ -110,22 +110,28 @@ module ApplicationHelper
 		return songs.shuffle[0..(n-1)]
 	end
 
-	def score_song(user_meta, fb_meta, song_tags, user_coords, song_coords, alpha=0.5)
+	def score_song(user_meta, fb_meta, song_tags, user_coords, song_coords, station)
 		#Return a song score given a hash of user meta data
 		#and an array of tags for the song
 		fbm_score = fb_meta.nil? ? 1 : get_fbm_score(fb_meta, song_tags)
 		um_score = user_meta.nil? ? 1 : get_um_score(user_meta, song_tags)
 		city_score = user_coords.nil? || song_coords.nil? ? 0 : get_city_score(user_coords, song_coords)
 		# agg_score = alpha*fbm_score + (1-alpha)*um_score
-		agg_score = alpha * (fbm_score + um_score + city_score)
+		agg_score = (fbm_score + um_score + city_score) / 3
+		if station == 'local-station'
+			agg_score = city_score
+			logger.debug "Local score: #{agg_score}"
+		end
+		return agg_score
 	end
 
 	def get_city_score(user_coords, song_coords)
 		score = 0.0
 		# user_coords = Geocoder.coordinates(user_city)
 		# song_coords = Geocoder.coordinates(song_city)
-		dist = Geocoder::Calculations.distance_between(user_coords.split(",").map(&:to_i), song_coords.split(",").map(&:to_i))
-		score = dist == 0 ? 1 : 1/dist
+		dist = Geocoder::Calculations.distance_between(user_coords.split(",").map(&:to_i), song_coords.split(",").map(&:to_i), {units: :km})
+		logger.debug "Distance: #{dist}"
+		score = dist <= 100 ? 1 : 100.0/dist
 		return score
 	end
 
@@ -172,9 +178,22 @@ module ApplicationHelper
 		@active_songs = filter_by_history(user, @active_songs, @history, playlist_size, station)
 		@active_ids = []
 		@active_songs.each do |song|
-			artist = Artist.find_by_id(song.artist_id)
-			all_tags = song.source_tags
-			@active_ids << {song_id: song.song_id, upload_source: song.upload_source, keywords: all_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: artist.artist_photo.url(:thumb), favorite: user.favorite_songs.nil? ? 'false' : user.favorite_songs.include?(song.song_id).to_s}
+			# artist = Artist.find_by_id(song.artist_id)
+			# all_tags = song.source_tags
+			@active_ids << song_data(song, user)
+		end
+		return @active_ids
+	end
+
+	def song_data(song, user)
+		return {song_id: song.song_id, upload_source: song.upload_source, keywords: song.source_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: song.artist.artist_photo.url(:thumb), favorite: user.favorite_songs.nil? ? 'false' : user.favorite_songs.include?(song.song_id).to_s}
+	end
+
+	def create_favorites_playlist(user, song_list)
+		@active_ids = []
+		song_list.each do |song_id|
+			song = Song.find_by_song_id(song_id)
+			@active_ids << song_data(song, user)
 		end
 		return @active_ids
 	end
@@ -191,8 +210,8 @@ module ApplicationHelper
 			end
 		end
 		white_list = songs - black_list
-		if station == 'user-meta'
-			scored_songs = user_scored_songs(user, white_list)
+		if ['user-meta', 'local-station'].include?(station)
+			scored_songs = user_scored_songs(user, white_list, station)
 			filtered_songs = random_weighted_sample_no_replacement(scored_songs, [n,white_list.size].min)
 			filtered_songs = filtered_songs.map {|song,weight| song}
 		elsif station == 'random'

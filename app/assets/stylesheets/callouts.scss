@@ -48,22 +48,35 @@
 	}
 
 	.list-item {
-		padding: 8px 5%;
+		padding: 12px 5% 8px;
 		// margin: 5px 0 0;
 		color: rgba(black, 0.6);
 		font-family: HelveticaNeue;
 
+		.callout-sprite {cursor: pointer;}
+
+		&:nth-child(1) {
+			padding-top: 16px;
+		}
+		&:last-child {@include border-radius(0 0 8px 0);}
+
 		&:hover {
-			background: rgb(250,234,233);
+			background: rgba(250,234,233, 0.5);
 		}
 		&.current {
 			background: rgb(250,234,233);
 			color: black;
+
+			.play-pause {
+				background-position: 50% 0;
+				&.play {background-position: 0 0;}
+			}
 		}
 	}
 
 	.title {
 		font-size: 16px;
+		cursor: pointer;
 	}
 	.sub-title {font-size: 12px;}
 

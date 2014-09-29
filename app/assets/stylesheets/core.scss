@@ -112,6 +112,9 @@ h1 {
   width: 20px;
   background-image: url('/assets/callout-sprite.png');
   background-repeat: no-repeat;
+  &.play {
+    background-position: 0 0;
+  }
   &.remove {
     background-position: 25% 0;
   }

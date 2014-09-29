@@ -112,12 +112,14 @@ var SMradioManager = function(scAppId) {
 	
 	function setStation() {
 		lastStation = currentStation;
-		console.log(this.id);
-		if(lastStation !== this.id) {
-			$('#' + lastStation).toggleClass('idle streaming');
-			currentStation = this.id;
-			$('#' + currentStation).toggleClass('idle streaming');
-			$("#station-panel-button").find('.active-label').html($(this).attr('data-label'));
+		// var this = this ? this : item;
+		var newStation = $(this).attr('data-station-id');
+		// console.log(this.id);
+		if(lastStation !== newStation || newStation === "favorites") {
+			$('#' + lastStation).toggleClass('idle streaming').closest('.list-item').removeClass('current');
+			currentStation = newStation;
+			$('#' + currentStation).toggleClass('idle streaming').closest('.list-item').addClass('current');
+			$("#station-panel-button").find('.active-label').html($(this).attr('data-station-label'));
 			if(currentSong) {
 				if(currentSong['upload_source'] === 'youtube') {
 					ytPlayer.stopVideo();
@@ -125,7 +127,8 @@ var SMradioManager = function(scAppId) {
 				else if(currentSong['upload_source'] === 'soundcloud') {
 					scWidget.pause();
 				}
-				newSongsList();
+				var args = {favStartVal: $(this).closest('.list-item').attr('data-position')}
+				newSongsList(args);
 			}
 		}
 	}
@@ -146,15 +149,35 @@ var SMradioManager = function(scAppId) {
 	}
 	
 
-	function newSongsList() {
-		var radioStation = {station: currentStation, played_songs: playedUpdate, user_id: currentUserId};
+	function newSongsList(args) {
+		var radioStation;
+		if(currentStation === 'favorites' && args) {
+			var start = args.favStartVal;
+			var allFavs = $("#favorites-panel .song-item");
+			var selected = allFavs.slice(start, allFavs.length);
+			selected.removeClass('current');
+			selected.first().addClass('current');
+			var songList = [];
+			for(i=0; i < selected.length; i++) {
+				songList.push($(selected[i]).attr('data-song-id'));
+			}
+			radioStation = {station: currentStation, song_list: songList, user_id: currentUserId};
+		}
+		else if(currentStation === 'favorites') {
+			$('.stations #user-meta').trigger('click');
+		}
+		else {
+			radioStation = {station: currentStation, played_songs: playedUpdate, user_id: currentUserId};	
+		}
+		
 		console.log(radioStation);
 		$.ajax({
 			url: '/request_playlist',
 			data: radioStation,
 			success: function(data) {
 				if(data.length > 0) {
-					songs = shuffleList(data);
+					songs = currentStation === "favorites" ? data : shuffleList(data);
+					console.log(songs);
 					executePlaylist();
 				} 
 				else requestHistoryReset();
@@ -214,6 +237,7 @@ var SMradioManager = function(scAppId) {
 					$('#youtube').hide();
 					$('#soundcloud, .overlay, .overlay .song-link').show();
 				}
+				updateFavoritesPlaylist();
 				if(firstRun) {
 					 $("#get-artist-info").trigger('click');
 					 firstRun = false;
@@ -290,6 +314,8 @@ var SMradioManager = function(scAppId) {
 			}
 			setTimeout(checkPlaying, 10000);
 			loadInArtistInfo();
+			$("#favorites-panel .song-item").removeClass('current');
+			updateFavoritesPlaylist();
 		}
 		else {
 			//Songs list is now empty
@@ -424,6 +450,13 @@ var SMradioManager = function(scAppId) {
 		currentSong['favorite'] = val;
 	}
 
+	function updateFavoritesPlaylist() {
+		$("#favorites-panel .song-item").removeClass('current');
+		if(currentStation === 'favorites') {
+			$("#favorites-panel .song-item[data-song-id='"+currentSong['song_id']+"']").addClass('current');
+		}
+	}
+
 	$('.volume-container #volume-slider').slider({
 		orientation: 'vertical',
 		range: 'min',
@@ -448,6 +481,10 @@ var SMradioManager = function(scAppId) {
 		playNextSong: playNextSong,
 		getPlayerState: getPlayerState,
 		setFavoriteState: setFavoriteState,
+		setStation: setStation,
+		updateFavoritesPlaylist: updateFavoritesPlaylist,
+		playPause: playPause,
+		playBehaviour: playBehaviour,
 		
 		//vars
 		playersManager: playersManager,

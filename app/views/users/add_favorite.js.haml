@@ -6,4 +6,5 @@
 	if(RadioManager.currentSong()) {
 		val = linkBox.hasClass('filled') ? "true" : "false";
 		RadioManager.setFavoriteState(val);
+		RadioManager.updateFavoritesPlaylist();
 	}
