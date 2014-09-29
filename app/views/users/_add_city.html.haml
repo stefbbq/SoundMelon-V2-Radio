@@ -8,9 +8,9 @@
 	.add-city
 		= form_for(@user, remote: true, url: add_city_path) do |f|
 			= f.hidden_field :id, value: @user.id
-			- @search = Geocoder.search(request.remote_ip).first.data
-			- @default = @search['city'] == '' ? '' : @search['city'] + ', ' + @search['region_name']
-			= f.text_field :city, placeholder: 'e.g. "Toronto, Ontario"', value: @default, class: 'user-city'
+			/- @search = Geocoder.search(request.remote_ip).first.data
+			/- @default = @search['city'] == '' ? '' : @search['city'] + ', ' + @search['region_name']
+			= f.text_field :city, placeholder: 'e.g. "Toronto, Ontario"', class: 'user-city'
 			.search-results
 	.spinner
 
