@@ -19,9 +19,9 @@
 
 		.spinner {
 			position: absolute;
-			top: calc(50% - 12px);
-			left: calc(50% - 12px);
-			// display: block;
+			top: 21px;
+			right: 5%;
+			z-index: 10;
 		}
 
 
@@ -106,7 +106,8 @@
 	display: none;
 
 	.container {
-		overflow-y: scroll;
+		overflow-y: auto;
+		overflow-x: hidden;
 
 		.wrapper {
 			top: 0;

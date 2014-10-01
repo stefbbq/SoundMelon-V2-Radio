@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials
 			koala_oauth = Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"],ENV["FACEBOOK_SECRET"])
 			user.oauth_token['extended_token'] = koala_oauth.exchange_access_token_info(user.oauth_token.token)
-			if !user.custom_city
+			if !user.city
 				user.city = auth.info.location
 				user.city_coords = Geocoder.coordinates(user.city).join(",") if !user.city.nil? && user.city != ''
 			end

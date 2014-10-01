@@ -23,6 +23,10 @@ body > .footer {
 		@media #{media-width-res(950)} {
 			display: none;
 		}
+		@media #{media-height-res(750)} {
+			// display: none;
+			height: 185%;
+		}
 	}
 	
 	.right {

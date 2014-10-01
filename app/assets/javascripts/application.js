@@ -18,6 +18,7 @@
 //= require jquery.tagsinput.min
 //= require jquery.typing-0.2.0.min
 //= require jquery.tinyscrollbar.min
+//= require css_browser_selector.js
 //= require keymaster.js
 //= require TweenMax
 //= require youtube_iframe_api
