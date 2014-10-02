@@ -1,10 +1,13 @@
 :plain
 	console.log('#{current_user.favorite_songs}');
 	$("#callout-wrapper #favorites-panel").html('#{j( render partial: "favorites_list", locals: {favorites: @favorites} )}');
-	var linkBox = $("#add-to-favorites").closest('.favorites-link');
-	linkBox.toggleClass('filled');
+
 	if(RadioManager.currentSong()) {
-		val = linkBox.hasClass('filled') ? "true" : "false";
-		RadioManager.setFavoriteState(val);
+		var linkBox = $("#add-to-favorites").closest('.favorites-link');
+		if(RadioManager.currentSong().song_id === '#{@song.song_id}') {
+			linkBox.toggleClass('filled');
+			val = linkBox.hasClass('filled') ? "true" : "false";
+			RadioManager.setFavoriteState(val);
+		}
 		RadioManager.updateFavoritesPlaylist();
 	}

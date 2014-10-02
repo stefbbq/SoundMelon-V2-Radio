@@ -2,13 +2,15 @@
 	.wrapper
 		.section-wrapper.content
 			.label Your Favourites
-		.song-list.sortable
 			- @songs_list = favorites
-			- if @songs_list.nil? || @songs_list.size == 0
-				.song-item.list-item
+		- if @songs_list.nil? || @songs_list.size == 0
+			.section-wrapper
+				.no-info
+					you have no favorites
 					.title
-						You have no favorites!
-			- else
+						Add a favourite by clicking on the star beside a song title's name.
+		- else
+			.song-list.sortable
 				- @songs_list.each do |song_id|
 					.song-item.list-item{'data-position' => @songs_list.index(song_id), 'data-song-id' => song_id}
 						- song = Song.find_by_song_id(song_id)
@@ -25,7 +27,10 @@
 								= link_to('', add_favorite_path(song_id: song_id), remote: true, class: 'filled-link')
 
 	:javascript
-		$(".song-list.sortable").sortable().bind('sortupdate', function() {
+		$(".song-list.sortable").sortable({
+			placeholder: "sortable-placeholder",
+			cursor: "move"
+		}).bind('sortupdate', function() {
 			var newList = setNewPositions($(".song-list"));
 			$.ajax({
 				url: '/update_favorites',

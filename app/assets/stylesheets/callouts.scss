@@ -74,6 +74,20 @@
 		}
 	}
 
+	.no-info {
+		text-align: center;
+		position: relative;
+		top: 166px;
+		font-size: 21px;
+		text-transform: uppercase;
+		color: rgba(black, 0.2);
+		font-family: FuturaCondensedMedium;
+		.title {
+			text-transform: none;
+			margin-top: 20px;
+			cursor: default;
+		}
+	}
 	.title {
 		font-size: 16px;
 		cursor: pointer;
@@ -94,6 +108,11 @@
 			opacity: 0.3;
 			&:hover {opacity: 0.8;}
 		}
+	}
+
+	.sortable-placeholder {
+		height: 53px;
+		border: 1px dashed rgba(black, 0.4);
 	}
 
 }
@@ -162,15 +181,7 @@
 				text-transform: underline;
 				@include border-bottom-right-radius(8px);
 
-				.no-info {
-					text-align: center;
-					position: relative;
-					top: 65px;
-					font-size: 21px;
-					text-transform: uppercase;
-					color: rgba(black, 0.2);
-					font-family: FuturaCondensedMedium;
-				}
+				.no-info {top: 65px;}
 
 				.social-items {
 					padding: 15px 0 11px;
@@ -226,9 +237,18 @@
 	// 	.wrapper {height: 444px;}
 	// }
 
-	&.visible {
-		// z-index: 0;
-		// .anchor {opacity: 1 !important;}
+	&#radio-stations {
+		.station-item {
+			position: relative;
+			min-height: 33px;
+
+			.item-info {
+				position: absolute;
+				top: 50%;
+				@include transform(translateY(-40%));
+			}
+			.item-controls {top: 3px;}
+		}
 	}
 
 }
