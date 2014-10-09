@@ -17,6 +17,7 @@ SoundMelonV2Radio::Application.routes.draw do
   match '/signout', to: 'sessions#destroy'
 
 #User routes
+  match '/email_signup', to: 'users#email_signup'
 	match '/accept_terms', to: 'users#accept_terms'
 	match '/init_fb_meta', to: 'users#init_fb_meta'
   match '/search_cities', to: 'users#search_cities'

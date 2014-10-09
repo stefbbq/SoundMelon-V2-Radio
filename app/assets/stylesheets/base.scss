@@ -120,6 +120,18 @@ a, a:link, a:visited {
 	font-family: FuturaBook;
 }
 
+.sub-label {
+	font-family: HelveticaNeueLight;
+	font-size: 28px;
+	margin-top: 35px;
+	opacity: 0.5;
+	a {
+		color: black;
+		&:hover {text-decoration: underline;}
+	}
+}
+
+
 .input-wrapper {
 	margin: 7px 0;
 }
