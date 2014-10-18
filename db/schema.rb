@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140921225738) do
+ActiveRecord::Schema.define(:version => 20141012213526) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -129,27 +129,41 @@ ActiveRecord::Schema.define(:version => 20140921225738) do
     t.string   "username"
     t.string   "email"
     t.string   "city"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "password_digest"
     t.string   "email_confirmation"
     t.string   "remember_token"
-    t.boolean  "is_artist",          :default => false
+    t.boolean  "is_artist",              :default => false
     t.integer  "artist_id"
     t.text     "fb_meta"
     t.string   "provider"
     t.string   "uid"
     t.text     "oauth_token"
-    t.boolean  "terms",              :default => false
-    t.boolean  "custom_city",        :default => false
+    t.boolean  "terms",                  :default => false
+    t.boolean  "custom_city",            :default => false
     t.text     "user_meta"
     t.text     "song_history"
     t.text     "invites"
     t.text     "city_coords"
     t.text     "favorite_songs"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0,     :null => false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "encrypted_password"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

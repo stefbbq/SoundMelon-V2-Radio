@@ -42,6 +42,7 @@ gem "youtube_it", "~> 2.4.0"
 gem 'jquery-ui-rails'
 #gem "oauth2", "~> 0.9.2"
 #gem "omniauth-oauth2", "~> 1.1.1"
+gem "devise"
 gem "faraday"
 gem "soundcloud"
 gem "nokogiri"

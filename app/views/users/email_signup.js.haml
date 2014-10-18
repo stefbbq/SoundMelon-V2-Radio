@@ -1,2 +1,3 @@
 :plain
-	console.log('email signup form')
+	$('.main_page_div').empty().html('#{escape_javascript( render template: "users/new", formats: [:html] )}');
+	$('form[data-validate]').validate();

@@ -313,6 +313,7 @@ DEPENDENCIES
   capybara (= 1.1.2)
   coffee-rails
   compass-rails
+  devise
   echonest!
   factory_girl_rails (= 4.1.0)
   faraday

@@ -1,4 +1,12 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
 	attr_accessible :first_name, :last_name, :username, 
 									:email, :email_confirmation, :password, :password_confirmation,
 									:is_artist, :fb_meta, :user_meta, :terms, :city, :custom_city,
@@ -40,13 +48,14 @@ class User < ActiveRecord::Base
 #		end
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      # user.provider = auth.provider
+      # user.uid = auth.uid
       user.first_name = auth.info.first_name
 			user.last_name = auth.info.last_name
 			user.username = auth.extra.raw_info.username
 			user.email = auth.info.email
+			user.password = Devise.friendly_token[0,20]
       user.oauth_token = auth.credentials
 			koala_oauth = Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"],ENV["FACEBOOK_SECRET"])
 			user.oauth_token['extended_token'] = koala_oauth.exchange_access_token_info(user.oauth_token.token)
@@ -55,6 +64,14 @@ class User < ActiveRecord::Base
 				user.city_coords = Geocoder.coordinates(user.city).join(",") if !user.city.nil? && user.city != ''
 			end
       user.save!
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
     end
   end
 
