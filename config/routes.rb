@@ -3,7 +3,26 @@ SoundMelonV2Radio::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   devise_scope :user do
-    get '/signout', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+    match '/signout', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+
+    #User routes
+    match '/user/:id', to: 'users#show'
+    match '/email_signup', to: 'users#email_signup'
+    match '/accept_terms', to: 'users#accept_terms'
+    match '/init_fb_meta', to: 'users#init_fb_meta'
+    match '/search_cities', to: 'users#search_cities'
+    match '/add_city', to: 'users#add_city'
+    match '/reload_fb_meta', to: 'users#reload_fb_meta'
+    match '/user_meta', to: 'users#edit_meta'
+    match '/update_fb_meta', to: 'users#update_fb_meta'
+    match '/add_favorite', to: 'users#add_favorite'
+    match '/show_favorites', to: 'users#show_favorites'
+    match '/update_favorites', to: 'users#update_favorites'
+    match '/user_account', to: 'users#edit_account'
+    match '/update_account', to: 'users#update_account'
+    match '/add_media_account', to: 'users#add_media_account'
+    match '/user_invites', to: 'users#new_invites'
+    match '/user_remove', to: 'users#destroy'
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -12,7 +31,7 @@ SoundMelonV2Radio::Application.routes.draw do
 
 
   # resources :users
-	resources :sessions, only: [:new, :create, :destroy]
+	# resources :sessions, only: [:new, :create, :destroy]
 	resources :songs
   
   root to: 'welcome#index'
@@ -25,23 +44,7 @@ SoundMelonV2Radio::Application.routes.draw do
 	# match '/auth/failure', :to => redirect('/')
   # match '/signout', to: 'sessions#destroy'
 
-#User routes
-  match '/email_signup', to: 'users#email_signup'
-	match '/accept_terms', to: 'users#accept_terms'
-	match '/init_fb_meta', to: 'users#init_fb_meta'
-  match '/search_cities', to: 'users#search_cities'
-  match '/add_city', to: 'users#add_city'
-	match '/reload_fb_meta', to: 'users#reload_fb_meta'
-	match '/user_meta', to: 'users#edit_meta'
-	match '/update_fb_meta', to: 'users#update_fb_meta'
-  match '/add_favorite', to: 'users#add_favorite'
-  match '/show_favorites', to: 'users#show_favorites'
-  match '/update_favorites', to: 'users#update_favorites'
-	match '/user_account', to: 'users#edit_account'
-	match '/update_account', to: 'users#update_account'
-	match '/add_media_account', to: 'users#add_media_account'
-	match '/user_invites', to: 'users#new_invites'
-	match '/user_remove', to: 'users#destroy'
+
 
 
 #Admin routes

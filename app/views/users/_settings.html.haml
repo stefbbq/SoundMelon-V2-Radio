@@ -35,12 +35,12 @@
 						.sub-label Click the button below to permenantly remove your account from SoudnMelon.
 						
 					.account-button.remove-button
-						= link_to "remove account", @user, method: :delete, data: {confirm: "Are you sure you want to delete your SoundMelon account?"}
+						= link_to "remove account", user_remove_path(id: @user.id), data: {confirm: "Are you sure you want to delete your SoundMelon account?"}
 
 					.section-divider
 
 					.account-button
-						= link_to "Logout", signout_path, data: {confirm: "Are you sure you want to logout?"} 
+						= link_to "Logout", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure you want to logout?"} 
 					
 :javascript
 	$(document).ajaxStart(function() {

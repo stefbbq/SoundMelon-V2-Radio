@@ -21,7 +21,7 @@
 				.content
 				
 					.upload-wrapper
-						.preview{style: "background: url(#{@artist.artist_photo.url(:thumb)}) center no-repeat; background-size: 100%;"}
+						.preview{style: "background: url(#{@artist.artist_photo.url(:thumb)}) center no-repeat; background-size: cover;"}
 						= f.file_field :artist_photo, class: 'file-select overlay'
 
 					.action-buttons

@@ -1,8 +1,13 @@
+/= current_user.inspect
 - if signed_in?
 	= render template: 'users/show'
 - else
 	.inner-content.vertical-center
 		.bg-title Find Your Tune
+
+		.email-signup
+			= render partial: 'users/registration/view'
+
 		.buttons
 			.left
 				#sign-in
@@ -45,10 +50,10 @@
 	window.fbAsyncInit = function() {
 		$('#sign-in').click(function(e) {
 			//console.log('#{ENV["FACEBOOK_APP_ID"]}');
-			$(".bg-title").hide();
+			// $(".bg-title").hide();
 			$('#sign-in .login-spinner').show();
-			$(".buttons").find('.left, .right').hide();
-			$('.intro-blurb, .rotating-caption').hide();
+			//$(".buttons").find('.left, .right').hide();
+			//$('.intro-blurb, .rotating-caption').hide();
 		  e.preventDefault();
 		  FB.login(function(response) {
 		  	if(response.status === "unknown") {
@@ -57,7 +62,8 @@
 				console.log(response);
 				//
 		    if (response.authResponse) {
-					$('#sign-in a').hide();
+					//$('#sign-in a').hide();
+					TweenLite.to('.inner-content', 0.4, {opacity: 0});
 					splashBGtween = TweenLite.to('.bg-wrapper', 1, {opacity: 1, delay: 0.5, ease:Sine.easeInOut});
 					$.ajax({
 						//url: '/auth/facebook/callback',

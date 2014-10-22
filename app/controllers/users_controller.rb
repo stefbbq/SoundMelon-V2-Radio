@@ -144,7 +144,7 @@ class UsersController < ApplicationController
 
 	def destroy
 		User.find(params[:id]).destroy
-		redirect_to signout_path
+		redirect_to destroy_user_session_path
 	end
 
 end
