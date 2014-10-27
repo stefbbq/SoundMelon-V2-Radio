@@ -21,7 +21,8 @@
 
 					.form-header.form-block.section-wrapper
 						.label Your Likes
-						.sub-label Originally computed from your Facebook likes
+						- if current_user.uid
+							.sub-label Originally computed from your Facebook likes
 							
 					.tags-wrapper.form-block.section-wrapper
 						.render-block
