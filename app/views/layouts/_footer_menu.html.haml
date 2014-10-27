@@ -7,7 +7,7 @@
 .vertical-divider
 
 .menu
-	- if signed_in?
+	- if user_signed_in?
 		- if current_user.terms
 			= render 'users/music_footer'
 

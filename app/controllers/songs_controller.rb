@@ -59,7 +59,9 @@ class SongsController < ApplicationController
 		@items = params
 		@user = User.find_by_id(params[:user_id])
 		@station = params[:station]
-		if (@user.fb_meta.keys.size == 0 && @user.user_meta.size == 0)
+		@empty_fb_meta = @user.fb_meta.nil? || @user.fb_meta.keys.size == 0
+		@empty_user_meta = @user.user_meta.nil? || @user.user_meta.size == 0
+		if (@empty_fb_meta && @empty_user_meta)
 			@station == 'random'
 		end
 		if @station == 'favorites'

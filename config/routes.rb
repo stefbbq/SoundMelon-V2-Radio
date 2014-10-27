@@ -1,19 +1,20 @@
 SoundMelonV2Radio::Application.routes.draw do
   # devise_for :users
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
 
   devise_scope :user do
     match '/signout', :to => 'devise/sessions#destroy', :as => :destroy_user_session
 
     #User routes
     match '/user/:id', to: 'users#show'
+    match '/user_checkin', to: 'users#checkin'
     match '/email_signup', to: 'users#email_signup'
     match '/accept_terms', to: 'users#accept_terms'
     match '/init_fb_meta', to: 'users#init_fb_meta'
     match '/search_cities', to: 'users#search_cities'
     match '/add_city', to: 'users#add_city'
     match '/reload_fb_meta', to: 'users#reload_fb_meta'
-    match '/user_meta', to: 'users#edit_meta'
+    match '/update_user_meta', to: 'users#update_user_meta'
     match '/update_fb_meta', to: 'users#update_fb_meta'
     match '/add_favorite', to: 'users#add_favorite'
     match '/show_favorites', to: 'users#show_favorites'

@@ -1,25 +1,31 @@
 @import "variables";
 @import "controls";
 
+.splash-page {
+	width: 90%;
+	max-width: 625px;
+	margin: 0 auto;
+}
+
 //
 //buttons
 .buttons {
-	width: 564px;
+	// width: 564px;
 	margin: 0 auto;
 	padding-bottom: 35px;
 
-	.left {width: 60%;}
-	.right {width: 40%;}
+	// .left {width: 60%;}
+	// .right {width: 40%;}
 
 	#facebook {
-		@include splash-fb-button();
-	}
+		@include splash-fb-button();	}
 
 	.about-button {
 		a {
 			@include splash-generic-button();
 			width: calc(100% - 30px);
 			margin-top: 1px;
+
 		}
 	}
 
@@ -27,20 +33,9 @@
 		position: relative;
 		a {
 			@include splash-fb-button();
-			width: calc(100% - 50px);
+			width: calc(100% - 60px);
+			text-align: center;
 		}
-	}
-
-	.login-spinner {
-		position: relative;
-		// background: url('/assets/loader.gif') center no-repeat;
-		// height: 24px;
-		// width: 24px;
-		// background-size: 100% 100%;
-		// top: calc(50% - 12px);
-		// left: calc(50% - 12px);
-		margin: 0 auto;
-		display: none;
 	}
 
 	.flash-msg {
@@ -50,31 +45,105 @@
 	}
 
 	.caveat {
-		width: 70%;
+		padding: 0 30px;
 		text-align: left;
 		font-size: 14px;
 		text-transform: uppercase;
 		margin: 10px auto 0;
 		@include text-shadow(none);
+		.strong {font-family: FuturaCondensedMedium;}
 	}
 }
 
+.form-title {
+	font-family: FuturaCondensedMedium;
+	font-size: 18px;
+	color: rgba(black, 0.35);
+	text-transform: uppercase;
+	padding-left: 10px;
+}
+
 .intro-blurb {
-	width: 564px;
+	// width: 564px;
 	margin: 0 auto;
 	text-align: left;
 	font-family: HelveticaNeueLight;
 	font-size: 14px;
-	padding-top: 35px;
-	border-top: 1px solid rgba(black, 0.25);
-	@include box-shadow(0 1px 0 0 rgba(white, 0.6) inset);
+	padding-left: 30px;
+	padding-top: 22px;
+
+	p {margin-bottom: 25px;}
+
+	.emphasis {font-size: 22px;}
+	.strong {font-family: HelveticaNeue;}
+	.about-button a {color: black; text-decoration: underline;}
 
 	p:nth-child(1) {margin-top: 0;}
 	p:last-child {margin-bottom: 0;}
 }
 
-#register_form {
-	visibility: hidden;
+.signin-section {
+	width: calc(50% - 30px);
+	position: relative;
+}
+
+.signin-forms {
+	// width: calc(100% - 30px);
+
+	.placeholder {color: rgba(black, 0.3);}
+
+	input[type="text"], input[type="email"], input[type="password"] {
+		width: calc(100% - 22px);
+		margin-bottom: 5px;
+		font-size: 28px;
+		font-family: FuturaCondensedLight;
+		color: rgba(black, 0.5);
+		background: rgba(white, 0.6);
+		@include border-radius(8px);
+		@include box-shadow(rgba(black, 0.1) 0 0 5px 2px inset);
+		outline: none;
+		border: 1px solid rgba(black, 0.15);
+		padding: 10px 10px 5px;
+
+		&:focus {
+			background: rgba(white, 0.8);
+		}
+	}
+	input[type="checkbox"] {margin-left: 0;}
+
+
+	input[type="submit"] {
+		text-transform: uppercase;
+		cursor: pointer;
+		border: none;
+		font-family: FuturaCondensedLight;
+		font-size: 28px;
+		color: rgba(white, 0.8);
+		padding: 10px 25px 7px;
+		@include background(linear-gradient(to bottom, rgba(black,0.15), rgba(black, 0.36)), rgba(black,0.07));
+		@include border-radius(8px);
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			@include background(linear-gradient(to bottom, rgba(black,0.15), rgba(black, 0.36)), rgba(black,0.15));
+		}
+	}
+
+}
+
+.form-options {
+	width: calc(100% - 10px);
+	font-family: FuturaCondensedLight;
+	font-size: 14px;
+	padding-left: 10px;
+	margin: 0px 0 5px;
+
+	a {
+		color: rgba(black, 0.8);
+		text-decoration: underline;
+		&:hover {color: black;}
+	}
 }
 
 #login_page {

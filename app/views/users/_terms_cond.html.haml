@@ -4,7 +4,6 @@
 	= form_for(@user, remote: true, url: accept_terms_path) do |f|
 		= f.hidden_field :id, value: @user.id
 		= f.hidden_field :terms, value: true
-		#terms-submit
-			/%span I ACCEPT
+		.form-submit-button
 			= f.submit "I ACCEPT"
 

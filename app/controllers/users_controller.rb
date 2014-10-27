@@ -15,6 +15,21 @@ class UsersController < ApplicationController
 
   end
 
+  def checkin
+  	@user = User.find_by_email(params[:user][:email])
+  	@exists = !@user.nil?
+  	@fb_user = false
+  	@success = false
+		if @exists && @user.valid_password?(params[:user][:password])
+			@success = true
+			sign_in(:user, @user)
+		elsif @exists && @user.uid
+			@fb_user = true
+		elsif !@exists
+			@redirection = new_user_registration_url(locals: params)
+		end
+  end
+
 	def edit
 	end
 
@@ -78,6 +93,9 @@ class UsersController < ApplicationController
 
 	def add_city
 		@user = User.find_by_id(params[:user][:id])
+		if params[:user][:user_meta]
+			params[:user][:user_meta] = params[:user][:user_meta].split(',')
+		end
 		update_attrs(params)
 		@user.update_column(:city_coords, Geocoder.coordinates(params[:user][:city]).join(','))
 	end

@@ -4,7 +4,7 @@ SMsplashManager = (function() {
 	var slideDelay = 3000;
 	var animDur = 0.5;
 	var index = 1;
-	var maxOpacity = 0.5;
+	var maxOpacity = 1;
 	
 	var captions = [
 		'Genuine Fans',
@@ -28,7 +28,7 @@ SMsplashManager = (function() {
 				// index = index === captions.length ? 0 : index;
 				captionBox.html(captions[index]);
 				TweenLite.to(captionBox, animDur, {opacity: maxOpacity})
-				console.log(index);
+				// console.log(index);
 				index = index === captions.length - 1 ? 0 : index + 1;
 			}});
 		}

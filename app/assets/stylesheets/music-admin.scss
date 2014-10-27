@@ -127,10 +127,9 @@ $music-viewport-height: 365px;
 						position: relative;
 						padding: 10px 0 8px;
 						.tagsinput {
-							// position: absolute;
-							// left: 8px;
-							// top: 3px;
 							padding: 0;
+
+							input {color: rgba(white, 0.5) !important;}
 						}
 					}
 				}

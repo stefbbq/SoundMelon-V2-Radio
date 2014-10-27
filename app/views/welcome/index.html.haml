@@ -1,37 +1,44 @@
 /= current_user.inspect
-- if signed_in?
+- if user_signed_in?
 	= render template: 'users/show'
 - else
-	.inner-content.vertical-center
-		.bg-title Find Your Tune
+	.inner-content.vertical-center.splash-page
+		.bg-title.rotating-caption Find Your Tune
 
-		.email-signup
-			= render partial: 'users/registration/view'
+		.left.col-1-2.signin-section
+			/= new_user_registration_url(locals: params)
+			.signin-forms
+				.email-signup
+					.form-title login or signup
+					= render 'welcome/email_signin'
+				.buttons
+					.form-title or you can
+					#sign-in
+						= link_to('CONNECT WITH FACEBOOK', user_omniauth_authorize_path(:facebook), remote: true)
+						.caveat
+							%span.strong recommended
+							%span We use Facebook FOR basic social connectivity, learning about your likes and THE CITY YOU’re In. we respect your privacy.
 
-		.buttons
-			.left
-				#sign-in
-					= link_to('CONNECT WITH FACEBOOK', user_omniauth_authorize_path(:facebook), remote: true)
-					.caveat
-						for basic social connectivity, learning about your likes and what city you live in.
-			.right
-				.about-button= link_to('LEARN MORE', "http://about.soundmelon.com", target: '_blank')
-			.clear
+		.right.col-1-2.intro-section
+			.intro-blurb
+				%p.emphasis
+					%span SoundMelon is a radio tuned to you, and it’s 
+					%span.strong completely free 
+					%span to use.
 
-			.section-wrapper
-				.sub-label= link_to('or sign up with email', email_signup_path, remote: true)
+				%p By signing up, we learn about your likes and the city you’re in and we create a station of local artists you might be in to. It’s also all we use Facebook for, and we respect your privacy.
 
-			.login-spinner.spinner
+				%p 
+					%span If you’re an artist, you can add songs in seconds using 
+					%span.strong SoundCloud 
+					%span or 
+					%span.strong YouTube.
 
-		.intro-blurb
-			%p SoundMelon is a radio tuned to you. By connecting with Facebook, we learn about your likes and the city you’re in and we create a station of local artists you might be into. It’s all we use Facebook for, and we respect your privacy.
 
-			%p If you’re an artist, you can add songs quickly and easily by signing up and connecting SoundCloud or YouTube.
+				.about-button= link_to('Learn more about SoundMelon', "http://about.soundmelon.com", target: '_blank')
 
-			%p Best of all, SoundMelon is completely free to use.
+		.clear
 
-		.rotating-caption.sub-label
-			Genuine Fans
 
 :javascript
 	$('#fb-root').remove();
@@ -49,24 +56,14 @@
 
 	window.fbAsyncInit = function() {
 		$('#sign-in').click(function(e) {
-			//console.log('#{ENV["FACEBOOK_APP_ID"]}');
-			// $(".bg-title").hide();
-			$('#sign-in .login-spinner').show();
-			//$(".buttons").find('.left, .right').hide();
-			//$('.intro-blurb, .rotating-caption').hide();
 		  e.preventDefault();
 		  FB.login(function(response) {
 		  	if(response.status === "unknown") {
-		  		$('#sign-in .login-spinner').hide();
+
 		  	}
 				console.log(response);
-				//
 		    if (response.authResponse) {
-					//$('#sign-in a').hide();
-					TweenLite.to('.inner-content', 0.4, {opacity: 0});
-					splashBGtween = TweenLite.to('.bg-wrapper', 1, {opacity: 1, delay: 0.5, ease:Sine.easeInOut});
 					$.ajax({
-						//url: '/auth/facebook/callback',
 						url: '#{user_omniauth_callback_path(:facebook)}',
 						data: {state: inviteToken}
 					});
@@ -89,7 +86,7 @@
 	$('.inner-content .buttons').show();
 
 	$(document).ready(function() {
-		console.log("#{asset_path('1.jpg')}");
+
 		$(".splash-bg").css({
 			'background-image': 'url("#{asset_path('splash-bgs/' + rand(1..6).to_s + '.jpg')}")'
 		});

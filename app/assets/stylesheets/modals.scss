@@ -5,6 +5,8 @@
 	display: none;
 	position: fixed;
 	bottom: 121px;
+
+
 	
 	.container {
 		
@@ -78,6 +80,19 @@
 
 //core modal styles
 .modal {
+	.placeholder {color: rgba(white, 0.2);}
+	// ::-webkit-input-placeholder {
+	//    color: rgba(white, 0.2);
+	// }
+
+	// ::-moz-placeholder {  /* Firefox 19+ */
+	//    color: rgba(white, 0.2);  
+	// }
+
+	// :-ms-input-placeholder {  
+	//    color: rgba(white, 0.2);  
+	// }
+
 	.section-wrapper {
 		width: 95%;
 		margin: 0 auto;

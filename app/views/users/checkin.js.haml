@@ -1,0 +1,31 @@
+- if @success
+	:plain
+		animateSplashOut(function() {
+			$('.footer').empty().html("#{escape_javascript( render 'layouts/footer' )}");
+			$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
+			TweenLite.fromTo($('.main_page_div'), 2, {opacity:0}, {opacity:1});
+		});
+
+
+- elsif !@exists
+	:plain
+		var path = '#{@redirection}';
+		window.location = path;
+
+
+
+- elsif !@success
+	- if @fb_user
+		:plain
+			var message = {
+				severity: 'error',
+				message: 'Your account is connected through Facebook'
+			}
+			FlashManager.showMessage(message);
+	- else
+		:plain
+			var message = {
+				severity: 'error',
+				message: 'Your password is incorrect'
+			}
+			FlashManager.showMessage(message);

@@ -7,7 +7,7 @@
 		= f.label :username, "Username"
 		= f.text_field :username
 
-	- if signed_in? && current_user?(@user)
+	- if user_signed_in? && current_user?(@user)
 		= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete your SoundMelon account?"}
 
 :javascript

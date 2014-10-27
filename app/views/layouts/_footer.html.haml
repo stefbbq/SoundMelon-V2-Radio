@@ -1,9 +1,8 @@
 .logo
-	/= image_tag('core/footer_logo.png')
 .right
 	.menu-wrapper= render 'layouts/footer_menu'
 		
-	- if signed_in?
+	- if user_signed_in?
 		= render "layouts/modal_boxes"
 .clear
 

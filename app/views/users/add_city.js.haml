@@ -1,5 +1,4 @@
 :plain
+	console.log("city and tags added y'all!")
 	$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
 	$(".modal#user-edit #user-settings").empty().html("#{escape_javascript( render 'users/settings' )}");
-
-	initHomeFuntionality();

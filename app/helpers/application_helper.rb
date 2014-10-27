@@ -1,5 +1,17 @@
 module ApplicationHelper
 
+ 	def resource_name
+  	:user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
 	def yt_auth_ids
 		# Return a hash that initializes youtube authentication relevant parameters 
 		ids = {client_id: ENV["YOUTUBE_APP_ID"],

@@ -1,0 +1,57 @@
+/= params.inspect
+- param_email = params[:locals] ? params[:locals][:user][:email] : (params[:user] ? params[:user][:email] : '')
+- conf_email = params[:user] ? params[:user][:email_confirmation] : ''
+- param_pass = params[:locals] ? params[:locals][:user][:password] : (params[:user] ? params[:user][:password] : '')
+.inner-content.vertical-center.splash-page
+	.bg-title registration
+
+	.user-registration
+		= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+
+			.inline-inputs.form-inputs
+				= f.text_field :first_name, autofocus: true, placeholder: "first name", required: true, class: "first", onblur: "hideInstruction(this);"
+				= f.text_field :last_name, placeholder: "last name", class: "second"
+				.instruction-container
+					.instruction{class: params[:user] ? (params[:user][:first_name] ? 'hidden' : '') : ''}
+						.notice we need your name too
+						.sprite.exclaim.black
+
+			.joined-inputs.form-inputs.emails
+				= f.email_field :email, value: param_email, placeholder: "eMail", class: "first"
+				= f.email_field :email_confirmation, value: conf_email, placeholder: "confirm eMail", class: "second"
+
+				.instruction-container
+					- if resource.errors[:email]
+						.instruction.warning
+							.sprite.exclaim.red
+
+			.joined-inputs.form-inputs.passwords
+				= f.password_field :password, value: param_pass, autocomplete: "off", placeholder: "password", class: "first"
+				= f.password_field :password_confirmation, autocomplete: "off", placeholder: "confirm password", class: "second"
+
+				.instruction-container
+					- if resource.errors[:password]
+						.instruction.warning
+							.sprite.exclaim.red
+
+			.form-submit-button= f.submit "submit"
+
+			.form-options.right= render "users/shared/links"
+			.clear
+
+			= devise_error_messages!
+
+	:javascript
+		$(document).ready(function() {
+			$(".user-registration form").submit(checkConfEmail);
+			$(".user-registration form input[name='user[email_confirmation]']").blur(function() {
+				runEmailConf($(this).closest('form'));
+			});
+
+			$(".field_with_errors").each(function() {
+				if($(this).closest('.joined-inputs').length > 0) {
+					$(this).closest('.joined-inputs').addClass('field-error');
+					showInstruction($(this).find('input'));
+				}
+			});
+		});

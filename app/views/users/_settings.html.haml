@@ -24,7 +24,11 @@
 						.sub-label Originally computed from your Facebook likes
 							
 					.tags-wrapper.form-block.section-wrapper
-						.render-block= render 'users/fb_meta_form'
+						.render-block
+							- if current_user.uid
+								= render 'users/fb_meta_form'
+							- else
+								= render 'users/user_meta_form'
 
 						.sub-label= link_to "Reload FB likes (replaces all current likes)", reload_fb_meta_path(id: current_user.id), remote: true
 						
@@ -56,6 +60,7 @@
 		'defaultText': 'Add your own...',
 		'height': 'auto',
 		'width': '285px',
+		placeholderColor: 'rgba(255,255,255,0.4)',
 		'onAddTag': function() {
 			$(this).closest('form').submit();
 		},

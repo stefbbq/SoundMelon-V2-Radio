@@ -76,6 +76,7 @@ $user-edit-width: 302px;
 						background: rgba(black, 0);
 						max-height: 190px;
 						margin: 0 auto;
+
 						
 						.tag {
 							font-size: 22px;
@@ -93,6 +94,7 @@ $user-edit-width: 302px;
 						> div input {
 							width: 128px;
 							margin-top: 3px;
+							color: rgba(white, 0.6) !important;
 						}
 					}
 					

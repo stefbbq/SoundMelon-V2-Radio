@@ -1,4 +1,13 @@
-:plain
-	console.log('#{params}');
-	$('.main_page_div').empty().html("#{escape_javascript( render 'users/init_fb_meta' )}");
-	$('.footer').empty().html("#{escape_javascript( render partial: 'layouts/footer' )}");
+- if current_user.uid
+	:plain
+		console.log('#{params}');
+		$('.main_page_div').empty().html("#{escape_javascript( render 'users/init_fb_meta' )}");
+		$('.footer').empty().html("#{escape_javascript( render partial: 'layouts/footer' )}");
+		
+- else
+	:plain
+		console.log("accepting terms yo");
+		$('.footer').empty().html("#{escape_javascript( render 'layouts/footer' )}");
+		$(".modal#user-edit #user-settings").empty().html("#{escape_javascript( render 'users/settings' )}");
+		$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
+		initHomeFuntionality();

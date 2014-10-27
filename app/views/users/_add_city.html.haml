@@ -1,17 +1,24 @@
-.signup-wrapper.user-location
-	.title Add Your City
-
-	.intro-blurb
-		%p We couldn't get your city from your Facebook, tell us where you're located so we can get you music local to you!
+.signup-wrapper.user-location.user-registration
+	.bg-title your profile
 
 	- @user = current_user
 	.add-city
 		= form_for(@user, remote: true, url: add_city_path) do |f|
 			= f.hidden_field :id, value: @user.id
-			/- @search = Geocoder.search(request.remote_ip).first.data
-			/- @default = @search['city'] == '' ? '' : @search['city'] + ', ' + @search['region_name']
-			= f.text_field :city, placeholder: 'e.g. "Toronto, Ontario"', class: 'user-city'
+			.form-inputs
+				= f.text_field :city, placeholder: 'your city', class: 'user-city'
 			.search-results
+
+			- if !@user.uid
+				.form-inputs.add-meta-tags
+					.tags-intro
+						.input-label Your Likes
+						.input-sub-label Add as many as you wnat, but at least 3!
+					= f.text_area :user_meta, value: '', class: "user-meta-tags"
+
+			.form-submit-button= f.submit "submit"	
+
+			
 	.spinner
 
 :javascript
@@ -43,7 +50,7 @@
 		}
 		else {
 			if($('.add-city form .user-city').val() === '') $(".add-city .search-results").empty();
-			else $(".add-city .search-results").append('Sorry no results found');
+			else $(".add-city .search-results").append('<div class="result-item">Sorry no results found</div>');
 		}
 
 	}
@@ -51,10 +58,26 @@
 	function selectResult() {
 		$(".add-city .user-city").val($(this).html());
 		$(".add-city .search-results").empty();
-		$(".add-city form").submit();
 	}
 
 	$('.add-city form .user-city').typing({
 		stop: searchAddress,
 		delay: 500
 	});
+
+	$('.signup-wrapper.user-location .user-meta-tags').tagsInput({
+		'removeWithBackspace': true,
+		'defaultText': "eg. 'ambient', 'indie', 'local'",
+		'height': '135',
+		'width': 'auto',
+		placeholderColor: 'rgba(0,0,0,0.2)'
+	});
+
+	$('.add-city form').submit(function(e) {
+		if($('.add-meta-tags .tag').length < 3 || $(".user-city").val() === '') {
+
+			return false;
+		}
+		
+	});
+

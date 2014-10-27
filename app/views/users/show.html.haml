@@ -1,10 +1,8 @@
-- if !current_user.terms
-	= render 'users/terms_cond'
-
-- elsif current_user.city.nil? || current_user.city.size == 0
-	/= current_user.inspect
-
+- if (!current_user.terms && current_user.uid.nil? && current_user.city.nil?) || (current_user.city.nil? || current_user.city == '')
 	= render 'users/add_city'
+
+- elsif !current_user.terms
+	= render 'users/terms_cond'
 
 - else
 
@@ -28,6 +26,7 @@
 				.click(data-click="#artist-profile-edit")
 
 	:javascript
+		
 		$(document).ready(function() {
 			initHomeFunctionality();
 			$(".bg-wrapper").css('opacity', 1);
