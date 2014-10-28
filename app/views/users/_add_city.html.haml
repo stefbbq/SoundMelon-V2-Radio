@@ -133,18 +133,15 @@
 	});
 
 	$('.add-city form').submit(function(e) {
-		if($('.add-meta-tags .tag').length < 3 || $(".user-city").val() === '') {
-			if($('.add-meta-tags .tag').length < 3) {
-				showInstruction($('.add-city .user-meta-tags'));
-				$('.add-city .user-meta-tags').closest('.form-inputs').addClass('field-error');
-			}
-			if($(".user-city").val() === '') {
-				showInstruction($('.add-city .user-city'));
-				$('.add-city .user-city').closest('.form-inputs').addClass('field-error');
-			}
-
+		if($('.add-meta-tags').length > 0 && $('.add-meta-tags .tag').length < 3) {
+			showInstruction($('.add-city .user-meta-tags'));
+			$('.add-city .user-meta-tags').closest('.form-inputs').addClass('field-error');
 			return false;
 		}
-		
+		if($(".user-city").val() === '') {
+			showInstruction($('.add-city .user-city'));
+			$('.add-city .user-city').closest('.form-inputs').addClass('field-error');
+			return false;
+		}		
 	});
 
