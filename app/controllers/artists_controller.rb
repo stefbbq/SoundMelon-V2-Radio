@@ -5,7 +5,8 @@ class ArtistsController < ApplicationController
 	respond_to :js, :json, :html, :xml
 
 	def create
-		@artist = Artist.new(artist_name: current_user.username)
+		@name = current_user.first_name + (current_user.last_name.nil? || current_user.last_name == '' ? '' : ' ' + current_user.last_name)
+		@artist = Artist.new(artist_name: @name)
 		@artist.user = current_user
 		if @artist.save
 			current_user.update_column(:is_artist, true)

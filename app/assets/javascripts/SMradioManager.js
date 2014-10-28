@@ -4,7 +4,7 @@ var ytPlayerReady = false;
 var scPlayerReady = false;
 var runOnYTReady = false;
 var runInitSC = false;
-var newArtistProfile, CalloutManager;
+var newArtistProfile, CalloutManager, soundManager;
 var scrubInterval;
 var volume = 100;
 var ytQuality = 'large';
@@ -81,7 +81,11 @@ var SMradioManager = function(scAppId) {
 	}
 	
 	function nextBehaviour() {
-		if(scWidget) scWidget.stop();
+		if(soundManager) {
+			console.log("STOP ALL");
+			soundManager.stopAll();
+			// scWidget.stop();
+		}
 		if(!$(this).hasClass('disable')) {
 			scrubInterval.stop();
 			$('#seek-slider').simpleSlider('setValue', 0);
@@ -90,7 +94,9 @@ var SMradioManager = function(scAppId) {
 					ytPlayer.stopVideo();
 				}
 				else if(currentSong['upload_source'] === 'soundcloud') {
-					scWidget.pause();
+					// scWidget.pause();
+					soundManager.stopAll();
+					scWidget.destruct();
 				}
 				playNextSong();
 			}
@@ -125,7 +131,8 @@ var SMradioManager = function(scAppId) {
 					ytPlayer.stopVideo();
 				}
 				else if(currentSong['upload_source'] === 'soundcloud') {
-					scWidget.pause();
+					scWidget.destruct();
+					soundManager.stopAll();
 				}
 				var args = {favStartVal: $(this).closest('.list-item').attr('data-position')}
 				newSongsList(args);
@@ -264,12 +271,14 @@ var SMradioManager = function(scAppId) {
 			}
 		}
 		else if(currentSong['upload_source'] == 'soundcloud') {
+			// soundManager.pauseAll();
 			if(scWidget.paused) {
 				scWidget.setVolume(volume);
 				scWidget.play();
 			}
 			else {
 				console.log('sc pausing...')
+				soundManager.pauseAll();
 				scWidget.pause();
 			}
 		}
