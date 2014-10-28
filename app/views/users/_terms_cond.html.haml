@@ -7,3 +7,7 @@
 		.form-submit-button
 			= f.submit "I ACCEPT"
 
+		.form-options
+			%span or
+			= link_to "decline", user_remove_path(id: @user.id), data: {confirm: "Are you sure you want to delete your SoundMelon account?"}, class: 'exit-signup'
+

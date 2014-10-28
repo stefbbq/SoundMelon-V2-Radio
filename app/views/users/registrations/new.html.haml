@@ -36,7 +36,7 @@
 
 			.form-submit-button= f.submit "submit"
 
-			.form-options.right= render "users/shared/links"
+			.form-options= link_to('go back', root_path, class: 'exit-signup')
 			.clear
 
 			= devise_error_messages!

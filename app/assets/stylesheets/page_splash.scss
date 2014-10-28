@@ -45,7 +45,7 @@
 	}
 
 	.caveat {
-		padding: 0 30px;
+		padding: 0 10px;
 		text-align: left;
 		font-size: 14px;
 		text-transform: uppercase;
@@ -88,7 +88,9 @@
 }
 
 .signin-forms {
-	// width: calc(100% - 30px);
+	
+	.email-signup {margin-bottom: 25px;}
+	.forgot-link {padding-right: 10px;}
 
 	.placeholder {color: rgba(black, 0.3);}
 

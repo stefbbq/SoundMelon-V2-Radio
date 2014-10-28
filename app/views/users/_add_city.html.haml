@@ -7,14 +7,23 @@
 			= f.hidden_field :id, value: @user.id
 			.form-inputs
 				= f.text_field :city, placeholder: 'your city', class: 'user-city'
+				.instruction-container
+					.instruction.warning
+						.notice please add your city
+						.sprite.exclaim.red
+
 			.search-results
 
 			- if !@user.uid
+				.tags-intro
+					.input-label Your Likes
+					.input-sub-label Add as many as you want, but at least 3!
 				.form-inputs.add-meta-tags
-					.tags-intro
-						.input-label Your Likes
-						.input-sub-label Add as many as you wnat, but at least 3!
 					= f.text_area :user_meta, value: '', class: "user-meta-tags"
+					.instruction-container
+						.instruction.warning
+							.notice please add at least 3 tags
+							.sprite.exclaim.red
 
 			.form-submit-button= f.submit "submit"	
 
@@ -47,6 +56,46 @@
 				$(".add-city .search-results").append(div);
 				div.click(selectResult);
 			}
+			$(document).keydown(function(e) {
+				e.stopImmediatePropagation();
+				var index;
+				var curr = $(".result-item.current");
+				var len = $(".result-item").length;
+				if(e.keyCode === 40) {
+					if(curr.length === 0) {
+						console.log('first one!');
+						$(".result-item:first").addClass('current');
+					}
+					else {
+						index = $(".result-item").index(curr);
+						var newInd = index + 1 >= len ? 0 : index + 1;
+						console.log(newInd);
+						$(".result-item").removeClass('current');
+						$($(".result-item")[newInd]).addClass('current');
+					}
+				}
+				else if(e.keyCode === 38) {
+					if(curr.length === 0) {
+						console.log('last one!');
+						$(".result-item:last").addClass('current');
+					}
+					else {
+						index = $(".result-item").index(curr);
+						var newInd = index - 1 === 0 ? len - 1 : index - 1;
+						console.log(newInd);
+						$(".result-item").removeClass('current');
+						$($(".result-item")[newInd]).addClass('current');
+					}
+				}
+				else if(e.keyCode === 13) {
+					if($(".result-item.current").length > 0) {
+						console.log('returng false now');
+						curr.trigger('click');
+						return false;
+					}
+					
+				}
+			});
 		}
 		else {
 			if($('.add-city form .user-city').val() === '') $(".add-city .search-results").empty();
@@ -58,11 +107,20 @@
 	function selectResult() {
 		$(".add-city .user-city").val($(this).html());
 		$(".add-city .search-results").empty();
+		hideInstruction($(".add-city .user-city"));
+		$('.add-city .user-city').closest('.form-inputs').removeClass('field-error');
+	}
+
+	function checkMinTags() {
+		if($('.add-meta-tags .tag').length > 2) {
+			hideInstruction($('.add-city .user-meta-tags'));
+			$('.add-city .user-meta-tags').closest('.form-inputs').removeClass('field-error');
+		}
 	}
 
 	$('.add-city form .user-city').typing({
 		stop: searchAddress,
-		delay: 500
+		delay: 100
 	});
 
 	$('.signup-wrapper.user-location .user-meta-tags').tagsInput({
@@ -70,11 +128,20 @@
 		'defaultText': "eg. 'ambient', 'indie', 'local'",
 		'height': '135',
 		'width': 'auto',
-		placeholderColor: 'rgba(0,0,0,0.2)'
+		placeholderColor: 'rgba(0,0,0,0.2)',
+		onChange: checkMinTags
 	});
 
 	$('.add-city form').submit(function(e) {
 		if($('.add-meta-tags .tag').length < 3 || $(".user-city").val() === '') {
+			if($('.add-meta-tags .tag').length < 3) {
+				showInstruction($('.add-city .user-meta-tags'));
+				$('.add-city .user-meta-tags').closest('.form-inputs').addClass('field-error');
+			}
+			if($(".user-city").val() === '') {
+				showInstruction($('.add-city .user-city'));
+				$('.add-city .user-city').closest('.form-inputs').addClass('field-error');
+			}
 
 			return false;
 		}
