@@ -1,4 +1,4 @@
-#terms-page.signup-wrapper
+#terms-page.signup-wrapper.user-registartion
 	= render "users/terms_copy"
 	- @user = current_user
 	= form_for(@user, remote: true, url: accept_terms_path) do |f|
@@ -7,7 +7,7 @@
 		.form-submit-button
 			= f.submit "I ACCEPT"
 
-		.form-options
+		.form-options.center
 			%span or
 			= link_to "decline", user_remove_path(id: @user.id), data: {confirm: "Are you sure you want to delete your SoundMelon account?"}, class: 'exit-signup'
 

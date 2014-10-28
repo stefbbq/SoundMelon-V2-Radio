@@ -18,9 +18,12 @@
 	- if @fb_user
 		:plain
 			var message = {
-				severity: 'error',
-				message: 'Your account is connected through Facebook'
+				severity: 'Connect with Facebook.',
+				message: 'You already have an account through Facebook!',
+				click: '#sign-in a',
+				delay: 9999
 			}
+
 			FlashManager.showMessage(message);
 	- else
 		:plain
