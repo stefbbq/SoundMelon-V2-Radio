@@ -10,7 +10,7 @@
 
 			.inline-inputs.form-inputs
 				= f.text_field :first_name, autofocus: true, placeholder: "first name", required: true, class: "first", onblur: "hideInstruction(this);"
-				= f.text_field :last_name, placeholder: "last name", class: "second"
+				= f.text_field :last_name, placeholder: "last name", required: true, class: "second"
 				.instruction-container
 					.instruction{class: params[:user] ? (params[:user][:first_name] ? 'hidden' : '') : ''}
 						.notice we need your name too
