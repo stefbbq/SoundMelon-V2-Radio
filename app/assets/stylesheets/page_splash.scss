@@ -44,16 +44,6 @@
 		text-transform: uppercase;
 		color: rgba(black, 0.7);
 	}
-
-	.caveat {
-		padding: 0 10px;
-		text-align: left;
-		font-size: 14px;
-		text-transform: uppercase;
-		margin: 5px auto 0;
-		@include text-shadow(none);
-		.strong {font-family: FuturaCondensedMedium;}
-	}
 }
 
 .form-title {
@@ -100,16 +90,18 @@
 		margin-bottom: 5px;
 		font-size: 28px;
 		font-family: FuturaCondensedLight;
-		color: rgba(black, 0.5);
+		color: rgba(black, 0.8);
 		background: rgba(white, 0.6);
 		@include border-radius(8px);
-		@include box-shadow(rgba(black, 0.1) 0 0 5px 2px inset);
+		
 		outline: none;
-		border: 1px solid rgba(black, 0.15);
+		border: 1px solid rgba(black, 0.2);
 		padding: 10px 10px 5px;
 
 		&:focus {
 			background: rgba(white, 0.8);
+			border: 1px solid rgba(black, 0.41);
+			@include box-shadow(rgba(0, 0, 0, 0.1) 0 0px 5px 2px inset);
 		}
 	}
 	input[type="checkbox"] {margin-left: 0;}

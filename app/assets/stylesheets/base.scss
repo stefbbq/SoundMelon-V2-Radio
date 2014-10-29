@@ -215,6 +215,19 @@ a, a:link, a:visited {
 	}
 }
 
+.caveat {
+	font-family: FuturaCondensedLight;
+	color: rgba(black, 0.45);
+	padding: 0 10px;
+	text-align: left;
+	font-size: 14px;
+	text-transform: uppercase;
+	margin: 5px auto 0;
+	@include text-shadow(none);
+	.strong {font-family: FuturaCondensedMedium;}
+}
+
+
 #fb-meta-panel{
 	display: none;
 }

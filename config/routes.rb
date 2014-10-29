@@ -1,6 +1,10 @@
 SoundMelonV2Radio::Application.routes.draw do
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   # devise_for :users
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations", passwords: "users/passwords", sessions: "users/sessions" }
 
   devise_scope :user do
     match '/signout', :to => 'devise/sessions#destroy', :as => :destroy_user_session
@@ -26,8 +30,7 @@ SoundMelonV2Radio::Application.routes.draw do
     match '/user_remove', to: 'users#destroy'
   end
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+
 
 
 

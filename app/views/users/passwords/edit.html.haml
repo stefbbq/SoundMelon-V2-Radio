@@ -1,0 +1,22 @@
+.signup-wrapper
+	.bg-title reset password
+
+	.user-registration
+		= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+			
+			= f.hidden_field :reset_password_token
+
+			.form-inputs
+				.form-title your email address
+				.email-title= params[:reset_email]
+
+			
+			.form-inputs.joined-inputs
+				.form-title pick a new password
+				= f.password_field :password, autofocus: true, autocomplete: "off", class: "first"
+				= f.password_field :password_confirmation, autocomplete: "off", class: "second"
+				
+			.form-submit-button= f.submit "submit"
+			.form-options.center= link_to('go back', root_path, class: 'exit-signup')
+
+			= devise_error_messages!

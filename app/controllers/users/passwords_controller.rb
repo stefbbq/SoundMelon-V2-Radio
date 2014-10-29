@@ -1,7 +1,7 @@
 class Users::PasswordsController < Devise::PasswordsController
-  # def new
-  # 	# super
-  # end
+  def new
+  	super
+  end
 
   
 end

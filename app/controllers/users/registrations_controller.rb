@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  # def create
-  #   super do |resource|
-  #     BackgroundWorker.trigger(resource)
-  #   end
+
+  # def new
+  #   redirect_to root
   # end
+
 end
