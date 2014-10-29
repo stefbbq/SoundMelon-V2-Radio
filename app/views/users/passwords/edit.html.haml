@@ -17,6 +17,8 @@
 				= f.password_field :password_confirmation, autocomplete: "off", class: "second"
 				
 			.form-submit-button= f.submit "submit"
-			.form-options.center= link_to('go back', root_path, class: 'exit-signup')
+			.form-options.center
+				or
+				= link_to('not your email address?', new_password_path(:user), class: 'exit-signup')
 
 			= devise_error_messages!
