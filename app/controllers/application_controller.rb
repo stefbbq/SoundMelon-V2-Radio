@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 #	include SessionsHelper
 
+  # def after_sign_in_path_for(resource)
+  #   admin_dashboard_path(resource)
+  # end
+
   # def after_sign_in_path_for(resource_or_scope)
   #   if request.env['omniauth.origin']
   #     request.env['omniauth.origin']
