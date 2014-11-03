@@ -1,5 +1,5 @@
 .signup-wrapper.user-location.user-registration
-	.bg-title your profile!!
+	.bg-title your profile
 
 	- @user = current_user
 	.add-city
@@ -9,7 +9,6 @@
 				= f.text_field :city, placeholder: 'your city', class: 'user-city'
 				.instruction-container
 					.instruction.warning
-						.notice please add your city
 						.sprite.exclaim.red
 
 			.search-results
@@ -22,7 +21,6 @@
 					= f.text_area :user_meta, value: '', class: "user-meta-tags"
 					.instruction-container
 						.instruction.warning
-							.notice please add at least 3 tags
 							.sprite.exclaim.red
 
 			.form-submit-button= f.submit "submit"
@@ -142,14 +140,14 @@
 
 		console.log($(".user-city").val());
 		if($(".user-city").val() === '') {
-			//showInstruction($('.add-city .user-city'));
+			showInstruction($('.add-city .user-city'));
 			errorList.push('please add your city')
 			noCity = true;
 			$('.add-city .user-city').closest('.form-inputs').addClass('field-error');
 		}
 
 		if($('.add-meta-tags').length > 0 && $('.add-meta-tags .tag').length < 3) {
-			//showInstruction($('.add-city .user-meta-tags'));
+			showInstruction($('.add-city .user-meta-tags'));
 			badTags = true;
 			errorList.push('please add at least 3 tags')
 			$('.add-city .user-meta-tags').closest('.form-inputs').addClass('field-error');
