@@ -1,5 +1,5 @@
 = form_tag user_checkin_path, remote: true do
-	= text_field_tag 'user[email]', nil, placeholder: "eMail"
+	= email_field_tag 'user[email]', nil, placeholder: "eMail"
 	= password_field_tag 'user[password]', nil, placeholder: "password"
 	.left.form-options
 		= check_box_tag 'user[remember_me]'
