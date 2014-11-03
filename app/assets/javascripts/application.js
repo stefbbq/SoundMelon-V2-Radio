@@ -20,6 +20,7 @@
 //= require jquery.tinyscrollbar.min
 //= require jquery.placeholder
 //= require css_browser_selector.js
+//= require jquery.h5validate
 //= require keymaster.js
 //= require TweenMax
 //= require youtube_iframe_api

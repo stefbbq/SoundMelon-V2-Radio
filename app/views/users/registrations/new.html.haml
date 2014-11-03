@@ -44,9 +44,8 @@
 	:javascript
 		$(document).ready(function() {
 			$(".user-registration form").submit(checkConfEmail);
-			//$(".user-registration form input[name='user[email_confirmation]']").blur(function() {
-			//	runEmailConf($(this).closest('form'));
-			//});
+
+			if($('html.ipad, html.safari').length > 0) $(".user-registration form").h5Validate();
 
 			$(".field_with_errors").each(function() {
 				if($(this).closest('.joined-inputs').length > 0) {

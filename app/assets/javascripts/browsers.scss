@@ -1,0 +1,12 @@
+//browsers
+
+.mobile:not(.ipad) {
+	#page-content {
+		width: 100%;
+		max-width: 100%;
+	}
+	.inner-content {
+		width: 80%;
+		margin: 0 auto;
+	}
+}

@@ -83,6 +83,11 @@
 	if(($.browser['mozilla']) && isFlash === 'no-flash') {
 		$('.inner-content .buttons').html(mozillaFlashMsg);
 	}
+
+	if($('html').hasClass('mobile') && !$('html').hasClass('ipad')) {
+		$(".inner-content").html('<div class="flash-msg">soundmelon is not yet supported on mobile devices!</div>')
+	}
+
 	$('.inner-content .buttons').show();
 
 	$(document).ready(function() {
