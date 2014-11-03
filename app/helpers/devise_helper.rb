@@ -9,7 +9,7 @@ module DeviseHelper
 
     html = <<-HTML
     <div id="error_explanation">
-      <h2>Ack! You'll need to fix #{pluralize(resource.errors.count, 'error')} before continuing!</h2>
+      <h2>You'll need to fix #{pluralize(resource.errors.count, 'error')} before continuing!</h2>
       <ul>#{messages}</ul>
     </div>
     HTML
