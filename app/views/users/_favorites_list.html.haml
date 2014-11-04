@@ -29,7 +29,8 @@
 	:javascript
 		$(".song-list.sortable").sortable({
 			placeholder: "sortable-placeholder",
-			cursor: "move"
+			cursor: "move",
+			axis: "y"
 		}).bind('sortupdate', function() {
 			var newList = setNewPositions($(".song-list"));
 			$.ajax({

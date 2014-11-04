@@ -5,7 +5,7 @@ var SMcalloutManager = function(calloutBox) {
 	var callout = calloutBox;
 	var allBoxes = callout.find('.callout');
 	var calloutLinks = $(".player-buttons .callout-action");
-	console.log(calloutLinks);
+	// console.log(calloutLinks);
 	var active = false;
 	var anchor = calloutBox.find('.anchor');
 

@@ -1,6 +1,12 @@
-:plain
-	animateSplashOut(function() {
-		$('.footer').empty().html("#{escape_javascript( render 'layouts/footer' )}");
-		$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
-		animateHomeIn();
-	});
+- if !@is_omni
+	:plain
+		var message = {severity: 'error', message: 'Your email address is already registered with SoundMelon.'}
+		FlashManager.showMessage(message);
+
+- else
+	:plain
+		animateSplashOut(function() {
+			$('.footer').empty().html("#{escape_javascript( render 'layouts/footer' )}");
+			$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
+			animateHomeIn();
+		});

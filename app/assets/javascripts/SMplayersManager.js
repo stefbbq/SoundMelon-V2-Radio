@@ -1,24 +1,26 @@
 //Players Manager
-var ytPlayer, scWidget, bufferInterval, bufferLength, ytFirstPlayForSong;
+var ytPlayer, scWidget, scWidgetManager, bufferInterval, bufferLength, ytFirstPlayForSong;
 
 var SMplayersManager = function($scAppId) {
 	var scAppId = $scAppId;
 	var playerHeight = '320';
 	var playerWidth = '564';
 
-	function loadInterval(song) {
-		if(song.upload_source === "soundcloud") {
-			scWidget.load().play();
-		}
-		else if(song.upload_source === "youtube") {
-			ytPlayer.stopVideo().playVideo();
-		}
-		var message = {
-			severity: "Standby",
-			message: "Servers are slow today, please wait!"
-		}
-		FlashManager.showMessage(message);
-	}
+	scWidgetManager = SMscWidgetManager();
+
+	// function loadInterval(song) {
+	// 	if(song.upload_source === "soundcloud") {
+	// 		scWidget.load().play();
+	// 	}
+	// 	else if(song.upload_source === "youtube") {
+	// 		ytPlayer.stopVideo().playVideo();
+	// 	}
+	// 	var message = {
+	// 		severity: "Standby",
+	// 		message: "Servers are slow today, please wait!"
+	// 	}
+	// 	FlashManager.showMessage(message);
+	// }
 	
 	function initSCPlayer() {
 		//Load the SC player the first time a SC file is streamed in session
@@ -32,14 +34,14 @@ var SMplayersManager = function($scAppId) {
 
 	function loadSCSong(song) {
 		console.log('about to stream!');
-		bufferInterval = setInterval(function() {loadInterval(song)}, 5000);
+		// bufferInterval = setInterval(function() {loadInterval(song)}, 5000);
 		SC.stream('/tracks/' + song['song_id'], {
 			preferFlash: false,
 			onfinish: function() {
 					console.log('finished this SC song...');
 					scrubInterval.stop();
 					$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
-					$(".seek-scrub, #next-song").addClass('disable');
+					RadioManager.disableNextButton();
 					RadioManager.playNextSong();
 			},
 			onresume: function() {
@@ -57,10 +59,10 @@ var SMplayersManager = function($scAppId) {
 			},
 			onplay: function() {
 				// alert('ready!');
-				clearInterval(bufferInterval);
-				$(".seek-scrub, #next-song").removeClass('disable');
+				// clearInterval(bufferInterval);
+				RadioManager.enableNextButton();
 				$('#play-pause .control-image').removeClass('spinner ').addClass('pause-image').show();
-				scrubInterval.start()
+				scrubInterval.start();
 				console.log('onplay SC'); 
 			},
 			onready: function() {
@@ -69,6 +71,8 @@ var SMplayersManager = function($scAppId) {
 			}
 			}, function(sound) {
 				scWidget = sound;
+				console.log(scWidget);
+				scWidgetManager.addSong(sound);
 				playSCTrack();
 			});
 	}
@@ -123,13 +127,13 @@ var SMplayersManager = function($scAppId) {
 		var state = ytPlayer.getPlayerState();
 		if(state === 0) {
 			scrubInterval.stop();
-			$(".seek-scrub, #next-song").addClass('disable');
+			RadioManager.disableNextButton();
 			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
 			RadioManager.playNextSong();
 		}
 		else if(state === 1) {
-			clearInterval(bufferInterval);
-			$(".seek-scrub, #next-song").removeClass('disable');
+			// clearInterval(bufferInterval);
+			RadioManager.enableNextButton();
 			$('#play-pause .control-image').removeClass('spinner ').addClass('pause-image').show();
 			if(ytPlayer.getPlaybackQuality !== ytQuality) {
 				setQuality(ytQuality);
@@ -165,7 +169,7 @@ var SMplayersManager = function($scAppId) {
 		onYouTubeIframeAPIReady: onYouTubeIframeAPIReady,
 		initSCPlayer: initSCPlayer,
 		loadSCSong: loadSCSong,
-		playSCTrack: playSCTrack,
-		loadInterval: loadInterval
+		playSCTrack: playSCTrack
+		// loadInterval: loadInterval
 	}
 }

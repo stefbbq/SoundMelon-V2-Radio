@@ -32,6 +32,7 @@
 //= require SMsplashManager
 //= require SMcalloutManager
 //= require SMartistsManager
+//= require SMscWidgetManager
 //= require SMplayersManager
 //= require SMradioManager
 //= require SMmodalItem

@@ -82,8 +82,8 @@ var SMradioManager = function(scAppId) {
 	
 	function nextBehaviour() {
 		if(soundManager) {
-			console.log("STOP ALL");
-			soundManager.stopAll();
+			// console.log("STOP ALL");
+			//scWidgetManager.stopAll();
 			// scWidget.stop();
 		}
 		if(!$(this).hasClass('disable')) {
@@ -95,12 +95,13 @@ var SMradioManager = function(scAppId) {
 				}
 				else if(currentSong['upload_source'] === 'soundcloud') {
 					// scWidget.pause();
-					soundManager.stopAll();
-					scWidget.destruct();
+					//scWidgetManager.stopAll();
+					scWidgetManager.destroySong(scWidget.sID);
 				}
 				playNextSong();
 			}
-			$(this).addClass('disable');
+			// $(this).addClass('disable');
+			disableNextButton();
 		}
 	}
 	
@@ -131,8 +132,8 @@ var SMradioManager = function(scAppId) {
 					ytPlayer.stopVideo();
 				}
 				else if(currentSong['upload_source'] === 'soundcloud') {
-					scWidget.destruct();
-					soundManager.stopAll();
+					scWidgetManager.destroySong(scWidget.sID);
+					//scWidgetManager.stopAll();
 				}
 				var args = {favStartVal: $(this).closest('.list-item').attr('data-position')}
 				newSongsList(args);
@@ -207,7 +208,7 @@ var SMradioManager = function(scAppId) {
 	
 	function executePlaylist() {
 		console.log('trying to execute playlist');
-		setTimeout(checkPlaying, 10000);
+		// setTimeout(checkPlaying, 10000);
 		if(!ytPlayerReady) {
 			//Wait until players are ready
 			if(!runOnYTReady) {
@@ -234,7 +235,7 @@ var SMradioManager = function(scAppId) {
 				if(firstSource === 'youtube') {
 					$('#soundcloud, .overlay, .overlay .song-link').hide();
 					$('#youtube').css('display', 'block');
-					bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 5000);
+					// bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 5000);
 					ytFirstPlayForSong = true;
 					ytPlayer.loadVideoById({videoId: firstSong['song_id']});
 					ytPlayer.setVolume(volume);
@@ -304,7 +305,7 @@ var SMradioManager = function(scAppId) {
 			
 			console.log('hiding .player');
 			if(nextSong['upload_source'] === 'youtube') {
-				bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 5000);
+				// bufferInterval = setInterval(function() {playersManager.loadInterval(currentSong)}, 5000);
 				ytFirstPlayForSong = true;
 				ytPlayer.loadVideoById({videoId: currentSong['song_id']});
 				ytPlayer.setVolume(volume);
@@ -321,7 +322,7 @@ var SMradioManager = function(scAppId) {
 				newArtistProfile = true;
 				getArtistInfo();
 			}
-			setTimeout(checkPlaying, 10000);
+			// setTimeout(checkPlaying, 10000);
 			loadInArtistInfo();
 			$("#favorites-panel .song-item").removeClass('current');
 			updateFavoritesPlaylist();
@@ -348,44 +349,44 @@ var SMradioManager = function(scAppId) {
 
 	}
 
-	function checkPlaying() {
-		var showError;
-		if(!currentSong) showErrrow = true;
-		else if(currentSong['upload_source'] === 'youtube') {
-			var status = ytPlayer.getPlayerState();
-			if(/3|-1/.test(status)) {
-				showError = true;
-			}
-		}
-		else if(currentSong['upload_source'] === 'soundcloud') {
-			console.log(scWidget.isBuffering);
-			if(!scWidget || scWidget.isBuffering) {
-				showError = true;
-			}
-		}
+	// function checkPlaying() {
+	// 	var showError;
+	// 	if(!currentSong) showErrrow = true;
+	// 	else if(currentSong['upload_source'] === 'youtube') {
+	// 		var status = ytPlayer.getPlayerState();
+	// 		if(/3|-1/.test(status)) {
+	// 			showError = true;
+	// 		}
+	// 	}
+	// 	else if(currentSong['upload_source'] === 'soundcloud') {
+	// 		console.log(scWidget.isBuffering);
+	// 		if(!scWidget || scWidget.isBuffering) {
+	// 			showError = true;
+	// 		}
+	// 	}
 
-		if(showError) {
-			var message;
-			if(stillBuffering) {
-				message = {
-					severity: 'error', 
-					message: 'There was a loading error, please reload the page.'
-				};
-			}
-			else {
-				message = {
-					severity: 'warning', 
-					message: 'Please wait while we get the content!'
-				};
-			}
-			FlashManager.showMessage(message);
-			stillBuffering = true;
-			checkTimeout = setTimeout(checkPlaying, 10000);
-		}
-		else console.log('no load delays!');
-		clearTimeout(checkTimeout);
-		FlashManager.animateOut(0);
-	}
+	// 	if(showError) {
+	// 		var message;
+	// 		if(stillBuffering) {
+	// 			message = {
+	// 				severity: 'error', 
+	// 				message: 'There was a loading error, please reload the page.'
+	// 			};
+	// 		}
+	// 		else {
+	// 			message = {
+	// 				severity: 'warning', 
+	// 				message: 'Please wait while we get the content!'
+	// 			};
+	// 		}
+	// 		FlashManager.showMessage(message);
+	// 		stillBuffering = true;
+	// 		checkTimeout = setTimeout(checkPlaying, 10000);
+	// 	}
+	// 	else console.log('no load delays!');
+	// 	clearTimeout(checkTimeout);
+	// 	FlashManager.animateOut(0);
+	// }
 	
 	function seekTracker() {
 		if(currentSong) {
@@ -404,7 +405,8 @@ var SMradioManager = function(scAppId) {
 
 	function loadInArtistInfo() {
 		setTimeout(function() {
-			$("#next-song").removeClass('disable');
+			// $("#next-song").removeClass('disable');
+			enableNextButton();
 			calloutBox = $('.callout#show-artist-profile');
 			if(calloutBox.hasClass('visible')) {
 				newArtistProfile = true;
@@ -415,11 +417,16 @@ var SMradioManager = function(scAppId) {
 
 	function addToFavorites() {
 		var linkBox = $(this).closest('.favorites-link');
-		// linkBox.toggleClass('filled');
-		// if(currentSong) {
-		// 	if(currentSong['favorite'] === "false") currentSong['favorite'] = "true";
-		// 	else currentSong['favorite'] = "false";
-		// }
+	}
+
+	function disableNextButton() {
+		$(".seek-scrub, #next-song").addClass('disable');
+	}
+
+	function enableNextButton() {
+		setTimeout(function() {
+			$(".seek-scrub, #next-song").removeClass('disable');
+		}, 3000)
 	}
 
 	function manualSeek(seekTo) {
@@ -494,6 +501,8 @@ var SMradioManager = function(scAppId) {
 		updateFavoritesPlaylist: updateFavoritesPlaylist,
 		playPause: playPause,
 		playBehaviour: playBehaviour,
+		disableNextButton: disableNextButton,
+		enableNextButton: enableNextButton,
 		
 		//vars
 		playersManager: playersManager,
