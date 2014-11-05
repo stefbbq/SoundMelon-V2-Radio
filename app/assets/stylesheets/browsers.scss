@@ -22,4 +22,9 @@
 			.right {float: right;}
 		}
 	}
+
+	.modal#artist-profile .main-content > .content, .modal#music-admin .main-content .content .viewport {
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
 }
