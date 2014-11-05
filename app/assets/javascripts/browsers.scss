@@ -10,3 +10,16 @@
 		margin: 0 auto;
 	}
 }
+
+.ipad {
+	@media only screen and (orientation: landscape) {
+		body > .footer {
+			.logo {
+				display: block;
+				width: 450px;
+				bottom: 0;
+			}
+			.right {float: right;}
+		}
+	}
+}

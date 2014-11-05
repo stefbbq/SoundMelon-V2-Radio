@@ -20,18 +20,12 @@
 	- @all_songs = @all_songs.sort_by {|pair| pair[0]}
 	- @all_songs = @all_songs.reverse
 	
-#scrollbar1.custom-scroller
-	.scrollbar
-		.track
-			.thumb
-				.end
-				
-	.viewport.section-wrapper
-		.overview#available-uploads
-			= render 'artists/available_uploads', all_songs: @all_songs
+.viewport.section-wrapper
+	.overview#available-uploads
+		= render 'artists/available_uploads', all_songs: @all_songs
 
 :javascript
-	$('.modal#music-admin #scrollbar1').tinyscrollbar();
+	//$('.modal#music-admin #scrollbar1').tinyscrollbar();
 	$(document).ready(function() {
 		$('.modal#music-admin .reload-content, .div-link').click(function() {
 			$('#music-admin .spinner').show();

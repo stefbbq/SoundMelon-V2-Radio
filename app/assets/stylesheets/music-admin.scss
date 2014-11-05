@@ -169,23 +169,10 @@ $music-viewport-height: 365px;
 			&.songs-container {
 				min-height: $music-viewport-height;
 			}
-			
-			#scrollbar1.custom-scroller {
-				width: 100%;
-				clear: both;
 
-				.scrollbar {
-					z-index: 10;
-				}
-				
-				.viewport {
-					// width: 297px;
-					height: $music-viewport-height;
-					// top: -271px;
-				}
-				.track {
-					height: $music-viewport-height;
-				}
+			.viewport {
+				height: $music-viewport-height;
+				overflow-y: auto;
 			}
 			
 			.song-wrapper {
