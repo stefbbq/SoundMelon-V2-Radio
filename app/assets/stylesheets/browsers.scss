@@ -23,7 +23,7 @@
 		}
 	}
 
-	.modal#artist-profile .main-content > .content, .modal#music-admin .main-content .content .viewport {
+	.modal#artist-profile .main-content > .content, .modal#music-admin .main-content .content .viewport, .signup-wrapper .body, .tagsinput {
 		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;
 	}

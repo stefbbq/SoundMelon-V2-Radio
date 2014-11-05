@@ -152,11 +152,12 @@ class UsersController < ApplicationController
 	def show_favorites
 		@user = User.find(current_user.id)
 		@favorites = @user.favorite_songs
-		
-		@favorites.each do |song|
-			obj = Song.find_by_song_id(song)
-			if obj.nil? || !obj.active
-				@favorites.delete(song)
+		if !@favorites.nil?
+			@favorites.each do |song|
+				obj = Song.find_by_song_id(song)
+				if obj.nil? || !obj.active
+					@favorites.delete(song)
+				end
 			end
 		end
 		@user.update_attributes({favorite_songs: @favorites})
