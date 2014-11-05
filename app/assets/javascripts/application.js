@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.remotipart
-//= require jquery.ui.slider
-//= require jquery.ui.sortable
+//= require jquery.ui.touch-punch.min.js
+
 //= require jquery.tagsinput.min
 //= require jquery.typing-0.2.0.min
 //= require jquery.tinyscrollbar.min
