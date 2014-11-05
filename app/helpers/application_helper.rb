@@ -205,7 +205,9 @@ module ApplicationHelper
 		@active_ids = []
 		song_list.each do |song_id|
 			song = Song.find_by_song_id(song_id)
-			@active_ids << song_data(song, user)
+			if !song.nil?
+				@active_ids << song_data(song, user)
+			end
 		end
 		return @active_ids
 	end

@@ -2,7 +2,7 @@
 	.wrapper
 		.section-wrapper.content
 			.label Your Favourites
-			- @songs_list = favorites
+			- @songs_list = @favorites
 		- if @songs_list.nil? || @songs_list.size == 0
 			.section-wrapper
 				.no-info
