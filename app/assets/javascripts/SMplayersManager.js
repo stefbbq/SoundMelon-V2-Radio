@@ -126,35 +126,41 @@ var SMplayersManager = function($scAppId) {
 		// console.log(event.data);
 		var state = ytPlayer.getPlayerState();
 		if(state === 0) {
+			// state ended
+
 			scrubInterval.stop();
 			RadioManager.disableNextButton();
 			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
 			RadioManager.playNextSong();
 		}
 		else if(state === 1) {
-			// clearInterval(bufferInterval);
+			// state playing
+
 			RadioManager.enableNextButton();
 			$('#play-pause .control-image').removeClass('spinner ').addClass('pause-image').show();
 			if(ytPlayer.getPlaybackQuality !== ytQuality) {
 				setQuality(ytQuality);
 			}
 			if(ytFirstPlayForSong) {
-				scrubInterval.start()
+				scrubInterval.start();
 				ytFirstPlayForSong = false;
 			}
+			if(!scrubInterval.isRunning()) scrubInterval.start();
 		}
 		else if(state === 2) {
+			// state paused
+
 			scrubInterval.stop();
-			$('#play-pause .control-image').removeClass('spinner').addClass('play-image').show();
+			$('#play-pause .control-image').removeClass('spinner').removeClass('pause-image').addClass('play-image').show();
 			
 		}
 		else if(state === 3) {
-			
+			// state buffering 
+
 			$('#play-pause .control-image').removeClass('play-image pause-image').addClass('spinner ');
 		}
 		else if(state === 5) {
-			// alert('YT is state 5');
-			// ytFirstPlayForSong = true;
+			// state queued
 		}
 	}
 	

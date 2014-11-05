@@ -4,28 +4,8 @@ $music-viewport-height: 365px;
 .modal#artist-profile {
 	//Styles for Music Admin
 	width: auto;
-	// bottom: 255px;
-	// right: -175px;
-	
-	// .chain {
-	// 	background: url('/assets/artist-profile.png') no-repeat;
-	// 	width: 151px;
-	// 	height: 133px;
-	// 	left: -130px;
-	// 	top: -17px;
-	// }
-	// .anchor {
-	// 	// top: 107px;
-	// 	left: -53px;
-	// }
 	
 	.main-content {
-		// top: -175px;
-		
-		// .header {
-		// 	position: relative;
-		// 	top: -49px;
-		// }
 		
 		> .content {
 			// height: 518px;
@@ -53,16 +33,10 @@ $music-viewport-height: 365px;
 					margin: 8px 0 0;
 					float: left;
 				}
-				// .name {
-				// 	height: 42px;
-				// 	.label {
-				// 		position: relative;
-				// 		top: 10px;
-				// 	}
-					input.text-box {
-						float: right;
-					}
-				// }
+
+				input.text-box {
+					float: right;
+				}
 				
 				.website {
 					// top: 261px;
@@ -78,6 +52,8 @@ $music-viewport-height: 365px;
 				.artist-tags {
 					.tag-form {
 						padding: 10px 0 0;
+
+						input {color: rgba(white, 0.5) !important;}
 					}
 				}
 				
