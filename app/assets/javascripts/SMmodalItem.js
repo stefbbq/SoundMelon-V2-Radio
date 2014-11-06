@@ -25,9 +25,9 @@ var SMmodalItem = function($link, $index){
 		setModalClose();
 		setModalPosition();
 		$(window).resize(setModalPosition);
-		$(document).ready(function() {
-
-		});
+		// $(window).on("orientationchange", setModalPosition);
+		// window.onorientationchange = setModalPosition;
+		// $(window).on('orientationchange', setModalPosition);
 
 	}
 	
@@ -68,7 +68,7 @@ var SMmodalItem = function($link, $index){
 	}
 
 	function setModalClose() {
-		$(document).click(function(e) {
+		$(document).on('click tap', function(e) {
 			// console.log("document clicked");
 			object.each(function() {
 				var $el = $(this);
@@ -95,20 +95,26 @@ var SMmodalItem = function($link, $index){
 	}
 
 	function setModalPosition() {
+		console.log('orientationchange!');
 		var linkIndex = linkBox.index();
 		var linkBoxesLength = linkBoxes.length;
-		if(linkIndex < linkBoxesLength - 2 || innerWidth < 801) {
-			console.log(linkBox.index());
-			var linkPos = findPos($link[0]);
-			var offset = 100;
-			var linkLeftPos = linkPos.x - offset;
-			object.css('left', linkLeftPos);
+
+		console.log(linkBox.index());
+		var linkPos = findPos($link[0]);
+		var offset = 100;
+		var linkLeftPos = linkPos.x - offset;
+		object.css('left', linkLeftPos);
+
+		if(linkIndex === linkBoxesLength - 2) {
+			if(innerWidth > 949) {
+				object.css('left','');
+				object.addClass('second-last-modal');
+			}
+			else object.removeClass('second-last-modal');
 		}
-		else if(linkIndex === linkBoxesLength - 2 && innerWidth > 800) {
-			object.addClass('second-last-modal');
-		}
-		else {
-			object.addClass('last-modal');
+		if($('html').hasClass('ipad')) {
+			object.hide();
+			deactivate();	
 		}
 	}
 	

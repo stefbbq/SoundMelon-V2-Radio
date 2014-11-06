@@ -33,7 +33,10 @@ function animateSplashOut(callback) {
 	TweenLite.to('.inner-content', 0.4, {opacity: 0});
 	$(".login-spinner").css('display','block');
 	TweenLite.to('.login-spinner', 0.2, {opacity: 1});
-	splashBGtween = TweenLite.to('.bg-wrapper', 1, {opacity: 1, delay: 0.5, ease:Sine.easeInOut, onComplete: callback});	
+	splashBGtween = TweenLite.to('.bg-wrapper', 1, {opacity: 1, delay: 0.5, ease:Sine.easeInOut, onComplete: function() {
+			callback();
+			$(".splash-bg").css('opacity',0);
+	}});	
 }
 
 function animateHomeIn() {

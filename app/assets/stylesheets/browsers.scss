@@ -23,8 +23,20 @@
 		}
 	}
 
-	.modal#artist-profile .main-content > .content, .modal#music-admin .main-content .content .viewport, .signup-wrapper .body, .tagsinput {
+	.modal#artist-profile .main-content > .content, .modal#music-admin .main-content .content .viewport, .signup-wrapper .body, .tagsinputr {
 		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;
+	}
+
+	.modal#user-invites .main-content .content #invites-page .bottom .text-button.submit-invite .text-box {
+		padding: 4px 0 0 5px;
+		height: 33px;
+	}
+
+	.modal#music-admin .main-content.song-view .content .song-form {
+		.source-tags {
+			margin-top: 0;
+		}
+		.song-state {margin-bottom: 8px;}
 	}
 }

@@ -15,7 +15,7 @@
 //= require jquery-ui
 //= require jquery.remotipart
 //= require jquery.ui.touch-punch.min.js
-
+//= require jquery.tap.min
 //= require jquery.tagsinput.min
 //= require jquery.typing-0.2.0.min
 //= require jquery.tinyscrollbar.min
