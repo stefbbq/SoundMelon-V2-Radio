@@ -97,6 +97,16 @@ $(document).ready(function() {
 			}, delay);
 		});
 	}
+
+	if($('html').hasClass('ipad')) {
+		$(window).blur(function() {
+			$(window).scrollTop(0);
+			console.log('blur out scroll top');
+		}).focus(function() {
+			$(window).scrollTop(0);
+			console.log('focus in scroll top');
+		});
+	};
 	
 	//Add AJAX-loaders
 	$(document).ajaxStop(spinnerAjaxStop);
