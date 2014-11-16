@@ -127,6 +127,8 @@ GEM
       thor (~> 0.14)
     formtastic (2.3.1)
       actionpack (>= 3.0)
+    friendly_id (4.0.10.1)
+      activerecord (>= 3.0, < 4.0)
     geocoder (1.2.5)
     haml (4.0.5)
       tilt
@@ -334,6 +336,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.1.0)
   faraday
   figaro
+  friendly_id
   geocoder
   haml-rails
   jquery-rails (= 2.0.2)

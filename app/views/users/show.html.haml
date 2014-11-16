@@ -6,11 +6,7 @@
 
 - else
 
-	#user_page
-
-		#radio-container
-			#radio-view
-				= render "users/radio_player"
+	= render 'welcome/radio_page'
 
 	- if current_user.invites.nil? || current_user.invites.size == 0
 		.warn-user.hidden
@@ -24,12 +20,4 @@
 				.message You can update your Artist Profile!
 				.severity Your Profile
 				.click(data-click="#artist-profile-edit")
-
-	:javascript
-		
-		$(document).ready(function() {
-			initHomeFunctionality();
-			$(".bg-wrapper").css('opacity', 1);
-		});
-
 

@@ -1,0 +1,13 @@
+#user_page
+
+	#radio-container
+		#radio-view
+			= render "users/radio_player"
+
+	:javascript
+		
+		$(document).ready(function() {
+			initHomeFunctionality();
+			$(".bg-wrapper").css('opacity', 1);
+		});
+

@@ -36,6 +36,10 @@ class SongsController < ApplicationController
 	def edit
 	end
 
+	def show
+		
+	end
+
 	def make_public
 		@song_id = params[:song_id]
 		@upload_source = params[:upload_source]

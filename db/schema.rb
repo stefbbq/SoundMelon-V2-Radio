@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141012213526) do
+ActiveRecord::Schema.define(:version => 20141110163817) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -121,7 +121,10 @@ ActiveRecord::Schema.define(:version => 20141012213526) do
     t.string   "song_title"
     t.string   "duration"
     t.string   "song_image"
+    t.string   "slug"
   end
+
+  add_index "songs", ["slug"], :name => "index_songs_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
