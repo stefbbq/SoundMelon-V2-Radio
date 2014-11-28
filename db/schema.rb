@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141110163817) do
+ActiveRecord::Schema.define(:version => 20141116170947) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20141110163817) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "encrypted_password"
+    t.boolean  "guest",                  :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

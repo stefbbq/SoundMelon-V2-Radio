@@ -43,6 +43,7 @@ gem 'jquery-ui-rails'
 #gem "oauth2", "~> 0.9.2"
 #gem "omniauth-oauth2", "~> 1.1.1"
 gem "devise"
+gem "devise-guests"
 gem "faraday"
 gem "soundcloud"
 gem "nokogiri"
@@ -57,6 +58,7 @@ gem "friendly_id"
 gem 'activeadmin', github: 'gregbell/active_admin', branch: '0-6-stable'
 gem "meta_search", '>= 1.1.0.pre'
 gem "geocoder"
+gem "zeroclipboard-rails"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'

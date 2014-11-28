@@ -184,21 +184,25 @@ module ApplicationHelper
 		user.save
 	end
 
-	def create_playlist(user, playlist_size, station)
+	def create_playlist(user, playlist_size, station, first_song)
 		@history = user.song_history
 		@active_songs = Song.where(active: true)
 		@active_songs = filter_by_history(user, @active_songs, @history, playlist_size, station)
 		@active_ids = []
+		if first_song
+			logger.info(first_song)
+			@active_ids << song_data(Song.find_by_slug(first_song), user)
+		end
 		@active_songs.each do |song|
 			# artist = Artist.find_by_id(song.artist_id)
 			# all_tags = song.source_tags
 			@active_ids << song_data(song, user)
 		end
-		return @active_ids
+		return @active_ids.uniq
 	end
 
 	def song_data(song, user)
-		return {song_id: song.song_id, upload_source: song.upload_source, keywords: song.source_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: song.artist.artist_photo.url(:thumb), favorite: user.favorite_songs.nil? ? 'false' : user.favorite_songs.include?(song.song_id).to_s}
+		return {song_id: song.song_id, upload_source: song.upload_source, keywords: song.source_tags, song_url: song.song_url, song_title: song.song_title, artist_name: song.artist.artist_name, duration: song.duration, photo: song.artist.artist_photo.url(:thumb), song_url: ENV["HOST_ADDR"] + song_path(song), favorite: user.favorite_songs.nil? ? 'false' : user.favorite_songs.include?(song.song_id).to_s}
 	end
 
 	def create_favorites_playlist(user, song_list)

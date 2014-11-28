@@ -328,6 +328,7 @@ $player-width: 564px;
 		}
 
 		.control-panel {
+
 		}
 		
 		.control {
@@ -354,7 +355,7 @@ $player-width: 564px;
 				width: 52px;
 				height: 52px;
         position: relative;
-        // z-index: 10;
+        z-index: 1;
         
 				.play-image {
 					background: url('/assets/play.png') no-repeat center;
@@ -376,8 +377,9 @@ $player-width: 564px;
 				opacity: 0;
 				visibility: hidden;
 				display: none;
-        margin-left: -12px;
+        margin-left: -15px;
         width: 56px;
+        position: relative;
 
 				&.enable-control {
 					opacity: 1;
@@ -402,6 +404,8 @@ $player-width: 564px;
 				display: none;
         margin-right: -12px;
         width: 56px;
+        position: relative;
+        z-index: 1;
 
 				&.enable-control {
 					opacity: 1;
@@ -421,6 +425,33 @@ $player-width: 564px;
 				&:active {@include background($disable-bg);}
 			}
 
+		}
+
+		#user-song-ctas {
+			display: none;
+			position: absolute;
+			z-index: 0;
+			left: 136px;
+			top: 6px;
+			@include background(linear-gradient(rgb(112,112,112), rgb(99,99,99)));
+			@include border-radius(0 24px 24px 0);
+			height: 46px;
+			padding: 0 18px 0 22px;
+
+			&.enable-ctas {
+				opacity: 1;
+				visibility: visible;
+				display: block;
+			}
+
+			.user-cta {
+				position: relative;
+				top: 50%;
+				@include transform(translateY(-50%));
+				display: inline-block;
+				vertical-align: middle;
+				cursor: pointer;
+			}
 		}
 		
 		.current-content {
@@ -508,8 +539,8 @@ $player-width: 564px;
 	
 
       }
-			.playlist { overflow: hidden; }
-      .song { margin-top: 10px; overflow: hidden; }
+			.playlist { overflow: hidden; margin-bottom: 10px; }
+      .song { overflow: hidden; }
 		}
 	}
 

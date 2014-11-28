@@ -4,7 +4,7 @@ var ytPlayerReady = false;
 var scPlayerReady = false;
 var runOnYTReady = false;
 var runInitSC = false;
-var newArtistProfile, CalloutManager, soundManager;
+var newArtistProfile, CalloutManager, soundManager, clipClient;
 var scrubInterval;
 var volume = 100;
 var ytQuality = 'large';
@@ -22,6 +22,8 @@ var SMradioManager = function(scAppId) {
 		artistsManager = new SMartistsManager();
 		CalloutManager = new SMcalloutManager($("#callout-wrapper"));
 		CalloutManager.enable();
+
+		clipClient = new ZeroClipboard( $("#clipboard-btn") );
 		// FavoritesCallout = new SMcalloutItem($('#favorites-panel-button'), $(".callout-wrapper.favorites-panel"));
 
 		//basic commands
@@ -31,6 +33,7 @@ var SMradioManager = function(scAppId) {
 		$('#report-song').click(openReportForm);
 		$('#radio-stations #user-meta').trigger('click');
 		$("#add-to-favorites").click(addToFavorites);
+		$("#share-song").click(shareCurrentSong);
 		
 		//keyboard bindings
 		key('space', function() {
@@ -66,12 +69,19 @@ var SMradioManager = function(scAppId) {
 			manualSeek(seekValue);
 			if(getPlayerState() === 1) scrubInterval.start();
 		});
+
+		//run player automatically if song is deep linked into
+		radioView = $("#radio-view");
+		if(radioView.attr('data-first-song') !== '' && radioView.attr('data-first-song-played') !== 'true') {
+			$('#radio-controls #play-pause').trigger('click');
+		}
 	}
 	
 	//
 	//behaviour
 	function playBehaviour() {
 		$(this).children('.control-image').removeClass('play-image pause-image').addClass('spinner ');
+
 		if(currentSong) {
 			playPause();
 		}
@@ -159,6 +169,8 @@ var SMradioManager = function(scAppId) {
 
 	function newSongsList(args) {
 		var radioStation;
+		var radioView = $("#radio-view");
+
 		if(currentStation === 'favorites' && args) {
 			var start = args.favStartVal;
 			var allFavs = $("#favorites-panel .song-item");
@@ -175,7 +187,12 @@ var SMradioManager = function(scAppId) {
 			$('.stations #user-meta').trigger('click');
 		}
 		else {
+			console.log("NEW GUY HERE");
 			radioStation = {station: currentStation, played_songs: playedUpdate, user_id: currentUserId};	
+			if(radioView.attr('data-first-song') !== '' && radioView.attr('data-first-song-played') !== 'true') {
+				radioStation = {station: currentStation, song_list: songList, user_id: currentUserId, request_first_song: radioView.attr('data-first-song')};
+				radioView.attr('data-first-song-played', "true");
+			}
 		}
 		
 		console.log(radioStation);
@@ -184,7 +201,7 @@ var SMradioManager = function(scAppId) {
 			data: radioStation,
 			success: function(data) {
 				if(data.length > 0) {
-					songs = currentStation === "favorites" ? data : shuffleList(data);
+					songs = currentStation === "favorites" || radioView.attr('data-first-song') !== '' ? data : shuffleList(data);
 					console.log(songs);
 					executePlaylist();
 				} 
@@ -417,6 +434,17 @@ var SMradioManager = function(scAppId) {
 
 	function addToFavorites() {
 		var linkBox = $(this).closest('.favorites-link');
+	}
+
+	function shareCurrentSong() {
+		var link = $(this).attr('data-song-path');
+		var message = {
+			message: 'share this link: <a href="'+ link +'" target="_blank">'+ link +'</a>',
+			severity: $("#clipboard-btn").clone().removeClass('hidden')
+		}
+		FlashManager.showMessage(message);
+		var clip = new ZeroClipboard($("#flash-board #clipboard-btn"))
+		clip.setText(link);
 	}
 
 	function disableNextButton() {

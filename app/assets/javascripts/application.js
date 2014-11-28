@@ -27,6 +27,7 @@
 //= require youtube_iframe_api
 //= require simple-slider.min
 //= require sc_js_sdk
+//= require zeroclipboard
 //= require utilities
 
 //= require SMinterval

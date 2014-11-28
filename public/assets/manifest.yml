@@ -99,6 +99,8 @@ chains.png: chains-7122ecde6da524dca90f991040922e1a.png
 chains/index.png: chains-7122ecde6da524dca90f991040922e1a.png
 check_mark.png: check_mark-070c6647fcf31a0fe74748b9b7e15196.png
 check_mark/index.png: check_mark-070c6647fcf31a0fe74748b9b7e15196.png
+clipboard.png: clipboard-a9f94d5b995b1586ce4685e19ace02fb.png
+clipboard/index.png: clipboard-a9f94d5b995b1586ce4685e19ace02fb.png
 close.png: close-32754eb0c6cb10ecf05eff9911f5c0a3.png
 close/index.png: close-32754eb0c6cb10ecf05eff9911f5c0a3.png
 core/background.jpg: core/background-9eac1016abaff91294829b160e8b5b08.jpg
@@ -151,6 +153,8 @@ sc-placeholder.png: sc-placeholder-ca1c429f19670b37473866c89093cf50.png
 sc-placeholder/index.png: sc-placeholder-ca1c429f19670b37473866c89093cf50.png
 sc-radio-bg.jpg: sc-radio-bg-7455198df756b4e94da71698d530acb0.jpg
 sc-radio-bg/index.jpg: sc-radio-bg-7455198df756b4e94da71698d530acb0.jpg
+share.png: share-9974ecc9b3a68a4dbfc71c0048a55d9e.png
+share/index.png: share-9974ecc9b3a68a4dbfc71c0048a55d9e.png
 skip.png: skip-fce051625a725e56274c429c021dda1f.png
 skip/index.png: skip-fce051625a725e56274c429c021dda1f.png
 sm-cta-sprite.png: sm-cta-sprite-b7491c0a064ae68e5b7a95ed6486fdea.png
@@ -185,10 +189,12 @@ yt-logo.png: yt-logo-29742d2eb93b398dada94860bd930b16.png
 yt-logo/index.png: yt-logo-29742d2eb93b398dada94860bd930b16.png
 yt-logoORIG.png: yt-logoORIG-96178a4c51768e0ea1c049b89ef71783.png
 yt-logoORIG/index.png: yt-logoORIG-96178a4c51768e0ea1c049b89ef71783.png
-application.js: application-50b18fe543eaafae0382f353e89ba78c.js
-application/index.js: application-50b18fe543eaafae0382f353e89ba78c.js
-application.css: application-5dbc1112945fab0084084cdce8b7521b.css
-application/index.css: application-5dbc1112945fab0084084cdce8b7521b.css
+application.js: application-936a1ddecc5f2f1de1e2f05c076f9070.js
+application/index.js: application-936a1ddecc5f2f1de1e2f05c076f9070.js
+application.css: application-bd9b6b1322a1612eb0cc655dac543355.css
+application/index.css: application-bd9b6b1322a1612eb0cc655dac543355.css
+ZeroClipboard.swf: ZeroClipboard-2fe99dab2c07f784147ff30761b200d6.swf
+ZeroClipboard/index.swf: ZeroClipboard-2fe99dab2c07f784147ff30761b200d6.swf
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png

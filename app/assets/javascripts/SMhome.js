@@ -76,7 +76,7 @@ function runEmailConf(form) {
 
 $(document).ready(function() {
 	FlashManager = new SMflashManager();
-	console.log('setting up modals now...');
+	// console.log('setting up modals now...');
 	ModalManager = SMmodalManager();
 
 	//justify text

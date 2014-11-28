@@ -20,6 +20,10 @@
 		top: 50%;
 		@include transform(translateY(-50%));
 		margin-top: 2px;
+
+		a {
+			color: rgba(#ce3a00, 0.85);
+		}
 	}
 	
 	.severity {

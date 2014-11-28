@@ -61,7 +61,18 @@ class SongsController < ApplicationController
 
 	def request_playlist
 		@items = params
-		@user = User.find_by_id(params[:user_id])
+		@user = user_signed_in? ? User.find_by_id(params[:user_id]) : current_or_guest_user
+		# @user = current_or_guest_user
+		# @add_first_song = false
+		if !user_signed_in?
+			#deal with guest user song list
+			if params[:request_first_song]
+				# @add_first_song = true
+				@user.user_meta = Song.find_by_slug(params[:request_first_song]).source_tags
+				@user.save
+				logger.info("Adding in user prefs")
+			end
+		end
 		@station = params[:station]
 		@empty_fb_meta = @user.fb_meta.nil? || @user.fb_meta.keys.size == 0
 		@empty_user_meta = @user.user_meta.nil? || @user.user_meta.size == 0
@@ -73,7 +84,7 @@ class SongsController < ApplicationController
 		else
 			update_song_history(@user, params[:played_songs])
 			@playlist_size = 3
-			@active_ids = create_playlist(@user, @playlist_size, @station)
+			@active_ids = create_playlist(@user, @playlist_size, @station, params[:request_first_song])
 		end
 
 		respond_to do |format|

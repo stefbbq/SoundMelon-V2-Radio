@@ -179,11 +179,31 @@ h1 {
 .favorite-icon {
   background-image: url('/assets/favorite.png');
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 26px;
   width: 26px;
   &.filled {
     background-image: url('/assets/favorite-filled.png');
   }
+}
+.share-icon {
+  background-image: url('/assets/share.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 26px;
+  width: 26px;
+}
+
+.clipboard-icon {
+  background: url('/assets/clipboard.png') center / contain no-repeat;
+  height: 16px;
+  width: 14px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: -3px;
 }
 
 .sprite {

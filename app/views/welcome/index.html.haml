@@ -1,4 +1,4 @@
-/= current_user.inspect
+/= current_or_guest_user.inspect
 - if user_signed_in?
 	= render template: 'users/show'
 - else

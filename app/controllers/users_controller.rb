@@ -110,6 +110,10 @@ class UsersController < ApplicationController
 			if i == limit
 				break
 			end
+			# if city.types.include? 'locality'
+			# 	@json[i] = city.data
+			# 	i += 1
+			# end
 			@json[i] = city.data
 			i += 1
 		end

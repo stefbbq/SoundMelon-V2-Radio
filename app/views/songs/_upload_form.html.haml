@@ -15,7 +15,8 @@
 		
 			- @artist = current_artist
 			- no_brand = false
-			- if !Song.exists?(params[:id])
+			- in_db = false
+			- if Song.where(id: params[:id]).size == 0
 				- @song = Song.new(song_title: params[:song_title], song_id: params[:song_id])
 				- source_abbr = params[:upload_source] == 'youtube' ? 'yt' : 'sc'
 				- duration = to_minutes(params[:duration].to_f)
@@ -24,10 +25,11 @@
 				/- song_private = params[:song_private]
 				- song_id = params[:song_id]
 				- song_url = params[:song_url]
-				
 				- song_image = params[:song_image]
 			- else
 				- @song = Song.find(params[:id])
+
+				- in_db = true
 				- source_abbr = @song.upload_source == 'youtube' ? 'yt' : 'sc'
 				- duration = @song.duration
 				- source_tags = @song.source_tags.nil? ? [] : @song.source_tags
@@ -38,7 +40,7 @@
 				/- song_title = @song.song_title
 				- song_image = @song.song_image
 			- no_brand = !(/placeholder/ =~ song_image).nil?
-			- song_title = params[:song_title]
+			- song_title = in_db ? @song.song_title : params[:song_title]
 			- song_private = params[:song_private] == "true" || @song.is_private
 			- state = @song.active ? 'ACTIVE' : 'INACTIVE'
 			- on_state_class = @song.active ? 'toggle-select' : ''
@@ -71,6 +73,12 @@
 							.toggle-state.off{class: off_state_class}
 								.switch-box off
 							= f.hidden_field(:active, value: @song.active, class: 'active-check')
+
+						- if in_db && @song.active
+							.share-link.share-icon
+								%a.filled-link#share-song{'data-song-path' => ENV["HOST_ADDR"] + song_path(@song)}
+								/.sub-label= ENV["HOST_ADDR"] + song_path(@song)
+
 							
 						%span.state{class: state.downcase}= state
 						

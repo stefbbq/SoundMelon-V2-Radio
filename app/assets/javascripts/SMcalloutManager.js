@@ -17,7 +17,7 @@ var SMcalloutManager = function(calloutBox) {
 		var link = $(this);
 		calloutLinks.removeClass('current-visit');
 		link.addClass('current-visit');
-		console.log(link);
+		// console.log(link);
 		allBoxes.hide();
 		var relBox = callout.find('#' + link.attr('data-callout-id'));
 		relBox.show();
@@ -27,6 +27,7 @@ var SMcalloutManager = function(calloutBox) {
 		console.log(diff);
 		// anchor.css('top', '');
 		var newTop = parseInt(anchor.css('top')) + diff - 30;
+		if($(".right .playlist").length === 0) newTop += 20;
 		TweenLite.to(anchor, 0.3, {top: newTop});
 	}
 

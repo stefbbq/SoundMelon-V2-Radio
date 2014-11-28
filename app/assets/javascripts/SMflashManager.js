@@ -61,6 +61,7 @@ var SMflashManager = (function() {
 		}
 
 		function customClick() {
+			var newClick = currentMessage.click;
 			console.log(currentMessage.click);
 			$(currentMessage.click).click();
 			animateOut(0);

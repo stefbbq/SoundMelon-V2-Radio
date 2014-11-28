@@ -99,6 +99,14 @@ $music-viewport-height: 365px;
 							color: rgba(36,255,0, 0.7);
 						}
 					}
+
+					.share-link {
+						display: block;
+						float: right;
+						position: relative;
+						margin-top: 8px;
+					}
+
 				}
 				
 				.private {
@@ -132,6 +140,11 @@ $music-viewport-height: 365px;
 							input {color: rgba(white, 0.5) !important;}
 						}
 					}
+				}
+
+				.song-share-link {
+					text-transform: none;
+					margin-top: 10px;
 				}
 			}
 		//End of styles for Song Edit and New
@@ -172,6 +185,7 @@ $music-viewport-height: 365px;
 
 			.viewport {
 				height: $music-viewport-height;
+				overflow-x: hidden;
 				overflow-y: auto;
 			}
 			
