@@ -34,7 +34,8 @@
 						.control-panel
 
 							#user-song-ctas
-								.user-cta.hidden.favorites-link.favorite-icon= link_to('', add_favorite_path(song_id: ''), remote: true, class: 'add-to-favorites filled-link', id: "add-to-favorites")
+								- if user_signed_in?
+									.user-cta.hidden.favorites-link.favorite-icon= link_to('', add_favorite_path(song_id: ''), remote: true, class: 'add-to-favorites filled-link', id: "add-to-favorites")
 								.user-cta.hidden.share-link.share-icon
 									%a.filled-link#share-song{'data-song-path' => ''}
 									.hidden#clipboard-btn{'data-clipboard-text' => ''}
