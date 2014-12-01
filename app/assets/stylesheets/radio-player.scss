@@ -451,6 +451,10 @@ $player-width: 564px;
 				display: inline-block;
 				vertical-align: middle;
 				cursor: pointer;
+				opacity: 0.9;
+
+				&.share-icon {opacity: 0.8;}
+				&:hover {opacity: 1;}
 			}
 		}
 		

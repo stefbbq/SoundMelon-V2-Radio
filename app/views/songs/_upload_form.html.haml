@@ -75,9 +75,7 @@
 							= f.hidden_field(:active, value: @song.active, class: 'active-check')
 
 						- if in_db && @song.active
-							.share-link.share-icon
-								%a.filled-link#share-song{'data-song-path' => ENV["HOST_ADDR"] + song_path(@song)}
-								/.sub-label= ENV["HOST_ADDR"] + song_path(@song)
+							= render 'songs/song_share_link', locals: {id: @song.id}
 
 							
 						%span.state{class: state.downcase}= state

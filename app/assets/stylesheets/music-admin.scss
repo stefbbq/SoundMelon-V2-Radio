@@ -53,9 +53,9 @@ $music-viewport-height: 365px;
 					// margin-left: 8px;
 					position: relative;
 					
-					> div {
-						display: inline-block;
-					}
+					// > div {
+					// 	display: inline-block;
+					// }
 					
 					.toggle-switch {
 						height: 41px;
@@ -100,11 +100,27 @@ $music-viewport-height: 365px;
 						}
 					}
 
-					.share-link {
+					.artist-share-song-box {
 						display: block;
-						float: right;
-						position: relative;
-						margin-top: 8px;
+						position: absolute;
+						right: 0;
+						top: 5px;
+						cursor: pointer;
+						background: rgba(white, 0.4);
+						color: black;
+						font-size: 18px;
+						font-family: FuturaCondensedMedium;
+						text-transform: uppercase;
+						padding: 8px 8px 3px 10px;
+						@include border-radius(2px);
+						opacity: 0.85;
+
+						.share-link {
+							display: inline-block;
+							vertical-align: middle;
+						}
+
+						&:hover {opacity: 1;}
 					}
 
 				}
@@ -142,10 +158,6 @@ $music-viewport-height: 365px;
 					}
 				}
 
-				.song-share-link {
-					text-transform: none;
-					margin-top: 10px;
-				}
 			}
 		//End of styles for Song Edit and New
 		}

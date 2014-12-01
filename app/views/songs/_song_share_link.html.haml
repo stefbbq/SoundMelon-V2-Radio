@@ -1,0 +1,14 @@
+- @song = Song.find(locals[:id])
+
+.artist-share-song-box
+	%span share this song
+	.share-link.share-icon.sprite.black
+		%a.filled-link.share-song{'data-song-path' => ENV["HOST_ADDR"] + song_path(@song)}
+	.hidden.clipboard-btn{'data-clipboard-text' => ''}
+		COPY TO CLIPBOARD
+		.clipboard-icon
+
+:javascript
+	$(".song-form .share-song").click(function() {
+		RadioManager.shareSong($(".song-form .clipboard-btn").clone().removeClass('hidden'), this);
+	});

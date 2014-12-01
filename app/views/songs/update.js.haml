@@ -3,7 +3,17 @@
 	if(messageFlash) {
 		FlashManager.showMessage(messageFlash);
 	}
-	console.log('#{@song.inspect}');
+	//console.log('#{@song.inspect}');
 	var state = '#{@song.active ? "active" : "inactive"}'
 	$('#available-uploads ##{@song.song_id} .song-information span.state').removeClass('active inactive').addClass(state);
 	$('#available-uploads ##{@song.song_id} .song-information span.state').text(state);
+
+- if !@song.active
+	:plain
+		$(".song-form .song-state").find('.share-link, .clipboard-btn').remove();
+
+- else
+	:plain
+		if($(".song-form .song-state").find('.share-link, .clipboard-btn').length === 0) {
+			$(".song-form .song-state").append('#{j( render "songs/song_share_link", locals: {id: @song.id})}')
+		}

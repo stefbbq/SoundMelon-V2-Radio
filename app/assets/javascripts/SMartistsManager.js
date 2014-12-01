@@ -14,20 +14,23 @@ var SMartistsManager = function() {
 			var calloutBox = $('.callout#show-artist-profile');
 			// $(".control-panel .playing").removeClass('hidden');
 
-			//reset favorite song link
-			var fav = $("#add-to-favorites").removeClass('filled');
+			//reset user radio ctas
 			var userCTAs = $("#user-song-ctas").addClass('enable-ctas');
 			var share = $("#share-song");
 			var clipboard = $("#clipboard-btn");
-			var l = fav.attr('href').split('song_id=');
-			fav.attr('href', l[0] + 'song_id=');
 			share.attr('data-song-path', '');
 			clipboard.attr('data-clipboard-text', '');
 
 			//set favorite song
-			var favBox = fav.closest('.favorites-link');
-			favBox.removeClass('hidden filled');
-			fav.attr('href', fav.attr('href').replace('song_id=', 'song_id=' + currentSong['song_id']));
+			if($("#add-to-favorites").length > 0) {
+				var fav = $("#add-to-favorites").removeClass('filled');
+				var l = fav.attr('href').split('song_id=');
+				fav.attr('href', l[0] + 'song_id=');
+				var favBox = fav.closest('.favorites-link');
+				favBox.removeClass('hidden filled');
+				fav.attr('href', fav.attr('href').replace('song_id=', 'song_id=' + currentSong['song_id']));
+			}
+
 			share.attr('data-song-path', currentSong['song_url']);
 			clipboard.attr('data-clipboard-text', currentSong['song_url']);
 			if(currentSong['favorite'] === 'true') favBox.addClass('filled');

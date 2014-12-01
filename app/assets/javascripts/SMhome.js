@@ -8,7 +8,16 @@ $.fn.justify = function() {
 
 function initHomeFunctionality() {
 	// console.log("I'm being inited");
-	console.log($(".link-box"));
+	// console.log($(".link-box"));
+	showFooterLinks();
+
+	ModalManager.enable();
+	RadioManager.enable();
+
+	setOuterBoxClick();
+}
+
+function showFooterLinks() {
 	$(".link-box").css({
 		display: 'inline-block',
 		visibility: 'visible'
@@ -16,10 +25,9 @@ function initHomeFunctionality() {
 	TweenLite.to('.link-box', 0.5, {opacity:1, onComplete: function() {
 		$('.link-box').addClass('visible-box');
 	}});
+}
 
-	ModalManager.enable();
-	RadioManager.enable();
-
+function setOuterBoxClick() {
 	$(document).mouseup(function(e) {
 		var container = $('.modal, .volume-controls, .report-box');
 		if(!container.is(e.target) && container.has(e.target).length == 0) {

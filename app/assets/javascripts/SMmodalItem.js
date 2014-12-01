@@ -95,11 +95,11 @@ var SMmodalItem = function($link, $index){
 	}
 
 	function setModalPosition() {
-		console.log('orientationchange!');
+		// console.log('orientationchange!');
 		var linkIndex = linkBox.index();
 		var linkBoxesLength = linkBoxes.length;
 
-		console.log(linkBox.index());
+		// console.log(linkBox.index());
 		var linkPos = findPos($link[0]);
 		var offset = 100;
 		var linkLeftPos = linkPos.x - offset;

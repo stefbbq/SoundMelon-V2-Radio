@@ -115,8 +115,8 @@ favorite.png: favorite-9274e90c4a1e9f94deb757fc7025ead4.png
 favorite/index.png: favorite-9274e90c4a1e9f94deb757fc7025ead4.png
 feedback.png: feedback-076cf6651b48cec64ab1a87e90f474f0.png
 feedback/index.png: feedback-076cf6651b48cec64ab1a87e90f474f0.png
-footer-sprites-2.png: footer-sprites-2-714d41dd3b76564f14211b941423bb4a.png
-footer-sprites-2/index.png: footer-sprites-2-714d41dd3b76564f14211b941423bb4a.png
+footer-sprites-2.png: footer-sprites-2-2feb6e9dc0de680c15d1aea254114a20.png
+footer-sprites-2/index.png: footer-sprites-2-2feb6e9dc0de680c15d1aea254114a20.png
 footer-sprites.png: footer-sprites-50437781a881c0a9abf3399b6f597ecb.png
 footer-sprites/index.png: footer-sprites-50437781a881c0a9abf3399b6f597ecb.png
 icons/social.png: icons/social-df53f31ccffcbf6caf47edc8568d4c13.png
@@ -153,6 +153,8 @@ sc-placeholder.png: sc-placeholder-ca1c429f19670b37473866c89093cf50.png
 sc-placeholder/index.png: sc-placeholder-ca1c429f19670b37473866c89093cf50.png
 sc-radio-bg.jpg: sc-radio-bg-7455198df756b4e94da71698d530acb0.jpg
 sc-radio-bg/index.jpg: sc-radio-bg-7455198df756b4e94da71698d530acb0.jpg
+share-dark.png: share-dark-3c7948844877c68998766ce9dae6565e.png
+share-dark/index.png: share-dark-3c7948844877c68998766ce9dae6565e.png
 share.png: share-9974ecc9b3a68a4dbfc71c0048a55d9e.png
 share/index.png: share-9974ecc9b3a68a4dbfc71c0048a55d9e.png
 skip.png: skip-fce051625a725e56274c429c021dda1f.png
@@ -175,8 +177,8 @@ splash-bgs/5.jpg: splash-bgs/5-e6fed77d13d53f90a681ab98f3489ac5.jpg
 splash-bgs/5/index.jpg: splash-bgs/5-e6fed77d13d53f90a681ab98f3489ac5.jpg
 splash-bgs/6.jpg: splash-bgs/6-54c54dd78bb92f97e6c00f0550e12087.jpg
 splash-bgs/6/index.jpg: splash-bgs/6-54c54dd78bb92f97e6c00f0550e12087.jpg
-sprite-sheet.png: sprite-sheet-dc458ff984fd477294c20c18f410fc9b.png
-sprite-sheet/index.png: sprite-sheet-dc458ff984fd477294c20c18f410fc9b.png
+sprite-sheet.png: sprite-sheet-7d895f3e0036d89c94e9942261d2eb1c.png
+sprite-sheet/index.png: sprite-sheet-7d895f3e0036d89c94e9942261d2eb1c.png
 user-edit.png: user-edit-19f425e652efe1ad67253cfd6dc010bb.png
 user-edit/index.png: user-edit-19f425e652efe1ad67253cfd6dc010bb.png
 vertical-divider.png: vertical-divider-60b8d830f5f3f4473f677fabc53f7cc1.png
@@ -189,10 +191,10 @@ yt-logo.png: yt-logo-29742d2eb93b398dada94860bd930b16.png
 yt-logo/index.png: yt-logo-29742d2eb93b398dada94860bd930b16.png
 yt-logoORIG.png: yt-logoORIG-96178a4c51768e0ea1c049b89ef71783.png
 yt-logoORIG/index.png: yt-logoORIG-96178a4c51768e0ea1c049b89ef71783.png
-application.js: application-936a1ddecc5f2f1de1e2f05c076f9070.js
-application/index.js: application-936a1ddecc5f2f1de1e2f05c076f9070.js
-application.css: application-bd9b6b1322a1612eb0cc655dac543355.css
-application/index.css: application-bd9b6b1322a1612eb0cc655dac543355.css
+application.js: application-3a45517e3e15e361c0213ceaa6004c25.js
+application/index.js: application-3a45517e3e15e361c0213ceaa6004c25.js
+application.css: application-a83c9d1a1967c2dcce91a5c13ff0b1dc.css
+application/index.css: application-a83c9d1a1967c2dcce91a5c13ff0b1dc.css
 ZeroClipboard.swf: ZeroClipboard-2fe99dab2c07f784147ff30761b200d6.swf
 ZeroClipboard/index.swf: ZeroClipboard-2fe99dab2c07f784147ff30761b200d6.swf
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png

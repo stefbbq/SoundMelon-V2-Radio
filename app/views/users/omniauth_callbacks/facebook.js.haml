@@ -4,9 +4,14 @@
 		FlashManager.showMessage(message);
 
 - else
-	:plain
-		animateSplashOut(function() {
-			$('.footer').empty().html("#{escape_javascript( render 'layouts/footer' )}");
-			$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
-			animateHomeIn();
-		});
+	- if session["song_conversion"]
+		:plain
+			window.location.replace('#{root_path}');
+
+	- else
+		:plain
+			animateSplashOut(function() {
+				$('.footer').empty().html("#{escape_javascript( render 'layouts/footer' )}");
+				$('.main_page_div').empty().html("#{escape_javascript( render template: 'users/show' )}");
+				animateHomeIn();
+			});

@@ -21,7 +21,7 @@ var SMmodalManager = function() {
 			}
 			
 		}
-		console.log('modal links length: ' + count);
+		// console.log('modal links length: ' + count);
 	}
 	
 	

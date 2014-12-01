@@ -29,6 +29,11 @@
 		= render 'layouts/flash_board'
 
 :javascript
+	$('#fb-root').remove();
+	$('body').prepend('<div id="fb-root"></div>');
+	inviteToken = '#{@invite_token}'
+	console.log(inviteToken);
+
 	//deal with IE for CSS
 	var doc = document.documentElement;
 	doc.setAttribute('data-useragent', navigator.userAgent);
@@ -54,3 +59,33 @@
 			delay: 200
 		});
 	}
+
+	$.ajax({
+		url: "" + window.location.protocol + "//connect.facebook.net/en_US/all.js",
+		dataType: 'script',
+		cache: true
+	});
+
+	window.fbAsyncInit = function() {
+		$('#sign-in').click(function(e) {
+		  e.preventDefault();
+		  FB.login(function(response) {
+		  	if(response.status === "unknown") {
+
+		  	}
+				console.log(response);
+		    if (response.authResponse) {
+					$.ajax({
+						url: '#{user_omniauth_callback_path(:facebook)}',
+						data: {state: inviteToken}
+					});
+		    }
+		  }, {scope: 'email,user_likes'});
+		});
+
+		FB.init({
+		  appId: '#{ENV["FACEBOOK_APP_ID"]}',
+			status: true,
+		  cookie: true
+		});
+	};

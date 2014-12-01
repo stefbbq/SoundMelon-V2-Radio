@@ -33,7 +33,9 @@ var SMradioManager = function(scAppId) {
 		$('#report-song').click(openReportForm);
 		$('#radio-stations #user-meta').trigger('click');
 		$("#add-to-favorites").click(addToFavorites);
-		$("#share-song").click(shareCurrentSong);
+		$("#share-song").click(function() {
+			shareCurrentSong($("#clipboard-btn").clone().removeClass('hidden'), this);
+		});
 		
 		//keyboard bindings
 		key('space', function() {
@@ -436,14 +438,15 @@ var SMradioManager = function(scAppId) {
 		var linkBox = $(this).closest('.favorites-link');
 	}
 
-	function shareCurrentSong() {
-		var link = $(this).attr('data-song-path');
+	function shareCurrentSong(copyButton, shareButton) {
+		var link = $(shareButton).attr('data-song-path');
 		var message = {
 			message: 'share this link: <a href="'+ link +'" target="_blank">'+ link +'</a>',
-			severity: $("#clipboard-btn").clone().removeClass('hidden')
+			severity: copyButton
+			// severity: $("#clipboard-btn").clone().removeClass('hidden')
 		}
 		FlashManager.showMessage(message);
-		var clip = new ZeroClipboard($("#flash-board #clipboard-btn"))
+		var clip = new ZeroClipboard($("#flash-board #clipboard-btn, #flash-board .clipboard-btn"))
 		clip.setText(link);
 	}
 
@@ -531,6 +534,7 @@ var SMradioManager = function(scAppId) {
 		playBehaviour: playBehaviour,
 		disableNextButton: disableNextButton,
 		enableNextButton: enableNextButton,
+		shareSong: shareCurrentSong,
 		
 		//vars
 		playersManager: playersManager,

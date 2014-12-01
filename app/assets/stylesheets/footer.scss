@@ -11,6 +11,7 @@ body > .footer {
 	font-family: 'HelveticaNeue';
 	font-size: 14px;
 	color: white;
+	z-index: 1;
 	
 	.logo {
 		position: absolute;
@@ -64,6 +65,13 @@ body > .footer {
 					display: inline-block;
 					visibility: visible;
 					opacity: 1;
+				}
+				&.guest-link-box {
+					width: auto;
+					margin: 10px 10px 0;
+					vertical-align: top;
+					color: lighten(#cc3b3c, 10);
+					&:hover {color: lighten(#cc3b3c, 15);}
 				}
 				
 				.link-icon {

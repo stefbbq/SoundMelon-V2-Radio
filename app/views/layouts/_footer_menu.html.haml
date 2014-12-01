@@ -8,6 +8,7 @@
 
 .menu
 	- if user_signed_in?
+		// footer for signed in users
 		- if current_user.terms
 			= render 'users/music_footer'
 
@@ -27,6 +28,19 @@
 			- full_name = current_user.first_name
 			%span.label.modal-link= full_name
 			%a.filled-link#edit-page.modal-link{"data-modal" => 'user-edit'}
+
+	- elsif params[:controller] == 'songs'
+		// footer for guest user viewing shared items
+		.link-box.menu-hover.guest-link-box#sign-in
+			.link-icon.facebook-connect
+			%span.label.modal-link Connect with Facebook
+			= link_to('', user_omniauth_authorize_path(:facebook, song_conversion: true), remote: false, class: 'filled-link')
+			- session["song_conversion"] = 'yes'
+
+		.link-box.menu-hover.guest-link-box
+			.link-icon.signup-icon
+			%span.label.modal-link Sign Up with eMail
+			= link_to "", new_user_registration_path, class: 'filled-link'
 		
 	.link-box.menu-hover.visible-box
 		.link-icon.about-icon

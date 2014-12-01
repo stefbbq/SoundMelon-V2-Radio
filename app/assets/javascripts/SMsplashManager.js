@@ -17,7 +17,7 @@ SMsplashManager = (function() {
 	function enable() {
 		$(document).ready(function() {
 			captionBox = $(captionSelector);
-			console.log('captions setup');
+			// console.log('captions setup');
 			slideInterval = setInterval(changeCaption, slideDelay);
 		});
 	}
