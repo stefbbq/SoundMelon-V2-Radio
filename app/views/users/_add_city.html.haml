@@ -6,7 +6,7 @@
 		= form_for(@user, remote: true, url: add_city_path) do |f|
 			= f.hidden_field :id, value: @user.id
 			.form-inputs
-				= f.text_field :city, value: request.location.city, placeholder: 'your city', class: 'user-city'
+				= f.text_field :city, placeholder: 'your city', class: 'user-city'
 				.instruction-container
 					.instruction.warning
 						.sprite.exclaim.red
