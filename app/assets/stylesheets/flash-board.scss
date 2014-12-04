@@ -57,6 +57,18 @@
 			overflow: hidden;
 			background: url('/assets/close.png') center no-repeat, rgba(black, 0.1);
 		}
+
+		.social-sharing {
+			position: absolute;
+			left: -73px;
+			top: -5px;
+			
+			.social-share {
+				display: inline-block;
+				vertical-align: top;
+				position: relative;
+			}
+		}
 	}
 	
 	&.notification {

@@ -39,8 +39,8 @@ var SMflashManager = (function() {
 					flashBoard.addClass('notification').removeClass('error warning');
 					break;
 			}
-			flashBoard.find('.severity .level').html(severity);
-			flashBoard.find('.message').html(message.message);
+			flashBoard.find('.severity .level').empty().html(severity);
+			flashBoard.find('.message').empty().html(message.message);
 			// var delay = severity !== 'warning' || severity !== 'notification' ? 999 : 5;
 			var delay = ['warning', 'notification'].indexOf(severity) === -1 ? 999 : 5;
 			var delay = message.delay ? message.delay : delay;

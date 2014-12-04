@@ -18,7 +18,10 @@ var SMartistsManager = function() {
 			var userCTAs = $("#user-song-ctas").addClass('enable-ctas');
 			var share = $("#share-song");
 			var clipboard = $("#clipboard-btn");
-			share.attr('data-song-path', '');
+			share.attr({
+				'data-song-path': '',
+				'data-song-title': ''
+			});
 			clipboard.attr('data-clipboard-text', '');
 
 			//set favorite song
@@ -31,7 +34,10 @@ var SMartistsManager = function() {
 				fav.attr('href', fav.attr('href').replace('song_id=', 'song_id=' + currentSong['song_id']));
 			}
 
-			share.attr('data-song-path', currentSong['song_url']);
+			share.attr({
+				'data-song-path': currentSong['song_url'],
+				'data-song-title': currentSong['song_title']
+			});
 			clipboard.attr('data-clipboard-text', currentSong['song_url']);
 			if(currentSong['favorite'] === 'true') favBox.addClass('filled');
 

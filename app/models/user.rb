@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 #	
 
 	def check_email_and_confirmation
-		if (self.email != self.email_confirmation)
+		if (self.email.downcase != self.email_confirmation.downcase)
 			errors.add(:email, "Make sure the email address you typed is correct")
 		end
 	end

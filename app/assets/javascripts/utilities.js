@@ -50,20 +50,20 @@ function centerRadioCallout(command) {
 
 function shareOnFacebook() {
 	var link = $(this);
-	console.log(link);
-	// var post = $(this).closest('.wrapper');
-	// var postID = link.attr('data-post-id');
 	var img = 'http://www.soundmelon.com/assets/core/footer_logo.png';
+	var args = {
+		method: 'feed',
+		name: $(this).attr('data-share-title') === undefined || '' ? 'SoundMelon Radio' : $(this).attr('data-share-title'),
+		link: $(this).attr('data-share-link'),
+		picture: img
+		// caption: link.attr('data-share-caption')
+		// description: $(this).attr('data-share-caption')
+	}
+	console.log(args);
+	// console.log(link.attr('data-share-link'));
 
-	FB.ui({
-	method: 'feed',
-		name: 'SoundMelon Radio',
-		link: 'http://www.soundmelon.com',
-		picture: img,
-		caption: "",
-		description: "SoundMelon Radio"
-	}, function(response) {
-		console.log(response);
+	FB.ui(args, function(response) {
+		console.log(args);
 	});
 }
 

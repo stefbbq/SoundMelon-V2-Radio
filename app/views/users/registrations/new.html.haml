@@ -1,6 +1,6 @@
 /= params.inspect
-- param_email = params[:locals] ? params[:locals][:user][:email] : (params[:user] ? params[:user][:email] : '')
-- conf_email = params[:user] ? params[:user][:email_confirmation] : ''
+- param_email = params[:locals] ? params[:locals][:user][:email].downcase : (params[:user] ? params[:user][:email].downcase : '')
+- conf_email = params[:user] ? params[:user][:email_confirmation].downcase : ''
 - param_pass = params[:locals] ? params[:locals][:user][:password] : (params[:user] ? params[:user][:password] : '')
 .inner-content.vertical-center.splash-page
 	.bg-title registration
@@ -44,6 +44,10 @@
 	:javascript
 		$(document).ready(function() {
 			$(".user-registration form").submit(checkConfEmail);
+
+			$(".user-registration form input[type='email']").blur(function() {
+				$(this).val($(this).val().toLowerCase());
+			});
 
 			if($('html.ipad, html.safari').length > 0) $(".user-registration form").h5Validate();
 

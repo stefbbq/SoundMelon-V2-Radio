@@ -3,12 +3,19 @@
 .artist-share-song-box
 	%span share this song
 	.share-link.share-icon.sprite.black
-		%a.filled-link.share-song{'data-song-path' => ENV["HOST_ADDR"] + song_path(@song)}
-	.hidden.clipboard-btn{'data-clipboard-text' => ''}
-		COPY TO CLIPBOARD
-		.clipboard-icon
+		%a.filled-link.share-song{'data-song-path' => ENV["HOST_ADDR"] + song_path(@song), 'data-song-title' => @song.song_title}
+
+	.hidden.share-link-content
+		.clipboard-btn#clipboard-btn{'data-clipboard-text' => ''}
+			COPY THIS LINK
+			.clipboard-icon
+		.social-sharing
+			.social-share.facebook-icon{'data-share-link' => "", 'data-share-title' => '', 'data-share-caption' => ''}
+			.social-share.twitter-icon
+				%a.filled-link{href: ''}
+
 
 :javascript
 	$(".song-form .share-song").click(function() {
-		RadioManager.shareSong($(".song-form .clipboard-btn").clone().removeClass('hidden'), this);
+		RadioManager.shareSong($(".song-form .share-link-content").clone().removeClass('hidden'), this);
 	});

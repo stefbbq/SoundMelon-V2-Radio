@@ -34,7 +34,8 @@ var SMradioManager = function(scAppId) {
 		$('#radio-stations #user-meta').trigger('click');
 		$("#add-to-favorites").click(addToFavorites);
 		$("#share-song").click(function() {
-			shareCurrentSong($("#clipboard-btn").clone().removeClass('hidden'), this);
+			// shareCurrentSong($("#clipboard-btn").clone().removeClass('hidden'), this);
+			shareCurrentSong($("#user-song-ctas .share-link-content").clone().removeClass('hidden'), this);
 		});
 		
 		//keyboard bindings
@@ -440,14 +441,39 @@ var SMradioManager = function(scAppId) {
 
 	function shareCurrentSong(copyButton, shareButton) {
 		var link = $(shareButton).attr('data-song-path');
+		var title = $(shareButton).attr('data-song-title');
 		var message = {
 			message: 'share this link: <a href="'+ link +'" target="_blank">'+ link +'</a>',
 			severity: copyButton
 			// severity: $("#clipboard-btn").clone().removeClass('hidden')
 		}
 		FlashManager.showMessage(message);
-		var clip = new ZeroClipboard($("#flash-board #clipboard-btn, #flash-board .clipboard-btn"))
+		var clip = new ZeroClipboard($("#flash-board .clipboard-btn"));
 		clip.setText(link);
+		clip.on('copy', function() {
+			alert("The link has been copied to your clipboard!");
+		});
+		// $("#flash-board .facebook-icon").attr({
+		// 	'data-share-link': link,
+		// 	'data-share-title': title
+		// }).click(shareOnFacebook);
+		$("#flash-board .facebook-icon").click(function() {
+			var img = 'http://www.soundmelon.com/assets/core/footer_logo.png';
+			var args = {
+				method: 'feed',
+				name: title,
+				link: link,
+				picture: img
+				// caption: link.attr('data-share-caption')
+				// description: $(this).attr('data-share-caption')
+			}
+			console.log(args);
+			FB.ui(args, function(response) {
+				console.log(args);
+			});
+		});	
+
+		$("#flash-board .twitter-icon a").attr('href', "https://twitter.com/intent/tweet?text="+ title +" @SoundMelon&url=" + link);
 	}
 
 	function disableNextButton() {

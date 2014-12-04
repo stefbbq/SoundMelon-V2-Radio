@@ -66,6 +66,7 @@
 		cache: true
 	});
 
+	var FBargs;
 	window.fbAsyncInit = function() {
 		$('#sign-in').click(function(e) {
 		  e.preventDefault();
@@ -82,10 +83,10 @@
 		    }
 		  }, {scope: 'email,user_likes'});
 		});
-
-		FB.init({
+		FBargs = {
 		  appId: '#{ENV["FACEBOOK_APP_ID"]}',
 			status: true,
 		  cookie: true
-		});
+		}
+		FB.init(FBargs);
 	};

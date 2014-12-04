@@ -73,8 +73,10 @@ function checkConfEmail(e) {
 
 function runEmailConf(form) {
 	var email = form.find('[name="user[email]"]');
-	var emailVal = email.val();
-	var emailConf = form.find('[name="user[email_confirmation]"]').val();
+	var emailVal = email.val().toLowerCase();
+	email.val(emailVal);
+	var emailConf = form.find('[name="user[email_confirmation]"]').val().toLowerCase();
+	form.find('[name="user[email_confirmation]"]').val(emailConf);
 	if(emailVal !== emailConf || emailConf === '') {
 		showInstruction(email);
 		return false;

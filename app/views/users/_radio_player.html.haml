@@ -10,7 +10,7 @@
 					%span.small.justify we're pretty
 					%span.medium.justify awesome
 			.links-container
-				.sm-social-icon.facebook{onclick: "shareOnFacebook()"}					
+				.sm-social-icon.facebook{onclick: "shareOnFacebook()", 'data-share-link' => "http://www.soundmelon.com", 'data-share-title' => 'SoundMelon Radio', 'data-share-caption' => ''}					
 				.sm-social-icon.twitter
 					%a.filled-link{href: "https://twitter.com/intent/tweet?text=SoundMelon&url=http://www.soundmelon.com"}
 
@@ -37,10 +37,15 @@
 								- if user_signed_in?
 									.user-cta.hidden.favorites-link.favorite-icon= link_to('', add_favorite_path(song_id: ''), remote: true, class: 'add-to-favorites filled-link', id: "add-to-favorites")
 								.user-cta.hidden.share-link.sprite.share-icon.white
-									%a.filled-link#share-song{'data-song-path' => ''}
-									.hidden#clipboard-btn{'data-clipboard-text' => ''}
-										COPY TO CLIPBOARD
-										.clipboard-icon
+									%a.filled-link#share-song{'data-song-path' => '', 'data-song-title' => ''}
+									.hidden.share-link-content
+										.clipboard-btn#clipboard-btn{'data-clipboard-text' => ''}
+											COPY THIS LINK
+											.clipboard-icon
+										.social-sharing
+											.social-share.facebook-icon{'data-share-link' => "", 'data-share-title' => '', 'data-share-caption' => ''}
+											.social-share.twitter-icon
+												%a.filled-link{href: ''}
 
 							.volume-container
 								.control.volume#volume.disable
