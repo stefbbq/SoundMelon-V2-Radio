@@ -60,13 +60,19 @@
 
 		.social-sharing {
 			position: absolute;
-			left: -73px;
-			top: -5px;
+			left: -52px;
+			top: 0px;
 			
 			.social-share {
 				display: inline-block;
 				vertical-align: top;
 				position: relative;
+				opacity: 0.1;
+				// background-size: 290%;
+				height: 23px;
+				// width: 22px;
+
+				&:hover {opacity: 0.2;}
 			}
 		}
 	}

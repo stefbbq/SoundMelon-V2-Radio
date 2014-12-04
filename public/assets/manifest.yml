@@ -119,6 +119,8 @@ footer-sprites-2.png: footer-sprites-2-2feb6e9dc0de680c15d1aea254114a20.png
 footer-sprites-2/index.png: footer-sprites-2-2feb6e9dc0de680c15d1aea254114a20.png
 footer-sprites.png: footer-sprites-50437781a881c0a9abf3399b6f597ecb.png
 footer-sprites/index.png: footer-sprites-50437781a881c0a9abf3399b6f597ecb.png
+icons/social-dark.png: icons/social-dark-3d3d819167e8f2dd0cba786a9c314961.png
+icons/social-dark/index.png: icons/social-dark-3d3d819167e8f2dd0cba786a9c314961.png
 icons/social.png: icons/social-df53f31ccffcbf6caf47edc8568d4c13.png
 icons/social/index.png: icons/social-df53f31ccffcbf6caf47edc8568d4c13.png
 invite-friends.png: invite-friends-ae3417c8940d875a58bb7fac5cb35724.png
@@ -193,8 +195,8 @@ yt-logoORIG.png: yt-logoORIG-96178a4c51768e0ea1c049b89ef71783.png
 yt-logoORIG/index.png: yt-logoORIG-96178a4c51768e0ea1c049b89ef71783.png
 application.js: application-94b12b640a886eacd82e17f0f9f1f5ac.js
 application/index.js: application-94b12b640a886eacd82e17f0f9f1f5ac.js
-application.css: application-c2b0e2864e7f1293b6bf70fc963556dd.css
-application/index.css: application-c2b0e2864e7f1293b6bf70fc963556dd.css
+application.css: application-ea003cb3e87252daf6ce69d5f2da9378.css
+application/index.css: application-ea003cb3e87252daf6ce69d5f2da9378.css
 ZeroClipboard.swf: ZeroClipboard-2fe99dab2c07f784147ff30761b200d6.swf
 ZeroClipboard/index.swf: ZeroClipboard-2fe99dab2c07f784147ff30761b200d6.swf
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png

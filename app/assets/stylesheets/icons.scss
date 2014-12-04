@@ -15,6 +15,12 @@
 .twitter-icon { @include sprite-img("icons/social.png", 2, 1, 32px, 32px); }
 .linkedin-icon { @include sprite-img("icons/social.png", 3, 1, 32px, 32px); }
 
+.social-share {
+	&.facebook-icon { @include sprite-img("icons/social-dark.png", 1, 1, 22px, 22px); }
+	&.twitter-icon { @include sprite-img("icons/social-dark.png", 2, 1, 22px, 22px); }
+	&.linkedin-icon { @include sprite-img("icons/social-dark.png", 3, 1, 22px, 22px); }
+}
+
 .social-icon {
 	height: 20px;
 	width: 20px;
