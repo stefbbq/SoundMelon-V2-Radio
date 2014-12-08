@@ -63,16 +63,25 @@
 			left: -52px;
 			top: 0px;
 			
-			.social-share {
+			.icon-wrapper {
 				display: inline-block;
 				vertical-align: top;
 				position: relative;
-				opacity: 0.1;
-				// background-size: 290%;
-				height: 23px;
-				// width: 22px;
+				background: rgba(black, 0.1);
+				height: 22px;
+				width: 22px;
+				@include border-radius(2px);
+				
+				.social-icon {
+					position: relative;
+					margin: 0 auto;
+					opacity: 0.5;
+					top: 5px;
 
-				&:hover {opacity: 0.2;}
+					&.facebook-icon {top: 4px;}
+				}
+
+				&:hover .social-icon {opacity: 0.8;}
 			}
 		}
 	}

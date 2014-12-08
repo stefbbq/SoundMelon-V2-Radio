@@ -15,11 +15,11 @@
 .twitter-icon { @include sprite-img("icons/social.png", 2, 1, 32px, 32px); }
 .linkedin-icon { @include sprite-img("icons/social.png", 3, 1, 32px, 32px); }
 
-.social-share {
-	&.facebook-icon { @include sprite-img("icons/social-dark.png", 1, 1, 22px, 22px); }
-	&.twitter-icon { @include sprite-img("icons/social-dark.png", 2, 1, 22px, 22px); }
-	&.linkedin-icon { @include sprite-img("icons/social-dark.png", 3, 1, 22px, 22px); }
-}
+// .social-share {
+// 	&.facebook-icon { @include sprite-img("icons/social-dark.png", 1, 1, 22px, 22px); }
+// 	&.twitter-icon { @include sprite-img("icons/social-dark.png", 2, 1, 22px, 22px); }
+// 	&.linkedin-icon { @include sprite-img("icons/social-dark.png", 3, 1, 22px, 22px); }
+// }
 
 .social-icon {
 	height: 20px;
@@ -29,5 +29,16 @@
 	&:hover {opacity: 0.8;}
 	&.facebook {
 		background-position: 33% 0;
+	}
+
+	&.twitter-icon {
+		background-position: 0 70%;
+		width: 13px;
+		height: 11px;
+	}
+	&.facebook-icon {
+		background-position: 28% 70%;
+		width: 7px;
+		height: 13px;
 	}
 }
