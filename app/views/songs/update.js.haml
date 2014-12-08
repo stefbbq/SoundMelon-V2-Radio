@@ -10,10 +10,10 @@
 
 - if !@song.active
 	:plain
-		$(".song-form .song-state").find('.share-link, .clipboard-btn').remove();
+		$(".song-form .song-state").find('.artist-share-song-box').remove();
 
 - else
 	:plain
-		if($(".song-form .song-state").find('.share-link, .clipboard-btn').length === 0) {
+		if($(".song-form .song-state").find('.artist-share-song-box').length === 0) {
 			$(".song-form .song-state").append('#{j( render "songs/song_share_link", locals: {id: @song.id})}')
 		}
