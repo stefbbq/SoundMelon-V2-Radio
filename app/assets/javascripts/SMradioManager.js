@@ -443,11 +443,12 @@ var SMradioManager = function(scAppId) {
 		var link = $(shareButton).attr('data-song-path');
 		var title = $(shareButton).attr('data-song-title');
 		var message = {
-			message: 'share this link: <a href="'+ link +'" target="_blank">'+ link +'</a>',
-			severity: copyButton
+			message: 'share this link: <a href="'+ link +'" target="_blank">'+ link +'</a><div class="copy-wrapper">'+copyButton.html()+'</div>',
+			severity: '<div class="close" style="display: block;"></div>'
 			// severity: $("#clipboard-btn").clone().removeClass('hidden')
 		}
 		FlashManager.showMessage(message);
+		flashBoard.find('.severity .level').addClass('no-padding');
 		var clip = new ZeroClipboard($("#flash-board .clipboard-btn"));
 		clip.setText(link);
 		clip.on('copy', function() {

@@ -24,6 +24,53 @@
 		a {
 			color: rgba(#ce3a00, 0.85);
 		}
+
+		.copy-wrapper, .clipboard-btn, .social-sharing {
+			display: inline-block;
+			font-size: 12px;
+		}
+
+		.copy-wrapper {
+			position: relative;
+			top: -2px;
+		}
+
+		.clipboard-btn {
+			cursor: pointer;
+			background: rgba(black, 0.1);
+			padding: 6px 10px 1px;
+			@include border-radius(2px);
+			// &:hover {background: rgba(black, 0.2);}
+		}
+
+		.social-sharing {
+			font-family: HelveticaThin;
+			color: rgba(black, 0.5);
+			margin-left: 15px;
+
+			.icon-wrapper {
+				display: inline-block;
+				vertical-align: top;
+				position: relative;
+				background: rgba(black, 0.1);
+				height: 22px;
+				width: 22px;
+				@include border-radius(2px);
+				margin-top: -5px;
+				cursor: pointer;
+				
+				.social-icon {
+					position: relative;
+					margin: 0 auto;
+					opacity: 0.5;
+					top: 5px;
+
+					&.facebook-icon {top: 4px;}
+				}
+
+				&:hover .social-icon {opacity: 0.8;}
+			}
+		}
 	}
 	
 	.severity {
@@ -50,6 +97,12 @@
 			// width: 100px;
 			padding: 0 10px;
 			margin-top: 6px;
+
+			&.no-padding {
+				padding: 0;
+				margin: 0;
+			}
+
 		}
 		.close {
 			height: 23px;
@@ -58,32 +111,7 @@
 			background: url('/assets/close.png') center no-repeat, rgba(black, 0.1);
 		}
 
-		.social-sharing {
-			position: absolute;
-			left: -52px;
-			top: 0px;
-			
-			.icon-wrapper {
-				display: inline-block;
-				vertical-align: top;
-				position: relative;
-				background: rgba(black, 0.1);
-				height: 22px;
-				width: 22px;
-				@include border-radius(2px);
-				
-				.social-icon {
-					position: relative;
-					margin: 0 auto;
-					opacity: 0.5;
-					top: 5px;
 
-					&.facebook-icon {top: 4px;}
-				}
-
-				&:hover .social-icon {opacity: 0.8;}
-			}
-		}
 	}
 	
 	&.notification {

@@ -75,6 +75,7 @@ var SMflashManager = (function() {
 			// $('.footer .menu').css('visibility', 'hidden');
 			flashBoard.show();
 			TweenLite.from(flashBoard, 0.4, {top: -flashBoard.height(), onComplete: callback, onCompleteParams: [delay]});
+			flashBoard.find('.severity .level').removeClass('no-padding');
 		}
 		
 		function animateOut(delay){
@@ -82,6 +83,7 @@ var SMflashManager = (function() {
 				flashBoard.hide();
 				flashBoard.css('top', 0);
 				$('.footer .menu').css('visibility', 'visible');
+
 			}}).delay(delay);
 
 			if(delay === 999) {
@@ -97,7 +99,10 @@ var SMflashManager = (function() {
 			enable: enable,
 			disable: disable,
 			showMessage: showMessage,
-			animateOut: animateOut
+			animateOut: animateOut,
+
+			//variables
+			flashBoard: flashBoard
 		}
 	}
 })();

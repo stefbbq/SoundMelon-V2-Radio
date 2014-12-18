@@ -39,15 +39,17 @@
 								.user-cta.hidden.share-link.sprite.share-icon.white
 									%a.filled-link#share-song{'data-song-path' => '', 'data-song-title' => ''}
 									.hidden.share-link-content
-										.clipboard-btn#clipboard-btn{'data-clipboard-text' => ''}
-											COPY THIS LINK
-											.clipboard-icon
+
 										.social-sharing
+											%span share to
 											.icon-wrapper
 												.social-icon.facebook-icon{'data-share-link' => "", 'data-share-title' => '', 'data-share-caption' => ''}
 											.icon-wrapper
 												.social-icon.twitter-icon
 													%a.filled-link{href: ''}
+										.clipboard-btn#clipboard-btn{'data-clipboard-text' => ''}
+											COPY THIS LINK
+											.clipboard-icon
 
 							.volume-container
 								.control.volume#volume.disable
