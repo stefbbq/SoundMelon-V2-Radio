@@ -50,10 +50,11 @@ function centerRadioCallout(command) {
 
 function shareOnFacebook() {
 	var link = $(this);
-	var img = 'http://www.soundmelon.com/assets/core/footer_logo.png';
+	// var img = 'http://www.soundmelon.com/assets/core/footer_logo.png';
+	var img = $(this).attr('data-share-image');
 	var args = {
 		method: 'feed',
-		name: $(this).attr('data-share-title') === undefined || '' ? 'SoundMelon Radio' : $(this).attr('data-share-title'),
+		name: $(this).attr('data-share-artist') + $(this).attr('data-share-title'),
 		link: $(this).attr('data-share-link'),
 		picture: img
 		// caption: link.attr('data-share-caption')

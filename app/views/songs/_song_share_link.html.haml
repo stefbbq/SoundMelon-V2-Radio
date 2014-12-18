@@ -9,7 +9,8 @@
 		.social-sharing
 			%span share to
 			.icon-wrapper
-				.social-icon.facebook-icon{'data-share-link' => "", 'data-share-title' => '', 'data-share-caption' => ''}
+				- @image = @song.artist.artist_photo.url
+				.social-icon.facebook-icon{'data-share-link' => "", 'data-share-title' => '', 'data-share-caption' => '', 'data-share-artist' => @song.artist.artist_name, 'data-share-image' => @image}
 			.icon-wrapper
 				.social-icon.twitter-icon
 					%a.filled-link{href: ''}

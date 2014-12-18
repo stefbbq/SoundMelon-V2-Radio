@@ -441,7 +441,7 @@ var SMradioManager = function(scAppId) {
 
 	function shareCurrentSong(copyButton, shareButton) {
 		var link = $(shareButton).attr('data-song-path');
-		var title = $(shareButton).attr('data-song-title');
+		var title = $(this).attr('data-share-artist') + ' - ' + $(shareButton).attr('data-song-title');
 		var message = {
 			message: 'share this link: <a href="'+ link +'" target="_blank">'+ link +'</a><div class="copy-wrapper">'+copyButton.html()+'</div>',
 			severity: '<div class="close" style="display: block;"></div>'
@@ -459,7 +459,7 @@ var SMradioManager = function(scAppId) {
 		// 	'data-share-title': title
 		// }).click(shareOnFacebook);
 		$("#flash-board .facebook-icon").click(function() {
-			var img = 'http://www.soundmelon.com/assets/core/footer_logo.png';
+			var img = $(this).attr('data-share-image');
 			var args = {
 				method: 'feed',
 				name: title,
